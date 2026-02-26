@@ -1,0 +1,36 @@
+\pagestyle{fancy}
+\begin{appendices}
+
+%Some Table of Contents entry formatting
+\addtocontents{toc}{\protect\renewcommand{\protect\cftchappresnum}{\appendixname\space}}
+\addtocontents{toc}{\protect\renewcommand{\protect\cftchapnumwidth}{6em}}
+
+% \appendix
+\thispagestyle{fancy}
+
+%Begin individual appendices, separated as chapters
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Approval Page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{approvalPage.tex}
+% \chapter*{something}
+\chapter{Appendix title}
+
+
+
+
+
+\begin{suppfigure}
+    \centering
+    \includegraphics[width=\linewidth]{ch1_figures/tempfig.pdf}
+    \caption{\textbf{Temporary figure.}
+    \textbf{a}, A placeholder
+    }
+    \label{suppfig:appendixfig}
+\end{suppfigure}
+
+
+
+\end{appendices}

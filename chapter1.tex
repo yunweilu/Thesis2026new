@@ -1,0 +1,49 @@
+\chapter{Introduction and Background}
+\label{chap:1}
+
+This is Chapter \ref{chap:1}.
+
+% === SMOKE TEST START ===
+% List of Symbols smoke-test: tag each symbol where it is first introduced.
+We define the cavity resonance angular frequency $\omega_c$ (in \si{\radian\per\second}).%
+\nomenclature{$\omega_c$}{Cavity resonance angular frequency (\si{\radian\per\second}).}
+% === SMOKE TEST END ===
+
+This is an attempt at some sort of a thesis template for Northwestern PhD, based on the 2021 guidelines. The guidelines change from time to time, so check. At this time, the page number is required to be within the page margins (harmless warning, aesthetically a little weird).
+
+Cite scipy \cite{Virtanen2020SciPyPython}
+
+% === SMOKE TEST START ===
+\begin{table}[h]
+\caption{Smoke-test table to verify List of Tables automation.}
+\label{tab:smoke_example}
+\centering
+\begin{tabular}{ll}
+Quantity & Value \\
+\hline
+Example & 1 \\
+\end{tabular}
+\end{table}
+% === SMOKE TEST END ===
+
+\begin{table}[h]
+\caption{This is a table with a caption.}
+\label{tab:my-table}
+\begin{tabular}{lllll}
+Something & 1 & 1 & 1 & 0 \\
+Else      & 0 & 0 & 0 & 1 \\
+What      &   & 3 &   &   \\
+is this   &   &   &   & 7
+\end{tabular}
+\end{table}
+
+Figure \ref{fig:ch1fig} is in a chapter, so it is a figure. However, Figure \ref{suppfig:appendixfig} is a supplementary figure in the appendix. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{ch1_figures/tempfig.pdf}
+    \caption{\textbf{Temporary figure in Chapter 1.}
+    \textbf{a}, A placeholder
+    }
+    \label{fig:ch1fig}
+\end{figure}
