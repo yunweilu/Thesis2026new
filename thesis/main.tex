@@ -23,7 +23,12 @@
 % ---------------------------------------------------------------------------
 % Added stuff to the template 
 % ---------------------------------------------------------------------------
-\usepackage[style=ieee, dashed=false]{biblatex}  %citation formatting
+\usepackage[
+    backend=biber,
+    style=phys,
+    citestyle=numeric,
+    dashed=false
+]{biblatex}
 \usepackage[acronym,nonumberlist]{glossaries}  %glossary
 \makeglossaries
 \usepackage{multirow}  %multi-row tables
@@ -75,7 +80,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %Add your bibliography file here
-\bibliography{template_references}
+\addbibresource{/Users/yunwei/Desktop/project/Thesis2026/thesis/template_references.bib}
 
 % prevent certain fields in references from printing in bibliography
 \AtEveryBibitem{\clearfield{issn}}
