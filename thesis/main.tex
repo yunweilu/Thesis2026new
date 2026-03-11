@@ -23,11 +23,7 @@
 % ---------------------------------------------------------------------------
 % Added stuff to the template 
 % ---------------------------------------------------------------------------
-\usepackage[
-    backend=biber,
-    style=phys,
-    citestyle=numeric
-]{biblatex}
+\usepackage[numbers,sort&compress]{natbib}
 \usepackage[acronym,nonumberlist]{glossaries}  %glossary
 \makeglossaries
 \usepackage{multirow}  %multi-row tables
@@ -64,40 +60,38 @@
 % DEBUGGING: show page margins
 % \usepackage{showframe}  % turn off when done
 % ---------------------------------------------------------------------------
-% Add more stuff if you want
+% Math and physics packages (from integrated papers)
 % ---------------------------------------------------------------------------
-% \usepackage[
-%     range-phrase    ={\,\text{-}\,}, % separator in a range
-%     range-units	    = single, % only one unit in a range 
-%     separate-uncertainty = true,
-%     per-mode        = repeated-symbol,
-%     ]{siunitx}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{stmaryrd}
+\usepackage{mathbbol}
+\usepackage{cleveref}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{listings}
+
+\expandafter\let\csname equation*\endcsname\relax
+\expandafter\let\csname endequation*\endcsname\relax
+
+\DeclareMathOperator{\cc}{c.c.}
+\DeclareMathOperator{\Real}{Re}
+
+\newcommand{\dket}[1]{|#1\rangle}
+\newcommand{\dbra}[1]{\langle#1|}
+\renewcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\dbraket}[2]{\langle#1|#2\rangle}
+\newcommand{\parenthesis}[1]{\left(#1\right)}
+\newcommand{\ceiling}[1]{\lceil#1\rceil}
+\newcommand{\floor}[1]{\lfloor#1\rfloor}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Bibliography
+% Bibliography (APS / revtex4-2 style via natbib + apsrev4-2)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%Add your bibliography file here
-\addbibresource{/Users/yunwei/Desktop/project/Thesis2026/thesis/template_references.bib}
-
-% prevent certain fields in references from printing in bibliography
-\AtEveryBibitem{\clearfield{issn}}
-\AtEveryBibitem{\clearlist{issn}}
-
-\AtEveryBibitem{\clearfield{language}}
-\AtEveryBibitem{\clearlist{language}}
-
-\AtEveryBibitem{\clearfield{doi}}
-\AtEveryBibitem{\clearlist{doi}}
-
-\AtEveryBibitem{\clearfield{url}}
-\AtEveryBibitem{\clearlist{url}}
-
-\AtEveryBibitem{%
-  \ifentrytype{online}
-    {}
-    {\clearfield{urlyear}\clearfield{urlmonth}\clearfield{urlday}}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -253,37 +247,31 @@
 % \input{introduction.tex}
 
 %%%%%%%%%%%%%%%%
-% Chapter 1 - INTRODUCTION
+% Chapter 1 - Introduction
 %%%%%%%%%%%%%%%%
 
 \input{chapter1.tex}
 
 %%%%%%%%%%%%%%%%
-% Chapter 2
+% Chapter 2 - GRAPE Based on Hard-Coded Gradients
 %%%%%%%%%%%%%%%%
 
 \input{chapter2.tex}
 
 %%%%%%%%%%%%%%%%
-% Chapter 3
+% Chapter 3 - Scaling Analysis and Benchmarking
 %%%%%%%%%%%%%%%%
 
 \input{chapter3.tex}
 
 %%%%%%%%%%%%%%%%
-% Chapter 4
+% Chapter 4 - Robust Control for Transmon
 %%%%%%%%%%%%%%%%
 
 \input{chapter4.tex}
 
 %%%%%%%%%%%%%%%%
-% Chapter 5
-%%%%%%%%%%%%%%%%
-
-\input{chapter5.tex}
-
-%%%%%%%%%%%%%%%%
-% Chapter 6
+% Chapter 5 - Conclusion
 %%%%%%%%%%%%%%%%
 
 \input{conclusion.tex}
@@ -293,12 +281,11 @@
 % References
 %%%%%%%%%%%%%%%%
 
-\begin{singlespace}  % use single-line spacing for multi-line text within a single reference
-	\setlength\bibitemsep{\baselineskip}  %manually set separataion betwen items in bibliography to double space
-	\printbibliography[title={References}]
+\addcontentsline{toc}{chapter}{References}
+\begin{singlespace}
+\bibliographystyle{apsrev4-2}
+\bibliography{template_references}
 \end{singlespace}
-
-\addcontentsline{toc}{chapter}{References}  %add References section to Table of Contents
 
 %%%%%%%%%%%%%%%%
 % Appendices

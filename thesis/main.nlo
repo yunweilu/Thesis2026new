@@ -1,3 +1,9 @@
-\nomenclatureentry{a$\omega_c$@[{$\omega_c$}]\begingroup Cavity resonance angular frequency (\si{\radian\per\second}).\nomeqref {1.0}|nompageref}{1}
-\nomenclatureentry{a$\kappa$@[{$\kappa$}]\begingroup Total energy decay rate / linewidth (\si{\per\second}).\nomeqref {2.0}|nompageref}{3}
-\nomenclatureentry{a$\chi$@[{$\chi$}]\begingroup Dispersive coupling / frequency shift (\si{\hertz}).\nomeqref {2.0}|nompageref}{3}
+\nomenclatureentry{aGRAPE@[{GRAPE}]\begingroup Gradient Ascent Pulse Engineering\nomeqref {1.0}|nompageref}{1}
+\nomenclatureentry{aQPU@[{QPU}]\begingroup Quantum Processor Unit\nomeqref {1.0}|nompageref}{2}
+\nomenclatureentry{a$H_s$@[{$H_s$}]\begingroup Static system Hamiltonian\nomeqref {2.1}|nompageref}{4}
+\nomenclatureentry{a$h_c$@[{$h_c$}]\begingroup Control operator coupling the field to the system\nomeqref {2.1}|nompageref}{4}
+\nomenclatureentry{a$U_n$@[{$U_n$}]\begingroup Short-time propagator for time step $n$\nomeqref {2.3}|nompageref}{5}
+\nomenclatureentry{a$\mu$@[{$\mu$}]\begingroup Number of matrix-vector multiplications required for propagator-state product evaluation\nomeqref {2.52}|nompageref}{18}
+\nomenclatureentry{a$\kappa$@[{$\kappa$}]\begingroup Number of stored Hamiltonian matrix elements\nomeqref {3.0}|nompageref}{24}
+\nomenclatureentry{a$\varepsilon_I$, $\varepsilon_Q$@[{$\varepsilon_I$, $\varepsilon_Q$}]\begingroup Control envelopes in the $I$ and $Q$ quadratures\nomeqref {4.2}|nompageref}{35}
+\nomenclatureentry{a$K_\text{q}$@[{$K_\text{q}$}]\begingroup Transmon anharmonicity (self-Kerr)\nomeqref {4.2}|nompageref}{35}

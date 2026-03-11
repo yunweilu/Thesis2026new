@@ -82,7 +82,7 @@
       <file>main.bcf</file>
     </requires>
     <requires type="editable">
-      <file>/Users/yunwei/Desktop/project/Thesis2026/thesis/template_references.bib</file>
+      <file>template_references.bib</file>
     </requires>
   </external>
 </requests>

@@ -1,17 +1,15 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
 [0] Config.pm:310> INFO - Logfile is 'main.blg'
-[35] biber-darwin:340> INFO - === Tue Mar 10, 2026, 20:29:35
-[44] Biber.pm:419> INFO - Reading 'main.bcf'
-[87] Biber.pm:979> INFO - Found 1 citekeys in bib section 0
-[94] Biber.pm:4419> INFO - Processing section 0
-[99] Biber.pm:4610> INFO - Looking for bibtex file '/Users/yunwei/Desktop/project/Thesis2026/thesis/template_references.bib' for section 0
-[100] bibtex.pm:1713> INFO - LaTeX decoding ...
-[110] bibtex.pm:1519> INFO - Found BibTeX data source '/Users/yunwei/Desktop/project/Thesis2026/thesis/template_references.bib'
-[128] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[128] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[128] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[128] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
-[133] bbl.pm:660> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[133] bbl.pm:763> INFO - Output to main.bbl
-[133] Biber.pm:131> WARN - BibTeX subsystem: warning: comma(s) at end of name (removing)
-[133] Biber.pm:133> INFO - WARNINGS: 1
+[37] biber-darwin:340> INFO - === Tue Mar 10, 2026, 21:00:00
+[45] Biber.pm:419> INFO - Reading 'main.bcf'
+[95] Biber.pm:979> INFO - Found 78 citekeys in bib section 0
+[103] Biber.pm:4419> INFO - Processing section 0
+[108] Biber.pm:4610> INFO - Looking for bibtex file 'template_references.bib' for section 0
+[110] bibtex.pm:1713> INFO - LaTeX decoding ...
+[146] bibtex.pm:1519> INFO - Found BibTeX data source 'template_references.bib'
+[350] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[350] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[350] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[350] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[378] bbl.pm:660> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[390] bbl.pm:763> INFO - Output to main.bbl

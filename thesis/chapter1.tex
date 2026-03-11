@@ -1,49 +1,29 @@
-\chapter{Introduction and Background}
-\label{chap:1}
+\chapter{Introduction}
+\label{chap:intro}
 
-This is Chapter \ref{chap:1}.
+The rapidly evolving field of quantum information processing has generated much interest in quantum optimal control for tasks such as state preparation~\cite{rojan2014arbitrarystate,bondar2023globally}, error correction~\cite{waldherr2014quantumerror,gertler2021protecting}, and realization of logical gates~\cite{scabdelhafez2020universal,scallen2017optimal,schuang2014optimal,scwerninghaus2021leakage}. This methodology has been implemented in various quantum systems~\cite{glaser2015training}, including nuclear magnetic resonance~\cite{nmrbretschneider2012conversion,nmrkehlet2004improving,nmrkhaneja2005optimal,nmrsimon2009optimal,nmrspinachhogben2011spinach,nmrxu2008designing}, trapped ions~\cite{timuller2015phonon,tinebendahl2009optimal}, nitrogen-vacancy centers in diamonds~\cite{nvangerer2013robust,nvchou2015optimal,nvdolde2014high,nvpoggiali2018optimal,nvpoulsen2021optimal,nvrembold2020introduction,nvyan2021population}, Bose--Einstein condensation~\cite{becamri2019optimal,becmennemann2015optimal,becsorensen2018qengine}, and neutral atoms~\cite{atomguo2019high,atomrosi2013fast}.
 
-% === SMOKE TEST START ===
-% List of Symbols smoke-test: tag each symbol where it is first introduced.
-We define the cavity resonance angular frequency $\omega_c$ (in \si{\radian\per\second}).%
-\nomenclature{$\omega_c$}{Cavity resonance angular frequency (\si{\radian\per\second}).}
-% === SMOKE TEST END ===
+One of the prominent techniques for implementing quantum optimal control is Gradient Ascent Pulse Engineering (GRAPE).%
+\nomenclature{GRAPE}{Gradient Ascent Pulse Engineering}
+The central goal of optimal control is to adjust control parameters in such a way that the infidelity of the desired state transfer or gate operation is minimized. In GRAPE, the minimization is based on gradient descent and thus generally requires the evaluation of gradients. Automatic differentiation (AD)~\cite{baydin2018automatic} is a convenient tool that has also made an impact on quantum optimal control with GRAPE~\cite{pacleung2017speedup,pacqoc,abdelhafez2019gradient,grapead}. Internally, AD builds a computational graph and applies the chain rule to automatically compute the gradient of a given function.
 
-This is an attempt at some sort of a thesis template for Northwestern PhD, based on the 2021 guidelines. The guidelines change from time to time, so check. At this time, the page number is required to be within the page margins (harmless warning, aesthetically a little weird).
+However, the convenience of AD comes at the cost of memory required for storing the full computational graph. The use of semi-automatic differentiation (semi-AD)~\cite{semiadgoerz2022quantum} partially reduces the memory overhead compared to full automatic differentiation (full-AD). This reduction can still be insufficient to tackle optimal control for quantum systems of rapidly growing size~\cite{arute2019quantum,gong2021quantum}. This motivates a revisit of the original GRAPE scheme~\cite{nmrkhaneja2005optimal}, which is based on hard-coded gradients (HG) and has the smallest possible memory cost. In this thesis, I perform a scaling analysis of memory usage and runtime and develop a decision tree guiding the optimal choice of strategy among HG, semi-AD, and full-AD. I exemplify the scaling behavior with benchmarks for concrete optimization tasks.
 
-Cite scipy \cite{Virtanen2020SciPyPython}
+At the application level, quantum optimal control helps build up the quantum processor unit (QPU).%
+\nomenclature{QPU}{Quantum Processor Unit}
+In the existing superconducting QPU architecture, the transmon can serve as either a qubit or an ancilla for a bosonic qubit. In both cases, Rabi oscillation in the first two-level subspace of the transmon is crucial for realizing universal gates. Conventionally, to realize such oscillation in a bare transmon (without coupling to other systems), a Gaussian pulse is applied where the drive frequency is chosen to be on resonance with the transmon frequency. In a QPU, the transmon is dispersively coupled with other systems, causing a Stark-shifted frequency that is state dependent. In such a case, intuitively, the drive frequency can be optimized to adapt to this frequency shift. However, such state-dependent drive frequency can cause large hardware overhead. Another more feasible choice is to fix the drive frequency and optimize the pulse to improve the robustness of the Rabi oscillation fidelity against detuning frequency. Such robust pulses are hardly obtained analytically, and quantum optimal control can be employed to find them.
 
-% === SMOKE TEST START ===
-\begin{table}[h]
-\caption{Smoke-test table to verify List of Tables automation.}
-\label{tab:smoke_example}
-\centering
-\begin{tabular}{ll}
-Quantity & Value \\
-\hline
-Example & 1 \\
-\end{tabular}
-\end{table}
-% === SMOKE TEST END ===
+Based on the analysis of the numerical implementation of GRAPE, I develop a resource-efficient GRAPE-based optimization procedure tailored to generate detuning-robust pulses. I benchmark the optimized pulses against conventionally used Gaussian pulses, demonstrating improved robustness of transmon gate fidelity.
 
-\begin{table}[h]
-\caption{This is a table with a caption.}
-\label{tab:my-table}
-\begin{tabular}{lllll}
-Something & 1 & 1 & 1 & 0 \\
-Else      & 0 & 0 & 0 & 1 \\
-What      &   & 3 &   &   \\
-is this   &   &   &   & 7
-\end{tabular}
-\end{table}
+\section{Thesis outline}
 
-Figure \ref{fig:ch1fig} is in a chapter, so it is a figure. However, Figure \ref{suppfig:appendixfig} is a supplementary figure in the appendix. 
+This thesis is organized as follows.
+Chapter~\ref{chap:grape} introduces the GRAPE framework and derives hard-coded analytical gradients for key cost contributions used in state-transfer and gate-optimization problems. The chapter also discusses the numerical evaluation of these gradients using the scaling-and-squaring method and the auxiliary matrix method, culminating in a memory-efficient forward-backward propagation scheme.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\linewidth]{ch1_figures/tempfig.pdf}
-    \caption{\textbf{Temporary figure in Chapter 1.}
-    \textbf{a}, A placeholder
-    }
-    \label{fig:ch1fig}
-\end{figure}
+Chapter~\ref{chap:scaling} presents a scaling analysis of runtime and memory usage for hard-coded gradients, full-AD, and semi-AD. Benchmark studies for state-transfer and gate-optimization problems illustrate the scaling behavior. A decision tree is developed to guide the choice of the optimal numerical strategy.
+
+Chapter~\ref{chap:robust} turns to an application of GRAPE: the design of detuning-robust control pulses for transmon gates. The optimization procedure is detailed, and the resulting pulses are benchmarked against conventional DRAG pulses and pulses from Q-CTRL.
+
+Chapter~\ref{chap:conclusion} summarizes the key findings and discusses opportunities for future research.
+
+Appendix~\ref{app:muscaling} discusses the scaling of the number of matrix-vector multiplications $\mu$ with Hilbert space dimension for several concrete Hamiltonians. Appendix~\ref{app:matdiag} presents an alternative hard-coded gradient scheme based on matrix diagonalization and its scaling analysis.

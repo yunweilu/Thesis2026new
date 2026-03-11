@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.10)  10 MAR 2026 20:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.10)  10 MAR 2026 21:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/Users/yunwei/Desktop/project/Thesis2026/thesis/main.tex
-(/Users/yunwei/Desktop/project/Thesis2026/thesis/main.tex
+**/Users/yunwei/Desktop/project/Thesis/Thesis2026/thesis/main.tex
+(/Users/yunwei/Desktop/project/Thesis/Thesis2026/thesis/main.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/report.cls
@@ -1069,47 +1069,133 @@ Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
 Package: tocvsec2 2014/03/10 v1.3a variable ToC section entries
 \c@max@tocdepth=\count496
 \c@max@secnumdepth=\count497
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2024/03/11 v1.30 mathematical typesetting tools
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count498
+\calc@Bcount=\count499
+\calc@Adimen=\dimen340
+\calc@Bdimen=\dimen341
+\calc@Askip=\skip152
+\calc@Bskip=\skip153
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count500
+\calc@Cskip=\skip154
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/mathtools/mhsetup.sty
+Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 )
-Package translations Info: No language package found. I am going to use `english' as default language. on input line 107.
-\@quotelevel=\count498
-\@quotereset=\count499
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 107.
+\g_MT_multlinerow_int=\count501
+\l_MT_multwidth_dim=\dimen342
+\origjot=\skip155
+\l_MT_shortvdotswithinadjustabove_dim=\dimen343
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen344
+\l_MT_above_intertext_sep=\dimen345
+\l_MT_below_intertext_sep=\dimen346
+\l_MT_above_shortintertext_sep=\dimen347
+\l_MT_below_shortintertext_sep=\dimen348
+\xmathstrut@box=\box95
+\xmathstrut@dim=\dimen349
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/physics/physics.sty
+Package: physics 
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/stmaryrd/stmaryrd.sty
+Package: stmaryrd 1994/03/03 St Mary's Road symbol package
+\symstmry=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
+(Font)                  U/stmry/m/n --> U/stmry/b/n on input line 89.
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/jknapltx/mathbbol.sty
+Package: mathbbol 1995/01/01
+\symbbold=\mathgroup5
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/cleveref/cleveref.sty
+Package: cleveref 2018/03/27 v0.21.4 Intelligent cross-referencing
+Package cleveref Info: `hyperref' support loaded on input line 2370.
+LaTeX Info: Redefining \cref on input line 2370.
+LaTeX Info: Redefining \Cref on input line 2370.
+LaTeX Info: Redefining \crefrange on input line 2370.
+LaTeX Info: Redefining \Crefrange on input line 2370.
+LaTeX Info: Redefining \cpageref on input line 2370.
+LaTeX Info: Redefining \Cpageref on input line 2370.
+LaTeX Info: Redefining \cpagerefrange on input line 2370.
+LaTeX Info: Redefining \Cpagerefrange on input line 2370.
+LaTeX Info: Redefining \labelcref on input line 2370.
+LaTeX Info: Redefining \labelcpageref on input line 2370.
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count502
+\float@exts=\toks51
+\float@box=\box96
+\@float@everytoks=\toks52
+\@floatcapt=\box97
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2024/02/20 v1.0g Color table columns (DPC)
+\everycr=\toks53
+\minrowclearance=\skip156
+\rownum=\count503
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count504
+\lst@gtempboxa=\box98
+\lst@token=\toks54
+\lst@length=\count505
+\lst@currlwidth=\dimen350
+\lst@column=\count506
+\lst@pos=\count507
+\lst@lostspace=\dimen351
+\lst@width=\dimen352
+\lst@newlines=\count508
+\lst@lineno=\count509
+\lst@maxwidth=\dimen353
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstpatch.sty
+File: lstpatch.sty 2024/02/21 1.10 (Carsten Heinz)
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2024/02/21 1.10 (Carsten Heinz)
+\c@lstnumber=\count510
+\lst@skipnumbers=\count511
+\lst@framebox=\box99
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2024/02/21 1.10 listings configuration
+))
+Package: listings 2024/02/21 1.10 (Carsten Heinz)
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 125.
+\@quotelevel=\count512
+\@quotereset=\count513
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 125.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 125.
+LaTeX Font Info:    ... okay on input line 125.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 125.
+LaTeX Font Info:    ... okay on input line 125.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 125.
+LaTeX Font Info:    ... okay on input line 125.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 125.
+LaTeX Font Info:    ... okay on input line 125.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 125.
+LaTeX Font Info:    ... okay on input line 125.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 125.
+LaTeX Font Info:    ... okay on input line 125.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 125.
+LaTeX Font Info:    ... okay on input line 125.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 125.
+LaTeX Font Info:    ... okay on input line 125.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 125.
+LaTeX Font Info:    ... okay on input line 125.
  (/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count500
-\scratchdimen=\dimen340
-\scratchbox=\box95
-\nofMPsegments=\count501
-\nofMParguments=\count502
-\everyMPshowfont=\toks51
-\MPscratchCnt=\count503
-\MPscratchDim=\dimen341
-\MPnumerator=\count504
-\makeMPintoPDFobject=\count505
-\everyMPtoPDFconversion=\toks52
+\scratchcounter=\count514
+\scratchdimen=\dimen354
+\scratchbox=\box100
+\nofMPsegments=\count515
+\nofMParguments=\count516
+\everyMPshowfont=\toks55
+\MPscratchCnt=\count517
+\MPscratchDim=\dimen355
+\MPnumerator=\count518
+\makeMPintoPDFobject=\count519
+\everyMPtoPDFconversion=\toks56
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1150,15 +1236,27 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 107.
+Package hyperref Info: Link coloring OFF on input line 125.
 (./main.out) (./main.out)
 \@outlinefile=\write9
 \openout9 = `main.out'.
 
- (/usr/local/texlive/2024/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
+
+
+Package siunitx Warning: Detected the "physics" package:
+(siunitx)                omitting definition of \qty.
+(siunitx)                
+(siunitx)                If you want to use \qty with the siunitx definition,
+(siunitx)                add 
+(siunitx)                
+(siunitx)                    \AtBeginDocument{\RenewCommandCopy\qty\SI}
+(siunitx)                
+(siunitx)                to your preamble.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 107.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 125.
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/lbx/english.lbx
@@ -1171,9 +1269,17 @@ Package biblatex Info: Automatic encoding selection.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
- (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 107.
-Package biblatex Info: Reference segment=0 on input line 107.
+ (./main.bbl
+LaTeX Font Info:    Trying to load font information for U+stmry on input line 51.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
+LaTeX Font Info:    Trying to load font information for U+bbold on input line 51.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/bbold/Ubbold.fd))
+Package biblatex Info: Reference section=0 on input line 125.
+Package biblatex Info: Reference segment=0 on input line 125.
+Package newfloat Info: `float' package detected.
+\c@lstlisting=\count520
+Package tocbasic Info: omitting babel extension for `lol'
+(tocbasic)             because of missing \bbl@set@language on input line 125.
  (./titlePage.tex [1
 
 \openout6 = `main.ist'.
@@ -1202,58 +1308,198 @@ No file main.nls.
 ]) (./main.toc [6
 
 
-])
+] [7])
 \tf@toc=\write10
 \openout10 = `main.toc'.
 
- [7] (./main.lot)
+ [8] (./main.lot
+Overfull \hbox (28.28714pt too wide) in paragraph at lines 4--4
+ \OML/cmm/m/it/12 ^^T\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 d\OT1/cmr/m/n/12 )$\OT1/ptm/m/n/12 , and the num-ber of matrix-vector mul-ti-pli-ca-tions re-quired for eval-u-at-ing propagator- 
+ []
+
+)
 \tf@lot=\write11
 \openout11 = `main.lot'.
-
- [8
-
-
-] (./main.lof)
-\tf@lof=\write12
-\openout12 = `main.lof'.
 
  [9
 
 
-] (./chapter1.tex
+] (./main.lof
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 3.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+Overfull \hbox (67.95953pt too wide) in paragraph at lines 3--3
+ [][] [][]\OT1/ptm/m/n/12 Comparison be-tween scal-ing and squar-ing as im-ple-mented here and \OT1/pcr/m/n/12 Scipy\OT1/ptm/m/n/12 's \OT1/pcr/m/n/12 expm[]multiply\OT1/ptm/m/n/12 , 
+ []
+
+[10
+
+
+] [11])
+\tf@lof=\write12
+\openout12 = `main.lof'.
+
+ [12] (./chapter1.tex
 Chapter 1.
-<ch1_figures/tempfig.pdf, id=146, 614.26657pt x 144.51154pt>
-File: ch1_figures/tempfig.pdf Graphic file (type pdf)
-<use ch1_figures/tempfig.pdf>
-Package pdftex.def Info: ch1_figures/tempfig.pdf  used on input line 44.
-(pdftex.def)             Requested size: 469.75502pt x 110.51567pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) (./chapter2.tex [1
+[1
 
 
 
-] [2 <./ch1_figures/tempfig.pdf>]
+] [2]) (./chapter2.tex [3]
 Chapter 2.
-<ch2_figures/tempfig.pdf, id=170, 614.26657pt x 144.51154pt>
-File: ch2_figures/tempfig.pdf Graphic file (type pdf)
-<use ch2_figures/tempfig.pdf>
-Package pdftex.def Info: ch2_figures/tempfig.pdf  used on input line 14.
-(pdftex.def)             Requested size: 469.75502pt x 110.51567pt.
-File: ch2_figures/tempfig.pdf Graphic file (type pdf)
-<use ch2_figures/tempfig.pdf>
-Package pdftex.def Info: ch2_figures/tempfig.pdf  used on input line 24.
-(pdftex.def)             Requested size: 281.85587pt x 66.30852pt.
-[3
+[4
 
- <./ch2_figures/tempfig.pdf>] [4] [5]) (./chapter3.tex) (./chapter4.tex) (./chapter5.tex) (./conclusion.tex [6]
+] [5]
+Overfull \hbox (1.51677pt too wide) in paragraph at lines 47--49
+\OT1/ptm/m/n/12 is to lever-age au-to-matic dif-fer-en-ti-a-tion for this pur-pose, such as im-ple-mented in \OT1/pcr/m/n/12 Tensorflow \OT1/ptm/m/n/12 [[]42[]]
+ []
+
+[6] [7] [8] [9] [10] [11] [12] [13]
+
+LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
+(Font)              using `U/stmry/m/n' instead on input line 258.
+
+[14] [15] [16] [17]
+Overfull \hbox (43.72539pt too wide) in paragraph at lines 374--378
+\OT1/ptm/m/n/12 for eval-u-at-ing $\OML/cmm/m/it/12 e[]\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 	\OMS/cmsy/m/n/12 i$ \OT1/ptm/m/n/12 can achieve bet-ter run-time per-for-mance and ac-cu-racy than \OT1/pcr/m/n/12 Scipy\OT1/ptm/m/n/12 's \OT1/pcr/m/n/12 expm[]multiply
+ []
+
+
+
+pdfTeX warning: pdflatex (file ./ch2_figures/qoc/Comparison.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
+<ch2_figures/qoc/Comparison.pdf, id=709, 1147.11557pt x 569.67027pt>
+File: ch2_figures/qoc/Comparison.pdf Graphic file (type pdf)
+<use ch2_figures/qoc/Comparison.pdf>
+Package pdftex.def Info: ch2_figures/qoc/Comparison.pdf  used on input line 384.
+(pdftex.def)             Requested size: 469.75502pt x 233.28816pt.
+[18
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.390 
+       <./ch2_figures/qoc/Comparison.pdf>] [19] [20]
+
+pdfTeX warning: pdflatex (file ./ch2_figures/forward_backward.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
+<ch2_figures/forward_backward.pdf, id=770, 1237.5234pt x 806.3656pt>
+File: ch2_figures/forward_backward.pdf Graphic file (type pdf)
+<use ch2_figures/forward_backward.pdf>
+Package pdftex.def Info: ch2_figures/forward_backward.pdf  used on input line 432.
+(pdftex.def)             Requested size: 469.75502pt x 306.0899pt.
+) (./chapter3.tex [21] [22
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \chapter
+            {Scaling Analysis and Benchmarking} <./ch2_figures/forward_backward.pdf>]
 Chapter 3.
-) [7
+[23
 
-] (./appendix.tex (./approvalPage.tex [8
+] [24] [25] [26
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.74 
+     ] [27]
 
-]
+pdfTeX warning: pdflatex (file ./ch3_figures/state.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
+<ch3_figures/state.pdf, id=918, 899.88797pt x 545.25508pt>
+File: ch3_figures/state.pdf Graphic file (type pdf)
+<use ch3_figures/state.pdf>
+Package pdftex.def Info: ch3_figures/state.pdf  used on input line 96.
+(pdftex.def)             Requested size: 469.75502pt x 284.63249pt.
+[28
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.102 
+       <./ch3_figures/state.pdf>]
+Overfull \hbox (10.02441pt too wide) in paragraph at lines 105--106
+\OT1/ptm/m/n/12 driven trans-mons with nearest-neighbor cou-pling. The tar-get gate con-sists of si-mul-ta-ne-ous Hadamard
+ []
+
+
+
+pdfTeX warning: pdflatex (file ./ch3_figures/gate.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
+<ch3_figures/gate.pdf, id=943, 876.4785pt x 544.50124pt>
+File: ch3_figures/gate.pdf Graphic file (type pdf)
+<use ch3_figures/gate.pdf>
+Package pdftex.def Info: ch3_figures/gate.pdf  used on input line 113.
+(pdftex.def)             Requested size: 469.75502pt x 291.82455pt.
+[29]
+<ch3_figures/decision_tree.pdf, id=954, 679.16333pt x 570.86174pt>
+File: ch3_figures/decision_tree.pdf Graphic file (type pdf)
+<use ch3_figures/decision_tree.pdf>
+Package pdftex.def Info: ch3_figures/decision_tree.pdf  used on input line 128.
+(pdftex.def)             Requested size: 469.75502pt x 394.84448pt.
+ [30]) (./chapter4.tex [31] [32
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \chapter
+            {Application of GRAPE: Robust Control for Transmon} <./ch3_figures/gate.pdf>] [33
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \chapter
+            {Application of GRAPE: Robust Control for Transmon} <./ch3_figures/decision_tree.pdf>]
+Chapter 4.
+[34
+
+] [35]
+
+pdfTeX warning: pdflatex (file ./ch4_figures/fig_flowchart.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
+<ch4_figures/fig_flowchart.pdf, id=1067, 246.9225pt x 394.09131pt>
+File: ch4_figures/fig_flowchart.pdf Graphic file (type pdf)
+<use ch4_figures/fig_flowchart.pdf>
+Package pdftex.def Info: ch4_figures/fig_flowchart.pdf  used on input line 53.
+(pdftex.def)             Requested size: 328.82707pt x 524.84442pt.
+
+LaTeX Warning: Float too large for page by 46.94232pt on input line 57.
+
+[36]
+
+pdfTeX warning: pdflatex (file ./ch4_figures/fig_qoc.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
+<ch4_figures/fig_qoc.pdf, id=1090, 511.9125pt x 160.16136pt>
+File: ch4_figures/fig_qoc.pdf Graphic file (type pdf)
+<use ch4_figures/fig_qoc.pdf>
+Package pdftex.def Info: ch4_figures/fig_qoc.pdf  used on input line 84.
+(pdftex.def)             Requested size: 469.75502pt x 146.97144pt.
+
+Overfull \hbox (16.75423pt too wide) in paragraph at lines 96--105
+\OT1/ptm/m/n/12 I bench-mark the op-ti-miza-tion pro-ce-dure for a trans-mon with typ-i-cal pa-ram-e-ters: $\OML/cmm/m/it/12 K[]=\OT1/cmr/m/n/12 2\OML/cmm/m/it/12 ^^Y \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 ^^@\OT1/cmr/m/n/12 200$\OT1/ptm/m/n/12 MHz,
+ []
+
+[37]
+
+pdfTeX warning: pdflatex (file ./ch4_figures/fig_qoc_qctrl.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
+<ch4_figures/fig_qoc_qctrl.pdf, id=1106, 511.9125pt x 160.16136pt>
+File: ch4_figures/fig_qoc_qctrl.pdf Graphic file (type pdf)
+<use ch4_figures/fig_qoc_qctrl.pdf>
+Package pdftex.def Info: ch4_figures/fig_qoc_qctrl.pdf  used on input line 108.
+(pdftex.def)             Requested size: 469.75502pt x 146.97144pt.
+[38]) (./conclusion.tex [39] [40
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \chapter
+            {Conclusion and Future Work} <./ch4_figures/fig_flowchart.pdf>] [41
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \chapter
+            {Conclusion and Future Work} <./ch4_figures/fig_qoc.pdf>] [42
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \chapter
+            {Conclusion and Future Work} <./ch4_figures/fig_qoc_qctrl.pdf>]
+Chapter 5.
+[43
+
+]) [44] [45
+
+] [46] [47] [48] (./appendix.tex (./approvalPage.tex [49]
 Underfull \hbox (badness 10000) in paragraph at lines 94--97
 
  []
@@ -1268,49 +1514,77 @@ Underfull \hbox (badness 10000) in paragraph at lines 102--105
 
  []
 
-) [9
+) [50
 
 ]
 Appendix A.
-File: ch1_figures/tempfig.pdf Graphic file (type pdf)
-<use ch1_figures/tempfig.pdf>
-Package pdftex.def Info: ch1_figures/tempfig.pdf  used on input line 27.
-(pdftex.def)             Requested size: 469.75502pt x 110.51567pt.
-Package hyperref Info: bookmark level for unknown suppfigure defaults to 0 on input line 30.
-) (./vita.tex [10
 
-])
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 11.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\mu' on input line 11.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 11.
+
+[51
+
+]
+
+pdfTeX warning: pdflatex (file ./ch3_figures/uscaling.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
+<ch3_figures/uscaling.pdf, id=1269, 828.85661pt x 342.27272pt>
+File: ch3_figures/uscaling.pdf Graphic file (type pdf)
+<use ch3_figures/uscaling.pdf>
+Package pdftex.def Info: ch3_figures/uscaling.pdf  used on input line 25.
+(pdftex.def)             Requested size: 469.75502pt x 193.98505pt.
+[52
+pdfTeX warning (ext4): destination with the same identifier (name{figure.1.A.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.34 \end{align}
+                 <./ch3_figures/uscaling.pdf>] [53]
+Appendix B.
+[54
+
+] [55]) (./vita.tex [56] [57])
 
 Package glossaries Warning: No \printglossary or \printglossaries found. 
 (Remove \makeglossaries if you don't want any glossaries.) 
 This document will not have a glossary.
 
-[11
+[58
 
 ] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 19611CB42E8E02FFCF6570131712C5A0;2257.
+(rerunfilecheck)             Checksum: AAB2B3D85F291C082C1FB74B0DCC4515;8883.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 39268 strings out of 474116
- 801460 string characters out of 5743681
- 1934187 words of memory out of 5000000
- 60950 multiletter control sequences out of 15000+600000
- 569514 words of font info for 61 fonts, out of 8000000 for 9000
+ 44602 strings out of 474116
+ 900339 string characters out of 5743681
+ 1957187 words of memory out of 5000000
+ 65956 multiletter control sequences out of 15000+600000
+ 584262 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 110i,11n,107p,4790b,1392s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (21 pages, 121320 bytes).
+ 110i,20n,107p,2393b,2169s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/bbold-type1/bbold7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/stmaryrd/stmary10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (71 pages, 3670723 bytes).
 PDF statistics:
- 268 PDF objects out of 1000 (max. 8388607)
- 220 compressed objects within 3 object streams
- 43 named destinations out of 1000 (max. 500000)
- 159 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1505 PDF objects out of 1728 (max. 8388607)
+ 1218 compressed objects within 13 object streams
+ 289 named destinations out of 1000 (max. 500000)
+ 410 words of extra memory for PDF output out of 10000 (max. 10000000)
 

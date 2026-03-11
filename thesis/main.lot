@@ -1,6 +1,8 @@
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {1.1}{\ignorespaces Smoke-test table to verify List of Tables automation.}}{1}{table.1.1}%
-\contentsline {table}{\numberline {1.2}{\ignorespaces This is a table with a caption.}}{1}{table.1.2}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces Memory usage and runtime scaling with respect to Hilbert space dimension $d$, number of time steps $N$, the number of stored Hamiltonian matrix elements $\kappa =\kappa (d)$, and the number of matrix-vector multiplications required for evaluating propagator-state products $\mu =\mu (d)$. (The scaling of $\mu $ and $\kappa $ depends on the specific optimization task.) The table contrasts scaling for state transfer and gate operation for hard-coded gradients (HG), full automatic differentiation (full-AD), and semi-automatic differentiation (semi-AD).}}{26}{table.3.1}%
+\addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

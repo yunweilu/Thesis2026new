@@ -4,6 +4,11 @@
 \vspace{\baselineskip}
 \end{centering}
 
-How is it that the sunlight gives us such joy? Why does this radiance when it falls on the earth fill us with the joy of living? The whole sky is blue, the fields are green, the houses all white, and our enchanted eyes drink in those bright colors which bring delight to our souls. And then there springs up in our hearts a desire to dance, to run, to sing, a happy lightness of thought, a sort of enlarged tenderness; we feel a longing to embrace the sun. 
-
-
+Gradient Ascent Pulse Engineering (GRAPE) is a popular technique in quantum optimal control, and can be combined
+with automatic differentiation (AD) to facilitate on-the-fly evaluation of cost-function gradients. I illustrate that the
+convenience of AD comes at a significant memory cost due to the cumulative storage of a large number of states and
+propagators. For quantum systems of increasing Hilbert space size, this imposes a significant bottleneck. I revisit the
+strategy of hard-coding gradients in a scheme that fully avoids propagator storage and significantly reduces memory
+requirements. 
+I benchmark runtime and memory usage and compare this approach to AD-based implementations, with a focus on
+pushing towards larger Hilbert space sizes. The results confirm that the AD-free approach facilitates the application of optimal control for large quantum systems which would otherwise be difficult to tackle. To facilitate the choice of optimal numerical strategy for GRAPE-based quantum optimal control, I formulate a decision tree. Based on the guidance from the decision tree, I develop a GRAPE-based optimization procedure for transmon. The optimizer generates detuning-robust pulses, which are crucial in the existing superconducting quantum processor unit architecture. The generated pulses outperform conventionally used transmon pulses in the aspect of infidelity robustness. 
