@@ -2363,7 +2363,7 @@
   <!-- CITATION DATA -->
   <!-- SECTION 0 -->
   <bcf:bibdata section="0">
-    <bcf:datasource type="file" datatype="bibtex">template_references.bib</bcf:datasource>
+    <bcf:datasource type="file" datatype="bibtex" glob="false">/Users/yunwei/Desktop/project/Thesis2026/thesis/template_references.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
     <bcf:citekey order="1" intorder="1">Virtanen2020SciPyPython</bcf:citekey>

@@ -3,16 +3,16 @@
 \contentsline {chapter}{Acknowledgements}{ii}{Doc-Start}%
 \contentsline {chapter}{List of Publications}{iv}{Doc-Start}%
 \contentsline {chapter}{Dedication}{v}{Doc-Start}%
-\contentsline {chapter}{List of Tables}{vii}{chapter*.1}%
-\contentsline {chapter}{List of Figures}{viii}{chapter*.2}%
+\contentsline {chapter}{List of Tables}{viii}{chapter*.1}%
+\contentsline {chapter}{List of Figures}{ix}{chapter*.2}%
 \contentsline {chapter}{\numberline {1}Introduction and Background}{1}{chapter.1}%
 \contentsline {chapter}{\numberline {2}Methods}{3}{chapter.2}%
 \contentsline {chapter}{\numberline {3}Conclusion and Future Work}{7}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Summary of key findings and significance}{7}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Limitations}{7}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Opportunities for future research}{7}{section.3.3}%
-\contentsline {chapter}{References}{7}{section.3.3}%
+\contentsline {chapter}{References}{8}{chapter*.4}%
 \renewcommand {\cftchappresnum }{Appendix }
 \renewcommand {\cftchapnumwidth }{6em}
-\contentsline {chapter}{\numberline {A}Appendix title}{9}{appendix.1.A}%
-\contentsline {chapter}{Vita}{10}{appendix*.5}%
+\contentsline {chapter}{\numberline {A}Appendix title}{10}{appendix.1.A}%
+\contentsline {chapter}{Vita}{11}{appendix*.6}%
