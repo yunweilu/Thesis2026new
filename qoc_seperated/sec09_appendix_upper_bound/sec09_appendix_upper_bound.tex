@@ -1,0 +1,165 @@
+\section{Determine the upper bound $E_A(m,s)$}
+\label{errorupperbound}
+The approximation of $e^A\dket{\Psi}$ in Sec.\ref{implementation} required the determination of an upper bound $E_A(m,s)$ for the error $\varepsilon_{A,\dket{\Psi}}(m,s)$ [Eq.\ \eqref{error defnition}]. In this appendix, we show how to acquire such bound.
+
+Considering the expression for the error [Eq.\ \eqref{error defnition}], we note that the denominator is simply 1. The error $\varepsilon_{A,\dket{\Psi}}$ is bounded as follows:
+\begin{align}
+\nonumber    &\varepsilon_{A,\dket{\Psi}}
+    =\norm{e^A\dket{\Psi}-(e^B_m)^s\dket{\Psi}+(e^B_m)^s\dket{\Psi}-\llbracket (e^B_m)^s\dket{\Psi}\rrbracket}_2\\
+\nonumber    &\quad \leq \underbrace{\norm{e^A\dket{\Psi}-(e^B_m)^s\dket{\Psi}}_2}_{\varepsilon_t}+\underbrace{\norm{(e^B_m)^s\dket{\Psi}-\llbracket (e^B_m)^s\dket{\Psi}\rrbracket}_2}_{\varepsilon_r}.\\
+\label{epsilonA}
+\end{align}
+The  error $\varepsilon_t$ arises from the truncation of the Taylor series  and rounding error $\varepsilon_r$ is due to finite-precision arithmetics. We proceed to derive the upper bounds for these two errors separately.
+
+\subsection{Upper bound for the truncation error $\varepsilon_t$}
+We rewrite the truncation error as
+\begin{equation}
+    \varepsilon_t = \norm{e^A\dket{\Psi}-(e^B-R_m(B))^s\dket{\Psi}}_2=  \norm{\sum_{i=1}^{s}\frac{s!}{i!(s-i)!} (-R_m(B))^i(e^B)^{s-i}\dket{\Psi}}_2,
+\end{equation}
+where $R_m(B)=\sum_{q=m+1}^{\infty}B^q/q!$ denotes the matrix-valued error of the truncated exponential series.
+Employing the triangle inequality and submultiplicativity \cite{higham2002accuracy}, we find the bound
+\begin{equation}
+    \varepsilon_t \leq 
+    \sum_{i=1}^{s}\frac{s!}{i!(s-i)!}\big(R_m(\norm{B}_2)\big)^i\norm{e^B}_2^{s-i}\norm{\dket{\Psi}}_2=\sum_{i=1}^{s}\frac{s!}{i!(s-i)!}\big(R_m(\norm{B}_2)\big)^i.
+\end{equation}
+Here the second line utilizes the fact that the state is normalized and $e^B$ is unitary. 
+
+This upper bound must be evaluated numerically to determine $m$ and $s$. However, computing the matrix 2-norm is inconvenient since it requires the use of an eigensolver. To mitigate this, we switch to the matrix 1-norm by exploiting\footnote{Generally, $\norm{B}_2\leq\sqrt{\norm{B}_\infty\norm{B}_1}$ \cite{wilkinson1994rounding} holds true for any $B$. When $B$ is anti-Hermitian, $\norm{B}_\infty=\norm{B}_1$\ leads to inequality Eq.\ \eqref{norm inequality}.}
+\begin{equation}
+\label{norm inequality}
+    \norm{B}_2\leq\norm{B}_1.
+\end{equation}
+Monotonicity of $R_m$ leads us to
+\begin{equation}
+    \label{truncation}
+    \varepsilon_t \leq 
+    \sum_{i=1}^{s}\frac{s!}{i!(s-i)!}\big(R_m(\norm{B}_1)\big)^i
+    < sR_m(\norm{B}_1)\frac{1-\big(sR_m(\norm{B}_1)\big)^s}{1-sR_m(\norm{B}_1)}.
+\end{equation}
+
+
+\subsection{Upper bound for the rounding error $\varepsilon_r$}
+\label{rounding error upper bound}
+The rounding error $\varepsilon_r$ originates from the finite precision of the floating-point representation of real numbers as well as the finite accuracy of basic arithmetic operations. The floating-point representation  $\llbracket \xi \rrbracket$ for the real number $\xi $ can be written as $\llbracket \xi \rrbracket=\xi(1+\delta)$ where $\delta=\delta(\xi)$ is the relative deviation \cite{higham2002accuracy}. Its magnitude is always smaller than machine precision, i.e. $|\delta|<u$. Similarly, the complex number $z$ obeys 
+\begin{equation}
+    \label{representation error}
+    \llbracket z\rrbracket=z(1+\delta)
+\end{equation}
+with $|\delta|\leq u$. Arithmetic operations such as addition and multiplication with two complex numbers $z_1, z_2$ incur a relative deviation $\delta=\delta(z_1,z_2)$ such that 
+\begin{equation}
+\label{operation error}
+    \llbracket z_1 \text{ + } z_2\rrbracket =(\llbracket z_1 \rrbracket+\llbracket z_2\rrbracket)(1+\delta),\ |\delta|\leq u, \quad\llbracket z_1 z_2 \rrbracket=\llbracket z_1\rrbracket \llbracket z_2\rrbracket(1+\delta),\ |\delta|\leq u',
+\end{equation}
+where $u':=2\sqrt{2}u/(1-2u)$ \cite{higham2002accuracy}. The relative deviation shown in Eqs.\ \eqref{representation error}, \eqref{operation error} generally depend on both numbers involved as well as the operation in question. In the following, we will distinguish different $\delta$ with subscript $\nu$.
+
+Using the Eqs.\ \eqref{representation error}, \eqref{operation error}, we derive an upper bound for the rounding error in the evaluation of the dot product which is the basic arithmetic operation in evaluating $e^B_m\dket{\Psi}$ according to Eq.\ \eqref{eBmpsi}.
+
+\subsubsection{Upper bound for the rounding error associated with evaluating the dot product}
+The rounding error incurred when evaluating the dot product is given by $|\Sigma_d-\llbracket \Sigma_d\rrbracket|$ with $\Sigma_d=\boldsymbol{w^\text{T}z}$ ( $\boldsymbol{w},\boldsymbol {z} \in\mathbb{C}^{d}$). Here, $\boldsymbol{w^\text{T}}$ is a row of $B=i\delta t H/s$. We illustrate how to bound the rounding error for $d=1,2$, and give the general result subsequently. Based on Eqs.\ \eqref{representation error} and \eqref{operation error}, we have
+\begin{equation}
+\label{c7}
+    |\llbracket \Sigma_1\rrbracket-\Sigma_1|=|\llbracket w_1  z_1\rrbracket-w_1z_1|<|w_1||z_1|\big|\prod_{\nu=1}^3(1+\delta_\nu)-1\big|<\gamma_3 |w_1||z_1|.
+\end{equation}
+In the last step, we have used $\big|\prod_{\nu=1}^n(1+\delta_\nu)-1\big|<\frac{nu'}{1-nu'}$ \cite{higham2002accuracy}, and defined $\gamma_n:=\frac{nu'}{1-nu'}$. For $d=2$, the upper bound of the error is
+\begin{equation}
+\label{c8}
+     |\llbracket \Sigma_2\rrbracket-\Sigma_2|=|(\llbracket \Sigma_1\rrbracket+\llbracket w_2 z_2\rrbracket )(1+\delta_1)-\Sigma_2|<\gamma_4\sum_{i=1}^2|w_i||z_i|.
+\end{equation}
+The general upper bound for arbitrary $d$ is given by:
+\begin{equation}
+    |\llbracket \Sigma_d\rrbracket-\Sigma_d| <\gamma_{d+2}\sum_{j=1}^{d}|w_j|| z_j|.
+\end{equation}
+Since $\boldsymbol{w^\text{T}}$ is proportional to a row of the Hamiltonian matrix, sparsity of $H$ implies sparsity of $\boldsymbol{w^\text{T}}$. Vanishing entries in $\boldsymbol{w^\text{T}}$ is special because they do not incur rounding errors. Thus, one can obtain a stronger upper bound
+\begin{equation}
+\label{C10}
+    |\llbracket \Sigma_d\rrbracket-\Sigma_d|<\gamma_{\sigma+2}\sum_{j=1}^{d}|w_j|| z_j|
+\end{equation}
+where $\sigma$ is the number of non-zero elements in $\boldsymbol{w^\text{T}}$.
+\subsubsection{Upper bound for the rounding error of  $e^B_m\dket{\Psi}$}
+The vector $e^B_m\dket{\Psi}$ is evaluated recursively via
+\begin{equation}
+\label{recursive relation 1}
+    b_j= \frac{B}{j}b_{j-1},\qquad e^B_j b_0=b_{j-1}+b_j
+\end{equation}
+where $j=1,2,\cdots,m$ and $b_0$ is a vector representation of $\dket{\Psi}$ under a choice of orthonormal basis. Before evaluating the upper bound for the error $\norm{\llbracket e^B_mb_0\rrbracket-e^B_mb_0}_2$, we first derive an upper bound for the error of an vector component $\big|\llbracket e^B_mb_0 \rrbracket^{(i)}-(e^B_mb_0) ^{(i)}\big|$. We illustrate how to bound this error for $m=0,1$, and then give the general result.
+
+For the case $m=0$, we have the bound
+\begin{equation}
+    \big|\llbracket e^B_0b_0 \rrbracket^{(i)} -(e^B_0b_0)^{(i)} \big|
+    =\big|\llbracket b_0\rrbracket ^{(i)} -b_0 ^{(i)}\big|<\gamma_2|b_0^{(i)}|.
+\end{equation}
+We then obtain the upper bound of the error for the example of $m=1$:
+\begin{align}
+\label{c17}
+    &|\llbracket e^B_1b_0 \rrbracket^{(i)}-(e^B_1b_0 )^{(i)}|
+    =\big|\big(\llbracket b_0\rrbracket ^{(i)}+\llbracket 
+    b_1\rrbracket^{(i)}\big)(1+\delta_1)-(e^B_1b_0 )^{(i)}\big| \\
+\nonumber    &\quad=\big|\llbracket b_0\rrbracket ^{(i)}(1+\delta_1)+\frac{\llbracket Ab_0\rrbracket}{s}^{(i)}\prod_{\nu=1}^3(1+\delta_\nu)^3-(e^B_1b_0 )^{(i)}\big| \overset{\eqref{C10}}{<}\gamma_3|b_0^{(i)}| + \gamma_{\sigma_i+5}\sum_l|B^{(il)}||b_0^{(l)}|,
+\end{align}
+where $\sigma_i$ is number of non-zero elements in $i$th row of the matrix $B$.
+Here, the third line arises from the division error between a complex number and a real number, i.e. $\llbracket z/\xi \rrbracket=z/\xi(1+\delta)$, $|\delta|<u$  \cite{higham2002accuracy}. 
+The general upper bound for arbitrary $m$ is given by:
+\begin{equation}
+\label{c16}
+    \big|\llbracket e^B_mb_0 \rrbracket^{(i)} -(e^B_mb_0 )^{(i)}\big|<\sum_{k=0}^m\gamma_{k(\sigma_i+2)+m+2}\big(\frac{|B|^k}{k!}|b_0|\big)^i,
+\end{equation}
+where $|B|,|b_0|$ denote the matrix and the vector with elements $|B^{il}|$, $|b_0^{i}|$, respectively. Defining
+\begin{equation}
+\label{sigmapdef}
+    \sigma':=\max_i \sigma_i\
+\end{equation} 
+and using Eq.\ \eqref{c16}, we obtain
+\begin{align}
+\nonumber    & \norm{\llbracket e^B_mb_0 \rrbracket -(e^B_mb_0 )}_2=\big|\big||\llbracket e^B_mb_0 \rrbracket -(e^B_mb_0 )|\big|\big|_2<\sum_{k=0}^m\gamma_{k(\sigma'+2)+m+2}\big|\big|\frac{|B|^k}{k!}|b_0|\big|\big|_2\\
+\label{B23} &\quad <\sum_{k=0}^m\gamma_{k(\sigma'+2)+m+2}\frac{\big|\big||B|\big|\big|_2^k}{k!}\big|\big||b_0|\big|\big|_2
+ \overset{\eqref{norm inequality}}{<}\sum_{k=0}^m\gamma_{k(\sigma'+2)+m+2}\frac{\big|\big||B|\big|\big|_1^k}{k!}\big|\big||b_0|\big|\big|_2=\beta||b_0||_2
+\end{align}
+with $\beta:=\sum_{k=0}^m\gamma_{k(\sigma'+2)+m+2}\frac{||B||_1^k}{k!}$. Here, $\beta||b_0||_2$ the desired upper bound for the rounding error of $e^B_m\dket{\Psi}$. 
+
+\subsubsection{Upper bound for the error $\varepsilon_r$}
+\label{Upper bound of }
+The vector $(e^B_m)^sb_0 $ is evaluated by the recursive relation.
+\begin{equation}
+\label{recursive relation2}
+    c_l=e^B_m c_{l-1},\qquad l=1,2,\cdots,s,
+\end{equation}
+where $c_0=b_0$. 
+% Bounding the error $\varepsilon_r=\norm{\llbracket c_s\rrbracket-c_s }_2$ is more easily accomplished by considering absolute rather than relative deviations. \todo{and vice versa for the last subsection.}
+We illustrate how to bound the error $\varepsilon_r=\norm{\llbracket (e^B_m)^sb_0\rrbracket-(e^B_m)^sb_0 }_2$ for $s=1,2$, and give the general result subsequently. 
+
+For $s=1$, we have 
+\begin{equation}
+\label{s1}
+    \norm{\llbracket e^B_mb_0\rrbracket-e^B_mb_0 }_2\overset{\eqref{B23}}{<}\beta||b_0||_2=\beta.
+\end{equation}
+For $s=2$, we obtain
+\begin{align}
+\label{C22}
+\nonumber    \norm{\llbracket (e^B_m)^2b_0\rrbracket-(e^B_m)^2b_0 }_2 &\leq\norm{\llbracket (e^B_m)^2b_0\rrbracket-     
+    e^B_m\llbracket e^B_mb_0\rrbracket}_2+\norm{e^B_m\llbracket e^B_mb_0\rrbracket-(e^B_m)^2b_0}_2\\
+   &\, <\norm{\llbracket e^B_m \llbracket e^B_mb_0\rrbracket\rrbracket-     
+    e^B_m\llbracket e^B_mb_0\rrbracket}_2+\beta\norm{e^B_m}_2,
+\end{align} 
+where the last step is enabled by Eq.\ \eqref{s1}.
+Finally, we bound the matrix norm in the second term by
+\begin{equation}
+    \norm{e^B_m}_2=\norm{e^B-R_m(B)}_2\leq 1+R_m(\norm{B}_2)\overset{\eqref{norm inequality}}{\leq} 1+R_m(\norm{B}_1)=:\alpha.
+\end{equation}
+Since Eq.\ \eqref{B23} holds for any complex vector $b_0$, the error in Eq.\ \eqref{C22} is further bounded by:
+\begin{align}
+    \norm{\llbracket (e^B_m)^2b_0\rrbracket-(e^B_m)^2b_0 }_2\overset{\eqref{B23}}{<}\beta\norm{\llbracket e^B_mb_0\rrbracket}_2+\beta\alpha &=\beta\norm{\llbracket e^B_mb_0\rrbracket-e^B_mb_0+e^B_mb_0}_2+\beta\alpha\quad \overset{\eqref{s1}}{<}\beta(\beta+\alpha)+\beta\alpha.
+\end{align}
+Generalizing this strategy further, we obtain the expression for the upper bound of $\varepsilon_r$: 
+\begin{align}
+\label{rouding}
+\nonumber    \varepsilon_r=\norm{\llbracket (e^B_m)^sb_0\rrbracket-(e^B_m)^sb_0 }_2 &\leq \sum_{l=0}^{s-1}\norm{(e^B_m)^l \llbracket (e^B_m)^{s-l}b_0\rrbracket-(e^B_m)^{l+1}\llbracket (e^B_m)^{s-l-1}b_0\rrbracket}_2\\
+    &<\beta\sum_{l=0}^{s-1}(\alpha+\beta)^{s-l-1}\alpha^{l}=(\alpha+\beta)^s-\alpha^s.
+\end{align}    
+
+Combining the upper bounds for $\varepsilon_r$ and $\varepsilon_t$, we return to Eq.\ \eqref{epsilonA} and obtain
+\begin{equation}
+\label{overallupperbound}
+\varepsilon_{A,\dket{\Psi}}<\nonumber E_A(m,s)=sR_m(\norm{B}_1)\frac{1-\big(sR_m(\norm{B}_1)\big)^s}{1-sR_m(\norm{B}_1)}+(\alpha+\beta)^s-\alpha^s,
+\end{equation}
+where $\norm{B}_1=\norm{A}_1/s$, $\alpha=\alpha(\norm{A}_1,m,s)$ and $\beta=\beta(\sigma',\norm{A}_1,m,s)$.
+

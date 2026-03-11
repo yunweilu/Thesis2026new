@@ -1,0 +1,69 @@
+\section{Alternative numerical implementation of HG scheme and the corresponding scaling analysis}
+\label{scalingmatrixdiag}
+The numerical implementation of the hard-coded gradient scheme requires evaluation of the short-time propagator and its derivative. Under certain conditions, it turns out to be advantageous to numerically evaluate the short-time propagator by employing matrix diagonalization. In this appendix, we first discuss the method to compute propagator derivative and then analyze the scaling of HG.
+
+
+\subsection{Evaluation of propagator derivative }
+The operator $-iH\Delta t$ is anti-Hermitian, and hence can be diagonalized and exponentiated according to 
+\begin{align}
+\label{matrix dia}    &A=SDS^\dagger,\\
+    &e^A=Se^DS^\dagger.
+\end{align}
+Here, $S$ is unitary and $D$ diagonal. As a result, the propagator derivative can be written as
+\begin{align}
+\label{D1}
+    \frac{d e^{A}}{d a}=Se^D\frac{dD}{da}S^\dagger+\frac{dS}{da}e^DS^\dagger+Se^D\frac{dS^\dagger}{da}.
+\end{align}
+We apply the inverse unitary transformation to $\frac{d e^{A}}{d a}$ \eqref{D1} and obtain
+\begin{align}
+\label{D3}
+    S^\dagger\frac{de^A}{da}S=e^D\frac{dD}{da}+S^\dagger\frac{dS}{da}e^D+e^D\frac{dS^\dagger}{da}S.
+\end{align}
+Based on $\frac{dS^\dagger}{da}S+S^\dagger\frac{dS}{da}=0$, Eq.\ \eqref{D3} can be rewritten as 
+\begin{align}
+\label{D4}
+    S^\dagger \frac{de^A}{da}S=e^D\frac{dD}{da}+E\circ(S^\dagger\frac{dS}{da})
+\end{align}
+with $E_{ij}:=e^{D_{jj}}-e^{D_{ii}}$. Here, $\circ$ denotes the Hadamard product (element-wise multiplication). To obtain $dD/da$ and $dS/da$, we take the derivative of Eq.\ \eqref{matrix dia} and repeat the same steps as for Eqs.\ \eqref{D3} and \eqref{D4}, leading to
+\begin{align}
+\label{D5}
+    S^\dagger\frac{dA}{da}S=\frac{dD}{da}+E'\circ(S^\dagger\frac{dS}{da}),
+\end{align}
+where $E'_{ij}:=D_{jj}-D_{ii}$. 
+Since the diagonal elements of $E'$ are zero, it follows that
+\begin{align}
+\label{dD}
+    \frac{dD}{da}=I\circ (S^\dagger\frac{dA}{da}S).
+\end{align}
+For off-diagonal elements of the operator in Eq.\ \eqref{D5}, we obtain
+\begin{align}
+\label{dF}
+    F\circ (S^\dagger\frac{dA}{da}S)+G=S^\dagger\frac{dS}{da},
+\end{align}
+where we define 
+\begin{align}
+    &F_{ij}:=
+  \begin{cases}
+    \frac{1}{D_{jj}-D_{ii}},& \text{if $D_{jj}-D_{ii} \neq 0$}.\\
+    0, & \text{otherwise}.
+  \end{cases}\\
+\nonumber  &G_{ij}:=
+  \begin{cases}
+    0, & \text{if $D_{jj}-D_{ii} \neq 0$}.\\
+    (S^\dagger\frac{dS}{da})_{ij}, & \text{otherwise}.
+\end{cases}
+\end{align}
+Inserting Eqs.\ \eqref{dD} and \eqref{dF} into Eq.\ \eqref{D4} gives
+\begin{align}
+\label{propagator der}
+    \frac{de^A}{da}=S\big((e^D+E \circ F)\circ(S^\dagger \frac{dA}{da}S)\big)S^\dagger,
+\end{align}
+where we use $E\circ G=0$. 
+\subsection{Scaling analysis }
+The gradients of the contributions to the cost function (for the case of state transfer) are evaluated by the forward-backward propagation scheme. In this scheme, the storage required for states does not scale with the number of intermediate time steps. The matrices that must be stored are the system and control Hamiltonians as well as dense matrices dense matrices $S$, $E$ and $E^\prime$. Thus, the total memory usage scales as $O(d^2)$. The runtime of the scheme is dominated by $O(N)$ evaluations of the propagator and its derivative. Employing matrix diagonalization for the propagator evaluation requires a runtime scaling $\sim O(d^3)$ \cite{matridiagcomppan1999complexity}. Calculation of the propagator derivative involves matrix-matrix multiplication and Hadamard product with runtime scaling $O(d^3)$ and $O(d^2)$, respectively. Thus, the overall runtime of the HG scheme scales as $O(Nd^3)$. 
+
+The gradients of the contributions to the gate-operation cost function are evaluated in an analogous manner, resulting in the runtime and memory scaling.
+
+
+
+

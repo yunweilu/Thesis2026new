@@ -1,0 +1,33 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}Introduction}{4}{section.1}%
+\contentsline {section}{\numberline {2}GRAPE based on hard-coded gradients}{6}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Brief sketch of GRAPE}{6}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Analytical gradients}{7}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Numerical implementation of hard-coded gradient}{10}{section.3}%
+\contentsline {subsection}{\numberline {3.1}State propagation evaluation by scaling and squaring method}{11}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Determine the upper bound $E_A(m,s)$}{12}{subsubsection.3.1.1}%
+\contentsline {paragraph}{Upper bound for the truncation error $\varepsilon _t$}{12}{section*.2}%
+\contentsline {paragraph}{Upper bound for the rounding error $\varepsilon _r$}{13}{section*.3}%
+\contentsline {subparagraph}{Upper bound for the rounding error associated with evaluating the dot product}{14}{section*.4}%
+\contentsline {subparagraph}{Upper bound for the rounding error of $e^B_m|\Psi \rangle $}{15}{section*.5}%
+\contentsline {subparagraph}{Upper bound for the error $\varepsilon _r$}{16}{section*.6}%
+\contentsline {subsubsection}{\numberline {3.1.2}Choosing scaling factor and truncation order}{17}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Numerical comparison between scaling and squaring implementations}{19}{subsubsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.2}Computing propagator derivative acting on a state: auxiliary matrix method}{20}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Efficient evaluation of hard-coded gradients}{20}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Scaling analysis and benchmarking}{22}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Scaling analysis of runtime and memory usage}{22}{subsection.4.1}%
+\contentsline {paragraph}{Evaluation of hard-coded gradients (HG) using forward-backward propagation.}{22}{section*.7}%
+\contentsline {paragraph}{Full automatic differentiation (full-AD)}{23}{section*.8}%
+\contentsline {paragraph}{Semi-automatic differentiation (semi-AD)}{24}{section*.9}%
+\contentsline {paragraph}{Comparison}{24}{section*.10}%
+\contentsline {subsection}{\numberline {4.2}Benchmark studies}{25}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Choosing among different optimization strategies }{30}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Application of GRAPE: Robust control for transmon}{31}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Metrics of robust control}{32}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Optimization procedure}{33}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Benchmarking and comparison}{35}{subsection.5.3}%
+\contentsline {section}{\numberline {A}The scaling of number of matrix-vector multiplications $\mu $}{38}{appendix.A}%
+\contentsline {section}{\numberline {B}Alternative HG Scheme: Numerical Implementation and Scaling}{40}{appendix.B}%
+\contentsline {subsection}{\numberline {B.1}Evaluation of propagator derivative }{40}{subsection.B.1}%
+\contentsline {subsection}{\numberline {B.2}Scaling analysis }{42}{subsection.B.2}%

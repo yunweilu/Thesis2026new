@@ -1,0 +1,113 @@
+\documentclass{article}
+
+\usepackage[letterpaper, margin=0.5in]{geometry}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+\usepackage{color}
+\definecolor{grey}{RGB}{111,111,111}
+\newcommand{\RNum}[1]
+{\uppercase\expandafter{\romannumeral #1\relax}}
+\title{Response to Reviewers}
+\date{}
+\author{}
+
+\begin{document}
+\maketitle
+% \vspace{18 pt}
+\noindent We thank the referees for their helpful comments and suggestions. The revision made in response has improved our article.
+
+\begin{center}
+\begin{longtable}{cp{5.50cm}p{11.5cm}} 
+\multicolumn{3}{l}{\textbf{Reviewer 1}}  \\
+\hline
+~ & {\color{grey}Comment} & Response \\
+\hline
+~ & {\color{grey}
+1. I think this research would be made more impactful if the authors could identify an application where memory is truly the limiting factor, in the sense that neither full-AD nor semi-AD works but HG works. }
+
+& 
+
+Our second benchmarking example, unitary gate optimization in a system consisting of three coupled transmons, is readily extended to illustrate a case where full-AD and semi-AD fail but HG remains feasible. Specifically, when we keep each transmon cutoff as 12 and number of time steps $N=100$, we fail to run full-AD because the estimated memory usage of $\sim$ 1TB exceeds our resources. Semi-AD would also consume the same amount of memory when $N\sim2500$. We show memory usage with $N$ in Fig.\ 3(c) for semi-AD and HG, while Full-AD is not shown due to the memory limitation. The power-law fit for semi-AD in the figure confirms our estimate.
+\\
+\multicolumn{3}{l}{}  \\
+~ & {\color{grey}
+2. The examples only compared HG with full-AD. It will be informative to also compare semi-AD.}
+&
+This comment from the referee has motivated us to write additional code for semi-AD tests.  We have collected more benchmark data which now include memory usage and runtime for semi-AD. Accordingly, we have extended the comparison to discuss full-AD, semi-AD and HG on equal footing. (See Sec.\ \RNum{4} for details.)
+ 
+
+\\
+\multicolumn{3}{l}{}  \\
+~ & {\color{grey}
+3. After truncating the Taylor series in Eq.\ (12), the operator is no longer unitary. Although the errors are bounded, unitary-preserving approximations are usually better for propagating quantum states. }
+&
+While gaining accuracy with more sophisticated approximations is possible, we find it is unnecessary in our examples. We observe that when we set the error tolerance to $10^{-8}$, the norm of the propagated state deviates from 1 only at the level of machine precision. Note that the QuTiP package does not employ a unitarity-preserving approximation either. Finally, use of more sophisticated approximations will generally negatively impact runtime. For example, Pad\'e approximation for evaluating propagators involves matrix inverse which has runtime scaling $O(d^3)$. Our approximation instead only involves matrix-vector multiplication which scales as $O(d^2)$.
+% One unitarity-preserving approximation for the propagator is the Pade approximation, which requires calculation of the matrix inverse. When system dimension is small and runtime is not a concern, we agree that implementation of Pade approximation to evaluate state propagation is appropriate. However, such implementation has runtime scaling $O(d^3)$ due to calculation of matrix inverse; while our method based on Taylor expansion for the evaluation involves matrix-vector multiplication, which has the scaling $O(d^2)$. Thus, for large quantum systems, the latter is preferred due to the concern of runtime.
+
+% It's worth emphasizing that our approximation does not significantly break unitarity. In our benchmark examples we observe that when we set error tolerance to $10^{-8}$ the norm of the propagated state deviates from 1 at the level of machine precision. 
+
+% Furthermore, we'd like to highlight the practicality of our approach by comparing it to Qutip, a widely used package for simulating quantum system dynamics. Qutip employs SciPy ODE solvers to propagate quantum states. The norm of the propagated state is maintained close to 1 by bounding errors below a tolerance, usually much smaller than 1. This aligns with our approach's capability to preserve unitarity effectively.
+
+
+
+\\
+\multicolumn{3}{l}{}  \\
+~ & {\color{grey}
+4. Many figures are plotted on linear scales. For scaling studies, it’s perhaps more useful to plot on log-log scales.}
+&
+We agree and have converted the relevant figures into log-log plots.
+
+\\
+\multicolumn{3}{l}{}  \\
+~ & {\color{grey}
+5. After Eq.\ (4), there is likely a typo. Hamiltonian Hn should not include the $-i*\delta t$ factor.}  
+&
+
+We agree and have removed the $-i\delta t $ factor.
+
+\\
+\multicolumn{3}{l}{}  \\
+~ & {\color{grey}
+6. In Eq.\ (17), it’s probably better to indicate that this is an approximation, not an equality.}
+&
+Eq.\ (17) is actually an identity, while Eq.\ (16) is acknowledged as an approximation. We have further clarified the relation between these two equations in the main text.  
+
+% Eq.\ (16) shows that the propagator derivative acting on a state $\frac{\partial U_n}{\partial a_n} |\Psi\rangle$ is approximated by $(\partial (e^{B_n}_m)^s / \partial a_n) |\Psi\rangle$. The latter can be computed by the exponential of the auxiliary matrix $\mathcal{A}_n$ acting on a vector exactly, which is shown in Eq.\ (17). 
+
+\\
+\multicolumn{3}{l}{}  \\
+~ & {\color{grey}
+7. In Table\ 1, right column, shouldn’t the memory usage includes a kappa term for AD methods as well?}
+
+&
+ Before simplification, the full scaling is $\Theta(N\mu d^2 +\kappa)$. Since the number of stored Hamiltonian matrix elements $\kappa$ has the scaling $\theta(d^2)$ in the worst case of dense Hamiltonian matrix, the overall scaling is then $\Theta(N\mu d^2)$.
+\\
+\multicolumn{3}{l}{}  \\
+~ & {\color{grey}
+8. Many footnotes of this paper are making important points and should be included in the main text.}
+&
+
+We agree and have incorporated the important points from the footnotes into the main text.
+
+
+\\
+\\
+\\
+\\
+\multicolumn{3}{l}{\textbf{Reviewer 2}}  \\
+\hline
+~ & {\color{grey}
+The second reviewer recommends submission to another journal and no further comments needed to be addressed.}
+& 
+
+
+
+
+
+\end{longtable}
+\end{center}
+
+
+\end{document}

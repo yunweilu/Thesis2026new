@@ -1,0 +1,10 @@
+\section{Conclusions \label{Conclusions}}
+
+Motivated by the memory bottleneck problem in quantum optimal control of large systems, we have revisited and compared the memory usage and runtime scaling of multiple flavors of GRAPE: hard-coded gradients (HG), full automatic differentiation (full-AD) and semi-automatic differentiation (semi-AD). These three methods are equivalent in runtime scaling but differ characteristically in scaling of memory usage. The ranking among them is as follows, going from the most to least efficient: HG, semi-AD and full-AD. Thus HG is the preferred option when facing a memory bottleneck problem. 
+
+We have illustrated the scaling of HG and full-AD by benchmark studies for concrete state-transfer and gate-operation optimizations, respectively. As part of this, we have presented improvements in the implementation of scaling and squaring, used to evaluate propagator-state products numerically. In the example studied, we observed a speedup compared to \texttt{Scipy}'s \texttt{expm\textunderscore multiply} function. The decision tree shown in Fig.\ \ref{fig:decision tree} summarizes the choice of appropriate numerical strategy for a given optimization problem.
+
+\section*{Acknowledgements}
+We thank Thomas Propson for fruitful discussions. This material is based upon work supported by the U.S.\  Department of Energy, Office of Science, National Quantum Information Science Research Centers, Superconducting Quantum Materials and Systems Center (SQMS) under contract number DE-AC02-07CH11359. We are grateful for the following open-source packages used in our work: \texttt{matplotlib} \cite{hunter2007matplotlib}, \texttt{numpy} \cite{harris2020array}, \texttt{scipy}  \cite{virtanen2020scipy}, \texttt{sympy}  \cite{meurer2017sympy}, \texttt{scqubits} \cite{groszkowski2021scqubits}, and 
+ \texttt{qoc}  \cite{pacqoc}.
+

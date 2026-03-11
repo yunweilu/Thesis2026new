@@ -1,0 +1,29 @@
+\section{Brief sketch of GRAPE \label{grapetheory}}
+We briefly sketch the basics of GRAPE \cite{nmrkhaneja2005optimal}, mainly to establish the notion used in subsequent sections. 
+
+Consider a system described by the Hamiltonian
+\begin{align}
+     H(t) = H_s + a(t)\, h_c.
+\end{align}
+Here, $H_s$ denotes the static system Hamiltonian and $h_c$ is an operator coupling the classical control field $a(t)$ to the system\footnote{For simplicity, we consider one control channel with real-valued $a(t)$. Generalizations to multiple control channels and complex $a$ are straightforward.}. Quantum optimal control aims to adjust $a(t)$ such that a desired unitary gate or state transfer is performed within a given time interval $0\le t \le T$. To facilitate optimization, the total control time $T$ is divided into $N$ intervals of duration $\Delta t=T/N$, and the control field is specified by the amplitudes at the discrete times $t_n=n\Delta t$ ($n=1,2,\dots,N$). The discretization interval $\Delta t$ is chosen such that control amplitudes are approximately constant within each $\Delta t$. This treatment is actually quite close to modeling the actual drive output of an arbitrary waveform generator, where $\Delta t$ can be chosen to align with the available resolution. We denote the time-discretized values by
+\begin{align}
+\label{eq2}
+    a_n \coloneqq a(t_n),
+\end{align}
+and group these to form the vector $\textbf{a}\in \mathbb{R}^{N}$.  
+Under the influence of this piecewise-constant control field, the system's quantum state $\dket{\psi_n}\coloneqq \dket{\psi(t_n)}$ evolves by a single time step according to 
+\begin{align}
+\label{statepropagation}
+  |\psi_n\rangle=U_n|\psi_{n-1}\rangle.
+\end{align}
+Here, $U_n$ is the short-time propagator
+\begin{align}
+\label{propagator}
+  U_n\coloneqq U(t_n, t_{n-1}) =e^{-iH_n\Delta t}\qquad(\hbar=1),
+\end{align}
+where $H_n=\, H_s+a_n\, h_c $. Optimization of the control field proceeds via minimization of a cost function $C$. Typically, $C$ includes the state-transfer or gate infidelity, along with additional cost contributions employed to moderate pulse characteristics such as maximal power or bandwidth. To this end a composite cost function is constructed, $C(\textbf{a})=\sum_{\nu}\alpha_\nu C_\nu \parenthesis{\textbf{a}}$, where $\alpha_\nu$ are empirically chosen weight factors and $C_\nu$ are individual cost contributions. GRAPE utilizes the method of steepest descent to minimize $C(\textbf{a})$ by updating the control amplitudes according to the cost function gradient: 
+\begin{align}
+  \textbf{a}^{(j+1)}=\textbf{a}^{(j)}-\eta_j\,\nabla_{\textbf{a}}C(\textbf{a}^{(j)}).
+\end{align}
+Here, $j$ enumerates steepest-descent iterations and $\eta_j>0$ is the learning rate governing the step size. 
+

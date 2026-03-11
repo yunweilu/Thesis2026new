@@ -1,0 +1,20 @@
+\section{Numerical comparison between scaling and squaring implementations}
+\label{numerical experienment}
+\begin{figure*}
+  \centering
+  \includegraphics[width=\linewidth]{Comparison.pdf}
+  \caption{Comparison between scaling and squaring as implemented here and \texttt{Scipy}'s \texttt{expm\textunderscore multiply}, considering relative error and runtime. (a), (c) Relative error versus matrix norm. (b), (d) Ratios of runtime and $\mu$ (i.e. number of matrix-vector multiplications) between our  and \texttt{Scipy}'s implementations as functions of the matrix norm. The matrix norm $\norm{-iH\Delta t}_2$ is varied by increasing $\Delta t\in [1,10]$. In all panels, colors encode different error tolerances $\tau$. The results of the first and second row are obtained based on cavity-transmon and three coupled transmons Hamiltonians, respectively. The system parameters of these two Hamiltonian are the same as the ones given in the captions of Figs.\ \ref{fig:state_time}, \ref{fig:gate}, respectively.  }
+  \label{fig:sas numerical experiments}
+\end{figure*}
+Scaling and squaring is used to evaluate the propagator-state product, $e^{-iH\Delta t }\dket{\Psi}$. We compare relative error and runtime between our implementation of scaling and squaring and \texttt{Scipy}'s implementation, \texttt{expm\textunderscore multiply}  \cite{al2011computing}. The relative errors for our implementation and \texttt{Scipy}'s implementation follow the general expression in Eq.\ \eqref{error defnition}, but differ in specific choice of $m$ and $s$. As a proxy for the exact propagator-state product, we apply Taylor expansion to matrix exponential with 400 digits precision by \texttt{Sympy} and the result of the product converges at 30 digits after decimal point. The runtime is measured with the help of the \texttt{Temci} package  \cite{temci}.
+
+
+
+As the basis for this comparison, we use the examples of Hamiltonians \eqref{fockH} and \eqref{gateH} and implement sparse storage for them. The relative errors are shown in Fig.\ \ref{fig:sas numerical experiments}(a) and (c) as a function  versus the matrix norm $\norm{-iH\Delta t}_2$ respectively. In both examples, the relative errors for our implementation are bounded by the error tolerance $\tau$, while the relative errors for \texttt{Scipy}'s implementation tend to exceed the tolerance for large norms. There are two reasons for this tendency. First, rounding errors are not considered in the derivation of the upper bound for the errors \cite{al2011computing}; second the truncation of $e^B_m$ [Eq.\ \eqref{eBm equation}] is merely based on a heuristic criterion. 
+
+Even though the relative errors of \texttt{Scipy}'s implementation are worse, it gains smaller number of matrix-vector multiplications, which is denoted by $\mu$. This is illustrated in Fig.\ \ref{fig:sas numerical experiments}(b) and (d), that the ratio of $\mu$ between our implementation and \texttt{Scipy}'s implementation is always larger than 1. Although \texttt{Scipy}'s implementation spends less time on matrix-vector multiplications, the total runtime of \texttt{Scipy}'s implementation is larger than the one of our implementation, see Fig. \ref{fig:sas numerical experiments}(b) and (d). This is due to the larger runtime overhead of \texttt{Scipy}'s implementation for determining $(m,s)$. 
+
+In conclusion, our implementation has the better numerical stability and runtime than \texttt{Scipy}'s implementation in our numerical experiments. 
+
+
+

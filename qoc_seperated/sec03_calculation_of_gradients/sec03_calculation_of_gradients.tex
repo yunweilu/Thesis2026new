@@ -1,0 +1,149 @@
+\section{Calculation of gradients}
+\label{gradients main text}
+A critical ingredient for GRAPE is the computation of cost function gradients. One popular option is to leverage automatic differentiation for this purpose, such as implemented in \texttt{Tensorflow} \cite{tensorflow2015-whitepaper} and \texttt{Autograd} \cite{maclaurin2015autograd}. A clear advantage of this strategy is the ease by which complicated cost function gradients are evaluated automatically at runtime. This convenience, however, is bought at the cost of significant memory consumption which can be prohibitive for large quantum systems. This waste of memory resources is prohibitive when optimal control is applied to large quantum systems.
+Therefore, we are motivated to revisit hard-coded gradients in a computationally efficient scheme for key cost contributions.
+
+\subsection{Analytical gradients \label{c1c2}}
+We provide a discussion of the analytical gradients of two key cost contributions in this subsection. Expressions for gradients of other cost contributions are shown in \ref{gradient}.
+
+In state-transfer problems, a central goal of quantum optimal control is to minimize the state-transfer infidelity given by 
+\begin{equation}
+\label{C1st}
+    C_1^
+{st}=1-\left|\left\langle\phi_T | \psi_{N}\right\rangle\right|^{2},
+\end{equation} 
+where $\dket{\phi_T}$ is the target state and $\dket{\psi_N}$ is a state realized at final time $t_N$. The gradient of $C_1^{\text{st}}$ takes the form
+\begin{equation}
+\label{stgradient}
+    \frac{\partial C_1^{st} }{\partial a_{ n}}
+  =- \langle\phi_T|U_N\cdots \frac {\partial U_{n}}{\partial a_{n}}\cdots U_1|\psi_0\rangle\langle\psi_N|\phi_T\rangle -\cc\\
+=-\langle\phi_{n}|\frac {\partial U_n }{\partial a_{n}}|\psi_{n-1}\rangle\langle\psi_N|\phi_T\rangle - \cc ,
+\end{equation}
+ 
+where the state $\dket{\phi_{n}}$ obeys the recursive relation
+\begin{equation}
+    \dket{\phi_{n}}=U_{n+1}^\dagger\dket{\phi_{n+1}}.
+\end{equation}
+This can be interpreted as backward propagation.
+
+In addition to state transfer, unitary gates are another operation of interest. Gate optimization can be achieved by minimizing the gate infidelity $C_1^{g}=1-\big|\operatorname{tr}\big(U_T^{\dagger} U_R\big)/d\big|^2$. Here, $U_T$ is the target unitary gate and $U_R=U_N\cdots U_1$ is the actually realized gate. For a given  orthonormal basis $\{\dket{\psi^h_0}\}_h$ ($h$ enumerates the basis states), the gradient of $C_1^{ g}$ can be written as 
+
+\begin{equation} 
+\begin{aligned}
+\label{gategradient}
+  \frac{\partial C_1^{ g} }{\partial a_{ n}}
+  &=-\frac{1}{d^2}\sum_{h}\langle\phi_n^h|\frac {\partial  U_n}{\partial a_{n}}|\psi^h_{n-1}\rangle \sum_{h'}\dbra{\psi_N^{h'}}\phi_N^{h'}\rangle
+  -\cc,\\
+\end{aligned}
+\end{equation}
+where $\dket{\psi_{n}^h}=U_n\cdots U_1\dket{\psi_0^h}$. The state $\dket{\phi_{n}^h}$ is obtained as follows: apply the target unitary $U_T$ to basis state $\{\dket{\psi^h_0}\}_h$ and backward propagate the result to time $t_n$,
+\begin{equation}
+\dket{\phi_{n}^h}=U_{n+1}^\dagger \cdots U_{N}^\dagger U_T\dket{\psi_0^h}.
+\end{equation}
+
+Equations \eqref{stgradient} and \eqref{gategradient} provide the analytical expressions needed for gradient descent. In the next two subsections, we will discuss how to numerically evaluate these expressions in a memory-efficient way. 
+
+\begin{figure*}
+  \includegraphics[width=1\linewidth]{forward_backward.pdf}
+  \caption{The forward-backward propagation scheme to compute the components of the gradient in Eq.\ \eqref{stgradient}. (a) Forward propagate the initial state by $U_N\cdots U_1$ to obtain the realized state $\dket{\psi_N}$ and calculate the overlap $\langle\psi_N|\phi_T\rangle$, where $\dket{\phi_T}$ is the target state.
+    (b) Backward propagate $\dket{\psi_N}$ and $\dket{\phi_T}$ by the propagators $U_N^\dagger,U_{N-1}^\dagger,\cdots,U_1^\dagger$ iteratively, and compute $\dbra{\phi_n}\frac {\partial U_n }{\partial a_{n}}\dket{\psi_{n-1}}$ at each step step.}
+    \label{fig:GRAPE}
+\end{figure*}
+
+
+\subsection{Numerical implementation of hard-coded gradient}
+\label{implementation}
+
+The calculation of gradients in Eqs.\ \eqref{stgradient} and \eqref{gategradient} requires numerical evaluation of expressions of the form $U_n\dket{\Psi}$  and $\frac{\partial U_n}{\partial a_n} \dket{\Psi}$. 
+Here, the short-time propagator $U_n$ is given by a matrix exponential $e^A$ and $A=-iH_n\Delta t$. 
+
+Numerically evaluating  $e^A\dket{\Psi}$ is not without challenge. As pointed out by Moler and Van Loan \cite{expmoler2003nineteen}, several methods exist, yet none of them is truly optimal. Three methods ranked highly in reference \cite{expmoler2003nineteen} are based on solving ordinary differential equations, matrix diagonalization and scaling and squaring (combined with series expansion). ODE solving, in this context, tends to be most expensive in runtime \cite{semiadgoerz2022quantum}. We mainly on focus on scaling and squaring but comment on situations where matrix diagonalization is preferable in Sec.\ \ref{Decision tree}. 
+
+Scaling and squaring \cite{codenotti1992error} which is based on the identity
+\begin{align}
+\label{scaling squaring equation}
+   e^A=\big(e^{A/s}\big)^s,
+\end{align}
+where the right hand side matrix exponential now involves the matrix $B=A/s$ which has a norm that is reduced compared to $\norm{A}$. This generally allows for a lower truncation order $m $ of the exponential series\footnote{While Chebyshev expansion has faster convergence than Taylor expansion, their numerical implementations have the same runtime scaling. Here, we focus on Taylor expansion due to its simplicity.} , 
+\begin{align}
+\label{eBm equation}
+    e^B\approx e^B_m:=\sum_{q=0}^m\frac{ B^q}{q!}.
+\end{align}
+Typically, $m$ is smaller than the one required for the original $e^A$.
+Our goal is to approximate the state vector $e^A \dket{\Psi}\approx (e^B_m)^s\dket{\Psi}$ where 
+\begin{equation}
+\label{eBmpsi}
+   e^B_m\dket{\Psi}= \parenthesis{1+B+\frac{B^2}{2!}+\cdots+\frac{B^m}{m!}}\dket{\Psi}\\\nonumber
+   =\dket{\Psi}+B\dket{\Psi}+\frac{B\parenthesis{B\dket{\Psi}}}{2}+\cdots+\frac{B\parenthesis{\cdots \parenthesis{B\dket{\Psi}}}}{m!}\text{   . }
+\end{equation}
+According to the last expression, approximation of $e^A\dket{\Psi}$ can thus proceed by repeated application of $B=A/s$ to a vector, without ever invoking matrix-matrix multiplication. This boosts runtime performance from $O(d^3)$ to $O(d^2)$.
+
+To proceed with the evaluation of $e^A\dket{\Psi}$, the truncation order $m$ and scaling factor $s$ are determined in such a way that the error remains below the error tolerance $\tau$, 
+\begin{equation}
+\label{error defnition}
+    \varepsilon_{A,\dket{\Psi}}(m,s) := \frac{\norm{e^A\dket{\Psi}-\llbracket (e^B_m)^s\dket{\Psi}\rrbracket}}{\norm{e^A\dket{\Psi}}}< \tau .
+\end{equation}
+Here, $\llbracket \bullet{}  \rrbracket$ denotes the floating point representation of $\bullet$. Since this error $\varepsilon_{A,\dket{\Psi}}$ is difficult and costly to evaluate, we instead derive an upper bound $E_A(m,s)$ [see \ref{errorupperbound}] and resort to the inequality 
+\begin{equation}
+\label{accuracy inequality}
+    \varepsilon_{A,\dket{\Psi}}(m,s)<E_A(m,s)\leq \tau.
+\end{equation}
+For a given $A$, this inequality generally has multiple solutions for $m$ and $s$. As shown in  \ref{errorupperbound}, the evaluation requires $ms$ matrix-vector multiplications, which are observed to dominate the runtime. Since systematic minimization of $ms$ requires significant runtime itself, we instead: (1) select solutions to Eq.\ \eqref{accuracy inequality} with the smallest $s$ which is denoted by $\mathbb{s}$, and (2) among these pairs, choose the one with smallest $m$ (which we denote by $\mathbb{m}$). 
+\begin{table*}[ht]
+\renewcommand{\arraystretch}{1.5}
+\centering % centering table  
+\caption{Memory usage and runtime scaling with respect to Hilbert space dimension $d$, number of time steps $N$,  the number of stored Hamiltonian matrix elements $\kappa=\kappa(d)$ and the number of matrix-vector multiplications required for evaluating propagator-state products $\mu=\mu(d)$. (The scaling of $\mu$ and $\kappa$ depends on the specific optimization task.) The table contrasts scaling for state transfer and gate operation for hard-coded gradients (HG), full automatic differentiation (full-AD) and semi-automatic differentiation (semi-AD). } % title name of the table  
+\begin{tabular}
+{p{0.27\textwidth}p{0.13\textwidth}p{0.17\textwidth}p{0.13\textwidth}p{0.17\textwidth}} 
+\hline
+\hline
+& \multicolumn{2}{c}{\textbf{\textsc{State transfer}}} & \multicolumn{2}{c}{\textbf{\textsc{Gate operation}}}\\
+\hline 
+& \textbf{Runtime} & \textbf{Memory usage} & \textbf{Runtime} & \textbf{Memory usage}
+\\
+\hline
+Hard-coded gradient & $\Theta(N\mu \kappa)$ & $\Theta(d+\kappa)$ & $\Theta(N\mu \kappa d)$ & $\Theta(d+\kappa)$\\ 
+Full automatic differentiation & $\Theta(N\mu \kappa)$ & $\Theta(N\mu d+\kappa)$ & $\Theta(N\mu \kappa d)$ & $\Theta(N\mu d^2)$  \\
+Semi-automatic differentiation & $\Theta(N\mu \kappa)$ & $\Theta(Nd+\kappa)$ & $\Theta(N\mu \kappa d)$ & $\Theta(Nd^2)$\\ 
+\hline \hline
+\label{scalingtable}
+\end{tabular} 
+\label{tablescaling}
+\end{table*}
+Thus, calculating $e^A\dket{\Psi}$ requires
+\begin{equation}
+\label{mudefnition}
+    \mu:=\mathbb{m}\mathbb{s}
+\end{equation}
+matrix-vector multiplications. As shown in   \ref{numerical experienment} for two concrete examples, our method for evaluating $e^A\dket{\Psi}$ can achieve better runtime performance and accuracy than \texttt{Scipy}'s \texttt{expm\textunderscore multiply} function \cite{al2011computing} .
+
+Having addressed the challenges associated with numerically evaluating $e^A\dket{\Psi}$, we now turn to the calculation of $\frac{\partial U_n}{\partial a_n} \dket{\Psi}$, which is crucial for computing cost function gradients as in Eqs.\ \eqref{stgradient} and \eqref{gategradient}. We base this evaluation on the approximation 
+\begin{align}
+    \frac{\partial U_n}{\partial a_n} \dket{\Psi}\approx \frac{\partial (e^{B_n}_m)^s}{\partial a_n} \dket{\Psi},
+\end{align}
+where $B_n={-iH_n\Delta t}/{s}$. We proceed by using the auxiliary matrix method based on the identity \cite{auxigoodwin2015auxiliary,najfeld1995derivatives}
+\begin{equation}
+\label{auxiliary equation}
+    \begin{aligned}
+    (e^{\mathcal{A}_n/s}_m)^s
+    \binom{0}{|\Psi\rangle}&=
+    \binom{
+    \frac{\partial (e^{B_{n}}_m)^s}{\partial a_n}  \dket{\Psi}}{{(e^{B_n}_m)^s|\Psi\rangle}}.
+\end{aligned}
+\end{equation}
+Here, $\mathcal{A}_n$ is defined as
+\begin{equation}
+\mathcal{A}_n:=
+{\biggl(\begin{matrix}
+-iH_n \Delta t& -ih_c\Delta t \\
+0 & -iH_n\Delta t
+\end{matrix}\biggr)},
+\end{equation}
+which is a $2\times2$ matrix of operators each acting on our Hilbert space with dimension $d$. Once a basis is chosen, $\mathcal{A}_n$ can be represented as a $2d\times2d$ matrix of complex numbers. Numerical evaluation of the left hand side of the identity \eqref{auxiliary equation} gives a $2d$ dimensional vector. The first $d$ entries of the vector correspond to $\partial (e^{B_n}_m)^s / \partial a_n \dket{\Psi}$, which is an approximation of $\frac{\partial U_n}{\partial a_n} \dket{\Psi}$. 
+
+\subsection{Efficient evaluation of hard-coded gradients}
+\label{Computationally and memory efficient algorithm}
+
+The analytical gradient expressions, such as $\nabla C_1^{st}$ in Eq.\ \eqref{stgradient}, are generally complicated and involve a large number of contributing quantities. Depending on grouping and ordering of operations, these quantities may need to be stored simultaneously or computed repeatedly with critical implications for runtime and memory usage. The scheme originally proposed by Khaneja\ \textit{et al.}\ \cite{nmrkhaneja2005optimal} strikes a favorable compromise that avoids the proliferation of stored intermediate state vectors. More specifically, the final quantum state $\dket{\psi_N}$ is obtained by forward propagating $\dket{\psi_0}$. Then, backward propagation of $\dket{\psi_N},\dket{\phi_T}$ is carried out to calculate the matrix element $\langle\phi_{n}|\frac {\partial U_n }{\partial a_{n}}|\psi_{n-1}\rangle$ needed for the $n$-th component of the gradient, thus building up the gradient in descending order. For both propagation directions, only the current intermediate states are stored, leading to a memory cost of $\Theta(1)$.\footnote{Here, $f(x)=\Theta
+(g(x))$ is the usual Bachmann–Landau notation for $f(x)$ bounded above and below by $g(x)$ in the asymptotic sense.}
+
