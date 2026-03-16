@@ -52,7 +52,7 @@ For gradients of cost contributions that are tedious to derive analytically, sem
 \begin{table}[t]
 \renewcommand{\arraystretch}{1.5}
 \centering
-\caption{Memory usage and runtime scaling with respect to Hilbert space dimension $d$, number of time steps $N$, the number of stored Hamiltonian matrix elements $\kappa=\kappa(d)$, and the number of matrix-vector multiplications required for evaluating propagator-state products $\mu=\mu(d)$. (The scaling of $\mu$ and $\kappa$ depends on the specific optimization task.) The table contrasts scaling for state transfer and gate operation for hard-coded gradients (HG), full automatic differentiation (full-AD), and semi-automatic differentiation (semi-AD).}
+\caption[Memory usage and runtime scaling with respect to Hilbert space dimension $d$, number of time steps $N$, the number of stored Hamiltonian matrix elements $\kappa=\kappa(d)$, and the number of matrix-vector multiplications required for evaluating propagator-state products $\mu=\mu(d)$.]{Memory usage and runtime scaling with respect to Hilbert space dimension $d$, number of time steps $N$, the number of stored Hamiltonian matrix elements $\kappa=\kappa(d)$, and the number of matrix-vector multiplications required for evaluating propagator-state products $\mu=\mu(d)$. (The scaling of $\mu$ and $\kappa$ depends on the specific optimization task.) The table contrasts scaling for state transfer and gate operation for hard-coded gradients (HG), full automatic differentiation (full-AD), and semi-automatic differentiation (semi-AD).}
 \label{tab:scalingtable}
 \begin{tabular}
 {p{0.27\textwidth}p{0.13\textwidth}p{0.17\textwidth}p{0.13\textwidth}p{0.17\textwidth}} 
@@ -94,7 +94,7 @@ the peak memory usage is monitored by the \texttt{memory\_profiler} package~\cit
 
 \begin{figure}[t]
   \includegraphics[width=\linewidth]{ch3_figures/state.pdf} 
-  \caption{Benchmark results for Fock state generation in a system consisting of a cavity coupled to a transmon. (a)~Runtime per iteration and (b)~memory usage versus Hilbert space dimension $d$. The dimension is varied by increasing the cavity dimension while fixing the transmon dimension to 6. (c)~Memory usage as a function of the number of time steps for $d=240$. All plots are in log-log scale. Dashed lines are power-law fits. (Parameters: $\Delta/2\pi=3\,$GHz, $g/2\pi=0.1\,$GHz, $\alpha/2\pi=-0.225\,$GHz, and constant controls $a_z/2\pi=a_x/2\pi=0.1\,$GHz.)}
+  \caption[Benchmark results for Fock state generation in a system consisting of a cavity coupled to a transmon.]{Benchmark results for Fock state generation in a system consisting of a cavity coupled to a transmon. (a)~Runtime per iteration and (b)~memory usage versus Hilbert space dimension $d$. The dimension is varied by increasing the cavity dimension while fixing the transmon dimension to 6. (c)~Memory usage as a function of the number of time steps for $d=240$. All plots are in log-log scale. Dashed lines are power-law fits. (Parameters: $\Delta/2\pi=3\,$GHz, $g/2\pi=0.1\,$GHz, $\alpha/2\pi=-0.225\,$GHz, and constant controls $a_z/2\pi=a_x/2\pi=0.1\,$GHz.)}
   \label{fig:state_time}
 \end{figure}
 
@@ -111,7 +111,7 @@ The goal of the optimization is to minimize the infidelity $C_2^{ g}$. The setup
 
 \begin{figure}[t]
   \includegraphics[width=\linewidth]{ch3_figures/gate.pdf}
-  \caption{Benchmark results for unitary gate optimization in a system consisting of three coupled transmons. (a)~Runtime per iteration and (b)~memory usage versus Hilbert space dimension $d$. The total Hilbert space dimension $d$ is increased by enlarging the cutoff of each transmon from 10 to 14 simultaneously. (c)~Memory usage as a function of the number of time steps for $d=12^3=1728$. Full-AD (not shown) would require more memory than available resources (estimated: 1\,TB). All plots are in log-log scale. Dashed lines are power-law fits. (Parameters: $g/2\pi=0.1\,$GHz, $\alpha/2\pi=-0.225\,$GHz, and $a^{(\nu)}/2\pi=0.1\,$GHz.)}
+  \caption[Benchmark results for unitary gate optimization in a system consisting of three coupled transmons.]{Benchmark results for unitary gate optimization in a system consisting of three coupled transmons. (a)~Runtime per iteration and (b)~memory usage versus Hilbert space dimension $d$. The total Hilbert space dimension $d$ is increased by enlarging the cutoff of each transmon from 10 to 14 simultaneously. (c)~Memory usage as a function of the number of time steps for $d=12^3=1728$. Full-AD (not shown) would require more memory than available resources (estimated: 1\,TB). All plots are in log-log scale. Dashed lines are power-law fits. (Parameters: $g/2\pi=0.1\,$GHz, $\alpha/2\pi=-0.225\,$GHz, and $a^{(\nu)}/2\pi=0.1\,$GHz.)}
   \label{fig:gate}
 \end{figure}
 
@@ -126,7 +126,7 @@ Fig.~\ref{fig:gate} records the benchmarks based on a single time step ($N=1$). 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{ch3_figures/decision_tree.pdf}
-\caption{Decision trees for selecting the optimal numerical strategy. (a)~Choosing among three numerical methods for evaluating gradients: full automatic differentiation, semi-automatic differentiation, hard-coded analytical gradients. (Here, $\mu\sim\Theta(d)$ is assumed; for different scaling see Table~\ref{tab:scalingtable}.) (b)~Determining the appropriate strategy for evaluating propagator-state products.}
+\caption[Decision trees for selecting the optimal numerical strategy.]{Decision trees for selecting the optimal numerical strategy. (a)~Choosing among three numerical methods for evaluating gradients: full automatic differentiation, semi-automatic differentiation, hard-coded analytical gradients. (Here, $\mu\sim\Theta(d)$ is assumed; for different scaling see Table~\ref{tab:scalingtable}.) (b)~Determining the appropriate strategy for evaluating propagator-state products.}
 \label{fig:decision_tree}
 \end{figure}
 

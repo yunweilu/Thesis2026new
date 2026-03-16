@@ -11,6 +11,7 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated field_info (elt_size=4) to 11290 items from 5000.
 Database file #1: template_references.bib
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
@@ -23,45 +24,45 @@ Control: page (0) single
 Control: year (1) truncated
 Control: production of eprint (0) enabled
 Warning--can't use both volume and number fields in maclaurin2015autograd
-You've used 78 entries,
+You've used 170 entries,
             6079 wiz_defined-function locations,
-            2048 strings with 23929 characters,
-and the built_in function-call counts, 69590 in all, are:
-= -- 5845
-> -- 1315
-< -- 292
-+ -- 456
-- -- 292
-* -- 9401
-:= -- 7132
-add.period$ -- 78
-call.type$ -- 78
-change.case$ -- 325
-chr.to.int$ -- 77
-cite$ -- 79
-duplicate$ -- 6354
-empty$ -- 5138
-format.name$ -- 866
-if$ -- 14462
-int.to.chr$ -- 5
-int.to.str$ -- 86
-missing$ -- 990
-newline$ -- 286
-num.names$ -- 234
-pop$ -- 2789
+            2468 strings with 33825 characters,
+and the built_in function-call counts, 143056 in all, are:
+= -- 11875
+> -- 2855
+< -- 570
++ -- 1009
+- -- 656
+* -- 19101
+:= -- 14926
+add.period$ -- 170
+call.type$ -- 170
+change.case$ -- 703
+chr.to.int$ -- 168
+cite$ -- 171
+duplicate$ -- 13291
+empty$ -- 10543
+format.name$ -- 1915
+if$ -- 29428
+int.to.chr$ -- 6
+int.to.str$ -- 178
+missing$ -- 2059
+newline$ -- 562
+num.names$ -- 510
+pop$ -- 6298
 preamble$ -- 1
-purify$ -- 390
+purify$ -- 850
 quote$ -- 0
-skip$ -- 3276
+skip$ -- 6762
 stack$ -- 0
-substring$ -- 1955
-swap$ -- 5400
-text.length$ -- 81
+substring$ -- 3227
+swap$ -- 10928
+text.length$ -- 184
 text.prefix$ -- 0
 top$ -- 8
-type$ -- 1002
+type$ -- 2195
 warning$ -- 1
-while$ -- 220
+while$ -- 410
 width$ -- 0
-write$ -- 676
+write$ -- 1326
 (There was 1 warning)

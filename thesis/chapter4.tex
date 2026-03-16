@@ -51,7 +51,7 @@ Here, $\delta_i$ denotes sample values of detunings within the specified range o
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.7\linewidth]{ch4_figures/fig_flowchart.pdf}
-    \caption{
+    \caption[Optimization procedure to obtain detuning-robust $\hat{X}_\theta$ gates in transmons.]{
     Optimization procedure to obtain detuning-robust $\hat{X}_\theta$ gates in transmons. Input includes pulse constraints, transmon parameters, and a set of $M$ pulse durations. The choice of duration should be shorter than the decay time $T_1$ and longer than $1/\varepsilon_\text{max}$, where $\varepsilon_\text{max}$ is the maximum pulse amplitude. Closed-system GRAPE is performed for each duration to obtain the corresponding pulse profiles. Subsequently, an open-system solver evaluates the cost function $C_\text{o}$ for pulses with varying durations, selecting the pulse that minimizes $C_\text{o}$.}
     \label{fig:optflow}
 \end{figure}
@@ -82,7 +82,7 @@ Throughout the closed-system optimization process, I ensure pulse smoothness by 
 \begin{figure}[t]
     \centering
     \includegraphics[width=\textwidth]{ch4_figures/fig_qoc.pdf}
-    \caption{
+    \caption[Optimization results for the $\hat{X}_\pi$ gate.]{
     Optimization results for the $\hat{X}_\pi$ gate. 
 (a)~Average infidelities in Eq.~\eqref{eq:avg_inf} versus pulse durations for both closed (dashed line) and open (solid line) systems. The optimal duration selected from the range considered for this optimization is 20\,ns (indicated by a star). 
 (b)~$I$ and $Q$ quadratures of the pulse envelopes for the selected 20-ns pulse from~(a).
@@ -106,7 +106,7 @@ The open-system infidelities obtained from these two pulses are limited by disti
 \begin{figure}[t]
     \centering
     \includegraphics[width=\textwidth]{ch4_figures/fig_qoc_qctrl.pdf}
-    \caption{
+    \caption[Comparison of optimization results between Q-CTRL and QOC for the $\hat{X}_{\pi}$ gate.]{
 Comparison of optimization results between Q-CTRL and QOC for the $\hat{X}_{\pi}$ gate.
 (a)~Average infidelities of a closed system [Eq.~\eqref{eq:avg_inf}] versus pulse durations derived from Q-CTRL (red) and QOC (blue). The optimal duration selected for Q-CTRL from the range considered is 20\,ns (indicated by a red star).
 (b)~$I$ and $Q$ quadratures of the Q-CTRL pulse envelopes for the selected 20-ns pulse from~(a).

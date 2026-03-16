@@ -382,7 +382,7 @@ As shown in the following, for two concrete examples, this method for evaluating
 \begin{figure}[t]
   \centering
   \includegraphics[width=\linewidth]{ch2_figures/qoc/Comparison.pdf}
-  \caption{Comparison between scaling and squaring as implemented here and \texttt{Scipy}'s \texttt{expm\_multiply}, considering relative error and runtime. (a),~(c)~Relative error versus matrix norm. (b),~(d)~Ratios of runtime and $\mu$ (i.e.\ number of matrix-vector multiplications) between the two implementations as functions of the matrix norm. The matrix norm $\norm{-iH\Delta t}_2$ is varied by increasing $\Delta t\in [1,10]$. In all panels, colors encode different error tolerances $\tau$. The results of the first and second rows are obtained based on the cavity--transmon and three-coupled-transmons Hamiltonians, respectively. The system parameters of these two Hamiltonians are the same as those given in the captions of Figs.~\ref{fig:state_time} and~\ref{fig:gate}.}
+  \caption[Comparison between scaling and squaring as implemented here and \texttt{Scipy}'s \texttt{expm\_multiply}, considering relative error and runtime.]{Comparison between scaling and squaring as implemented here and \texttt{Scipy}'s \texttt{expm\_multiply}, considering relative error and runtime. (a),~(c)~Relative error versus matrix norm. (b),~(d)~Ratios of runtime and $\mu$ (i.e.\ number of matrix-vector multiplications) between the two implementations as functions of the matrix norm. The matrix norm $\norm{-iH\Delta t}_2$ is varied by increasing $\Delta t\in [1,10]$. In all panels, colors encode different error tolerances $\tau$. The results of the first and second rows are obtained based on the cavity--transmon and three-coupled-transmons Hamiltonians, respectively. The system parameters of these two Hamiltonians are the same as those given in the captions of Figs.~\ref{fig:state_time} and~\ref{fig:gate}.}
   \label{fig:sas_numerical_experiments}
 \end{figure}
 
@@ -430,7 +430,7 @@ The analytical gradient expressions, such as $\nabla C_1^{st}$ in Eq.~\eqref{eq:
 
 \begin{figure}[t]
   \includegraphics[width=\linewidth]{ch2_figures/forward_backward.pdf}
-  \caption{The forward-backward propagation scheme to compute the components of the gradient in Eq.~\eqref{eq:stgradient}. (a)~Forward propagate the initial state by $U_N\cdots U_1$ to obtain the realized state $\dket{\psi_N}$ and calculate the overlap $\langle\psi_N|\phi_T\rangle$, where $\dket{\phi_T}$ is the target state.
+  \caption[The forward-backward propagation scheme to compute the components of the gradient in Eq.~\eqref{eq:stgradient}.]{The forward-backward propagation scheme to compute the components of the gradient in Eq.~\eqref{eq:stgradient}. (a)~Forward propagate the initial state by $U_N\cdots U_1$ to obtain the realized state $\dket{\psi_N}$ and calculate the overlap $\langle\psi_N|\phi_T\rangle$, where $\dket{\phi_T}$ is the target state.
     (b)~Backward propagate $\dket{\psi_N}$ and $\dket{\phi_T}$ by the propagators $U_N^\dagger,U_{N-1}^\dagger,\cdots,U_1^\dagger$ iteratively, and compute $\dbra{\phi_n}\frac {\partial U_n }{\partial a_{n}}\dket{\psi_{n-1}}$ at each step.}
     \label{fig:GRAPE}
 \end{figure}
