@@ -1,16 +1,16 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Comparison between scaling and squaring as implemented here and \texttt {Scipy}'s \texttt {expm\_multiply}, considering relative error and runtime.}}{24}{figure.2.1}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces The forward-backward propagation scheme to compute the components of the gradient in Eq.~\eqref {eq:stgradient}.}}{28}{figure.2.2}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Comparison between scaling and squaring as implemented here and \texttt {Scipy}'s \texttt {expm\_multiply}, considering relative error and runtime.}}{23}{figure.2.1}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces The forward-backward propagation scheme to compute the components of the gradient in Eq.~\eqref {eq:stgradient}.}}{27}{figure.2.2}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Benchmark results for Fock state generation in a system consisting of a cavity coupled to a transmon.}}{34}{figure.3.1}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Benchmark results for unitary gate optimization in a system consisting of three coupled transmons.}}{38}{figure.3.2}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Decision trees for selecting the optimal numerical strategy.}}{39}{figure.3.3}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Benchmark results for Fock state generation in a system consisting of a cavity coupled to a transmon.}}{33}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Benchmark results for unitary gate optimization in a system consisting of three coupled transmons.}}{37}{figure.3.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Decision trees for selecting the optimal numerical strategy.}}{38}{figure.3.3}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Optimization procedure to obtain detuning-robust $\hat {X}_\theta $ gates in transmons.}}{46}{figure.4.1}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Optimization results for the $\hat {X}_\pi $ gate.}}{47}{figure.4.2}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Comparison of optimization results between Q-CTRL and QOC for the $\hat {X}_{\pi }$ gate.}}{48}{figure.4.3}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Optimization procedure to obtain detuning-robust $\hat {X}_\theta $ gates in transmons.}}{45}{figure.4.1}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Optimization results for the $\hat {X}_\pi $ gate.}}{46}{figure.4.2}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Comparison of optimization results between Q-CTRL and QOC for the $\hat {X}_{\pi }$ gate.}}{47}{figure.4.3}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Scaling of $\mu $, the number of matrix-vector multiplications.}}{61}{figure.1.A.1}%
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Scaling of $\mu $, the number of matrix-vector multiplications.}}{59}{figure.1.A.1}%
 \addvspace {10\p@ }

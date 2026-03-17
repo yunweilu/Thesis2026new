@@ -7,47 +7,47 @@
 \contentsline {chapter}{List of Figures}{xi}{chapter*.2}%
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Thesis outline}{8}{section.1.1}%
-\contentsline {chapter}{\numberline {2}GRAPE Based on Hard-Coded Gradients}{10}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Brief sketch of GRAPE}{10}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Analytical gradients}{12}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}State-transfer infidelity}{12}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Gate infidelity}{13}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Additional cost contributions}{13}{subsection.2.2.3}%
-\contentsline {section}{\numberline {2.3}Numerical implementation of hard-coded gradients}{16}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}State propagation evaluation by scaling and squaring}{16}{subsection.2.3.1}%
-\contentsline {subsubsection}{\numberline {2.3.1.1}Determining the upper bound $E_A(m,s)$}{17}{subsubsection.2.3.1.1}%
-\contentsline {paragraph}{Upper bound for the truncation error $\varepsilon _t$.}{18}{paragraph*.4}%
-\contentsline {paragraph}{Upper bound for the rounding error $\varepsilon _r$.}{19}{paragraph*.5}%
-\contentsline {subparagraph}{Upper bound for the rounding error associated with evaluating the dot product.}{20}{subparagraph*.6}%
-\contentsline {subparagraph}{Upper bound for the rounding error of $e^B_m|\Psi \rangle $.}{21}{subparagraph*.7}%
-\contentsline {subparagraph}{Upper bound for the error $\varepsilon _r$.}{22}{subparagraph*.8}%
-\contentsline {subsubsection}{\numberline {2.3.1.2}Choosing scaling factor and truncation order}{23}{subsubsection.2.3.1.2}%
-\contentsline {subsubsection}{\numberline {2.3.1.3}Numerical comparison between scaling and squaring implementations}{25}{subsubsection.2.3.1.3}%
-\contentsline {subsection}{\numberline {2.3.2}Computing the propagator derivative acting on a state: auxiliary matrix method}{26}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}Efficient evaluation of hard-coded gradients}{26}{subsection.2.3.3}%
-\contentsline {chapter}{\numberline {3}Scaling Analysis and Benchmarking}{29}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Scaling analysis of runtime and memory usage}{29}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Hard-coded gradients via forward-backward propagation}{29}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Full automatic differentiation}{31}{subsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.1.3}Semi-automatic differentiation}{32}{subsection.3.1.3}%
-\contentsline {subsection}{\numberline {3.1.4}Comparison}{32}{subsection.3.1.4}%
-\contentsline {section}{\numberline {3.2}Benchmark studies}{33}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}State-transfer benchmark}{33}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Gate-operation benchmark}{35}{subsection.3.2.2}%
-\contentsline {section}{\numberline {3.3}Choosing among different optimization strategies}{36}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Application of GRAPE: Robust Control for Transmon}{40}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Metrics of robust control}{40}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Optimization procedure}{42}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Benchmarking and comparison}{43}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Conclusion and Future Work}{49}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Summary of key findings and significance}{49}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Limitations}{50}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Opportunities for future research}{50}{section.5.3}%
-\contentsline {chapter}{References}{50}{section.5.3}%
+\contentsline {chapter}{\numberline {2}GRAPE Based on Hard-Coded Gradients}{9}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Brief sketch of GRAPE}{9}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Analytical gradients}{11}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}State-transfer infidelity}{11}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Gate infidelity}{12}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Additional cost contributions}{12}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}Numerical implementation of hard-coded gradients}{15}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}State propagation evaluation by scaling and squaring}{15}{subsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.1.1}Determining the upper bound $E_A(m,s)$}{16}{subsubsection.2.3.1.1}%
+\contentsline {paragraph}{Upper bound for the truncation error $\varepsilon _t$.}{17}{paragraph*.4}%
+\contentsline {paragraph}{Upper bound for the rounding error $\varepsilon _r$.}{18}{paragraph*.5}%
+\contentsline {subparagraph}{Upper bound for the rounding error associated with evaluating the dot product.}{19}{subparagraph*.6}%
+\contentsline {subparagraph}{Upper bound for the rounding error of $e^B_m|\Psi \rangle $.}{20}{subparagraph*.7}%
+\contentsline {subparagraph}{Upper bound for the error $\varepsilon _r$.}{21}{subparagraph*.8}%
+\contentsline {subsubsection}{\numberline {2.3.1.2}Choosing scaling factor and truncation order}{22}{subsubsection.2.3.1.2}%
+\contentsline {subsubsection}{\numberline {2.3.1.3}Numerical comparison between scaling and squaring implementations}{24}{subsubsection.2.3.1.3}%
+\contentsline {subsection}{\numberline {2.3.2}Computing the propagator derivative acting on a state: auxiliary matrix method}{25}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Efficient evaluation of hard-coded gradients}{25}{subsection.2.3.3}%
+\contentsline {chapter}{\numberline {3}Scaling Analysis and Benchmarking}{28}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Scaling analysis of runtime and memory usage}{28}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Hard-coded gradients via forward-backward propagation}{28}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Full automatic differentiation}{30}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Semi-automatic differentiation}{31}{subsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.1.4}Comparison}{31}{subsection.3.1.4}%
+\contentsline {section}{\numberline {3.2}Benchmark studies}{32}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}State-transfer benchmark}{32}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Gate-operation benchmark}{34}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Choosing among different optimization strategies}{35}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Application of GRAPE: Robust Control for Transmon}{39}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Metrics of robust control}{39}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Optimization procedure}{41}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Benchmarking and comparison}{42}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Conclusion and Future Work}{48}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Summary of key findings and significance}{48}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Limitations}{49}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Opportunities for future research}{49}{section.5.3}%
+\contentsline {chapter}{References}{49}{section.5.3}%
 \renewcommand {\cftchappresnum }{Appendix }
 \renewcommand {\cftchapnumwidth }{6em}
-\contentsline {chapter}{\numberline {A}Scaling of the Number of Matrix-Vector Multiplications $\mu $}{60}{appendix.1.A}%
-\contentsline {chapter}{\numberline {B}Alternative Hard-Coded Gradient Scheme: Numerical Implementation and Scaling}{63}{appendix.1.B}%
-\contentsline {section}{\numberline {B.1}Evaluation of propagator derivative}{63}{section.1.B.1}%
-\contentsline {section}{\numberline {B.2}Scaling analysis}{65}{section.1.B.2}%
-\contentsline {chapter}{Vita}{67}{appendix*.11}%
+\contentsline {chapter}{\numberline {A}Scaling of the Number of Matrix-Vector Multiplications $\mu $}{58}{appendix.1.A}%
+\contentsline {chapter}{\numberline {B}Alternative Hard-Coded Gradient Scheme: Numerical Implementation and Scaling}{61}{appendix.1.B}%
+\contentsline {section}{\numberline {B.1}Evaluation of propagator derivative}{61}{section.1.B.1}%
+\contentsline {section}{\numberline {B.2}Scaling analysis}{63}{section.1.B.2}%
+\contentsline {chapter}{Vita}{65}{appendix*.11}%

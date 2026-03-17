@@ -1,9 +1,8 @@
 \nomenclatureentry{aGRAPE@[{GRAPE}]\begingroup Gradient Ascent Pulse Engineering\nomeqref {1.0}|nompageref}{7}
-\nomenclatureentry{aQPU@[{QPU}]\begingroup Quantum Processor Unit\nomeqref {1.0}|nompageref}{7}
-\nomenclatureentry{a$H_s$@[{$H_s$}]\begingroup Static system Hamiltonian\nomeqref {2.1}|nompageref}{10}
-\nomenclatureentry{a$h_c$@[{$h_c$}]\begingroup Control operator coupling the field to the system\nomeqref {2.1}|nompageref}{10}
-\nomenclatureentry{a$U_n$@[{$U_n$}]\begingroup Short-time propagator for time step $n$\nomeqref {2.3}|nompageref}{11}
-\nomenclatureentry{a$\mu$@[{$\mu$}]\begingroup Number of matrix-vector multiplications required for propagator-state product evaluation\nomeqref {2.52}|nompageref}{24}
-\nomenclatureentry{a$\kappa$@[{$\kappa$}]\begingroup Number of stored Hamiltonian matrix elements\nomeqref {3.0}|nompageref}{30}
-\nomenclatureentry{a$\varepsilon_I$, $\varepsilon_Q$@[{$\varepsilon_I$, $\varepsilon_Q$}]\begingroup Control envelopes in the $I$ and $Q$ quadratures\nomeqref {4.2}|nompageref}{41}
-\nomenclatureentry{a$K_\text{q}$@[{$K_\text{q}$}]\begingroup Transmon anharmonicity (self-Kerr)\nomeqref {4.2}|nompageref}{41}
+\nomenclatureentry{a$H_s$@[{$H_s$}]\begingroup Static system Hamiltonian\nomeqref {2.1}|nompageref}{9}
+\nomenclatureentry{a$h_c$@[{$h_c$}]\begingroup Control operator coupling the field to the system\nomeqref {2.1}|nompageref}{9}
+\nomenclatureentry{a$U_n$@[{$U_n$}]\begingroup Short-time propagator for time step $n$\nomeqref {2.3}|nompageref}{10}
+\nomenclatureentry{a$\mu$@[{$\mu$}]\begingroup Number of matrix-vector multiplications required for propagator-state product evaluation\nomeqref {2.52}|nompageref}{23}
+\nomenclatureentry{a$\kappa$@[{$\kappa$}]\begingroup Number of stored Hamiltonian matrix elements\nomeqref {3.0}|nompageref}{29}
+\nomenclatureentry{a$\varepsilon_I$, $\varepsilon_Q$@[{$\varepsilon_I$, $\varepsilon_Q$}]\begingroup Control envelopes in the $I$ and $Q$ quadratures\nomeqref {4.2}|nompageref}{40}
+\nomenclatureentry{a$K_\text{q}$@[{$K_\text{q}$}]\begingroup Transmon anharmonicity (self-Kerr)\nomeqref {4.2}|nompageref}{40}
