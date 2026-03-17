@@ -1,124 +1,137 @@
-\chapter{Application of GRAPE: Robust Control for Transmon}
-\label{chap:robust}
+\chapter{Scaling Analysis and Benchmarking}
+\label{chap:scaling}
 
-This chapter turns to a concrete application of GRAPE: the design of detuning-robust control pulses for transmon gates. The transmon has been widely used as either a qubit or an ancilla for bosonic qubits. In both cases, the $\hat{X}_\theta$ gate in the first two-level subspace of the transmon is crucial for realizing universal gates in the composite system. One important preliminary to obtaining high-fidelity gates in the composite system is to acquire a robust $\hat{X}_\theta$ in the single-transmon system.
+Having established the analytical gradient expressions and their numerical evaluation in Chapter~\ref{chap:grape}, this chapter presents a systematic comparison of three methods for computing gradients within GRAPE: evaluation of hard-coded gradients (HG), full automatic differentiation (full-AD)~\cite{pacleung2017speedup}, and semi-automatic differentiation (semi-AD)~\cite{semiadgoerz2022quantum}. To determine the method most appropriate for a given problem, I inspect the memory usage and runtime scaling of these three approaches. Following this analysis, I present benchmark studies of specific state-transfer and gate-operation problems to illustrate the scaling behavior.
 
-Detuning-robust control for two-level systems has been extensively investigated using various approaches, including reverse engineering~\cite{PhysRevLett.111.050404inverseengi,PhysRevLett.125.250403inverseengi}, space curve quantum control~\cite{barnes2022dynamicallyspacecurve}, pulse engineering~\cite{barnes2022dynamicallyspacecurve,wang2012compositepulse,PhysRevA.83.053420pulse,PhysRevA.86.022315pulse,tycko1983broadbandpulse,PhysRevA.107.023103pulse,ball2021softwarepulseengi,wimperis1994broadbandpulse,pasini2009optimizedinitialpulse}, and the collocation method~\cite{propson2022robustcollocation,Trowbridge2023}. However, protocols developed for two-level systems cannot be directly applied to weakly anharmonic transmons due to leakage out of the qubit subspace. One promising solution is to apply the DRAG scheme to robust single-quadrature pulses developed for two-level systems~\cite{hai2023universalcompare}. 
-Additionally, Ref.~\cite{qctrl} directly optimizes two-quadrature pulses for transmons.
-In the following, I introduce an alternative optimization-based procedure to design detuning-robust control for transmon $\hat{X}_{\theta}$ gates and benchmark its performance.
+\section{Scaling analysis of runtime and memory usage}
+\label{sec:scaling_analysis}
 
-\section{Metrics of robust control}
-\label{sec:metrics}
+Runtime and memory usage can pose significant challenges when performing optimization tasks for quantum systems with large Hilbert space dimension ($d$) or for time evolution requiring a significant number of time steps ($N$). In this section, I analyze the scaling of memory usage and runtime with respect to both $N$ and $d$, focusing on the cost contribution $C_1$ for state-transfer and unitary-gate optimization. The findings can be generalized to other cost contributions beyond $C_1$.
 
-During the gate operation, the Hamiltonian of interest may depend on an unknown quantity $\delta$. This uncertainty can cause the realized gate to deviate from the target gate, thus generally lowering gate fidelity $\mathcal{I}(\delta)$. To quantify the robustness of the infidelity against $\delta$, I consider both the mean infidelity and its standard deviation as key metrics,
+\subsection{Hard-coded gradients via forward-backward propagation}
+\label{sec:HG_scaling}
+
+I start by considering state-transfer problems. The \textit{memory usage} for evaluating $\nabla C_1^{st}$ is mainly determined by the required storage of quantum states and the Hamiltonian. In forward-backward propagation, the number of states and instances of Hamiltonian matrices stored at any given time is of the order of unity. Each individual state vector of dimension $d$ consumes memory $\sim\Theta(d)$. Memory usage for the Hamiltonian depends on the employed storage scheme. In the ``worst'' case of dense matrix storage, the memory required for the Hamiltonian is $\Theta(d^2)$. For sparse matrix storage, memory usage generally depends on sparsity and is determined by the number of stored Hamiltonian matrix elements (here denoted as $\kappa$).%
+\nomenclature{$\kappa$}{Number of stored Hamiltonian matrix elements}
+For example, for a diagonal or tridiagonal matrix, memory usage is $\kappa\sim\Theta(d)$; for a linear chain of qubits with nearest-neighbor $\sigma_z$ coupling, it is $\Theta(d\, \log_2 d)$. Combining the scaling relations above gives an overall asymptotic behavior of memory usage $\Theta(d+\kappa)$.
+
+The \textit{runtime} of the scheme is dominated by the required $\Theta(N)$ evaluations of propagator-state products and their derivative counterparts. Numerically approximating a single propagator-state product requires $\mu$ matrix-vector multiplications [see Eq.~\eqref{eq:mudefnition}], where the runtime of one instance of matrix-vector multiplication scales as $\Theta(\kappa)$.  The implicit dependence of $\mu=\mu(d)$ on $d$ is specific to each particular system and can be difficult to obtain analytically. Numerically, I find for a driven transmon coupled to a cavity that $\mu\sim\Theta(\sqrt{d})$; for a linear chain of coupled qubits, the scaling is $\Theta(\log_2 d)$; see Appendix~\ref{app:muscaling} for more details. 
+Once combined, the above individual scaling relations lead to an overall runtime asymptotic behavior 
+$\Theta(N\mu\, \kappa)$. For example, in the case of the linear chain of coupled qubits, runtime scales as $\Theta(Nd\, (\log_2 d )^2)$.
+
+For gate-optimization problems, the scaling behavior of memory usage and runtime is as follows. The gradient $\nabla C_1^{ g}$ is calculated by sequentially 
+applying forward-backward propagation to each of the $d$ basis states. The memory usage is $\Theta(d+\kappa)$, the same as for $\nabla C_1^{st}$. The runtime scaling is $\Theta(N\mu\kappa d)$, which is $d$ times larger than the runtime scaling for $\nabla C_1^{st}$. (Another way of calculating $\nabla C_1^{ g}$ consists of parallelized forward-backward propagation of all basis states. The concrete scaling behavior then depends on the parallelization scheme; that discussion is beyond the scope of this thesis.)
+
+Thanks to the similarities in the expressions and the existence of recursion relations, forward-backward schemes akin to Fig.~\ref{fig:GRAPE} 
+can also be applied to $\nabla C_2^{st}$, $\nabla C_3^{st}$, and $\nabla C_3^{g}$. As a result, the scaling analysis leads to the same memory usage and runtime requirements as $\nabla C_1^{st}$ and $\nabla C_1^{g}$.
+
+
+
+\subsection{Full automatic differentiation}
+\label{sec:fullAD_scaling}
+
+Reverse-mode automatic differentiation extracts gradients by a forward pass and a reverse pass through the computational tree. With the forward pass the cost function $C$ is computed, and the backward pass accumulates the gradient via the chain rule.
+
+The \textit{memory usage} for evaluating $\nabla C_1^{st}$ is determined by the requirement that all intermediate numerical results must be stored as part of the forward pass and act as input to the reverse pass. Specifically, as shown in Fig.~\ref{fig:GRAPE}, the forward pass evolves the initial state vector to the final state vector in $N$ time steps. The total number of vectors that have to be stored along the way is $\Theta
+(N\mu)$, since computation of a single short-time propagator-state product via scaling and squaring necessitates $\mu$ iterations. In addition, considering the memory usage for the Hamiltonian, the full scaling is $\Theta(N\mu d +\kappa)$. 
+
+The \textit{runtime} for evaluating $\nabla C_1^{st}$ combines forward and reverse passes. It is dominated by the evaluation of $\Theta(N)$ propagator-state products, each of which has the runtime scaling $\Theta(\mu\kappa)$, leading to an overall runtime scaling of $\Theta(N\mu \kappa )$.
+
+For gate-optimization problems, $C_1^{ g}$ is evaluated by evolving not only a single initial state but a whole set of $d$ basis vectors. Evaluating $Nd$ propagator-state products requires $\Theta(N\mu d^2+\kappa)$ memory, where the number of stored Hamiltonian matrix elements $\kappa$ takes into account storage of the Hamiltonian. Since $\kappa$ has the worst-case scaling $\Theta(d^2)$ in the case of a dense Hamiltonian matrix, the overall scaling is $\Theta(N\mu d^2)$. Assuming that the evolution of individual basis vectors is not parallelized, runtime also grows by a factor of $d$, so that runtime scaling for $\nabla C_1^{ g}$ is $\Theta(N\mu\kappa d)$.
+
+Despite the specific differences among the expressions of cost contributions $C_2^{st}$, $C_3^{st}$, and $C_3^{g}$, the scaling of runtime and memory usage is again set by the need to store intermediate vectors and repeatedly perform matrix-vector multiplications. Consequently, the scaling remains the same as for the cost contributions discussed above.
+
+\subsection{Semi-automatic differentiation}
+\label{sec:semiAD_scaling}
+
+For gradients of cost contributions that are tedious to derive analytically, semi-automatic differentiation~\cite{semiadgoerz2022quantum} offers an alternative approach in which some derivatives are hard-coded and others treated by automatic differentiation. Compared to full-AD, semi-AD has the benefit that the memory usage scaling is independent of $\mu$ while maintaining the same runtime scaling. 
+
+\subsection{Comparison}
+\label{sec:scaling_comparison}
+
+\begin{table}[t]
+\renewcommand{\arraystretch}{1.5}
+\centering
+\caption[Memory usage and runtime scaling with respect to Hilbert space dimension $d$, number of time steps $N$, the number of stored Hamiltonian matrix elements $\kappa=\kappa(d)$, and the number of matrix-vector multiplications required for evaluating propagator-state products $\mu=\mu(d)$.]{Memory usage and runtime scaling with respect to Hilbert space dimension $d$, number of time steps $N$, the number of stored Hamiltonian matrix elements $\kappa=\kappa(d)$, and the number of matrix-vector multiplications required for evaluating propagator-state products $\mu=\mu(d)$. (The scaling of $\mu$ and $\kappa$ depends on the specific optimization task.) The table contrasts scaling for state transfer and gate operation for hard-coded gradients (HG), full automatic differentiation (full-AD), and semi-automatic differentiation (semi-AD).}
+\label{tab:scalingtable}
+\begin{tabular}
+{p{0.27\textwidth}p{0.13\textwidth}p{0.17\textwidth}p{0.13\textwidth}p{0.17\textwidth}} 
+\hline
+\hline
+& \multicolumn{2}{c}{\textbf{\textsc{State transfer}}} & \multicolumn{2}{c}{\textbf{\textsc{Gate operation}}}\\
+\hline 
+& \textbf{Runtime} & \textbf{Memory usage} & \textbf{Runtime} & \textbf{Memory usage}
+\\
+\hline
+HG & $\Theta(N\mu \kappa)$ & $\Theta(d+\kappa)$ & $\Theta(N\mu \kappa d)$ & $\Theta(d+\kappa)$\\ 
+Full-AD & $\Theta(N\mu \kappa)$ & $\Theta(N\mu d+\kappa)$ & $\Theta(N\mu \kappa d)$ & $\Theta(N\mu d^2)$  \\
+Semi-AD & $\Theta(N\mu \kappa)$ & $\Theta(Nd+\kappa)$ & $\Theta(N\mu \kappa d)$ & $\Theta(Nd^2)$\\ 
+\hline \hline
+\end{tabular} 
+\end{table}
+
+The results of this scaling analysis are summarized in Table~\ref{tab:scalingtable}. For full-AD, memory usage grows linearly with respect to $\mu$ and number of time steps $N$. By contrast, memory usage for HG does not increase with $\mu$ and $N$, but remains constant. This advantage is not bought at the cost of worse runtime scaling. Therefore, HG is preferable over full-AD in the optimal control of large quantum systems where memory usage would otherwise be prohibitively large. Semi-AD presents an interesting compromise viable whenever the memory bottleneck is not too severe. Note that the runtime scaling $\Theta(N\mu\kappa d)$ of HG via scaling and squaring can in principle exceed the scaling $O(Nd^3)$ for matrix exponentiation based on matrix diagonalization (see Appendix~\ref{app:matdiag}). In that case, the latter is the better option.
+
+I illustrate the discussed scaling by benchmark studies for concrete optimization problems in the following section.
+
+
+\section{Benchmark studies}
+\label{sec:benchmarks}
+
+\subsection{State-transfer benchmark}
+
+The first benchmark example studies the following state-transfer problem. Consider a setup in which a driven flux-tunable transmon is capacitively coupled to a superconducting cavity, and perform a state transfer from the cavity vacuum state to the 20-photon Fock state. The Hamiltonian in the frame co-rotating with the transmon drive is
 \begin{equation}
-\label{eq:robust_metrics}
-\mathcal{I}_\mu = \int_\mathbb{D} \mathrm{d}\delta\, p(\delta)\mathcal{I}(\delta), \quad
-\mathcal{I}_\sigma =\sqrt{\int_\mathbb{D} \mathrm{d}\delta \, p(\delta)\big[\mathcal{I}(\delta)-I_\mu\big]^2 }.
+\label{eq:fockH}
+    H_1(t)=\Delta b^\dagger b+\frac{1}{2}\alpha b^\dagger b(b^\dagger b-1)+g(cb^\dagger+c^\dagger b)+a_{z}(t)b^\dagger b
+    +a_{x}(t)(b+b^\dagger).
 \end{equation}
-Here, the probability distribution $p(\delta)$ satisfies $\int_\mathbb{D}\mathrm{d}\delta \, p(\delta)=1$ for a specified range $\mathbb{D}$. 
+Here, the drive is both longitudinal and transverse; $c$ and $b$ are the annihilation operators for cavity photons and transmon excitations, respectively. $\alpha$, $g$, and $\Delta$ denote anharmonicity, interaction strength, and the difference between the transmon and cavity frequencies. 
+ 
+Optimization proceeds by minimizing the infidelity $C_1^{st}$ and limiting the occupation of higher transmon levels by including the cost contribution $C_2^{st}$ [Eq.~\eqref{eq:c2st}]. The latter has the additional benefit of enabling the truncation to only a few transmon levels. I measure runtime and peak memory usage of full-AD,\footnote{AD is implemented by the package \texttt{Autograd}~\cite{maclaurin2015autograd} in this benchmark. This package does not support sparse linear algebra, so I implement dense matrix storage for the Hamiltonian in both full-AD and HG for fair comparison.} semi-AD, and HG for a single optimization iteration. The runtime is measured by the package \texttt{Temci}~\cite{temci} and
+the peak memory usage is monitored by the \texttt{memory\_profiler} package~\cite{memory}. The optimization is performed on an AMD Ryzen Threadripper 3970X 32-Core CPU with 3.7\,GHz frequency. 
 
-In the case of interest, the Hamiltonian governing the transmon qubit in the co-rotating frame of the drive frequency is 
-\begin{equation}
-\label{eq:H_trans}
-    \hat{H}_\text{trans}(t) = K_\text{q} \hat{q}^{\dagger 2} \hat{q}^2/2 + \varepsilon_I(t)(\hat{q}^\dagger+\hat{q})+i\varepsilon_Q(t)(\hat{q}^\dagger-\hat{q})+\delta \hat{q}^\dagger \hat{q}.
-\end{equation}
-Here, $\varepsilon_I(t)$ and $\varepsilon_Q(t)$ describe control envelopes in the $I$ and $Q$ quadratures, and $\delta$ denotes the difference between the drive frequency and the unknown shifted qubit frequency.%
-\nomenclature{$\varepsilon_I$, $\varepsilon_Q$}{Control envelopes in the $I$ and $Q$ quadratures}%
-\nomenclature{$K_\text{q}$}{Transmon anharmonicity (self-Kerr)}%
-The closed-system gate infidelity follows 
-\begin{equation}\label{eq:fid_single}
-\mathcal{I}_\text{c}(\delta) = 1-\frac{1}{4}\left|\Tr\left[\hat{P}_{0,1}\hat{U}_\text{target}^\dagger \hat{U}_\delta(t_\text{g})\right]\right|^2,
-\end{equation}
-where $\hat{P}_{0,1}$ is a projector onto the computational subspace formed by the lowest two eigenstates. Here, $\hat{U}_\text{target}$ is the target unitary on the transmon, and $\hat{U}_\delta(t_\text{g})=\mathcal{T}\exp[-i\int_0^{t_\text{g}} \mathrm{d}\tau \, \hat{H}_\text{trans}(\tau)]$ is the actual unitary achieved over a gate duration $t_\text{g}$, where $\mathcal{T}$ is the time-ordering operator. 
-
-In the presence of decoherence, the open-system infidelity follows~\cite{abdelhafez2019quantumthesis}
-\begin{equation}
-\label{eq:open_inf}
-\mathcal{I}_\text{o}(\delta) = 1-\frac{1}{4}\Tr[\mathcal{P}_{0,1}\mathcal{L}_\text{target}^\dagger \mathcal{L}_\delta(t_\text{g})].
-\end{equation}
-Here, the density matrix is vectorized by stacking the elements row-by-row. $\mathcal{P}_{0,1}=\hat{P}_{0,1}\otimes\hat{P}_{0,1}$ is the superprojector onto the computational subspace, $\mathcal{L}_\text{target}=\hat{U}_\text{target}\otimes \hat{U}^*_\text{target}$ is the target superoperator, and $\mathcal{L}_\delta(t_\text{g})$ is the superoperator realized by the Lindblad master equation. Note that in the absence of decoherence, $\mathcal{L}_\delta(t_\text{g})=\hat{U}_\delta(t_\text{g})\otimes \hat{U}_\delta^*(t_\text{g})$.
-
-\section{Optimization procedure}
-\label{sec:opt_procedure}
-
-Quantum optimal control has been extensively used to develop robust control schemes by minimizing cost functions that encode robustness metrics. One approach is to penalize the derivative of the closed- or open-system fidelity with respect to detuning $\delta$~\cite{Watanabe,hai2023universalcompare,qctrl}. However, a more intuitive and pragmatic method is to penalize the average infidelity~\cite{reinhold2019controllingthesisrobustmetric,allen2020robustmetric,kosut2013robustmetric,khaneja2005optimalrobustmetric,rembold2020introductionrobustmetric}
-\begin{equation}\label{eq:avg_inf}
-C_{\text{o},\text{c}} = \frac{1}{N}\sum_{i=1}^N\mathcal{I}_{\text{o},\text{c}}(\delta_i).
-\end{equation}
-Here, $\delta_i$ denotes sample values of detunings within the specified range of $\mathbb{D}$. Minimization of the above cost function can suppress both mean infidelity and its standard deviation, as evidenced by the subsequent numerical results.
 
 \begin{figure}[t]
-    \centering
-    \includegraphics[width=0.7\linewidth]{ch4_figures/fig_flowchart.pdf}
-    \caption[Optimization procedure to obtain detuning-robust $\hat{X}_\theta$ gates in transmons.]{
-    Optimization procedure to obtain detuning-robust $\hat{X}_\theta$ gates in transmons. Input includes pulse constraints, transmon parameters, and a set of $M$ pulse durations. The choice of duration should be shorter than the decay time $T_1$ and longer than $1/\varepsilon_\text{max}$, where $\varepsilon_\text{max}$ is the maximum pulse amplitude. Closed-system GRAPE is performed for each duration to obtain the corresponding pulse profiles. Subsequently, an open-system solver evaluates the cost function $C_\text{o}$ for pulses with varying durations, selecting the pulse that minimizes $C_\text{o}$.}
-    \label{fig:optflow}
+  \includegraphics[width=\linewidth]{ch3_figures/state.pdf} 
+  \caption[Benchmark results for Fock state generation in a system consisting of a cavity coupled to a transmon.]{Benchmark results for Fock state generation in a system consisting of a cavity coupled to a transmon. (a)~Runtime per iteration and (b)~memory usage versus Hilbert space dimension $d$. The dimension is varied by increasing the cavity dimension while fixing the transmon dimension to 6. (c)~Memory usage as a function of the number of time steps for $d=240$. All plots are in log-log scale. Dashed lines are power-law fits. (Parameters: $\Delta/2\pi=3\,$GHz, $g/2\pi=0.1\,$GHz, $\alpha/2\pi=-0.225\,$GHz, and constant controls $a_z/2\pi=a_x/2\pi=0.1\,$GHz.)}
+  \label{fig:state_time}
 \end{figure}
 
-To minimize the cost function, I optimize the pulses, including both the envelopes $\varepsilon_{I,Q}(t)$ and the pulse duration $t_\text{g}$. 
-An optimal duration is determined by balancing two competing factors: a shorter duration leads to unwanted leakage, whereas a longer duration results in decoherence errors. 
-A direct approach to optimize pulses involves using an open-system optimizer for various durations and selecting the one that minimizes the cost function $C_\text{o}$. 
-However, such optimization requires time-intensive open-system simulations. 
-Instead, I propose a method that, while not guaranteed to be equivalent, yields promising results. 
-The method consists of two steps: (1)~employing closed-system optimization to minimize $C_\text{c}$ for each potential duration, and (2)~with given decoherence rates, evaluating $C_\text{o}$ for the optimized pulses from the first step, then selecting the pulse with the lowest $C_\text{o}$. 
-The approach is summarized in Fig.~\ref{fig:optflow}.
+Benchmark results for the state-transfer optimization are shown in Fig.~\ref{fig:state_time}. I consider a single time step ($N=1$) and measure the runtime versus $d$. The results in Fig.~\ref{fig:state_time}(a) confirm that full-AD, semi-AD, and HG have the same scaling of runtime per time step with respect to $d$ (Table~\ref{tab:scalingtable}). The observed runtime scaling $\Theta(d^{5/2})$ is consistent with $\kappa \sim \Theta(d^2)$ due to dense matrix storage for $H_1$, and $\mu\sim \Theta(d^{1/2})$ (see Appendix~\ref{app:muscaling}). The scaling of the required memory resources is illustrated in Fig.~\ref{fig:state_time}(b): memory usage scales with dimension $d$ as $\Theta(d^2)$ for full-AD, semi-AD, and HG, consistent with $\kappa\sim \Theta(d^2)$ being the dominant contribution. As anticipated, the scaling of memory with $N$ differs between full-AD, semi-AD, and HG [Fig.~\ref{fig:state_time}(c)]. For full-AD and semi-AD, the scaling is linear with $N$, while it is independent of $N$ for HG. The slope of full-AD is much larger than the one of semi-AD, since the former has extra dependence on $\mu$ (Table~\ref{tab:scalingtable}), which is a constant $\approx 100$ in this benchmark. The results confirm the favorable memory efficiency of HG and semi-AD compared to full-AD in state-transfer problems with large number of time steps. 
 
-For the closed-system optimization, I use Gradient Ascent Pulse Engineering (GRAPE), a method widely employed for optimal control in various contexts~\cite{khaneja2005optimalrobustmetric,lu2023optimalgrape,koch2022quantumqocreview}. The gradients required in GRAPE are calculated by using automatic differentiation, thereby eliminating the need for manually coding the analytical gradients of the cost function~\cite{adscalingbaydin2014automatic,PhysRevA.95.042318ad,PhysRevA.99.052327ad}. The initial pulse ansatz is
-\begin{align}
-\label{eq:initial_pulse}
-    \varepsilon^\text{initial}_I(t) &=\frac{1}{t_\text{g}}\big[ (a-\theta/2)\cos(2\pi t /t_\text{g}) + (b-a)\cos(4\pi t /t_\text{g})\\ 
-\nonumber     &+(c-b)\cos(6\pi t / t_\text{g}) - c\cos(8\pi t / t_\text{g}) + \theta/2\big],\\
-\nonumber    \varepsilon_Q^\text{initial}(t) & = -\dot{\varepsilon}_I^\text{initial}(t) / K_\text{q},
-\end{align}
-where $\theta$ is the rotation angle for the target $\hat{X}_\theta$ gate ($\theta=\pi,\pi/2$ in this study). This ansatz for the $I$-quadrature control has been used to obtain robust control for two-level systems~\cite{pasini2009optimizedinitialpulse}. The initial guess for the $Q$-quadrature is inspired by the DRAG pulse scheme~\cite{Motzoi2009} to suppress leakage. 
-The pulse is then optimized starting from various initial guesses for parameters $a,b,c\in\{-10,-8,-6,\cdots,10\}$, and the pulse with the lowest cost value $C_\text{c}$ is selected. This process is accelerated by parallelizing with different initial values.
+\subsection{Gate-operation benchmark}
 
-Throughout the closed-system optimization process, I ensure pulse smoothness by filtering out frequency components that exceed maximum allowed bandwidths of $5/t_\text{g}$ and $10/t_\text{g}$ for $\varepsilon_I(t)$ and $\varepsilon_Q(t)$, respectively. These empirical values effectively balance pulse smoothness and the level of robustness required.
-
-\section{Benchmarking and comparison}
-\label{sec:benchmarking}
+I next turn to an example for optimizing a unitary gate. This benchmark is performed for three driven transmons with nearest-neighbor coupling. The target gate consists of simultaneous Hadamard operations on each of the three transmons. For concreteness, I consider the case of transmons with the same frequency, driven resonantly. The full Hamiltonian in the rotating frame of the drive is
+\begin{equation}
+\label{eq:gateH}
+    H_2(t)=\sum_{\nu=1}^{3}\bigg[\frac{1}{2}\alpha b_\nu^\dagger b_\nu (b_\nu^\dagger b_\nu-1)+a^{(\nu)}(t)(b_\nu+b_\nu^\dagger)\bigg]+g(b_1b_{2}^\dagger+b_2b_{3}^\dagger+\text{h.c.}).
+\end{equation}
+The goal of the optimization is to minimize the infidelity $C_2^{ g}$. The setup for this benchmark is the same as in the previous example.
 
 \begin{figure}[t]
-    \centering
-    \includegraphics[width=\textwidth]{ch4_figures/fig_qoc.pdf}
-    \caption[Optimization results for the $\hat{X}_\pi$ gate.]{
-    Optimization results for the $\hat{X}_\pi$ gate. 
-(a)~Average infidelities in Eq.~\eqref{eq:avg_inf} versus pulse durations for both closed (dashed line) and open (solid line) systems. The optimal duration selected from the range considered for this optimization is 20\,ns (indicated by a star). 
-(b)~$I$ and $Q$ quadratures of the pulse envelopes for the selected 20-ns pulse from~(a).
-(c)~The frequency components of the pulse envelopes, corresponding to the 20-ns pulse. 
-(d)~Comparative analysis of the 20-ns pulses, from both QOC (blue) and DRAG (red) pulses, in terms of their infidelities as a function of detuning.
-The average and standard deviation of the infidelities are tabulated correspondingly by considering a uniform distribution of $\rho(\delta)$ for simplicity. The result shows that the optimized pulse is more robust than the commonly used DRAG pulse.
-[Parameters: $\delta_i/2\pi\in\{\pm 1,\pm 3,\pm 4,\pm 7,\pm 10\}$\,MHz, $K_\text{q}/2\pi=-200$\,MHz, $T_1=50$\,$\mu$s, $T_\phi=50$\,$\mu$s.]}
-    \label{fig:fig_qoc}
+  \includegraphics[width=\linewidth]{ch3_figures/gate.pdf}
+  \caption[Benchmark results for unitary gate optimization in a system consisting of three coupled transmons.]{Benchmark results for unitary gate optimization in a system consisting of three coupled transmons. (a)~Runtime per iteration and (b)~memory usage versus Hilbert space dimension $d$. The total Hilbert space dimension $d$ is increased by enlarging the cutoff of each transmon from 10 to 14 simultaneously. (c)~Memory usage as a function of the number of time steps for $d=12^3=1728$. Full-AD (not shown) would require more memory than available resources (estimated: 1\,TB). All plots are in log-log scale. Dashed lines are power-law fits. (Parameters: $g/2\pi=0.1\,$GHz, $\alpha/2\pi=-0.225\,$GHz, and $a^{(\nu)}/2\pi=0.1\,$GHz.)}
+  \label{fig:gate}
 \end{figure}
 
-I benchmark the optimization procedure for a transmon with typical parameters: $K_\text{q}/2\pi=-200$\,MHz, $T_1=50$\,$\mu$s, and $T_\phi=50$\,$\mu$s. The optimization results for the $\hat{X}_\pi$ gate are shown in Fig.~\ref{fig:fig_qoc}. 
-Figure~\ref{fig:fig_qoc}(a) shows the average infidelities obtained for closed- and open-system simulations with varying pulse durations. 
-Without decoherence, extending the pulse duration generally leads to a reduction in the cost value. In contrast, in the presence of decoherence, utilizing shorter pulses is more effective in reducing the infidelity. 
-Given the particular transmon parameters under consideration, a pulse duration of 20\,ns achieves the lowest cost.
-The temporal profiles and frequency components of the optimized 20-ns pulse are shown in Fig.~\ref{fig:fig_qoc}(b) and~(c), respectively.
-In Fig.~\ref{fig:fig_qoc}(d), the infidelity as a function of detuning is studied, comparing the performance between the optimized and the DRAG pulses. 
-In both closed- and open-system simulations, the optimized pulse consistently demonstrates substantially reduced infidelities across almost all detunings. 
-Consequently, the optimized pulse exhibits enhanced robustness against frequency detuning in the transmon ancilla. 
-The open-system infidelities obtained from these two pulses are limited by distinct factors: the infidelity derived from the QOC pulse is dominated by decoherence errors, while the one generated from the DRAG pulse is limited by coherent error. 
+
+
+Fig.~\ref{fig:gate} records the benchmarks based on a single time step ($N=1$). The observed runtime scaling with dimension $d$ is $\Theta(d^{11/3})$ for full-AD, semi-AD, and HG, see Fig.~\ref{fig:gate}(a). This power law arises from $\Theta(\mu\kappa d)$ for $\kappa\sim \Theta(d^2)$ and $\mu\sim \Theta(d^{2/3})$ [see Appendix~\ref{app:muscaling}]. The memory usage scaling with $d$ is illustrated in Fig.~\ref{fig:gate}(b), confirming that full-AD has an unfavorable extra $\mu \sim \Theta(d^{2/3})$ dependence compared to HG and semi-AD (Table~\ref{tab:scalingtable}). The memory usage scaling with $N$ is as expected [Fig.~\ref{fig:gate}(c)]: for semi-AD, the scaling is linear with $N$; for HG, it is independent of $N$. (The memory usage of full-AD in this case exceeds available resources, and thus is not shown.) Throughout this benchmark, this linear dependence with $N$ causes semi-AD to consume about 10 times more memory than HG. This underlines that HG is preferable whenever memory constraints become a limitation in optimization problems with large Hilbert space dimension and large number of time steps. This improvement is achieved without worsening the runtime scaling. 
+
+
+\section{Choosing among different optimization strategies}
+\label{sec:decision_tree}
 
 \begin{figure}[t]
-    \centering
-    \includegraphics[width=\textwidth]{ch4_figures/fig_qoc_qctrl.pdf}
-    \caption[Comparison of optimization results between Q-CTRL and QOC for the $\hat{X}_{\pi}$ gate.]{
-Comparison of optimization results between Q-CTRL and QOC for the $\hat{X}_{\pi}$ gate.
-(a)~Average infidelities of a closed system [Eq.~\eqref{eq:avg_inf}] versus pulse durations derived from Q-CTRL (red) and QOC (blue). The optimal duration selected for Q-CTRL from the range considered is 20\,ns (indicated by a red star).
-(b)~$I$ and $Q$ quadratures of the Q-CTRL pulse envelopes for the selected 20-ns pulse from~(a).
-(c)~Frequency components of the Q-CTRL pulse envelopes corresponding to the 20-ns pulse.
-(d)~Comparative analysis of the 20-ns pulses from both QOC (blue) and Q-CTRL (red) in terms of their infidelities as a function of detuning.
-The average and standard deviation of the infidelities are tabulated considering a uniform distribution of $\rho(\delta)$ for simplicity.
-[Parameters: $\delta_i/2\pi \in \{\pm 1, \pm 3, \pm 4, \pm 7, \pm 10\}$\,MHz, $K_\text{q}/2\pi = -200$\,MHz, $T_1 = 50$\,$\mu$s, $T_\phi = 50$\,$\mu$s.]}
-    \label{fig:fig_qoc_qctrl}
+\centering
+\includegraphics[width=\linewidth]{ch3_figures/decision_tree.pdf}
+\caption[Decision trees for selecting the optimal numerical strategy.]{Decision trees for selecting the optimal numerical strategy. (a)~Choosing among three numerical methods for evaluating gradients: full automatic differentiation, semi-automatic differentiation, hard-coded analytical gradients. (Here, $\mu\sim\Theta(d)$ is assumed; for different scaling see Table~\ref{tab:scalingtable}.) (b)~Determining the appropriate strategy for evaluating propagator-state products.}
+\label{fig:decision_tree}
 \end{figure}
 
-I then compare the robustness of the pulses derived from this optimization procedure with selected recent literature. First, following the methodology outlined in Ref.~\cite{qctrl}, I obtain robust pulses using the \texttt{Q-CTRL} package~\cite{ball2021softwarepulseengi,qctrl2022boulder}. To distinguish between these results and those generated by the optimization procedure presented here, I use the label ``Q-CTRL'' for the former and ``QOC'' for the latter.
-The averaged infidelities [Eq.~\eqref{eq:avg_inf}] of the closed system as a function of pulse duration are shown in Fig.~\ref{fig:fig_qoc_qctrl}(a). While the average infidelities for Q-CTRL (red) and QOC (blue) are similar for shorter durations, QOC demonstrates orders of magnitude lower infidelity for longer durations. To illustrate the robustness details of the Q-CTRL results, I examine the 20-ns case, which exhibits the lowest infidelity. The $I$ and $Q$ quadratures of the pulse envelopes and their corresponding Fourier components are shown in Fig.~\ref{fig:fig_qoc_qctrl}(b) and~(c). The infidelity as a function of detuning is presented in Fig.~\ref{fig:fig_qoc_qctrl}(d).
-For a closed system, the Q-CTRL results (red dashed line) show lower infidelity near resonance but exhibit higher infidelity off-resonance ($\delta/2\pi > 5$\,MHz) compared to the QOC results (blue dashed line). This difference likely arises from the different cost functions used in the two optimizations: Q-CTRL penalizes the derivative of the infidelity at zero detuning, whereas QOC minimizes the average infidelity over a sampling of detunings ($\delta_i/2\pi \in \{\pm 1, \pm 3, \pm 4, \pm 7, \pm 10\}$\,MHz in this example). Notably, in the presence of ancilla decoherence ($T_1 = 50$\,$\mu$s, $T_\phi = 50$\,$\mu$s), the infidelity at small detuning is dominated by incoherent error. This makes QOC the overall better choice within the considered range of detuning for robust pulses.
+There are several considerations which determine whether full-AD, HG, or semi-AD is the optimal strategy for a given optimization problem, see the decision tree in Fig.~\ref{fig:decision_tree}. Whenever the Hilbert space dimension $d$ and the number of time steps $N$ are sufficiently small, memory usage may not be a bottleneck. In this case, full-AD may be preferable, since it eliminates the need for hard-coded gradients. If the memory cost of full-AD is not affordable but analytical gradients are tedious to compute, semi-AD may be a viable compromise, though still less memory efficient than HG. In all other cases, HG is the method of choice, since it can handle optimization with larger $N$ and $d$ compared to full-AD and semi-AD. 
 
-The results of this chapter demonstrate that the GRAPE-based optimization procedure developed here generates detuning-robust transmon pulses that outperform both conventional DRAG pulses and Q-CTRL pulses across the relevant detuning range.
+The choice of implementing HG via scaling and squaring or matrix diagonalization should be informed by whether the Hamiltonian is sparse and $\kappa$ scales better than $\Theta(d^2)$. In the latter case, scaling and squaring is preferable and leads to an overall memory usage $\sim \Theta(d+\kappa)$, which is better than the memory scaling $O(d^2)$ of matrix diagonalization. By contrast, for Hamiltonians with $\kappa\sim \Theta(d^2)$, these two methods are equivalent in memory usage scaling, and the one with better runtime for a specific optimization task should be selected. While the runtime for optimization using matrix diagonalization scales as $O(d^3)$ [Appendix~\ref{app:matdiag}], the runtime for optimization based on scaling and squaring differs between state-transfer and gate optimizations: (1)~for state transfer, the runtime scales as $\Theta(\mu d^2)$; hence, whenever $\mu$ scales better than $\Theta(d)$, scaling and squaring wins over matrix diagonalization; (2)~for gate optimization, the runtime scales as $\Theta(\mu d^3)$; hence matrix diagonalization is preferable. 
+
+The scaling analysis and benchmarks presented in this chapter confirm that hard-coded gradients provide the most memory-efficient approach for GRAPE-based optimization of large quantum systems. In the next chapter, I apply these insights to a concrete problem: designing detuning-robust control pulses for transmon gates.
