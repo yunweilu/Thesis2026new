@@ -1,20 +1,3 @@
 \chapter{Conclusion and Future Work}
 \label{chap:conclusion}
 
-\section{Summary of key findings and significance}
-
-This thesis has addressed both the numerical implementation and application of Gradient Ascent Pulse Engineering (GRAPE) for quantum optimal control. The key findings are as follows.
-
-In Chapter~\ref{chap:grape}, I revisited the hard-coded gradient (HG) scheme for GRAPE and presented a complete analytical and numerical framework for evaluating cost function gradients. The scaling-and-squaring method for state propagation was developed with rigorous error bounds that account for both truncation and rounding errors, yielding superior numerical stability compared to existing implementations such as \texttt{Scipy}'s \texttt{expm\_multiply}. The auxiliary matrix method was employed to efficiently compute propagator derivatives, and the forward-backward propagation scheme was shown to achieve memory cost independent of the number of time steps.
-
-In Chapter~\ref{chap:scaling}, I performed a systematic scaling analysis comparing HG, full-AD, and semi-AD in terms of runtime and memory usage. The analysis demonstrated that HG achieves the same runtime scaling as AD-based methods while requiring significantly less memory---memory usage for HG does not grow with the number of time steps $N$ or the number of matrix-vector multiplications $\mu$. Benchmark studies on state-transfer and gate-optimization problems confirmed these scaling predictions. A decision tree was developed to guide practitioners in choosing the optimal numerical strategy based on problem-specific parameters.
-
-In Chapter~\ref{chap:robust}, I applied GRAPE to design detuning-robust control pulses for transmon $\hat{X}_\theta$ gates. The proposed two-step optimization procedure---closed-system GRAPE followed by open-system evaluation---was shown to generate pulses that outperform both conventional DRAG pulses and Q-CTRL pulses in terms of robustness against frequency detuning.
-
-\section{Limitations}
-
-The scaling-and-squaring method relies on the choice of truncation order and scaling factor, which are selected heuristically rather than by global optimization of the product $ms$. While the heuristic performs well in practice, it may not always yield the most efficient computation. The robust pulse optimization procedure assumes a specific detuning distribution and a fixed set of sample detuning values, which may not capture all realistic scenarios.
-
-\section{Opportunities for future research}
-
-Several directions for future work emerge from this thesis. The hard-coded gradient framework could be extended to support more general cost functions and constraints, including those arising in open-system optimization. The decision tree could be refined to incorporate parallelization strategies and GPU acceleration. On the application side, the detuning-robust pulses developed here could be integrated into multi-qubit gate protocols and tested experimentally on superconducting quantum processors.

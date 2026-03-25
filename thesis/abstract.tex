@@ -4,7 +4,7 @@
 \vspace{\baselineskip}
 \end{centering}
 
-Superconducting cavity–transmon architectures provide a powerful route to quantum information processing by combining long-lived cavity memories with the controllability of nonlinear ancillae. Their performance, however, is limited by two consequences of the same coupling mechanism: high-fidelity cavity control requires accurate dynamics in large Hilbert spaces, while ancilla noise is inherited by the cavity and undermines the bias structure needed for bosonic error correction.
+Superconducting cavity–transmon architectures provide a powerful route to quantum information processing by combining long-lived cavity memories with the controllability of nonlinear ancillae. Their performance, however, is limited by two consequences of the same coupling mechanism: high-fidelity cavity control requires accurate dynamics in large Hilbert spaces, while ancilla noise is inherited by the cavity and degrades the bias structure needed for bosonic error correction.
 
 This thesis develops practical methods to address both limitations. In the control setting, I first refvisit GRAPE with hard-coded gradients, eliminating the memory bottleneck of automatic differentiation while preserving runtime scaling and enabling optimal control in large cavity–transmon Hilbert spaces. I then use this framework to optimize ancilla pulses in an echoed conditional displacement protocol. these pulses suppress crosstalk errors by orders of magnitude and produce Bell-cat states with substantially lower infidelity than standard DRAG-based control.
 
