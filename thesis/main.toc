@@ -2,52 +2,115 @@
 \contentsline {chapter}{Abstract}{i}{Doc-Start}%
 \contentsline {chapter}{Acknowledgements}{iii}{Doc-Start}%
 \contentsline {chapter}{List of Publications}{v}{Doc-Start}%
-\contentsline {chapter}{Dedication}{vi}{Doc-Start}%
-\contentsline {chapter}{List of Tables}{x}{chapter*.1}%
-\contentsline {chapter}{List of Figures}{xi}{chapter*.2}%
+\contentsline {chapter}{\nonumberline List of Symbols}{vi}{chapter*.1}%
+\contentsline {chapter}{Dedication}{viii}{chapter*.1}%
+\contentsline {chapter}{List of Tables}{xvi}{chapter*.2}%
+\contentsline {chapter}{List of Figures}{xvii}{chapter*.3}%
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Thesis outline}{8}{section.1.1}%
-\contentsline {chapter}{\numberline {2}GRAPE Based on Hard-Coded Gradients}{9}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Brief sketch of GRAPE}{9}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Analytical gradients}{11}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}State-transfer infidelity}{11}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Gate infidelity}{12}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Additional cost contributions}{12}{subsection.2.2.3}%
-\contentsline {section}{\numberline {2.3}Numerical implementation of hard-coded gradients}{15}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}State propagation evaluation by scaling and squaring}{15}{subsection.2.3.1}%
-\contentsline {subsubsection}{\numberline {2.3.1.1}Determining the upper bound $E_A(m,s)$}{16}{subsubsection.2.3.1.1}%
-\contentsline {paragraph}{Upper bound for the truncation error $\varepsilon _t$.}{17}{paragraph*.4}%
-\contentsline {paragraph}{Upper bound for the rounding error $\varepsilon _r$.}{18}{paragraph*.5}%
-\contentsline {subparagraph}{Upper bound for the rounding error associated with evaluating the dot product.}{19}{subparagraph*.6}%
-\contentsline {subparagraph}{Upper bound for the rounding error of $e^B_m|\Psi \rangle $.}{20}{subparagraph*.7}%
-\contentsline {subparagraph}{Upper bound for the error $\varepsilon _r$.}{21}{subparagraph*.8}%
-\contentsline {subsubsection}{\numberline {2.3.1.2}Choosing scaling factor and truncation order}{22}{subsubsection.2.3.1.2}%
-\contentsline {subsubsection}{\numberline {2.3.1.3}Numerical comparison between scaling and squaring implementations}{24}{subsubsection.2.3.1.3}%
-\contentsline {subsection}{\numberline {2.3.2}Computing the propagator derivative acting on a state: auxiliary matrix method}{25}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}Efficient evaluation of hard-coded gradients}{25}{subsection.2.3.3}%
-\contentsline {chapter}{\numberline {3}Scaling Analysis and Benchmarking}{28}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Scaling analysis of runtime and memory usage}{28}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Hard-coded gradients via forward-backward propagation}{28}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Full automatic differentiation}{30}{subsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.1.3}Semi-automatic differentiation}{31}{subsection.3.1.3}%
-\contentsline {subsection}{\numberline {3.1.4}Comparison}{31}{subsection.3.1.4}%
-\contentsline {section}{\numberline {3.2}Benchmark studies}{32}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}State-transfer benchmark}{32}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Gate-operation benchmark}{34}{subsection.3.2.2}%
-\contentsline {section}{\numberline {3.3}Choosing among different optimization strategies}{35}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Application of GRAPE: Robust Control for Transmon}{39}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Metrics of robust control}{39}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Optimization procedure}{41}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Benchmarking and comparison}{42}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Conclusion and Future Work}{48}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Summary of key findings and significance}{48}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Limitations}{49}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Opportunities for future research}{49}{section.5.3}%
-\contentsline {chapter}{References}{49}{section.5.3}%
+\contentsline {paragraph}{Thesis outline}{7}{paragraph*.5}%
+\contentsline {chapter}{\numberline {2}Bosonic control with ancilla and coupler}{9}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Oscillator Circuit Hamiltonian}{9}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Quantization of the LC oscillator}{9}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Classical driving of the oscillator}{12}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Why Fock states are unreachable in a linear oscillator}{14}{subsection.2.1.3}%
+\contentsline {chapter}{\numberline {3}GRAPE Based on Hard-Coded Gradients}{15}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Brief sketch of GRAPE}{16}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Analytical gradients}{17}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}State-transfer infidelity}{18}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Gate infidelity}{18}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Additional cost contributions}{19}{subsection.3.2.3}%
+\contentsline {section}{\numberline {3.3}Numerical implementation of hard-coded gradients}{21}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}State propagation evaluation by scaling and squaring}{22}{subsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.1.1}Determining the upper bound $E_A(m,s)$}{23}{subsubsection.3.3.1.1}%
+\contentsline {paragraph}{Upper bound for the truncation error $\varepsilon _t$.}{24}{paragraph*.6}%
+\contentsline {paragraph}{Upper bound for the rounding error $\varepsilon _r$.}{24}{paragraph*.7}%
+\contentsline {subparagraph}{Upper bound for the rounding error associated with evaluating the dot product.}{25}{subparagraph*.8}%
+\contentsline {subparagraph}{Upper bound for the rounding error of $e^B_m|\Psi \rangle $.}{26}{subparagraph*.9}%
+\contentsline {subparagraph}{Upper bound for the error $\varepsilon _r$.}{27}{subparagraph*.10}%
+\contentsline {subsubsection}{\numberline {3.3.1.2}Choosing scaling factor and truncation order}{29}{subsubsection.3.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.3.1.3}Numerical comparison between scaling and squaring implementations}{29}{subsubsection.3.3.1.3}%
+\contentsline {subsection}{\numberline {3.3.2}Computing the propagator derivative acting on a state: auxiliary matrix method}{31}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Efficient evaluation of hard-coded gradients}{32}{subsection.3.3.3}%
+\contentsline {chapter}{\numberline {4}Scaling Analysis and Benchmarking}{34}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Scaling analysis of runtime and memory usage}{34}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Hard-coded gradients via forward-backward propagation}{34}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Full automatic differentiation}{36}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Semi-automatic differentiation}{37}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.4}Comparison}{37}{subsection.4.1.4}%
+\contentsline {section}{\numberline {4.2}Benchmark studies}{38}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}State-transfer benchmark}{38}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Gate-operation benchmark}{40}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Choosing among different optimization strategies}{41}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Application of GRAPE: Robust Control for Transmon}{45}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Metrics of robust control}{45}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Optimization procedure}{47}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Benchmarking and comparison}{48}{section.5.3}%
+\contentsline {chapter}{\numberline {6}Cavity Dephasing Inherited from Transmon Flux Noise}{54}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Introduction}{54}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Hamiltonian Derivation and Noise Analysis}{56}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Obtain $H_d$ by a Schrieffer--Wolff transformation}{59}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Transformation}{61}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Transformation of Hamiltonian}{61}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Transformation of $H_{\text {noise}}$}{63}{subsection.6.4.2}%
+\contentsline {subsection}{\numberline {6.4.3}Transformation of Lindbladian}{65}{subsection.6.4.3}%
+\contentsline {subsection}{\numberline {6.4.4}Further approximation under two regimes}{68}{subsection.6.4.4}%
+\contentsline {paragraph}{Unselective regime}{68}{paragraph*.11}%
+\contentsline {paragraph}{Selective regime.}{69}{paragraph*.12}%
+\contentsline {section}{\numberline {6.5}Dephasing mitigation by drive}{71}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}System setup}{71}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}Driven sweet spots}{72}{subsection.6.5.2}%
+\contentsline {paragraph}{Unselective Regime.}{74}{paragraph*.13}%
+\contentsline {paragraph}{Selective Regime.}{75}{paragraph*.14}%
+\contentsline {paragraph}{Sweet-Spot Map and Regime Crossover.}{76}{paragraph*.15}%
+\contentsline {chapter}{\numberline {7}Overall Dephasing Rate and Performance Analysis}{79}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Overall dephasing rate}{79}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Total dephasing in the unselective regime}{79}{subsection.7.1.1}%
+\contentsline {paragraph}{Interpretation of the dissipators.}{80}{paragraph*.16}%
+\contentsline {paragraph}{Interpretation of the noise Hamiltonian.}{80}{paragraph*.17}%
+\contentsline {paragraph}{Total cavity dephasing rate.}{81}{paragraph*.18}%
+\contentsline {subsection}{\numberline {7.1.2}Total dephasing in the selective regime}{81}{subsection.7.1.2}%
+\contentsline {subsection}{\numberline {7.1.3}Numerical evaluation of the total dephasing rate}{82}{subsection.7.1.3}%
+\contentsline {section}{\numberline {7.2}Exact calculation of $D_{0\rightarrow 1}$}{83}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Numerical details of obtaining dephasing rates}{84}{section.7.3}%
+\contentsline {paragraph}{Generation of $1/f$ noise.}{85}{paragraph*.19}%
+\contentsline {paragraph}{Extraction of dephasing time.}{85}{paragraph*.20}%
+\contentsline {section}{\numberline {7.4}Adiabatic transition}{87}{section.7.4}%
+\contentsline {chapter}{\numberline {8}Applications to Bosonic Error-Correction Codes}{94}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Application to Bosonic Encodings}{94}{section.8.1}%
+\contentsline {subsection}{\numberline {8.1.1}Binomial encoding}{94}{subsection.8.1.1}%
+\contentsline {subsection}{\numberline {8.1.2}Dual-rail encoding}{97}{subsection.8.1.2}%
+\contentsline {section}{\numberline {8.2}Conclusion}{98}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Sweet spots from higher-order corrections}{99}{section.8.3}%
+\contentsline {section}{\numberline {8.4}Example of a SNAIL coupler}{100}{section.8.4}%
+\contentsline {section}{\numberline {8.5}Amplitude-noise-induced dephasing}{102}{section.8.5}%
+\contentsline {chapter}{\numberline {9}Conclusion and Future Work}{105}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Summary of key findings and significance}{105}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Limitations}{106}{section.9.2}%
+\contentsline {section}{\numberline {9.3}Opportunities for future research}{106}{section.9.3}%
+\contentsline {chapter}{References}{106}{section.9.3}%
 \renewcommand {\cftchappresnum }{Appendix }
 \renewcommand {\cftchapnumwidth }{6em}
-\contentsline {chapter}{\numberline {A}Scaling of the Number of Matrix-Vector Multiplications $\mu $}{58}{appendix.1.A}%
-\contentsline {chapter}{\numberline {B}Alternative Hard-Coded Gradient Scheme: Numerical Implementation and Scaling}{61}{appendix.1.B}%
-\contentsline {section}{\numberline {B.1}Evaluation of propagator derivative}{61}{section.1.B.1}%
-\contentsline {section}{\numberline {B.2}Scaling analysis}{63}{section.1.B.2}%
-\contentsline {chapter}{Vita}{65}{appendix*.11}%
+\contentsline {chapter}{\numberline {A}Scaling of the Number of Matrix-Vector Multiplications $\mu $}{117}{appendix.1.A}%
+\contentsline {chapter}{\numberline {B}Alternative Hard-Coded Gradient Scheme: Numerical Implementation and Scaling}{120}{appendix.1.B}%
+\contentsline {section}{\numberline {B.1}Evaluation of propagator derivative}{120}{section.1.B.1}%
+\contentsline {section}{\numberline {B.2}Scaling analysis}{122}{section.1.B.2}%
+\contentsline {chapter}{\numberline {C}Floquet formalism and justification of the RWA}{124}{appendix.1.C}%
+\contentsline {section}{\numberline {C.1}Floquet Formalism}{124}{section.1.C.1}%
+\contentsline {subsection}{\numberline {C.1.1}Floquet Theorem}{124}{subsection.1.C.1.1}%
+\contentsline {subsection}{\numberline {C.1.2}Construction of the Solution}{124}{subsection.1.C.1.2}%
+\contentsline {subsection}{\numberline {C.1.3}Quasienergy and Floquet States under $H_{\text {disp}}$}{128}{subsection.1.C.1.3}%
+\contentsline {subsubsection}{\numberline {C.1.3.1}Quasienergy Operator for the Driven Dispersive Hamiltonian}{128}{subsubsection.1.C.1.3.1}%
+\contentsline {subsubsection}{\numberline {C.1.3.2}Approximation of Quasienergy and Floquet States}{129}{subsubsection.1.C.1.3.2}%
+\contentsline {subsubsection}{\numberline {C.1.3.3}Connection with the RWA}{131}{subsubsection.1.C.1.3.3}%
+\contentsline {chapter}{\numberline {D}Higher-order sweet spots}{133}{appendix.1.D}%
+\contentsline {section}{\numberline {D.1}Sweet spots from higher-order corrections}{133}{section.1.D.1}%
+\contentsline {chapter}{\numberline {E}SNAIL coupler generalization}{135}{appendix.1.E}%
+\contentsline {section}{\numberline {E.1}Example of a SNAIL coupler}{135}{section.1.E.1}%
+\contentsline {chapter}{\numberline {F}Numerical details}{137}{appendix.1.F}%
+\contentsline {section}{\numberline {F.1}Numerical details of obtaining dephasing rates}{137}{section.1.F.1}%
+\contentsline {paragraph}{Generation of $1/f$ noise.}{137}{paragraph*.23}%
+\contentsline {paragraph}{Extraction of dephasing time.}{139}{paragraph*.24}%
+\contentsline {section}{\numberline {F.2}Rates in the unselective regime}{140}{section.1.F.2}%
+\contentsline {subsection}{\numberline {F.2.1}Dephasing rates}{140}{subsection.1.F.2.1}%
+\contentsline {subsection}{\numberline {F.2.2}Decay rates}{141}{subsection.1.F.2.2}%
+\contentsline {chapter}{Vita}{143}{appendix*.25}%

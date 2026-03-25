@@ -2,7 +2,7 @@ PWD /Users/yunwei/Desktop/project/Thesis/Thesis2026/thesis
 INPUT /usr/local/texlive/2024/texmf.cnf
 INPUT /usr/local/texlive/2024/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/yunwei/Desktop/project/Thesis/Thesis2026/thesis/main.tex
+INPUT main.tex
 OUTPUT main.log
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/report.cls
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/report.cls
@@ -382,6 +382,9 @@ OUTPUT main.out
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
+INPUT ./main.glsdefs
+INPUT ./main.glsdefs
+INPUT main.glsdefs
 INPUT ./titlePage.tex
 INPUT ./titlePage.tex
 INPUT titlePage.tex
@@ -440,9 +443,21 @@ INPUT publications.tex
 INPUT ./symbols.tex
 INPUT ./symbols.tex
 INPUT symbols.tex
+INPUT ./main.nls
+INPUT ./main.nls
+INPUT main.nls
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmr7t.tfm
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/adobe/times/ptmb7t.vf
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
 INPUT ./dedication.tex
 INPUT ./dedication.tex
 INPUT dedication.tex
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmri7t.tfm
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/adobe/times/ptmri7t.vf
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
 INPUT ./main.toc
 INPUT ./main.toc
 INPUT main.toc
@@ -458,15 +473,18 @@ INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm
-OUTPUT main.lof
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/adobe/courier/pcrr7t.vf
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm
+OUTPUT main.lof
 INPUT ./Introduction.tex
 INPUT ./Introduction.tex
 INPUT Introduction.tex
 INPUT ./chapter2.tex
 INPUT ./chapter2.tex
 INPUT chapter2.tex
+INPUT ./chapter3.tex
+INPUT ./chapter3.tex
+INPUT chapter3.tex
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmr7t.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
@@ -477,19 +495,14 @@ INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/bbold/bbold10.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/bbold/bbold7.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/bbold/bbold5.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmr7t.tfm
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/adobe/times/ptmb7t.vf
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmri7t.tfm
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/adobe/times/ptmri7t.vf
-INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
@@ -509,9 +522,9 @@ INPUT ./ch2_figures/forward_backward.pdf
 INPUT ./ch2_figures/forward_backward.pdf
 INPUT ./ch2_figures/forward_backward.pdf
 INPUT ./ch2_figures/forward_backward.pdf
-INPUT ./chapter3.tex
-INPUT ./chapter3.tex
-INPUT chapter3.tex
+INPUT ./chapter4.tex
+INPUT ./chapter4.tex
+INPUT chapter4.tex
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmbc7t.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/adobe/times/ptmbc7t.vf
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
@@ -533,9 +546,9 @@ INPUT ./ch3_figures/decision_tree.pdf
 INPUT ./ch3_figures/decision_tree.pdf
 INPUT ./ch3_figures/decision_tree.pdf
 INPUT ./ch3_figures/decision_tree.pdf
-INPUT ./chapter4.tex
-INPUT ./chapter4.tex
-INPUT chapter4.tex
+INPUT ./chapter5.tex
+INPUT ./chapter5.tex
+INPUT chapter5.tex
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
 INPUT ./ch4_figures/fig_flowchart.pdf
@@ -553,6 +566,131 @@ INPUT ./ch4_figures/fig_qoc_qctrl.pdf
 INPUT ./ch4_figures/fig_qoc_qctrl.pdf
 INPUT ./ch4_figures/fig_qoc_qctrl.pdf
 INPUT ./ch4_figures/fig_qoc_qctrl.pdf
+INPUT ./chapter6.tex
+INPUT ./chapter6.tex
+INPUT chapter6.tex
+INPUT ../6949db0bfd19311f68336ca1/introduction/introduction.tex
+INPUT ../6949db0bfd19311f68336ca1/introduction/introduction.tex
+INPUT ../6949db0bfd19311f68336ca1/introduction/introduction.tex
+INPUT ../6949db0bfd19311f68336ca1/introduction/introduction.tex
+INPUT ../6949db0bfd19311f68336ca1/introduction/introduction.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/Hamiltonian Derivation and Noise Analysis.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/Hamiltonian Derivation and Noise Analysis.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/Hamiltonian Derivation and Noise Analysis.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/Hamiltonian Derivation and Noise Analysis.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/Hamiltonian Derivation and Noise Analysis.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/Obtain H_d by Schrieffer–Wolff transformation.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/Obtain H_d by Schrieffer–Wolff transformation.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/Obtain H_d by Schrieffer–Wolff transformation.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/Obtain H_d by Schrieffer–Wolff transformation.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/Obtain H_d by Schrieffer–Wolff transformation.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/Transformation.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/Transformation.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/Transformation.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/Transformation.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/Transformation.tex
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmri7t.tfm
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmri7t.tfm
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/adobe/times/ptmri7t.vf
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
+INPUT ../6949db0bfd19311f68336ca1/Sec 2/setup.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec 2/setup.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec 2/setup.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec 2/setup.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec 2/setup.tex
+INPUT ../6949db0bfd19311f68336ca1/plot/device_plot/deviceplot/device.pdf
+INPUT ../6949db0bfd19311f68336ca1/plot/device_plot/deviceplot/device.pdf
+INPUT ../6949db0bfd19311f68336ca1/plot/device_plot/deviceplot/device.pdf
+INPUT ../6949db0bfd19311f68336ca1/plot/device_plot/deviceplot/device.pdf
+INPUT ../6949db0bfd19311f68336ca1/Sec 2/driven-induced-flux-insensitive-points.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec 2/driven-induced-flux-insensitive-points.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec 2/driven-induced-flux-insensitive-points.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec 2/driven-induced-flux-insensitive-points.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec 2/driven-induced-flux-insensitive-points.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec 2/compare.pdf
+INPUT ../6949db0bfd19311f68336ca1/Sec 2/compare.pdf
+INPUT ../6949db0bfd19311f68336ca1/Sec 2/compare.pdf
+INPUT ../6949db0bfd19311f68336ca1/Sec 2/compare.pdf
+INPUT ./chapter7.tex
+INPUT ./chapter7.tex
+INPUT chapter7.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec 3/unselective.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec 3/unselective.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec 3/unselective.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec 3/unselective.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec 3/unselective.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec 3/selective.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec 3/selective.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec 3/selective.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec 3/selective.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec 3/selective.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec 3/total_rate.pdf
+INPUT ../6949db0bfd19311f68336ca1/Sec 3/total_rate.pdf
+INPUT ../6949db0bfd19311f68336ca1/Sec 3/total_rate.pdf
+INPUT ../6949db0bfd19311f68336ca1/Sec 3/total_rate.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/simulation details.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/simulation details.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/simulation details.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/simulation details.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/simulation details.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/numerics_trajectory.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/numerics_trajectory.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/numerics_trajectory.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/numerics_trajectory.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/numerics_trajectory.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/noise_spectrum_plot.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/noise_spectrum_plot.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/noise_spectrum_plot.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/noise_spectrum_plot.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/Adiabatic transition.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/Adiabatic transition.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/Adiabatic transition.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/Adiabatic transition.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/Adiabatic transition.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/preparation_fidelity_plot.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/preparation_fidelity_plot.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/preparation_fidelity_plot.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/preparation_fidelity_plot.pdf
+INPUT ./chapter8.tex
+INPUT ./chapter8.tex
+INPUT chapter8.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec4/Sec4.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec4/Sec4.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec4/Sec4.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec4/Sec4.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec4/Sec4.tex
+INPUT ../6949db0bfd19311f68336ca1/Sec4/qec_plot.pdf
+INPUT ../6949db0bfd19311f68336ca1/Sec4/qec_plot.pdf
+INPUT ../6949db0bfd19311f68336ca1/Sec4/qec_plot.pdf
+INPUT ../6949db0bfd19311f68336ca1/Sec4/qec_plot.pdf
+INPUT ../6949db0bfd19311f68336ca1/Conclusion.tex
+INPUT ../6949db0bfd19311f68336ca1/Conclusion.tex
+INPUT ../6949db0bfd19311f68336ca1/Conclusion.tex
+INPUT ../6949db0bfd19311f68336ca1/Conclusion.tex
+INPUT ../6949db0bfd19311f68336ca1/Conclusion.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/higher-order.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/higher-order.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/higher-order.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/higher-order.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/higher-order.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/higher_order.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/higher_order.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/higher_order.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/higher_order.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/SNAIL.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/SNAIL.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/SNAIL.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/SNAIL.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/SNAIL.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/SNAILss.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/SNAILss.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/SNAILss.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/SNAILss.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/amplitude_noise.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/amplitude_noise.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/amplitude_noise.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/amplitude_noise.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/amplitude_noise.tex
 INPUT ./conclusion.tex
 INPUT ./conclusion.tex
 INPUT conclusion.tex
@@ -570,15 +708,55 @@ INPUT ./ch3_figures/uscaling.pdf
 INPUT ./ch3_figures/uscaling.pdf
 INPUT ./ch3_figures/uscaling.pdf
 INPUT ./ch3_figures/uscaling.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/floquet.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/floquet.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/floquet.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/floquet.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/floquet.tex
+INPUT ./Appendix/floqet_RWA.tex
+INPUT ./Appendix/floqet_RWA.tex
+INPUT ./Appendix/floqet_RWA.tex
+INPUT ./Appendix/floqet_RWA.tex
+INPUT Appendix/floqet_RWA.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/floqet_RWA.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/floqet_RWA.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/floqet_RWA.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/floqet_RWA.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/floqet_RWA.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/higher-order.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/higher_order.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/higher_order.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/higher_order.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/SNAIL.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/SNAILss.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/SNAILss.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/SNAILss.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/numerics_trajectory.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/noise_spectrum_plot.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/noise_spectrum_plot.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/noise_spectrum_plot.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/unselective_dephasing_rate.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/unselective_dephasing_rate.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/unselective_dephasing_rate.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/unselective_dephasing_rate.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/unselective_dephasing_rate.tex
+INPUT ../6949db0bfd19311f68336ca1/Appendix/relaxation_excitation_plot.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/relaxation_excitation_plot.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/relaxation_excitation_plot.pdf
+INPUT ../6949db0bfd19311f68336ca1/Appendix/relaxation_excitation_plot.pdf
 INPUT ./vita.tex
 INPUT ./vita.tex
 INPUT vita.tex
 INPUT main.aux
 INPUT ./main.out
 INPUT ./main.out
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/stix/STIXGeneral-Bold.pfb
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/stix/STIXGeneral-Italic.pfb
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/stix/STIXGeneral-Regular.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/bbold-type1/bbold7.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb

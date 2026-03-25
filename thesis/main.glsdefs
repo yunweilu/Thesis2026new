@@ -1,0 +1,112 @@
+\glsdefs@newdocentry{FTT}%
+{%
+name={\acronymfont {\glsentryshort {FTT}}},%
+sort={FTT},%
+type={acronym},%
+first={FTT},%
+firstplural={FTTs},%
+text={FTT},%
+plural={FTTs},%
+description={Flux-Tunable Transmon},%
+descriptionplural={Flux-Tunable Transmon},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Flux-Tunable Transmon},%
+longplural={Flux-Tunable Transmons},%
+short={FTT},%
+shortplural={FTTs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{SNAIL}%
+{%
+name={\acronymfont {\glsentryshort {SNAIL}}},%
+sort={SNAIL},%
+type={acronym},%
+first={SNAIL},%
+firstplural={SNAILs},%
+text={SNAIL},%
+plural={SNAILs},%
+description={Superconducting Nonlinear Asymmetric Inductive eLement},%
+descriptionplural={Superconducting Nonlinear Asymmetric Inductive eLement},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Superconducting Nonlinear Asymmetric Inductive eLement},%
+longplural={Superconducting Nonlinear Asymmetric Inductive eLements},%
+short={SNAIL},%
+shortplural={SNAILs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{LINC}%
+{%
+name={\acronymfont {\glsentryshort {LINC}}},%
+sort={LINC},%
+type={acronym},%
+first={LINC},%
+firstplural={LINCs},%
+text={LINC},%
+plural={LINCs},%
+description={Linear INductive Coupler},%
+descriptionplural={Linear INductive Coupler},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Linear INductive Coupler},%
+longplural={Linear INductive Couplers},%
+short={LINC},%
+shortplural={LINCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{QEC}%
+{%
+name={\acronymfont {\glsentryshort {QEC}}},%
+sort={QEC},%
+type={acronym},%
+first={QEC},%
+firstplural={QECs},%
+text={QEC},%
+plural={QECs},%
+description={quantum error-correction},%
+descriptionplural={quantum error-correction},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={quantum error-correction},%
+longplural={quantum error-corrections},%
+short={QEC},%
+shortplural={QECs},%
+counter={page},%
+parent={},%
+%
+}%
+
