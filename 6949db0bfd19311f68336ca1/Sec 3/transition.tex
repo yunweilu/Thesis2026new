@@ -1,0 +1,27 @@
+\section{Overall dephasing rate}
+\label{sec3}
+
+A periodic drive mitigates low-frequency flux-induced dephasing by coupling the FTT states and suppressing the first-order sensitivity of the dressed cavity frequency to fluctuations of $\omega_b$. However, the drive also contributes new dephasing channels when FTT relaxation is present.
+
+To quantify the total cavity dephasing rate, the system is modeled with a stochastic master equation. For a given flux-noise realization $\delta\Phi(t)$, the density matrix $\rho(t)$ obeys
+\begin{align}
+\dot{\rho}
+&= -i\left[\,H_{\mathrm{sys}} + \delta\omega_b(t)\, b^\dagger b,\ \rho\,\right]
++ \gamma_{b\downarrow}\,\mathcal{D}[b]\rho,
+\nonumber \\
+H_{\mathrm{sys}}
+&= H_{\mathrm{static}} + 2\Omega_0 \cos(\omega_d t)\,(b + b^\dagger).
+\label{Linblad}\end{align}
+Here $\mathcal{D}[b]\rho = b\rho b^\dagger - \tfrac{1}{2}\{b^\dagger b, \rho\}$ describes FTT relaxation at rate $\gamma_{b\downarrow}$ (the FTT energy-relaxation rate).
+
+Flux noise in these devices typically exhibits a $1/f$ spectrum. The corresponding power spectral density is taken as
+\begin{equation}
+S_{1/f}(\omega)
+= \int_{-\infty}^{\infty} d\tau\, \langle \delta\Phi(\tau)\,\delta\Phi(0)\rangle\, e^{i\omega \tau}
+= \frac{S_0^{\,2}}{\left|\omega/2\pi\right|},
+\end{equation}
+where $S_0$ sets the flux-noise amplitude.
+
+The following analysis is carried out in the effective-drive frame to separate the roles of relaxation and dephasing. The unselective and selective regimes are treated in turn.
+\input{Sec 3/unselective}
+\input{Sec 3/selective}

@@ -1,0 +1,30 @@
+\section{Exact calculation of $D_{0\rightarrow 1}$}
+\label{app:numerics}
+The driven circuit is simulated using the full system Hamiltonian \(H_{\mathrm{sys}}\) in Eq.~\eqref{system hamiltonian}, without further approximations.
+The parameters are \(E_{J1}=E_{J2}=30.19\,\mathrm{GHz}\), \(E_C=0.10\,\mathrm{GHz}\), \(\omega_c/2\pi=5.226\,\mathrm{GHz}\), \(g'/2\pi=0.050\,\mathrm{GHz}\), and \(\Phi=0.20\,\Phi_0\).
+For these values, the effective parameters appearing in Eq.~\eqref{H} are \(\omega_b/2\pi=6.16\,\mathrm{GHz}\), \(K/2\pi=-0.10\,\mathrm{GHz}\), and \(g/2\pi=0.10\,\mathrm{GHz}\).
+
+The basis is obtained by diagonalizing the static part of \(H_{\mathrm{sys}}\), i.e., \(H_{\mathrm{sys}}(t)\) with \(\Omega_0=\delta\Phi(t)=0\).
+In the dispersive regime, these eigenstates are labeled by the corresponding bare basis states.
+The FTT (cavity) Hilbert space is truncated to 3 (4) levels. Increasing the truncation changes the results only marginally and does not affect the conclusions.
+
+Floquet simulations are performed directly with \(H_{\mathrm{sys}}(t)\) to obtain time-periodic Floquet modes \(\ket{\phi_\alpha(t)}\) and quasienergies \(\epsilon_\alpha\), with \(\ket{\phi_\alpha(t+T)}=\ket{\phi_\alpha(t)}\) and \(T=2\pi/\omega_d\).
+To assign each Floquet mode a label in a chosen bare basis \(\{\ket{j}\}\), the time-averaged overlap weight
+\begin{equation}
+W_{\alpha j}
+= \frac{1}{T} \int_{0}^{T} dt \,
+\left| \langle j \mid \phi_\alpha(t) \rangle \right|^2
+\end{equation}
+is evaluated.
+Each Floquet mode \(\alpha\) is labeled by the basis state \(\ket{j}\) with the largest weight,
+\begin{equation}
+\mathrm{label}(\alpha)=\arg\max_j W_{\alpha j}.
+\end{equation}
+This procedure yields a relabeling \(\alpha\mapsto(n,m)\), where \(n\) and \(m\) denote the FTT and cavity excitation numbers, respectively, along with the corresponding quasienergies \(\epsilon_{nm}\).
+
+Using the labeled quasienergies, the flux sensitivity of the \((g,1)\)--\((g,0)\) quasienergy splitting is evaluated and normalized by the flux dispersion of \(\omega_b\).
+Specifically,
+\begin{equation}
+D_{0\rightarrow1}=\frac{\partial}{\partial\Phi}\!\left(\epsilon_{g1}-\epsilon_{g0}\right)\bigg/\frac{\partial \omega_b}{\partial\Phi},
+\end{equation}
+which yields the exact \(D_{0\rightarrow1}\) reported in Fig.~\ref{fig:compare}.

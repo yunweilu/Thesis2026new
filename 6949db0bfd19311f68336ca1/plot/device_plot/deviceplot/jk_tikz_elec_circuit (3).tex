@@ -1,0 +1,229 @@
+\makeatletter
+% Do not add spurious spaces
+\tikzset{jk/.style=
+	{%
+		% generic tikz-level settings
+		cute inductors,%
+		%circutikz-level settings
+		\circuitikzbasekey/.cd,%
+		bipoles/thickness=1.5,
+		bipole voltage style/.style={color=red},
+		bipole current style/.style={color=blue},
+		%bipole flow style/.style={color=red},
+		%bipoles/crossing/size=4,
+		%
+		% Capacitors
+		% capacitors/scale=0.7,
+		capacitors/thickness=1.2, 
+		capacitors/width/.try=0.085,
+		capacitors/height/.try=0.3,
+		%capacitors/width/.try=0.15, % from 1.4.1 
+		%capacitors/height/.try=0.6, % from 1.4.1
+		%
+		% Inductors (and transformers) 
+		inductors/scale=0.9,
+		inductors/thickness=1.0,
+		inductors/coils=4,
+		inductors/width/.try=0.6,
+		%inductors/height=0.25,
+		% 
+		% Ground symbols 
+		grounds/scale=0.6, 
+		grounds/thickness=1.0,
+		%
+		% Voltage
+		voltage/distance from node=0.0,
+		voltage/shift=2.1,
+		voltage/bump b=0.7,
+		voltage/european label distance=1.2,
+		%voltage/american label distance=1.2,
+		%voltage/american font=\tiny\boldmath,%
+		% other options for romano style
+		bipoles/crossing/size=0.4,
+		% monopoles/vcc/arrow={Triangle[width=0.8*\scaledwidth, length=\scaledwidth]},
+		% monopoles/vee/arrow={Triangle[width=0.8*\scaledwidth, length=\scaledwidth]},
+		%
+		% Nodes width (connectors, etc
+		nodes width=.04, % size of nodes
+		%
+		% Arrows size
+		current arrow scale=16, % smaller is larger arrow
+		% Switches 
+		bipoles/cuteswitch/thickness,
+		%
+		% Transmission line 
+		bipoles/tline/height=0.5,
+		%
+		% Logic ports - amp, buffer, etc. 
+		logic ports/thickness=4.0,
+	},% end .style
+}% end \tikzset
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% JJ
+\ctikzset{bipoles/jj/height/.initial=.23}
+\ctikzset{bipoles/jj/width/.initial=.23}
+\ctikzset{bipoles/jj/thickness/.initial=1}
+
+\pgfcircdeclarebipolescaled{inductors}
+	{} % extra anchors
+	{\ctikzvalof{bipoles/jj/height}} % depth under path line
+	{jj} % name 
+	{\ctikzvalof{bipoles/jj/height}} % height above path line
+	{\ctikzvalof{bipoles/jj/width}}  % width
+	{ % code
+	    % cross
+	    \pgfsetlinewidth{\ctikzvalof{bipoles/jj/thickness}\pgfstartlinewidth}
+	    \pgfpathmoveto{\pgfpoint{\pgf@circ@res@left}{\pgf@circ@res@up}}
+	    \pgfpathlineto{\pgfpoint{\pgf@circ@res@right}{\pgf@circ@res@down}}
+	
+	    \pgfpathmoveto{\pgfpoint{\pgf@circ@res@right}{\pgf@circ@res@up}}
+	    \pgfpathlineto{\pgfpoint{\pgf@circ@res@left}{\pgf@circ@res@down}}
+	
+	    \pgfpathmoveto{\pgfpoint{\pgf@circ@res@left}{\pgf@circ@res@up}}
+		\pgfpathlineto{\pgfpoint{\pgf@circ@res@right}{\pgf@circ@res@up}}
+		\pgfpathlineto{\pgfpoint{\pgf@circ@res@right}{\pgf@circ@res@down}}
+		\pgfpathlineto{\pgfpoint{\pgf@circ@res@left}{\pgf@circ@res@down}}
+		\pgfpathlineto{\pgfpoint{\pgf@circ@res@left}{\pgf@circ@res@up}}
+	    \pgfusepath{draw}
+	}
+
+\pgfcirc@activate@bipole@simple{l}{jj}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% JJ bare
+\ctikzset{bipoles/jjbare/height/.initial=.2}
+\ctikzset{bipoles/jjbare/width/.initial=.2}
+\ctikzset{bipoles/jjbare/thickness/.initial=1}
+
+\pgfcircdeclarebipolescaled{inductors}
+{} % extra anchors
+{\ctikzvalof{bipoles/jjbare/height}} % depth under path line
+{jjbare} % name 
+{\ctikzvalof{bipoles/jjbare/height}} % height above path line
+{\ctikzvalof{bipoles/jjbare/width}}  % width
+{ % code
+	% cross
+	\pgfsetlinewidth{\ctikzvalof{bipoles/jjbare/thickness}\pgfstartlinewidth}
+	\pgfpathmoveto{\pgfpoint{\pgf@circ@res@left}{\pgf@circ@res@up}}
+	\pgfpathlineto{\pgfpoint{\pgf@circ@res@right}{\pgf@circ@res@down}}
+	
+	\pgfpathmoveto{\pgfpoint{\pgf@circ@res@right}{\pgf@circ@res@up}}
+	\pgfpathlineto{\pgfpoint{\pgf@circ@res@left}{\pgf@circ@res@down}}
+	\pgfusepath{draw}
+	
+	% straight wire
+	\pgfsetlinewidth{\pgfstartlinewidth}
+	\pgfpathmoveto{\pgfpoint{\pgf@circ@res@right}{0pt}}
+	\pgfpathlineto{\pgfpoint{\pgf@circ@res@left}{0pt}}    
+	\pgfusepath{draw}
+}
+
+\pgfcirc@activate@bipole@simple{l}{jjbare}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Spider
+
+\pgfcircdeclarebipolescaled{inductors}
+{} % extra anchors
+{\ctikzvalof{bipoles/jj/height}} % depth under path line
+{spider} % name 
+{\ctikzvalof{bipoles/jj/height}} % height above path line
+{\ctikzvalof{bipoles/jj/width}} % width
+{ % code
+   % \pgf@circ@setlinewidth{bipoles}{\pgfstartlinewidth}
+   \pgfsetlinewidth{\ctikzvalof{bipoles/jj/thickness}\pgfstartlinewidth}
+
+   % left to right acr
+   \pgfpathmoveto{\pgfpoint{\pgf@circ@res@left}{\pgf@circ@res@down}} % start point
+   \pgfpathcurveto
+    {\pgfpoint{\pgf@circ@res@left}{\pgf@circ@res@up}} % support point 1
+    {\pgfpoint{\pgf@circ@res@right}{\pgf@circ@res@down}} % support point 2
+    {\pgfpoint{\pgf@circ@res@right}{\pgf@circ@res@up}} % final point
+   \pgfusepath{stroke}
+
+   % right to left acr
+   \pgfpathmoveto{\pgfpoint{\pgf@circ@res@left}{\pgf@circ@res@up}} % start point
+   \pgfpathcurveto
+    {\pgfpoint{\pgf@circ@res@left}{\pgf@circ@res@down}} % support point 1
+    {\pgfpoint{\pgf@circ@res@right}{\pgf@circ@res@up}} % support point 2
+    {\pgfpoint{\pgf@circ@res@right}{\pgf@circ@res@down}} % final point
+   \pgfusepath{stroke}
+
+   % straight wire
+   \pgfsetlinewidth{\pgfstartlinewidth}
+   \pgfpathmoveto{\pgfpoint{\pgf@circ@res@right}{0pt}}
+   \pgfpathlineto{\pgfpoint{\pgf@circ@res@left}{0pt}}    
+   \pgfusepath{draw}
+}
+
+\pgfcirc@activate@bipole@simple{l}{spider}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Snail
+
+\pgfcircdeclarebipolescaled{inductors}
+{} % extra anchors
+{\ctikzvalof{bipoles/jj/height}} % depth under path line
+{snail} % name 
+{\ctikzvalof{bipoles/jj/height}} % height above path line
+{\ctikzvalof{bipoles/jj/width}} % width
+{ % code
+   % \pgf@circ@setlinewidth{bipoles}{\pgfstartlinewidth}
+   \pgfsetlinewidth{\ctikzvalof{bipoles/jj/thickness}\pgfstartlinewidth}
+
+   \pgfplothandlerlineto   
+   \pgfplotfunction{\x}{0,10,...,720}{
+      \pgfpointxy{
+       \ctikzvalof{bipoles/jj/width} *exp(-0.1*rad(\x))*cos(\x)}{
+       \ctikzvalof{bipoles/jj/height}*exp(-0.1*rad(\x))*sin(\x)}}
+   \pgfusepath{stroke}
+
+   % straight wire
+   \pgfsetlinewidth{\pgfstartlinewidth}
+   \pgfpathmoveto{\pgfpoint{\pgf@circ@res@right}{0pt}}
+   \pgfpathlineto{\pgfpointxy{
+      \ctikzvalof{bipoles/jj/width} *exp(-0.1*rad(360))*cos(360)
+   }{0pt}}    
+   \pgfusepath{draw}
+}
+
+\pgfcirc@activate@bipole@simple{l}{snail}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% American voltage sourse with rotating sign      -
+%  https://tex.stackexchange.com/questions/176296/circuitikz-voltage-source-american-style
+
+\pgfcircdeclarebipole{}{\ctikzvalof{bipoles/vsourceam/height}}{vsourceAM}{\ctikzvalof{bipoles/vsourceam/height}}{\ctikzvalof{bipoles/vsourceam/width}}{
+
+    \pgfsetlinewidth{\pgfkeysvalueof{/tikz/circuitikz/bipoles/thickness}\pgfstartlinewidth}
+
+    \pgfpathellipse{\pgfpointorigin}{\pgfpoint{0}{\pgf@circ@res@up}}{\pgfpoint{\pgf@circ@res@left}{0}}
+    \pgfusepath{draw}
+    \pgfscope
+        \pgftransformxshift{\ctikzvalof{bipoles/vsourceam/margin}\pgf@circ@res@left}
+        \pgftext[rotate=-\pgf@circ@direction]{$-$}
+        \pgfusepath{draw}
+    \endpgfscope
+    \pgfscope
+        \pgftransformxshift{\ctikzvalof{bipoles/vsourceam/margin}\pgf@circ@res@right}
+        \pgftext[rotate=-\pgf@circ@direction]{$+$}
+        \pgfusepath{draw}
+    \endpgfscope
+}
+\pgfcirc@activate@bipole@simple{l}{vsourceAM}
+\ctikzset{bipoles/vsourceam/margin=.5}% default too big - moves plus minus closer in 
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% showcase circ
+\newcommand{\thiscirc}[2]{ 
+ \texttt{#2} 
+ \hfill 
+ \begin{circuitikz} 
+    \draw (0,0) node[ #1 ] {};  
+ \end{circuitikz}
+}

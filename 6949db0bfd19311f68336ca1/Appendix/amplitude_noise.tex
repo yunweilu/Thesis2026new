@@ -1,0 +1,46 @@
+\section{Amplitude-noise-induced dephasing}
+\label{app:amplitude_noise}
+With sweet spot drive, the net cavity frequency
+\begin{equation}
+\widetilde{\omega}_{c,0\rightarrow 1}=\bar{\omega}_c+\frac{\Omega_0^2\chi}{\Delta_{bd}^2}.
+\end{equation}
+is insensitive to flux noise, but it is sensitive to drive-amplitude noise. 
+
+We consider an amplitude-noise spectrum containing both white-noise and $1/f$ components,
+\begin{equation}
+    S_\Omega(\omega) = (S_0^\text{w})^2 + \frac{(S_0^{1/f})^2}{|\omega|/2\pi},
+\end{equation}
+where $S_0^\text{w}$ and $S_0^{1/f}$ denote the amplitudes of the white-noise and $1/f$ noise contributions, respectively. Within leading-order perturbation theory, the corresponding cavity dephasing rate is
+\begin{equation}
+    \frac{1}{T_\phi}
+    =
+    (S_0^\text{w})^2
+    \bigg|\frac{\partial \widetilde{\omega}_{c,0\rightarrow 1}}{\partial \Omega}\bigg|^2
+    +
+    S_0^{1/f}
+    \bigg|\frac{\partial \widetilde{\omega}_{c,0\rightarrow 1}}{\partial \Omega}\bigg|
+    \sqrt{2\ln\!\bigl(|\omega_\text{ir} t|\bigr)}.
+\end{equation}
+
+We evaluate this expression for a specific hardware platform to estimate the corresponding dephasing time. For the Zurich Instruments HDAWG, the white-noise floor is $25\,\mathrm{nV}/\sqrt{\mathrm{Hz}}$, and the $1/f$ corner frequency is approximately $100\,\mathrm{kHz}$. These specifications imply a $1/f$ voltage-noise spectral density of approximately $7.9\,\mu\mathrm{V}/\sqrt{\mathrm{Hz}}$ at $1\,\mathrm{Hz}$.
+
+To convert these voltage-noise specifications into Rabi-frequency noise amplitudes, we use the linear relation between the drive voltage $V$ and the induced Rabi frequency $\Omega$. Because cryogenic attenuation suppresses the signal and the amplitude noise by the same factor, it does not by itself change the fractional noise, so that \(\delta \Omega / \Omega = \delta V / V\). Consequently, for a fixed target drive strength \(\Omega\), the effective drive-noise amplitudes depend on the AWG output voltage used to generate that drive. If the dominant instrument noise is set by an approximately additive voltage floor, then using a larger \(V_{\mathrm{AWG}}\) and compensating with additional attenuation reduces the fractional noise \(\delta V/V_{\mathrm{AWG}}\). The white-noise and \(1/f\) amplitudes are therefore
+\begin{equation}
+    S_0^\mathrm{w} = \Omega \times \frac{25\,\mathrm{nV}/\sqrt{\mathrm{Hz}}}{V_{\mathrm{AWG}}},
+    \qquad
+    S_0^{1/f} = \Omega \times \frac{7.9\,\mu\mathrm{V}/\sqrt{\mathrm{Hz}}}{V_{\mathrm{AWG}}},
+\end{equation}
+where \(V_{\mathrm{AWG}}\) is the peak output voltage of the instrument. As a representative operating point, for a target drive strength of \(\Omega/2\pi = 10\,\mathrm{MHz}\) and \(V_{\mathrm{AWG}}=0.5\,\mathrm{V}\), we obtain \(S_0^\mathrm{w} \approx 0.5\sqrt{\mathrm{Hz}}\) and \(S_0^{1/f} \approx 158\sqrt{\mathrm{Hz}}\).
+
+Using the parameters at the sweet spot in Fig.~\ref{fig:compare}(a), we numerically evaluate
+\begin{equation}
+    \bigg|\frac{\partial \widetilde{\omega}_{c,0\rightarrow 1}}{\partial \Omega}\bigg| = 0.044.
+\end{equation}
+Assuming a typical measurement timescale such that $\sqrt{2\ln\!\bigl(|\omega_\text{ir} t|\bigr)} \approx 4$ \cite{PhysRevX.7.031037factor4}, we obtain a pure dephasing rate of
+\begin{equation}
+    \frac{1}{T_\phi} \approx 35\,\mathrm{s}^{-1},
+\end{equation}
+which corresponds to an amplitude-noise-limited dephasing time of
+\begin{equation}
+    T_\phi \approx 29\,\mathrm{ms}.
+\end{equation}

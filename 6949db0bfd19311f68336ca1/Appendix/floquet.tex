@@ -1,0 +1,99 @@
+\section{Floquet Formalism}
+\label{app:floquet}
+In this Appendix, we justify the use of the static rotating-frame Hamiltonian $H_R$ [Eq. \eqref{eq:H_R_floquet}] to approximate the quasi-energies and Floquet states of the driven dispersive Hamiltonian.
+
+\subsection{Floquet Theorem}
+Consider a Hilbert space $\mathcal{H}$ of dimension $N$ and a time-dependent Hamiltonian $H(t)$ with period $\tau$, satisfying $H(t+\tau) = H(t)$. According to Floquet's theorem, there exists a $\tau$-periodic orthonormal basis $\{\ket{\psi_n(t)}\}$ and a set of quasienergies $\{\varepsilon_n\}$ such that the solutions to the Schrödinger equation, $\ket{\phi_n(t)}$, can be written as:
+\begin{equation}
+    \ket{\phi_n(t)} = e^{-i\varepsilon_n t} \ket{\psi_n(t)}.
+\end{equation}
+
+\subsection{Construction of the Solution}
+
+To acquire a differential equation that relates the periodic modes $\ket{\psi_n(t)}$ and quasienergies $\varepsilon_n$ to the Hamiltonian $H(t)$, we substitute the ansatz solution into the time-dependent Schrödinger equation:
+\begin{equation}
+    i\frac{\partial}{\partial t}\ket{\Psi(t)} = H(t)\,\ket{\Psi(t)}.
+\end{equation}
+Substituting $\ket{\Psi(t)} = e^{-i\varepsilon_n t} \ket{\psi_n(t)}$ yields the Floquet eigenvalue equation:
+\begin{equation}
+    \label{quasienergy equation}
+    \bigl(H(t)-i\partial_{t}\bigr)\,\ket{\psi_n(t)} = \varepsilon_n\,\ket{\psi_n(t)}.
+\end{equation}
+Since the quantities on both sides of Eq.~\eqref{quasienergy equation} are periodic, we can treat the time dependence using Fourier analysis. A concise way to formalize this is to introduce the \emph{Extended Hilbert space} $\mathcal{F}$, also known as Sambe space:
+\begin{equation}
+    \mathcal{F} = \mathrm{span}\bigl\{\kett{\mu,n} \;\big|\; \mu\in\mathbb{Z},\; n=1,\dots,N\bigr\}.
+\end{equation}
+We use the double ket notation $\kett{\cdot}$ to denote a basis vector in this extended space. Each basis vector corresponds to a function mapping time $t \in \mathbb{R}$ to a state in the physical space $\mathcal{H}$:
+\begin{equation}
+    \kett{\mu,n} : \mathbb{R} \rightarrow \mathcal{H}.
+\end{equation}
+Specifically, these basis states are defined as:
+\begin{equation}
+    \kett{\mu,n}(t) = \ket{n}\,e^{i\mu\omega_d t}, \qquad \omega_d \equiv \frac{2\pi}{\tau},
+\end{equation}
+where $\{\ket{n}\}$ is an orthonormal basis in $\mathcal{H}$. The inner product on $\mathcal{F}$ is defined by averaging over one period:
+\begin{align}
+    \bbrakett{\mu',n'}{\mu,n}
+    &\equiv \frac{1}{\tau}\int_{0}^{\tau}
+    \bigl[\kett{\mu',n'}(t)\bigr]^\dagger \!\kett{\mu,n}(t)\,dt \nonumber\\
+    &= \frac{1}{\tau}\int_{0}^{\tau} e^{-i\mu'\omega_d t}\bra{n'}\ket{n}e^{i\mu\omega_d t}\,dt \nonumber\\
+    &= \delta_{n,n'} \frac{1}{\tau}\int_{0}^{\tau} e^{i(\mu-\mu')\omega_d t}\,dt \nonumber\\
+    &= \delta_{\mu,\mu'}\,\delta_{n,n'}.
+\end{align}
+To rewrite Eq.~\eqref{quasienergy equation} in the basis $\kett{\mu,n}$, we define the quasienergy operator $\overline{Q}:\mathcal{F}\to\mathcal{F}$ such that its action in the time domain is:
+\begin{equation}
+    \bigl(\overline{Q}\,\kett{f}\bigr)(t) = \bigl(H(t)-i\partial_{t}\bigr)\,\ket{f(t)}.
+\end{equation}
+We define the vector $\kett{\psi_n} \in \mathcal{F}$ corresponding to the periodic function $\ket{\psi_n(t)}$ as:
+\begin{equation}
+    \label{eigenvector definition}
+    \kett{\psi_n}(t) = \ket{\psi_n(t)}.
+\end{equation}
+Consequently, Eq.~\eqref{quasienergy equation} is represented as an eigenvalue problem in the extended Hilbert space:
+\begin{equation}
+    \label{evals equation}
+    \overline{Q}\,\kett{\psi_n} = \varepsilon_n\,\kett{\psi_n}.
+\end{equation}
+To compute the eigenvalues and eigenvectors, we find the matrix representation of $\overline{Q}$ in the basis $\kett{\mu,n}$:
+\begin{equation}
+    \overline{Q} = \sum_{\mu',n'}\sum_{\mu,n} \bar{q}_{\mu' n',\mu n}\;\kett{\mu',n'}\bbra{\mu,n},
+\end{equation}
+with the corresponding matrix elements:
+\begin{align}
+    \bar{q}_{\mu' n',\mu n}
+    &= \bbrakett{\mu',n'}{\overline{Q}|\mu,n} \nonumber\\
+    &= \frac{1}{\tau}\int_{0}^{\tau} \bigl[\kett{\mu',n'}(t)\bigr]^\dagger\, \bigl(\overline{Q}\,\kett{\mu,n}(t)\bigr)\,dt.
+\end{align}
+Substituting the explicit form $\kett{\mu,n}(t)=\ket{n}e^{i\mu\omega_d t}$:
+\begin{align}
+    &\bar{q}_{\mu' n',\mu n}
+    = \frac{1}{\tau}\int_{0}^{\tau} e^{-i\mu'\omega_d t} \bra{n'} \bigl(H(t)-i\partial_t\bigr) \bigl(\ket{n}e^{i\mu\omega_d t}\bigr) \,dt \nonumber \\
+    &= \frac{1}{\tau}\int_{0}^{\tau} \langle n'|H(t)|n\rangle\,e^{i(\mu-\mu')\omega_d t}\,dt \;+\; \mu\,\omega_d\,\delta_{\mu'\mu}\,\delta_{n'n} \nonumber \\
+    &= h_{n' n}^{(\mu-\mu')} \;+\; \mu\,\omega_d\,\delta_{\mu'\mu}\,\delta_{n'n},
+\end{align}
+where $h_{n'n}^{(k)}$ are the Fourier components of the Hamiltonian:
+\begin{equation}
+    H^{(k)} = \frac{1}{\tau}\int_{0}^{\tau} H(t)\,e^{ik\omega_d t}\,dt, \qquad h^{(k)}_{n' n}=\langle n'|H^{(k)}|n\rangle.
+\end{equation}
+Thus, the operator $\overline{Q}$ can be written as a block matrix with indices $\mu$ running (for example) from $-2$ to $2$:
+\begin{widetext}
+\begin{equation}
+    \bar{q} = \begin{pmatrix}
+    \ddots & & & & & \\
+     & h^{(0)}-2\omega_d I & h^{(1)} & h^{(2)}  & h^{(3)} & h^{(4)}  \\
+     & h^{(-1)}            & h^{(0)}-\omega_d I & h^{(1)} & h^{(2)} & h^{(3)}  \\
+     & h^{(-2)}            & h^{(-1)}  & h^{(0)}    & h^{(1)} & h^{(2)}  \\
+     & h^{(-3)}            & h^{(-2)}  & h^{(-1)}   & h^{(0)}+\omega_d I & h^{(1)} \\
+     & h^{(-4)}            & h^{(-3)}  & h^{(-2)}   & h^{(-1)} & h^{(0)}+2\omega_d I \\
+     & & & & & \ddots
+    \end{pmatrix},
+\end{equation}
+\end{widetext}
+where $I$ is the identity matrix. Note that the off-diagonal blocks depend on the difference in indices, $H^{(\mu-\mu')}$. Finally, the quasienergies are found by solving the characteristic equation:
+\begin{equation}
+    \det\bigl(\bar{q}-\varepsilon \bar{I}\bigr)=0,
+\end{equation}
+where $\bar{I}$ is the identity operator in the extended Hilbert space.
+
+\input{Appendix/floqet_RWA}
+
