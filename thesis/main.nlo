@@ -1,47 +1,47 @@
-\nomenclatureentry{aFTT@[{FTT}]\begingroup Flux-Tunable Transmon\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{aSNAIL@[{SNAIL}]\begingroup Superconducting Nonlinear Asymmetric Inductive eLement\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{aLINC@[{LINC}]\begingroup Linear INductive Coupler\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{aQEC@[{QEC}]\begingroup quantum error-correction\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$b$@[{$b$}]\begingroup annihilates an excitation in the FTT mode\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$c$@[{$c$}]\begingroup annihilates an excitation in the cavity mode\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$K$@[{$K$}]\begingroup FTT anharmonicity\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$g$@[{$g$}]\begingroup coupling strength\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\delta\Phi(t)$@[{$\delta\Phi(t)$}]\begingroup its fluctuation\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\Phi$@[{$\Phi$}]\begingroup static flux bias\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\delta\omega_b(t)$@[{$\delta\omega_b(t)$}]\begingroup FTT-frequency fluctuation\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\chi$@[{$\chi$}]\begingroup dispersive shift\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\bar{\omega}_b$@[{$\bar{\omega}_b$}]\begingroup Lamb-shifted FTT frequency\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\bar{\omega}_c$@[{$\bar{\omega}_c$}]\begingroup Lamb-shifted cavity frequency\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\Delta_{bc}$@[{$\Delta_{bc}$}]\begingroup detuning $\Delta_{bc}=\omega_b-\omega_c$\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\Delta_{bd}$@[{$\Delta_{bd}$}]\begingroup FTT--drive detuning\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\Omega_0$@[{$\Omega_0$}]\begingroup amplitude of a coherent drive\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\omega_d$@[{$\omega_d$}]\begingroup drive frequency\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\Delta_m$@[{$\Delta_m$}]\begingroup relevant detuning $\Delta_m\equiv \Delta_{bd}+m\chi$\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\widetilde{\Delta}_{bd}$@[{$\widetilde{\Delta}_{bd}$}]\begingroup shifted FTT detuning $\widetilde{\Delta}_{bd}\equiv \Delta_{bd}-\Omega_0^2/K$\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\widetilde{\omega}_{c,m\rightarrow m+1}$@[{$\widetilde{\omega}_{c,m\rightarrow m+1}$}]\begingroup net cavity transition frequency between adjacent cavity levels\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$D_{m\rightarrow m+1}$@[{$D_{m\rightarrow m+1}$}]\begingroup susceptibility of the net cavity frequency to FTT-frequency fluctuation\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\gamma_{b\downarrow}$@[{$\gamma_{b\downarrow}$}]\begingroup FTT relaxation at rate $\gamma_{b\downarrow}$ (the FTT energy-relaxation rate)\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$S_{1/f}(\omega)$@[{$S_{1/f}(\omega)$}]\begingroup power spectral density of $1/f$ flux noise\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$S_0$@[{$S_0$}]\begingroup sets the flux-noise amplitude\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\rho_d$@[{$\rho_d$}]\begingroup density matrix in the effective drive frame\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\widetilde{\gamma}_{b\downarrow}^{\mathrm{un}}$@[{$\widetilde{\gamma}_{b\downarrow}^{\mathrm{un}}$}]\begingroup drive-renormalized FTT relaxation\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\gamma_{b\uparrow}^{\mathrm{un}}$@[{$\gamma_{b\uparrow}^{\mathrm{un}}$}]\begingroup drive-induced FTT excitation\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\gamma_{c\phi}^{\mathrm{un}}$@[{$\gamma_{c\phi}^{\mathrm{un}}$}]\begingroup cavity pure dephasing\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\widetilde{\gamma}_{c\downarrow}^{\mathrm{un}}$@[{$\widetilde{\gamma}_{c\downarrow}^{\mathrm{un}}$}]\begingroup renormalized cavity decay\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\gamma_{b\uparrow}^{1/f,\mathrm{un}}$@[{$\gamma_{b\uparrow}^{1/f,\mathrm{un}}$}]\begingroup transverse-noise-induced excitation rate\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\Gamma_{\phi,\mathrm{total}}$@[{$\Gamma_{\phi,\mathrm{total}}$}]\begingroup total cavity dephasing rate\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\gamma_{c\phi}^{\mathrm{sel}}$@[{$\gamma_{c\phi}^{\mathrm{sel}}$}]\begingroup cavity pure dephasing at a rate\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\gamma_{b\uparrow}^{\mathrm{sel}}$@[{$\gamma_{b\uparrow}^{\mathrm{sel}}$}]\begingroup FTT heating at a rate\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$T_2$@[{$T_2$}]\begingroup dephasing time extracted from an exponential fit to $P_X(t)$\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$X(t)$@[{$X(t)$}]\begingroup coherence operator\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$P_X(t)$@[{$P_X(t)$}]\begingroup coherence signal\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\omega_\mathrm{ir}$@[{$\omega_\mathrm{ir}$}]\begingroup infrared cutoff of the $1/f$ noise spectrum\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{a$\gamma_{\phi,n\rightarrow m}$@[{$\gamma_{\phi,n\rightarrow m}$}]\begingroup dephasing rate of cavity transitions induced by FTT-frequency fluctuations\nomeqref {0}|nompageref}{vi}
-\nomenclatureentry{aGRAPE@[{GRAPE}]\begingroup Gradient Ascent Pulse Engineering\nomeqref {3.0}|nompageref}{15}
-\nomenclatureentry{a$H_s$@[{$H_s$}]\begingroup Static system Hamiltonian\nomeqref {3.1}|nompageref}{16}
-\nomenclatureentry{a$h_c$@[{$h_c$}]\begingroup Control operator coupling the field to the system\nomeqref {3.1}|nompageref}{16}
-\nomenclatureentry{a$U_n$@[{$U_n$}]\begingroup Short-time propagator for time step $n$\nomeqref {3.3}|nompageref}{17}
-\nomenclatureentry{a$\mu$@[{$\mu$}]\begingroup Number of matrix-vector multiplications required for propagator-state product evaluation\nomeqref {3.52}|nompageref}{29}
-\nomenclatureentry{a$\kappa$@[{$\kappa$}]\begingroup Number of stored Hamiltonian matrix elements\nomeqref {4.0}|nompageref}{35}
-\nomenclatureentry{a$\varepsilon_I$, $\varepsilon_Q$@[{$\varepsilon_I$, $\varepsilon_Q$}]\begingroup Control envelopes in the $I$ and $Q$ quadratures\nomeqref {5.2}|nompageref}{46}
-\nomenclatureentry{a$K_\text{q}$@[{$K_\text{q}$}]\begingroup Transmon anharmonicity (self-Kerr)\nomeqref {5.2}|nompageref}{46}
+\nomenclatureentry{aFTT@[{FTT}]\begingroup Flux-Tunable Transmon\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{aSNAIL@[{SNAIL}]\begingroup Superconducting Nonlinear Asymmetric Inductive eLement\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{aLINC@[{LINC}]\begingroup Linear INductive Coupler\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{aQEC@[{QEC}]\begingroup quantum error-correction\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$b$@[{$b$}]\begingroup annihilates an excitation in the FTT mode\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$c$@[{$c$}]\begingroup annihilates an excitation in the cavity mode\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$K$@[{$K$}]\begingroup FTT anharmonicity\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$g$@[{$g$}]\begingroup coupling strength\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\delta\Phi(t)$@[{$\delta\Phi(t)$}]\begingroup its fluctuation\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\Phi$@[{$\Phi$}]\begingroup static flux bias\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\delta\omega_b(t)$@[{$\delta\omega_b(t)$}]\begingroup FTT-frequency fluctuation\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\chi$@[{$\chi$}]\begingroup dispersive shift\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\bar{\omega}_b$@[{$\bar{\omega}_b$}]\begingroup Lamb-shifted FTT frequency\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\bar{\omega}_c$@[{$\bar{\omega}_c$}]\begingroup Lamb-shifted cavity frequency\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\Delta_{bc}$@[{$\Delta_{bc}$}]\begingroup detuning $\Delta_{bc}=\omega_b-\omega_c$\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\Delta_{bd}$@[{$\Delta_{bd}$}]\begingroup FTT--drive detuning\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\Omega_0$@[{$\Omega_0$}]\begingroup amplitude of a coherent drive\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\omega_d$@[{$\omega_d$}]\begingroup drive frequency\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\Delta_m$@[{$\Delta_m$}]\begingroup relevant detuning $\Delta_m\equiv \Delta_{bd}+m\chi$\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\widetilde{\Delta}_{bd}$@[{$\widetilde{\Delta}_{bd}$}]\begingroup shifted FTT detuning $\widetilde{\Delta}_{bd}\equiv \Delta_{bd}-\Omega_0^2/K$\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\widetilde{\omega}_{c,m\rightarrow m+1}$@[{$\widetilde{\omega}_{c,m\rightarrow m+1}$}]\begingroup net cavity transition frequency between adjacent cavity levels\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$D_{m\rightarrow m+1}$@[{$D_{m\rightarrow m+1}$}]\begingroup susceptibility of the net cavity frequency to FTT-frequency fluctuation\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\gamma_{b\downarrow}$@[{$\gamma_{b\downarrow}$}]\begingroup FTT relaxation at rate $\gamma_{b\downarrow}$ (the FTT energy-relaxation rate)\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$S_{1/f}(\omega)$@[{$S_{1/f}(\omega)$}]\begingroup power spectral density of $1/f$ flux noise\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$S_0$@[{$S_0$}]\begingroup sets the flux-noise amplitude\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\rho_d$@[{$\rho_d$}]\begingroup density matrix in the effective drive frame\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\widetilde{\gamma}_{b\downarrow}^{\mathrm{un}}$@[{$\widetilde{\gamma}_{b\downarrow}^{\mathrm{un}}$}]\begingroup drive-renormalized FTT relaxation\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\gamma_{b\uparrow}^{\mathrm{un}}$@[{$\gamma_{b\uparrow}^{\mathrm{un}}$}]\begingroup drive-induced FTT excitation\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\gamma_{c\phi}^{\mathrm{un}}$@[{$\gamma_{c\phi}^{\mathrm{un}}$}]\begingroup cavity pure dephasing\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\widetilde{\gamma}_{c\downarrow}^{\mathrm{un}}$@[{$\widetilde{\gamma}_{c\downarrow}^{\mathrm{un}}$}]\begingroup renormalized cavity decay\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\gamma_{b\uparrow}^{1/f,\mathrm{un}}$@[{$\gamma_{b\uparrow}^{1/f,\mathrm{un}}$}]\begingroup transverse-noise-induced excitation rate\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\Gamma_{\phi,\mathrm{total}}$@[{$\Gamma_{\phi,\mathrm{total}}$}]\begingroup total cavity dephasing rate\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\gamma_{c\phi}^{\mathrm{sel}}$@[{$\gamma_{c\phi}^{\mathrm{sel}}$}]\begingroup cavity pure dephasing at a rate\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\gamma_{b\uparrow}^{\mathrm{sel}}$@[{$\gamma_{b\uparrow}^{\mathrm{sel}}$}]\begingroup FTT heating at a rate\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$T_2$@[{$T_2$}]\begingroup dephasing time extracted from an exponential fit to $P_X(t)$\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$X(t)$@[{$X(t)$}]\begingroup coherence operator\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$P_X(t)$@[{$P_X(t)$}]\begingroup coherence signal\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\omega_\mathrm{ir}$@[{$\omega_\mathrm{ir}$}]\begingroup infrared cutoff of the $1/f$ noise spectrum\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{a$\gamma_{\phi,n\rightarrow m}$@[{$\gamma_{\phi,n\rightarrow m}$}]\begingroup dephasing rate of cavity transitions induced by FTT-frequency fluctuations\nomeqref {0}|nompageref}{v}
+\nomenclatureentry{aGRAPE@[{GRAPE}]\begingroup Gradient Ascent Pulse Engineering\nomeqref {3.0}|nompageref}{35}
+\nomenclatureentry{a$H_s$@[{$H_s$}]\begingroup Static system Hamiltonian\nomeqref {3.1}|nompageref}{36}
+\nomenclatureentry{a$h_c$@[{$h_c$}]\begingroup Control operator coupling the field to the system\nomeqref {3.1}|nompageref}{36}
+\nomenclatureentry{a$U_n$@[{$U_n$}]\begingroup Short-time propagator for time step $n$\nomeqref {3.3}|nompageref}{37}
+\nomenclatureentry{a$\mu$@[{$\mu$}]\begingroup Number of matrix-vector multiplications required for propagator-state product evaluation\nomeqref {3.52}|nompageref}{49}
+\nomenclatureentry{a$\kappa$@[{$\kappa$}]\begingroup Number of stored Hamiltonian matrix elements\nomeqref {4.0}|nompageref}{55}
+\nomenclatureentry{a$\varepsilon_I$, $\varepsilon_Q$@[{$\varepsilon_I$, $\varepsilon_Q$}]\begingroup Control envelopes in the $I$ and $Q$ quadratures\nomeqref {5.2}|nompageref}{66}
+\nomenclatureentry{a$K_\text{q}$@[{$K_\text{q}$}]\begingroup Transmon anharmonicity (self-Kerr)\nomeqref {5.2}|nompageref}{66}

@@ -11,7 +11,7 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated field_info (elt_size=4) to 11845 items from 5000.
+Reallocated field_info (elt_size=4) to 11771 items from 5000.
 Database file #1: template_references.bib
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
@@ -24,45 +24,45 @@ Control: page (0) single
 Control: year (1) truncated
 Control: production of eprint (0) enabled
 Warning--can't use both volume and number fields in maclaurin2015autograd
-You've used 185 entries,
+You've used 183 entries,
             6079 wiz_defined-function locations,
-            2521 strings with 34764 characters,
-and the built_in function-call counts, 156798 in all, are:
-= -- 13025
-> -- 3138
-< -- 628
-+ -- 1119
-- -- 720
-* -- 20980
-:= -- 16294
-add.period$ -- 185
-call.type$ -- 185
-change.case$ -- 762
-chr.to.int$ -- 167
-cite$ -- 186
-duplicate$ -- 14523
-empty$ -- 11537
-format.name$ -- 2108
-if$ -- 32299
+            2511 strings with 34542 characters,
+and the built_in function-call counts, 155422 in all, are:
+= -- 12911
+> -- 3112
+< -- 623
++ -- 1109
+- -- 714
+* -- 20801
+:= -- 16137
+add.period$ -- 183
+call.type$ -- 183
+change.case$ -- 753
+chr.to.int$ -- 165
+cite$ -- 184
+duplicate$ -- 14392
+empty$ -- 11435
+format.name$ -- 2091
+if$ -- 32026
 int.to.chr$ -- 22
-int.to.str$ -- 193
-missing$ -- 2270
-newline$ -- 607
-num.names$ -- 555
-pop$ -- 6901
+int.to.str$ -- 191
+missing$ -- 2253
+newline$ -- 601
+num.names$ -- 549
+pop$ -- 6839
 preamble$ -- 1
-purify$ -- 925
+purify$ -- 915
 quote$ -- 0
-skip$ -- 7400
+skip$ -- 7338
 stack$ -- 0
-substring$ -- 3584
-swap$ -- 11995
-text.length$ -- 202
+substring$ -- 3558
+swap$ -- 11892
+text.length$ -- 200
 text.prefix$ -- 0
 top$ -- 8
-type$ -- 2392
+type$ -- 2367
 warning$ -- 1
-while$ -- 449
+while$ -- 445
 width$ -- 0
-write$ -- 1437
+write$ -- 1423
 (There was 1 warning)
