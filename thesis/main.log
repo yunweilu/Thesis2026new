@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.10)  27 MAR 2026 14:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.10)  27 MAR 2026 14:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1164,12 +1164,17 @@ Overfull \hbox (16.8285pt too wide) in paragraph at lines 12--13
 \OT1/ptm/m/n/12 based pro-ces-sors, su-per-con-duct-ing mi-crowave cav-i-ties pro-vide a dis-tinct and com-ple-men-tary paradigm
  []
 
-[4] [5] [6] [7]) [8] [9] (./chapter2.tex [10]
+[4] [5] [6] [7]) [8] (./chapter2.tex [9]
 Chapter 2.
-[11
 
-] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33]) (./chapter3.tex
-Overfull \hbox (5.00793pt too wide) in paragraph at lines 978--1
+Overfull \hbox (13.4811pt too wide) in paragraph at lines 4--5
+\OT1/ptm/m/n/12 This chap-ter de-vel-ops the con-trol frame-work for bosonic modes in su-per-con-duct-ing cir-cuits. Through-
+ []
+
+[10
+
+] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33]) (./chapter3.tex
+Overfull \hbox (5.00793pt too wide) in paragraph at lines 926--1
 \OT1/ptm/m/n/12 ter-ac-tion en-ables co-her-ent trans-fer and in-ter-fer-ence be-tween cav-i-ties, while the two-mode-squeezing
  []
 
@@ -1195,7 +1200,7 @@ Overfull \hbox (43.72539pt too wide) in paragraph at lines 380--384
 
 
 pdfTeX warning: pdflatex (file ./ch2_figures/qoc/Comparison.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<ch2_figures/qoc/Comparison.pdf, id=1422, 1147.11557pt x 569.67027pt>
+<ch2_figures/qoc/Comparison.pdf, id=1413, 1147.11557pt x 569.67027pt>
 File: ch2_figures/qoc/Comparison.pdf Graphic file (type pdf)
 <use ch2_figures/qoc/Comparison.pdf>
 Package pdftex.def Info: ch2_figures/qoc/Comparison.pdf  used on input line 390.
@@ -1208,7 +1213,7 @@ l.398
        <./ch2_figures/qoc/Comparison.pdf>] [51]
 
 pdfTeX warning: pdflatex (file ./ch2_figures/forward_backward.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<ch2_figures/forward_backward.pdf, id=1483, 1237.5234pt x 806.3656pt>
+<ch2_figures/forward_backward.pdf, id=1474, 1237.5234pt x 806.3656pt>
 File: ch2_figures/forward_backward.pdf Graphic file (type pdf)
 <use ch2_figures/forward_backward.pdf>
 Package pdftex.def Info: ch2_figures/forward_backward.pdf  used on input line 438.
@@ -1230,7 +1235,7 @@ l.74
      ] [58]
 
 pdfTeX warning: pdflatex (file ./ch3_figures/state.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<ch3_figures/state.pdf, id=1631, 899.88797pt x 545.25508pt>
+<ch3_figures/state.pdf, id=1622, 899.88797pt x 545.25508pt>
 File: ch3_figures/state.pdf Graphic file (type pdf)
 <use ch3_figures/state.pdf>
 Package pdftex.def Info: ch3_figures/state.pdf  used on input line 96.
@@ -1248,13 +1253,13 @@ Overfull \hbox (10.02441pt too wide) in paragraph at lines 105--106
 
 
 pdfTeX warning: pdflatex (file ./ch3_figures/gate.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<ch3_figures/gate.pdf, id=1657, 876.4785pt x 544.50124pt>
+<ch3_figures/gate.pdf, id=1648, 876.4785pt x 544.50124pt>
 File: ch3_figures/gate.pdf Graphic file (type pdf)
 <use ch3_figures/gate.pdf>
 Package pdftex.def Info: ch3_figures/gate.pdf  used on input line 113.
 (pdftex.def)             Requested size: 469.75502pt x 291.82455pt.
 [60]
-<ch3_figures/decision_tree.pdf, id=1668, 679.16333pt x 570.86174pt>
+<ch3_figures/decision_tree.pdf, id=1659, 679.16333pt x 570.86174pt>
 File: ch3_figures/decision_tree.pdf Graphic file (type pdf)
 <use ch3_figures/decision_tree.pdf>
 Package pdftex.def Info: ch3_figures/decision_tree.pdf  used on input line 128.
@@ -1276,7 +1281,7 @@ Chapter 5.
 ] [66]
 
 pdfTeX warning: pdflatex (file ./ch4_figures/fig_flowchart.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<ch4_figures/fig_flowchart.pdf, id=1762, 246.9225pt x 394.09131pt>
+<ch4_figures/fig_flowchart.pdf, id=1753, 246.9225pt x 394.09131pt>
 File: ch4_figures/fig_flowchart.pdf Graphic file (type pdf)
 <use ch4_figures/fig_flowchart.pdf>
 Package pdftex.def Info: ch4_figures/fig_flowchart.pdf  used on input line 53.
@@ -1287,7 +1292,7 @@ LaTeX Warning: Float too large for page by 46.94232pt on input line 57.
 [67]
 
 pdfTeX warning: pdflatex (file ./ch4_figures/fig_qoc.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<ch4_figures/fig_qoc.pdf, id=1782, 511.9125pt x 160.16136pt>
+<ch4_figures/fig_qoc.pdf, id=1773, 511.9125pt x 160.16136pt>
 File: ch4_figures/fig_qoc.pdf Graphic file (type pdf)
 <use ch4_figures/fig_qoc.pdf>
 Package pdftex.def Info: ch4_figures/fig_qoc.pdf  used on input line 84.
@@ -1300,7 +1305,7 @@ Overfull \hbox (16.75423pt too wide) in paragraph at lines 96--105
 [68]
 
 pdfTeX warning: pdflatex (file ./ch4_figures/fig_qoc_qctrl.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<ch4_figures/fig_qoc_qctrl.pdf, id=1797, 511.9125pt x 160.16136pt>
+<ch4_figures/fig_qoc_qctrl.pdf, id=1788, 511.9125pt x 160.16136pt>
 File: ch4_figures/fig_qoc_qctrl.pdf Graphic file (type pdf)
 <use ch4_figures/fig_qoc_qctrl.pdf>
 Package pdftex.def Info: ch4_figures/fig_qoc_qctrl.pdf  used on input line 108.
@@ -1356,13 +1361,13 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 71.
 
 [83] [84] [85] [86] [87] [88] [89] [90]) (../6949db0bfd19311f68336ca1/Sec 2/setup.tex
-<../6949db0bfd19311f68336ca1/plot/device_plot/deviceplot/device.pdf, id=2099, 325.215pt x 233.87375pt>
+<../6949db0bfd19311f68336ca1/plot/device_plot/deviceplot/device.pdf, id=2090, 325.215pt x 233.87375pt>
 File: ../6949db0bfd19311f68336ca1/plot/device_plot/deviceplot/device.pdf Graphic file (type pdf)
 <use ../6949db0bfd19311f68336ca1/plot/device_plot/deviceplot/device.pdf>
 Package pdftex.def Info: ../6949db0bfd19311f68336ca1/plot/device_plot/deviceplot/device.pdf  used on input line 8.
 (pdftex.def)             Requested size: 469.75502pt x 337.84492pt.
  [91]) (../6949db0bfd19311f68336ca1/Sec 2/driven-induced-flux-insensitive-points.tex
-<../6949db0bfd19311f68336ca1/Sec 2/compare.pdf, id=2111, 579.16376pt x 200.75pt>
+<../6949db0bfd19311f68336ca1/Sec 2/compare.pdf, id=2102, 579.16376pt x 200.75pt>
 File: ../6949db0bfd19311f68336ca1/Sec 2/compare.pdf Graphic file (type pdf)
 <use ../6949db0bfd19311f68336ca1/Sec 2/compare.pdf>
 Package pdftex.def Info: ../6949db0bfd19311f68336ca1/Sec 2/compare.pdf  used on input line 5.
@@ -1387,7 +1392,7 @@ Overfull \hbox (6.22874pt too wide) in paragraph at lines 21--23
 [99
 
 ] [100]) (../6949db0bfd19311f68336ca1/Sec 3/selective.tex [101]
-<../6949db0bfd19311f68336ca1/Sec 3/total_rate.pdf, id=2317, 598.235pt x 714.67pt>
+<../6949db0bfd19311f68336ca1/Sec 3/total_rate.pdf, id=2308, 598.235pt x 714.67pt>
 File: ../6949db0bfd19311f68336ca1/Sec 3/total_rate.pdf Graphic file (type pdf)
 <use ../6949db0bfd19311f68336ca1/Sec 3/total_rate.pdf>
 Package pdftex.def Info: ../6949db0bfd19311f68336ca1/Sec 3/total_rate.pdf  used on input line 45.
@@ -1414,7 +1419,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1.
 
 [103]) (../6949db0bfd19311f68336ca1/Appendix/numerics_trajectory.tex [104]
-<../6949db0bfd19311f68336ca1/Appendix/noise_spectrum_plot.pdf, id=2348, 229.54117pt x 154.17738pt>
+<../6949db0bfd19311f68336ca1/Appendix/noise_spectrum_plot.pdf, id=2339, 229.54117pt x 154.17738pt>
 File: ../6949db0bfd19311f68336ca1/Appendix/noise_spectrum_plot.pdf Graphic file (type pdf)
 <use ../6949db0bfd19311f68336ca1/Appendix/noise_spectrum_plot.pdf>
 Package pdftex.def Info: ../6949db0bfd19311f68336ca1/Appendix/noise_spectrum_plot.pdf  used on input line 29.
@@ -1425,7 +1430,7 @@ Overfull \hbox (2.32884pt too wide) in paragraph at lines 96--98
  []
 
 [109]
-<../6949db0bfd19311f68336ca1/Appendix/preparation_fidelity_plot.pdf, id=2405, 227.961pt x 158.46925pt>
+<../6949db0bfd19311f68336ca1/Appendix/preparation_fidelity_plot.pdf, id=2396, 227.961pt x 158.46925pt>
 File: ../6949db0bfd19311f68336ca1/Appendix/preparation_fidelity_plot.pdf Graphic file (type pdf)
 <use ../6949db0bfd19311f68336ca1/Appendix/preparation_fidelity_plot.pdf>
 Package pdftex.def Info: ../6949db0bfd19311f68336ca1/Appendix/preparation_fidelity_plot.pdf  used on input line 120.
@@ -1448,7 +1453,7 @@ l.1 \chapter
             {Applications to Bosonic Error-Correction Codes} <../6949db0bfd19311f68336ca1/Appendix/preparation_fidelity_plot.pdf>]
 Chapter 8.
 (../6949db0bfd19311f68336ca1/Sec4/Sec4.tex
-<../6949db0bfd19311f68336ca1/Sec4/qec_plot.pdf, id=2745, 1488.54091pt x 706.96745pt>
+<../6949db0bfd19311f68336ca1/Sec4/qec_plot.pdf, id=2736, 1488.54091pt x 706.96745pt>
 File: ../6949db0bfd19311f68336ca1/Sec4/qec_plot.pdf Graphic file (type pdf)
 <use ../6949db0bfd19311f68336ca1/Sec4/qec_plot.pdf>
 Package pdftex.def Info: ../6949db0bfd19311f68336ca1/Sec4/qec_plot.pdf  used on input line 5.
@@ -1461,7 +1466,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.8.1}) h
                                                   \__shipout_drop_firstpage_...
 l.28 A
       fter a single photon loss, the code space maps as \( |0_L\rangle \righ... <../6949db0bfd19311f68336ca1/Sec4/qec_plot.pdf>] [116]) [117] (../6949db0bfd19311f68336ca1/Conclusion.tex) (../6949db0bfd19311f68336ca1/Appendix/higher-order.tex [118]
-<../6949db0bfd19311f68336ca1/Appendix/higher_order.pdf, id=2799, 226.8475pt x 170.6375pt>
+<../6949db0bfd19311f68336ca1/Appendix/higher_order.pdf, id=2790, 226.8475pt x 170.6375pt>
 File: ../6949db0bfd19311f68336ca1/Appendix/higher_order.pdf Graphic file (type pdf)
 <use ../6949db0bfd19311f68336ca1/Appendix/higher_order.pdf>
 Package pdftex.def Info: ../6949db0bfd19311f68336ca1/Appendix/higher_order.pdf  used on input line 6.
@@ -1472,7 +1477,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.8.2}) h
                                                   \__shipout_drop_firstpage_...
 l.25 \end{equation}
                     <../6949db0bfd19311f68336ca1/Appendix/higher_order.pdf>]) (../6949db0bfd19311f68336ca1/Appendix/SNAIL.tex
-<../6949db0bfd19311f68336ca1/Appendix/SNAILss.pdf, id=2827, 237.88875pt x 170.6375pt>
+<../6949db0bfd19311f68336ca1/Appendix/SNAILss.pdf, id=2818, 237.88875pt x 170.6375pt>
 File: ../6949db0bfd19311f68336ca1/Appendix/SNAILss.pdf Graphic file (type pdf)
 <use ../6949db0bfd19311f68336ca1/Appendix/SNAILss.pdf>
 Package pdftex.def Info: ../6949db0bfd19311f68336ca1/Appendix/SNAILss.pdf  used on input line 5.
@@ -1534,7 +1539,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 ]
 
 pdfTeX warning: pdflatex (file ./ch3_figures/uscaling.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<ch3_figures/uscaling.pdf, id=3178, 828.85661pt x 342.27272pt>
+<ch3_figures/uscaling.pdf, id=3175, 828.85661pt x 342.27272pt>
 File: ch3_figures/uscaling.pdf Graphic file (type pdf)
 <use ch3_figures/uscaling.pdf>
 Package pdftex.def Info: ch3_figures/uscaling.pdf  used on input line 25.
@@ -1618,7 +1623,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.1.F.1})
                                                   \__shipout_drop_firstpage_...
 l.42 
      ] [158]) (../6949db0bfd19311f68336ca1/Appendix/unselective_dephasing_rate.tex [159]
-<../6949db0bfd19311f68336ca1/Appendix/relaxation_excitation_plot.pdf, id=3391, 481.8pt x 569.12625pt>
+<../6949db0bfd19311f68336ca1/Appendix/relaxation_excitation_plot.pdf, id=3388, 481.8pt x 569.12625pt>
 File: ../6949db0bfd19311f68336ca1/Appendix/relaxation_excitation_plot.pdf Graphic file (type pdf)
 <use ../6949db0bfd19311f68336ca1/Appendix/relaxation_excitation_plot.pdf>
 Package pdftex.def Info: ../6949db0bfd19311f68336ca1/Appendix/relaxation_excitation_plot.pdf  used on input line 32.
@@ -1653,21 +1658,21 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 707A7F215E0B0C9AA4747494A1234DE5;22474.
+(rerunfilecheck)             Checksum: 9D58878158EF49D282028DAAC38E7175;22698.
  ) 
 Here is how much of TeX's memory you used:
- 39369 strings out of 474116
- 789619 string characters out of 5743681
+ 39368 strings out of 474116
+ 789599 string characters out of 5743681
  1950187 words of memory out of 5000000
- 60135 multiletter control sequences out of 15000+600000
+ 60134 multiletter control sequences out of 15000+600000
  588627 words of font info for 104 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 110i,20n,108p,2748b,1482s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 110i,20n,108p,2609b,1482s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/stix/STIXGeneral-Bold.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/stix/STIXGeneral-Italic.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/stix/STIXGeneral-Regular.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/bbold-type1/bbold7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/stmaryrd/stmary10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (182 pages, 5825940 bytes).
+Output written on main.pdf (182 pages, 5824468 bytes).
 PDF statistics:
- 4680 PDF objects out of 5155 (max. 8388607)
- 3737 compressed objects within 38 object streams
+ 4677 PDF objects out of 5155 (max. 8388607)
+ 3734 compressed objects within 38 object streams
  835 named destinations out of 1000 (max. 500000)
- 919 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 927 words of extra memory for PDF output out of 10000 (max. 10000000)
 
