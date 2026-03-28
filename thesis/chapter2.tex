@@ -6,11 +6,18 @@ This chapter develops the control framework for bosonic modes in superconducting
 \section{Oscillator Circuit Hamiltonian}
 \label{sec:oscillator_hamiltonian}
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{ch2_figures/circuit.pdf}
+  \caption[Circuit diagrams for the main building blocks of bosonic control in superconducting circuits.]{Circuit diagrams for the main building blocks of bosonic control in superconducting circuits. (a)~A parallel LC oscillator, consisting of an inductor~$L$ and a capacitor~$C$, whose quantization yields the harmonic Hamiltonian discussed in Section~\ref{sec:oscillator_hamiltonian}. (b)~A capacitively driven LC oscillator, where an external voltage source~$V_d(t)$ couples to the circuit through a coupling capacitor, producing the linear drive analyzed in Section~\ref{sec:oscillator_hamiltonian}. (c)~A transmon qubit, formed by shunting a Josephson junction (cross) with a large capacitance~$C_\Sigma$. The Josephson nonlinearity provides the anharmonic spectrum described in Section~\ref{sec:transmon}. (d)~A SQUID loop, in which two Josephson junctions in parallel allow the effective Josephson energy to be tuned by the external magnetic flux~$\Phi_{\mathrm{ext}}$, as discussed in Section~\ref{sec:transmon}. (e)~A transmon--cavity composite system, where the transmon is capacitively coupled to a cavity mode. In the dispersive regime this coupling mediates qubit-state-dependent operations on the cavity, forming the basis of the ECD control scheme developed in Section~\ref{sec:ecd_single_cavity}.}
+  \label{fig:circuit_elements}
+\end{figure}
+
 The simplest circuit is the lossless LC oscillator, which serves as the foundational circuit element of superconducting quantum circuits. Its importance is twofold. First, it provides a direct correspondence between circuit variables and canonical variables in quantum mechanics. Second, it illustrates a fundamental limitation: a purely linear oscillator, even when driven by classical fields, cannot generate non-Gaussian states such as Fock states from the vacuum. This limitation motivates the introduction of a nonlinear element in the next section.
 
 \subsection{Quantization of the LC oscillator}
 
-Consider an inductor $L$ and a capacitor $C$ connected in parallel. The natural generalized coordinate is the node flux
+Consider an inductor $L$ and a capacitor $C$ connected in parallel [Fig.~\ref{fig:circuit_elements}(a)]. The natural generalized coordinate is the node flux
 \begin{equation}
     \Phi(t) = \int_{-\infty}^{t} V(t')\,dt',
 \end{equation}
@@ -89,7 +96,7 @@ Because the level spacing is uniform, the linear oscillator does not distinguish
 
 \subsection{Classical voltage drive of a linear oscillator}
 
-A classical voltage source couples linearly to a linear LC oscillator. In the circuit description, a drive voltage $V_d(t)$ applied through a capacitive coupling modifies the electrostatic energy and therefore adds a term linear in the node charge operator $\hat Q$. After quantization, $\hat Q$ is proportional to a linear combination of $\hat a$ and $\hat a^\dagger$, so the driven oscillator Hamiltonian can be written as
+A classical voltage source couples linearly to a linear LC oscillator [Fig.~\ref{fig:circuit_elements}(b)]. In the circuit description, a drive voltage $V_d(t)$ applied through a capacitive coupling modifies the electrostatic energy and therefore adds a term linear in the node charge operator $\hat Q$. After quantization, $\hat Q$ is proportional to a linear combination of $\hat a$ and $\hat a^\dagger$, so the driven oscillator Hamiltonian can be written as
 \begin{equation}
     \hat H(t)
     =
@@ -157,7 +164,7 @@ This limitation motivates the introduction of anharmonicity. Once the level spac
 The linear LC oscillator provides a clean starting point for circuit quantization, but its equally spaced spectrum prevents selective preparation of non-Gaussian states. A superconducting qubit requires a circuit element that breaks exact harmonicity. This role is played by the Josephson junction. When a junction is shunted by a large capacitance, the resulting device---the transmon---forms a weakly anharmonic oscillator whose lowest two levels can be isolated and used as an effective qubit.
 \subsection{Josephson Hamiltonian}
 
-A Josephson junction consists of two superconductors separated by a thin insulating barrier through which Cooper pairs tunnel coherently. Unlike a linear inductor, whose energy is quadratic in current, the tunneling energy depends periodically on the superconducting phase difference across the barrier. This nonlinear phase dependence is the origin of the anharmonicity that distinguishes a Josephson circuit from an LC oscillator. The critical current $I_c$ sets the maximum dissipationless current that the junction can support.
+A Josephson junction [Fig.~\ref{fig:circuit_elements}(c)] consists of two superconductors separated by a thin insulating barrier through which Cooper pairs tunnel coherently. Unlike a linear inductor, whose energy is quadratic in current, the tunneling energy depends periodically on the superconducting phase difference across the barrier. This nonlinear phase dependence is the origin of the anharmonicity that distinguishes a Josephson circuit from an LC oscillator. The critical current $I_c$ sets the maximum dissipationless current that the junction can support.
 
 The junction is characterized by the nonlinear current--phase relation
 \begin{equation}
@@ -257,7 +264,7 @@ This is the Josephson analogue of the LC resonance frequency $1/\sqrt{LC}$, with
 The Josephson inductance $L_J$ is the effective inductance obtained by linearizing the junction about $\varphi=0$; unlike a geometric inductance, it is set by the junction parameters and can be tuned in flux-controlled circuits.
 \subsection{Flux-tunable transmon}
 
-Replacing a single Josephson junction by a SQUID loop makes the effective Josephson energy tunable by external magnetic flux. A SQUID consists of two Josephson junctions connected in parallel around a superconducting loop. An external flux $\Phi_{\mathrm{ext}}$ threading the loop imposes a phase bias between the two junctions, so the total Josephson tunneling amplitude is the coherent sum of two paths. As a result, the effective Josephson energy varies periodically with flux through constructive or destructive interference.
+Replacing a single Josephson junction by a SQUID loop [Fig.~\ref{fig:circuit_elements}(d)] makes the effective Josephson energy tunable by external magnetic flux. A SQUID consists of two Josephson junctions connected in parallel around a superconducting loop. An external flux $\Phi_{\mathrm{ext}}$ threading the loop imposes a phase bias between the two junctions, so the total Josephson tunneling amplitude is the coherent sum of two paths. As a result, the effective Josephson energy varies periodically with flux through constructive or destructive interference.
 
 For junction energies $E_{J1}$ and $E_{J2}$, the SQUID behaves as a single junction with flux-dependent effective Josephson energy
 \begin{equation}
@@ -320,7 +327,7 @@ As discussed in Section~\ref{sec:transmon}, its spectrum forms a ladder of level
 \end{equation}
 where \(\alpha<0\) is the transmon anharmonicity. Because \(|\alpha|\) is small compared with \(\omega_{01}\), the transmon remains close to a harmonic oscillator, but its level spacings are not exactly equal. This weak anharmonicity is sufficient to isolate the lowest transition under appropriate control conditions.
 
-Now couple the transmon capacitively to a single cavity mode of frequency \(\omega_c\), described by the annihilation operator \(\hat{a}\). In the transmon eigenbasis, the uncoupled Hamiltonian is
+Now couple the transmon capacitively to a single cavity mode of frequency \(\omega_c\), described by the annihilation operator \(\hat{a}\) [Fig.~\ref{fig:circuit_elements}(e)]. In the transmon eigenbasis, the uncoupled Hamiltonian is
 \begin{equation}
     \hat{H}_0
     =

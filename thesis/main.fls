@@ -482,6 +482,11 @@ INPUT Introduction.tex
 INPUT ./chapter2.tex
 INPUT ./chapter2.tex
 INPUT chapter2.tex
+INPUT ./ch2_figures/circuit.pdf
+INPUT ./ch2_figures/circuit.pdf
+INPUT ./ch2_figures/circuit.pdf
+INPUT ./ch2_figures/circuit.pdf
+INPUT ./ch2_figures/circuit.pdf
 INPUT ./chapter3.tex
 INPUT ./chapter3.tex
 INPUT chapter3.tex

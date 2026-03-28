@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1774639458.96269 "main.aux" "main.bbl" "main" 1774639461.63513 0
+["bibtex main"] 1774719908.34923 "main.aux" "main.bbl" "main" 1774719930.01572 0
   "./template_references.bib" 1774470023.72585 48709 d93779b58de29787e1c94def5566326e ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/revtex/apsrev4-2.bst" 1601932770 69609 e9dea59f0e753ccda3ddc8f5806d846d ""
-  "main.aux" 1774639461.19198 85781 3d0a1ab13f456ece8efb4c7da00c68ea "pdflatex"
+  "main.aux" 1774719929.60704 85569 2316487746988c1d492d07a6c108a330 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1774639459.07194 "/Users/yunwei/Desktop/project/Thesis/Thesis2026/thesis/main.tex" "main.pdf" "main" 1774639461.63543 0
+["pdflatex"] 1774719927.54107 "/Users/yunwei/Desktop/project/Thesis/Thesis2026/thesis/main.tex" "main.pdf" "main" 1774719930.01605 0
   "../6949db0bfd19311f68336ca1/Appendix/Adiabatic transition.tex" 1774637812.75728 6706 bfad36406cd03d3997408ede2d375c4f ""
   "../6949db0bfd19311f68336ca1/Appendix/Hamiltonian Derivation and Noise Analysis.tex" 1774637812.7576 6456 3b25ef19004326c8923cd9076a06b687 ""
   "../6949db0bfd19311f68336ca1/Appendix/Obtain H_d by Schrieffer–Wolff transformation.tex" 1774637812.7578 2434 5f77556405796eb21b714b18bb1e40f2 ""
@@ -318,6 +318,7 @@
   "acknowledgements.tex" 1772142209.76523 758 90b07c3df5ae9b72e32f1d11d1ae51bd ""
   "appendix.tex" 1774637954.24202 10003 9be66148dc8b2f53271bf0ecdf54f2fa ""
   "approvalPage.tex" 1772142209.76546 3200 c7d8b06218743d0e4812a4a1e3fbdba4 ""
+  "ch2_figures/circuit.pdf" 1774719713.40205 8165 f5be39c29f0dc95b43ad6f86865ad14e ""
   "ch2_figures/forward_backward.pdf" 1773193786.05072 1238921 a1d7971b884294b7bda521c6e3a2c95b ""
   "ch2_figures/qoc/Comparison.pdf" 1773193786.04825 462584 1d7a6a2591c4ec46ab8bd0d23dde0bfd ""
   "ch3_figures/decision_tree.pdf" 1773193786.04598 47489 f8e007fb2567becab059ed04b5468733 ""
@@ -327,7 +328,7 @@
   "ch4_figures/fig_flowchart.pdf" 1773193786.06302 479462 f56f8a295d70f87abbf36320875a77ee ""
   "ch4_figures/fig_qoc.pdf" 1773193786.0644 255924 0d07a06aad39dd7c61edf5f70adddb26 ""
   "ch4_figures/fig_qoc_qctrl.pdf" 1773193786.06609 244754 8671c60b98c52c69843bff91a750537c ""
-  "chapter2.tex" 1774639456.18026 40215 2b8760feb1c5f76a625adab815c34fd4 ""
+  "chapter2.tex" 1774719927.29928 40271 c2a2f872bcfc53dd25ea60cafd51312e ""
   "chapter3.tex" 1773780122.95035 35449 c29669b34643deeb5b71d554e344b185 ""
   "chapter4.tex" 1773780122.95095 19695 85bbca95188dc378ef170af0a652a377 ""
   "chapter5.tex" 1773780122.95151 15779 9132f2e72f39dc9be99accbc0946a5f5 ""
@@ -337,15 +338,15 @@
   "conclusion.tex" 1774637812.83913 62 620c53cc59769aa4be3e682bfffaa19d ""
   "copyright.tex" 1773778649.94939 106 5ecc320c0ed2938099678403927ed392 ""
   "dedication.tex" 1773778649.94962 155 b1dfc22f4592cb44839f546fa1cfdf16 ""
-  "main.aux" 1774639461.19198 85781 3d0a1ab13f456ece8efb4c7da00c68ea "pdflatex"
-  "main.bbl" 1774639459.06789 81627 c2c63f86d2328c33be4d1c08d4cc6d6e "bibtex main"
+  "main.aux" 1774719929.60704 85569 2316487746988c1d492d07a6c108a330 "pdflatex"
+  "main.bbl" 1774719908.45336 81627 c2c63f86d2328c33be4d1c08d4cc6d6e "bibtex main"
   "main.glsdefs" 1774470582.65675 2183 5d55ae83543cacc95b309067f4348a26 ""
-  "main.lof" 1774639461.19748 7106 983a4356ce33d406d4e85b9d20218e82 "pdflatex"
-  "main.lot" 1774639461.19744 661 81eb7a578c729764c2f4f45b8eb30b3e "pdflatex"
+  "main.lof" 1774719929.61285 7274 17057518f20c02d7b8461706a36c82ae "pdflatex"
+  "main.lot" 1774719929.61282 661 cf334d9396c2c6cd754dae387ac2192a "pdflatex"
   "main.nls" 1774471107.43317 5034 cf8d94eef9587dbc2df688b97c5e53ae ""
-  "main.out" 1774639461.19696 22698 9d58878158ef49d282028daac38e7175 "pdflatex"
+  "main.out" 1774719929.61238 22183 42b10b018ead3a6e516403ff23349549 "pdflatex"
   "main.tex" 1774470731.82696 9008 fa6918d33679f735b71ea5e17136b824 ""
-  "main.toc" 1774639461.19729 11985 63f3c9f597f06efffe95d8ec68b64fc9 "pdflatex"
+  "main.toc" 1774719929.61274 11768 5d688d2305badd2920c725d4cd50607e "pdflatex"
   "publications.tex" 1772142209.7682 256 91ff23335f88a51f82d4a6422e8725ce ""
   "symbols.tex" 1774471079.08114 2789 e10040d4925444714776f17f136f9c22 ""
   "titlePage.tex" 1772142209.76873 1472 794b5e7ccac0c6315b545c7ed300d6fa ""
