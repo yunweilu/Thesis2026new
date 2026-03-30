@@ -3,15 +3,16 @@
 
 This chapter develops the control framework for bosonic modes in superconducting circuits. Throughout this chapter, we set $\hbar=1$, so energies and angular frequencies are used interchangeably unless stated otherwise. The discussion begins with the quantized LC oscillator, which provides the basic description of a cavity mode and clarifies the limitations of purely linear dynamics. It then introduces the transmon as a weakly anharmonic ancilla and shows how its dispersive coupling to the cavity enables conditional control, including ECD gates and arbitrary single-cavity unitaries. Finally, it introduces flux-mediated three-wave mixing, which provides beam-splitter and two-mode-squeezing interactions for entangling multiple bosonic modes.
 
-\section{Oscillator Circuit Hamiltonian}
-\label{sec:oscillator_hamiltonian}
 
-\begin{figure}[t]
+\begin{figure}[H]
   \centering
-  \includegraphics[width=\linewidth]{ch2_figures/circuit.pdf}
-  \caption[Circuit diagrams for the main building blocks of bosonic control in superconducting circuits.]{Circuit diagrams for the main building blocks of bosonic control in superconducting circuits. (a)~A parallel LC oscillator, consisting of an inductor~$L$ and a capacitor~$C$, whose quantization yields the harmonic Hamiltonian discussed in Section~\ref{sec:oscillator_hamiltonian}. (b)~A capacitively driven LC oscillator, where an external voltage source~$V_d(t)$ couples to the circuit through a coupling capacitor, producing the linear drive analyzed in Section~\ref{sec:oscillator_hamiltonian}. (c)~A transmon qubit, formed by shunting a Josephson junction (cross) with a large capacitance~$C_\Sigma$. The Josephson nonlinearity provides the anharmonic spectrum described in Section~\ref{sec:transmon}. (d)~A SQUID loop, in which two Josephson junctions in parallel allow the effective Josephson energy to be tuned by the external magnetic flux~$\Phi_{\mathrm{ext}}$, as discussed in Section~\ref{sec:transmon}. (e)~A transmon--cavity composite system, where the transmon is capacitively coupled to a cavity mode. In the dispersive regime this coupling mediates qubit-state-dependent operations on the cavity, forming the basis of the ECD control scheme developed in Section~\ref{sec:ecd_single_cavity}.}
+\includegraphics[width=0.9\linewidth]{ch2_figures/circuit.pdf}
+  \caption[Circuit diagrams for the main building blocks of bosonic control in superconducting circuits.]{Circuit diagrams for the main building blocks of bosonic control in superconducting circuits. (a)~A parallel LC oscillator, consisting of an inductor~$L$ and a capacitor~$C$, whose quantization yields the harmonic Hamiltonian discussed in Section~\ref{sec:oscillator_hamiltonian}. (b)~A capacitively driven LC oscillator, where an external voltage source~$V_g(t)$ couples to the circuit through a coupling capacitor, producing the linear drive analyzed in Section~\ref{sec:oscillator_hamiltonian}. (c)~A transmon qubit, formed by shunting a Josephson junction (cross) with a large capacitance~$C_\Sigma$. The Josephson nonlinearity provides the anharmonic spectrum described in Section~\ref{sec:transmon}. (d)~A SQUID loop, in which two Josephson junctions in parallel allow the effective Josephson energy to be tuned by the external magnetic flux~$\Phi_{\mathrm{ext}}$, as discussed in Section~\ref{sec:transmon}. (e)~A transmon--cavity composite system, where the transmon is capacitively coupled to a cavity mode. In the dispersive regime this coupling mediates qubit-state-dependent operations on the cavity, forming the basis of the ECD control scheme developed in Section~\ref{sec:ecd_single_cavity}.}
   \label{fig:circuit_elements}
 \end{figure}
+
+\section{Oscillator Circuit Hamiltonian}
+\label{sec:oscillator_hamiltonian}
 
 The simplest circuit is the lossless LC oscillator, which serves as the foundational circuit element of superconducting quantum circuits. Its importance is twofold. First, it provides a direct correspondence between circuit variables and canonical variables in quantum mechanics. Second, it illustrates a fundamental limitation: a purely linear oscillator, even when driven by classical fields, cannot generate non-Gaussian states such as Fock states from the vacuum. This limitation motivates the introduction of a nonlinear element in the next section.
 
@@ -300,6 +301,7 @@ In practice, flux tuning allows the qubit frequency to be varied over a range of
 
 This flux tunability is also the basis of parametric control. By modulating $\Phi_{\mathrm{ext}}$ in time, one can generate sideband interactions between the transmon and coupled cavity modes, including beam-splitter, as discussed in Section~\ref{sec:three_wave_mixing_two_mode}.
 
+
 \section{ECD Scheme for Arbitrary Single-Cavity Unitary}
 \label{sec:ecd_single_cavity}
 
@@ -335,7 +337,7 @@ Now couple the transmon capacitively to a single cavity mode of frequency \(\ome
     +
     \sum_{j=0}^\infty \omega_j \ket{j}\bra{j},
 \end{equation}
-where \(\omega_j = E_j\). The capacitive interaction arises through the transmon charge operator \(\hat{n}\), whose dominant matrix elements connect neighboring transmon levels. The coupled cavity--transmon system is therefore described by the generalized Jaynes--Cummings Hamiltonian
+where \(\omega_j\) are the transmon eigenenergies. The capacitive interaction arises through the transmon charge operator \(\hat{n}\), whose dominant matrix elements connect neighboring transmon levels. Quantizing of the circuit Fig.~\ref{fig:circuit_elements}(e) \cite{vool2017circuitquantization}, the coupled cavity--transmon system is therefore described by the generalized Jaynes--Cummings Hamiltonian
 \begin{equation}
     \hat{H}
     =
@@ -357,13 +359,13 @@ where \(g_j\) is the cavity coupling matrix element for the \(\ket{j}\leftrighta
 \end{equation}
 reflecting the near-oscillator character of the device.
 
-The ECD protocol operates in the dispersive regime, where each relevant transmon transition is far detuned from the cavity,
+In the dispersive regime, define
 \begin{equation}
-    |\Delta_j|
-    =
-    |\omega_{j+1,j}-\omega_c|
-    \gg
-    g_j\sqrt{n+1},
+    \Delta_j = \omega_{j+1,j}-\omega_c
+\end{equation}
+as the signed detuning of the \(\ket{j}\leftrightarrow\ket{j+1}\) transition from the cavity. The dispersive condition is then
+\begin{equation}
+    |\Delta_j| \gg g_j\sqrt{n+1},
 \end{equation}
 for all significantly occupied photon numbers \(n\). In this limit, real exchange of excitations is suppressed, and the interaction can be treated perturbatively. To second order, the energy shift of the bare state \(\ket{j,n}\) is
 \begin{equation}
@@ -375,7 +377,21 @@ for all significantly occupied photon numbers \(n\). In this limit, real exchang
         \frac{n g_j^2}{\Delta_j}
     \right],
 \end{equation}
-with the convention \(g_{-1}=0\). Reorganizing these shifts yields the multilevel dispersive Hamiltonian
+with the convention \(g_{-1}=0\). Separating the photon-number-independent part as a level shift and the photon-number-dependent part as a cavity pull,
+\begin{equation}
+    \delta E_{j,n}^{(2)} = \Lambda_j + n\,\chi_j,
+\end{equation}
+where
+\begin{equation}
+    \Lambda_j = \frac{g_{j-1}^2}{\Delta_{j-1}},
+    \qquad
+    \chi_j
+    =
+    \frac{g_{j-1}^2}{\Delta_{j-1}}
+    -
+    \frac{g_j^2}{\Delta_j},
+\end{equation}
+one obtains the multilevel dispersive Hamiltonian
 \begin{equation}
     \hat{H}_{\mathrm{disp}}^{(\mathrm{multi})}
     =
@@ -389,19 +405,9 @@ with the convention \(g_{-1}=0\). Reorganizing these shifts yields the multileve
     \chi_j \ket{j}\bra{j},
     \label{eq:multilevel_disp}
 \end{equation}
-where
-\begin{equation}
-    \Lambda_j = \frac{g_{j-1}^2}{\Delta_{j-1}},
-    \qquad
-    \chi_j
-    =
-    \frac{g_{j-1}^2}{\Delta_{j-1}}
-    -
-    \frac{g_j^2}{\Delta_j}.
-\end{equation}
-Equation~\eqref{eq:multilevel_disp} shows that each transmon level pulls the cavity by a different amount. The cavity therefore acquires a transmon-state-dependent frequency shift, while the transmon levels acquire Lamb shifts.
+where \(\Lambda_j\) is the Lamb shift of transmon level \(j\) induced by its virtual coupling to the cavity. Equation~\eqref{eq:multilevel_disp} shows that each transmon level pulls the cavity by a different amount.
 
-At this stage the ancilla is still a multilevel system. The reduction to an effective qubit is an approximation that must be justified. In the present setting, that approximation is valid for three reasons. First, the control pulses are designed to act resonantly on the \(\ket{g}\equiv\ket{0}\) to \(\ket{e}\equiv\ket{1}\) transition, while the next transition is detuned by the anharmonicity \(|\alpha|\). Second, the qubit-drive Rabi rate and spectral bandwidth are chosen small enough that off-resonant excitation of \(\ket{f}\equiv\ket{2}\) and higher states remains negligible. Third, the cavity population is kept below the critical photon number associated with the dispersive approximation, so that the cavity does not strongly hybridize with higher transmon levels. Under these conditions, population leakage out of \(\{\ket{g},\ket{e}\}\) is weak, and the transmon can be treated as an effective two-level ancilla for the purpose of gate synthesis.
+At this stage the ancilla is still a multilevel system. The reduction to an effective qubit is an approximation that must be justified. In the present setting, that approximation is valid for three reasons. First, the control pulses are designed to act resonantly on the \(\ket{g}\equiv\ket{0}\) to \(\ket{e}\equiv\ket{1}\) transition, while the next transition is detuned by the anharmonicity \(|\alpha|\). Second, the qubit-drive Rabi rate and spectral bandwidth are chosen small enough that off-resonant excitation of \(\ket{f}\equiv\ket{2}\) and higher states remains negligible. Third, the cavity population is kept below the critical photon number associated with the dispersive approximation, so that the cavity does not strongly hybridize with higher transmon levels. Under these conditions, population leakage out of \(\{\ket{g},\ket{e}\}\) is weak, and the transmon can be treated as an effective two-level ancilla for gate synthesis.
 
 Projecting Eq.~\eqref{eq:multilevel_disp} onto the lowest two transmon levels gives
 \begin{equation}
@@ -424,7 +430,7 @@ Introducing
 \begin{equation}
     \hat{\sigma}_z = \ket{e}\bra{e} - \ket{g}\bra{g},
 \end{equation}
-together with the dressed qubit frequency
+the dressed qubit frequency
 \begin{equation}
     \tilde{\omega}_q
     =
@@ -449,9 +455,25 @@ one obtains
     \frac{\chi}{2}\hat{a}^\dagger \hat{a}\,\hat{\sigma}_z.
     \label{eq:two_level_disp_from_multilevel}
 \end{equation}
-The first term simply renormalizes the cavity frequency and can be absorbed into a redefinition of \(\omega_c\). The last term is the effective dispersive interaction used throughout the ECD protocol.
+The first term renormalizes the cavity frequency and can be absorbed into a redefinition of \(\omega_c\). The last term is the effective dispersive interaction used throughout the ECD protocol.
 
-For a weakly anharmonic transmon, Eq.~\eqref{eq:two_level_disp_from_multilevel} reduces to the familiar transmon dispersive shift. Using \(g_1 \approx \sqrt{2}\,g_0\) and \(\Delta_1=\Delta_0+\alpha\), one finds
+For a weakly anharmonic transmon, Eq.~\eqref{eq:two_level_disp_from_multilevel} reduces to the familiar transmon dispersive shift. Since \(g_{-1}=0\), one has
+\begin{equation}
+    \chi_g = -\frac{g_0^2}{\Delta_0}.
+\end{equation}
+For the excited state,
+\begin{equation}
+    \chi_e = \frac{g_0^2}{\Delta_0} - \frac{g_1^2}{\Delta_1}.
+\end{equation}
+Therefore,
+\begin{equation}
+    \chi
+    =
+    \chi_e-\chi_g
+    =
+    \frac{2g_0^2}{\Delta_0} - \frac{g_1^2}{\Delta_1}.
+\end{equation}
+Using \(g_1 \approx \sqrt{2}\,g_0\) and \(\Delta_1=\Delta_0+\alpha\), this becomes
 \begin{equation}
     \chi
     \approx
@@ -464,22 +486,21 @@ For a weakly anharmonic transmon, Eq.~\eqref{eq:two_level_disp_from_multilevel} 
     =
     \frac{2g_0^2 \alpha}{\Delta_0(\Delta_0+\alpha)}.
 \end{equation}
-Thus, the standard qubit--cavity dispersive Hamiltonian is not imposed by assumption, but emerges as the low-energy reduction of the full multilevel cavity--transmon system.
+In typical circuit-QED devices, \(\chi/2\pi\) ranges from tens of kHz to several MHz, depending on the detuning \(\Delta_0\) and coupling \(g_0\). Thus, the standard qubit--cavity dispersive Hamiltonian is not imposed by assumption, but emerges as the low-energy reduction of the full multilevel cavity--transmon system.
 
 The classical cavity and qubit drives used for bosonic control are then added as
 \begin{equation}
     \hat{H}_{\mathrm{ctrl}}
     =
-    \epsilon^*(t)\hat{a} + \epsilon(t)\hat{a}^\dagger
+    \epsilon^*(t)\hat{a}
     +
-    \frac{1}{2}
-    \left[
-        \Omega^*(t)\hat{\sigma}_-
-        +
-        \Omega(t)\hat{\sigma}_+
-    \right],
+    \epsilon(t)\hat{a}^\dagger
+    +
+    \Omega^*(t)\hat{\sigma}_-
+    +
+    \Omega(t)\hat{\sigma}_+,
 \end{equation}
-where \(\epsilon(t)\) is the cavity-drive envelope and \(\Omega(t)\) is the qubit-drive envelope. In a frame rotating at the dressed cavity and qubit frequencies, the controlled dynamics reduce to
+where \(\epsilon(t)\) is the cavity-drive envelope and \(\Omega(t)\) is the full complex qubit Rabi rate. Moving to a frame rotating at the dressed cavity frequency \(\omega_c+\bar{\chi}\) and the dressed qubit frequency \(\tilde{\omega}_q\), the free-evolution terms are removed and the controlled Hamiltonian becomes
 \begin{equation}
     \hat{H}
     =
@@ -489,17 +510,14 @@ where \(\epsilon(t)\) is the cavity-drive envelope and \(\Omega(t)\) is the qubi
     +
     \epsilon(t)\hat{a}^\dagger
     +
-    \frac{1}{2}
-    \left[
-        \Omega^*(t)\hat{\sigma}_-
-        +
-        \Omega(t)\hat{\sigma}_+
-    \right].
+    \Omega^*(t)\hat{\sigma}_-
+    +
+    \Omega(t)\hat{\sigma}_+.
 \end{equation}
 
 \subsection{Echoed conditional displacement}
 
-The basic idea of ECD is to use the dispersive interaction to convert an ordinary cavity drive into a qubit-state-dependent displacement. Introduce a time-dependent displacement operator
+The basic idea of ECD \cite{eickbusch2022ecd,campagne-ibarcq2020} is to use the dispersive interaction to convert an ordinary cavity drive into a qubit-state-dependent displacement. Introduce a time-dependent displacement operator
 \begin{equation}
     \hat{D}[\alpha(t)] = \exp\!\left[\alpha(t)\hat{a}^\dagger-\alpha^*(t)\hat{a}\right],
 \end{equation}
@@ -578,7 +596,7 @@ where the complex amplitude \(\beta\) is determined by the integrated drive enve
 
 \subsection{Universal gate set for the joint qubit--cavity system}
 
-The ECD gate is combined with arbitrary single-qubit rotations
+With the ECD gate defined in the previous subsection, we now show that alternating ECD operations and single-qubit rotations form a universal gate set for the joint qubit--cavity system. The ECD gate is combined with arbitrary single-qubit rotations
 \begin{equation}
     R(\theta,\phi)
     =
@@ -605,7 +623,106 @@ A generic control sequence then has the form
     \mathrm{ECD}(\beta_1).
     \label{eq:ecd_circuit}
 \end{equation}
-The pair
+
+To make the universality claim precise, it is useful to work at the Hamiltonian level. Universal control of the oscillator alone means the ability to synthesize unitaries generated by Hamiltonians that are polynomial in the quadratures \cite{eickbusch2022ecd,braunstein2005}
+\begin{equation}
+    q = \frac{1}{\sqrt{2}}(\hat{a}^\dagger+\hat{a}),
+    \qquad
+    p = \frac{i}{\sqrt{2}}(\hat{a}^\dagger-\hat{a}).
+\end{equation}
+For the joint qubit--cavity system, the natural extension is control over Hamiltonians of the form
+\begin{equation}
+    q^j p^k \sigma_i,
+    \qquad
+    j,k \in \mathbb{N}_0,
+    \qquad
+    \sigma_i \in \{I,\sigma_x,\sigma_y,\sigma_z\}.
+\end{equation}
+Throughout this subsection, monomials \(q^j p^k\) are written with all factors of \(q\) placed to the left of all factors of \(p\). Since \([q,p]=i\), alternative orderings differ only by lower-order terms, so this convention does not affect the Lie-algebra argument. On a finite-dimensional truncation of the cavity Hilbert space, these operators span the full operator algebra of the joint system.
+
+The key control-theoretic fact is that, on a finite-dimensional Hilbert space, a set of Hamiltonians is universal if the Lie algebra generated by the corresponding skew-Hermitian operators spans the full matrix algebra up to an overall phase. It therefore suffices to show that sums and commutators of the available generators produce all polynomial operators on the truncated joint space.
+
+The role of the available gates is then straightforward. Arbitrary single-qubit rotations provide the generators \(\sigma_x\) and \(\sigma_y\). Infinitesimal ECD pulses generate conditional displacements along arbitrary directions in phase space, and therefore provide Hamiltonians proportional to \(q\sigma_z\) and \(p\sigma_z\). The basic set of accessible generators is thus
+\begin{equation}
+    \mathfrak{g}_0
+    =
+    \{q\sigma_z,\; p\sigma_z,\; \sigma_x,\; \sigma_y\}.
+\end{equation}
+
+The key point is that sums and commutators of available generators can themselves be synthesized. For sufficiently small \(\delta t\),
+\begin{equation}
+    e^{-iA\delta t}e^{-iB\delta t}e^{iA\delta t}e^{iB\delta t}
+    =
+    e^{-[A,B]\delta t^2 + O(\delta t^3)},
+\end{equation}
+and
+\begin{equation}
+    e^{-iA\delta t/2}e^{-iB\delta t}e^{-iA\delta t/2}
+    =
+    e^{-i(A+B)\delta t + O(\delta t^3)}.
+\end{equation}
+Thus, once two Hamiltonians \(A\) and \(B\) are available, one can generate both their sum and, up to a sign, their commutator to leading order; the opposite sign is obtained by reversing the pulse ordering. Repeated application of these identities closes the Lie algebra generated by \(\mathfrak{g}_0\).
+
+Starting from \(\mathfrak{g}_0\), one immediately obtains the full set of linear qubit--oscillator generators. For example,
+\begin{equation}
+    [q\sigma_z,\sigma_x] = 2i\,q\sigma_y,
+    \qquad
+    [q\sigma_z,\sigma_y] = -2i\,q\sigma_x,
+\end{equation}
+and similarly
+\begin{equation}
+    [p\sigma_z,\sigma_x] = 2i\,p\sigma_y,
+    \qquad
+    [p\sigma_z,\sigma_y] = -2i\,p\sigma_x.
+\end{equation}
+Together with
+\begin{equation}
+    [\sigma_x,\sigma_y] = 2i\,\sigma_z,
+\end{equation}
+this shows that the Lie closure of the control set contains
+\begin{equation}
+    \{\sigma_i,\; q\sigma_i,\; p\sigma_i\},
+    \qquad
+    i\in\{x,y,z\}.
+\end{equation}
+
+Quadratic generators follow from commutators of these linear terms. For instance,
+\begin{equation}
+    [q\sigma_x,q\sigma_y]
+    =
+    q^2[\sigma_x,\sigma_y]
+    =
+    2i\,q^2\sigma_z,
+\end{equation}
+and likewise
+\begin{equation}
+    [p\sigma_x,p\sigma_y] = 2i\,p^2\sigma_z.
+\end{equation}
+Mixed quadratic terms are generated in the same way, for example through commutators such as
+\begin{equation}
+    [q\sigma_x,p\sigma_y]
+    =
+    i(qp+pq)\sigma_z.
+\end{equation}
+Since \([q,p]=i\), differences between symmetrized and ordered products only produce lower-order terms, which are already contained in the generated algebra. Hence all quadratic polynomial generators can be constructed.
+
+This argument can then be iterated. Once polynomial generators of degree \(d\) are available, commutators with \(q\sigma_i\) or \(p\sigma_i\) generate degree-\((d+1)\) terms, again up to lower-order contributions fixed by \([q,p]=i\). By induction, the generated Lie algebra contains all operators of the form
+\begin{equation}
+    q^j p^k \sigma_i,
+    \qquad
+    \sigma_i\in\{\sigma_x,\sigma_y,\sigma_z\}.
+\end{equation}
+Terms without a Pauli operator are obtained as well. For example,
+\begin{equation}
+    [q^{j+1}p^k \sigma_z,\; p\sigma_z]
+    =
+    [q^{j+1}p^k,\; p]
+    =
+    i(j+1)q^j p^k,
+\end{equation}
+so polynomial operators proportional to the identity on the qubit are also generated.
+
+Consequently, the Lie algebra generated by
 \begin{equation}
     \mathcal{G}
     =
@@ -614,17 +731,19 @@ The pair
         R(\theta,\phi)
     \right\}
 \end{equation}
-forms a universal gate set for the joint cavity--qubit Hilbert space, in the sense that arbitrary unitaries on a finite-dimensional truncation of the cavity together with the qubit can be approximated to arbitrary accuracy.
+contains all polynomial operators on the joint qubit--cavity system. On any finite-dimensional truncation of the cavity Hilbert space, these operators span the full matrix algebra, and the corresponding unitaries can therefore be approximated arbitrarily well by sequences of ECD gates and single-qubit rotations. In this sense, \(\mathcal{G}\) forms a universal gate set for the joint cavity--qubit Hilbert space.
 
-The physical reason is clear. The qubit rotations provide arbitrary control within the ancilla two-level system, while ECD supplies a non-Gaussian entangling operation between the ancilla and the bosonic mode. Once these two ingredients are available, repeated commutation and composition generate a sufficiently rich Lie algebra to span arbitrary operations on the truncated joint space. In contrast with the Gaussian controls of Section~\ref{sec:oscillator_hamiltonian}, the qubit-mediated ECD interaction is not restricted to affine transformations of phase space.
+This universality is stronger than the Gaussian controllability discussed in Section~\ref{sec:oscillator_hamiltonian}. There, the accessible Hamiltonians generate only affine transformations of phase space, meaning displacements and linear transformations of the quadratures that preserve the Gaussian character of any input state. Here, the qubit-mediated ECD interaction enlarges the Lie algebra to include nonlinear polynomial operators, which is precisely what enables universal control of the truncated joint system.
 
 \subsection{Synthesis of arbitrary cavity unitaries}
 
-To implement a target cavity unitary $\hat{U}_{\mathrm{cav}}$, one works in a truncated Fock space
+To implement a target cavity unitary \(\hat{U}_{\mathrm{cav}}\), one works in a truncated Fock space
 \begin{equation}
     \mathcal{H}_d = \mathrm{span}\{\ket{0},\ket{1},\dots,\ket{d-1}\},
 \end{equation}
-chosen large enough to contain the support of the states involved in the protocol. The control sequence in Eq.~\eqref{eq:ecd_circuit} is then optimized so that, for every cavity state $\ket{\psi}\in\mathcal{H}_d$,
+with \(d\) chosen so that Fock-state amplitudes outside \(\mathcal{H}_d\) remain negligible throughout the protocol. In practice, \(d\) is taken comfortably above the largest photon number with appreciable occupation; for a code space with mean photon number \(\bar{n}\), a common rule of thumb is \(d \gtrsim 2\bar{n}\), with a larger cutoff required when the control sequence transiently populates higher Fock levels.
+
+The control sequence in Eq.~\eqref{eq:ecd_circuit} is then optimized so that
 \begin{equation}
     \hat{U}_N
     \bigl(
@@ -635,10 +754,49 @@ chosen large enough to contain the support of the states involved in the protoco
         \hat{U}_{\mathrm{cav}}\ket{\psi}
     \bigr)
     \otimes
-    \ket{g}.
+    \ket{g},
+    \qquad
+    \forall\,\ket{\psi}\in\mathcal{H}_d.
     \label{eq:ecd_synthesis_condition}
 \end{equation}
-Equation~\eqref{eq:ecd_synthesis_condition} expresses two requirements simultaneously: the cavity undergoes the desired unitary transformation, and the qubit is returned to its initial state so that no residual entanglement remains.
+Equation~\eqref{eq:ecd_synthesis_condition} expresses two requirements simultaneously: the cavity undergoes the desired unitary transformation for every input state in the truncated space, and the qubit is returned to its initial state so that no residual qubit--cavity entanglement remains.
+
+A convenient way to express the optimization target is through the projected cavity map
+\begin{equation}
+    \hat{M}_N
+    =
+    (\mathbb{I}_d\otimes\bra{g})
+    \hat{U}_N
+    (\mathbb{I}_d\otimes\ket{g}),
+\end{equation}
+which describes the effective action of the sequence on the cavity when the qubit begins and ends in \(\ket{g}\). The synthesis condition in Eq.~\eqref{eq:ecd_synthesis_condition} is satisfied if and only if $\hat{M}_N = \hat{U}_{\text{cav}}$ up to a global phase, which motivates minimizing the following infidelity
+\begin{equation}
+    C_{\mathrm{gate}}
+    =
+    1
+    -
+    \frac{
+        \left|
+            \mathrm{Tr}
+            \left(
+                \hat{U}_{\mathrm{cav}}^\dagger \hat{M}_N
+            \right)
+        \right|^2
+    }{d^2}.
+    \label{eq:projected_gate_infidelity}
+\end{equation}
+When only a state-preparation task is required, one may instead minimize the state infidelity
+\begin{equation}
+    C_{\mathrm{state}}
+    =
+    1
+    -
+    \left|
+        \bra{\psi_{\mathrm{tar}}}
+        \hat{M}_N
+        \ket{\psi_{\mathrm{in}}}
+    \right|^2.
+\end{equation}
 
 In practice, the parameters
 \begin{equation}
@@ -646,193 +804,311 @@ In practice, the parameters
         \beta_k,\theta_k,\phi_k
     \right\}_{k=1}^N
 \end{equation}
-are found by numerical optimization on the truncated Hilbert space. The optimization minimizes a cost function based on the overlap between the synthesized unitary $\hat{U}_N$ and the target operation $\hat{U}_{\mathrm{cav}} \otimes \mathbb{I}_q$, or between the corresponding state-transfer maps when only a state-preparation task is required. Because the gate set is universal, increasing the circuit depth $N$ allows one, in principle, to approximate any desired single-cavity unitary to arbitrary accuracy on $\mathcal{H}_d$.
+are found by numerical minimization of the fidelity over the truncated Hilbert space. Because the gate set is universal, increasing the circuit depth \(N\) allows one, in principle, to approximate any desired single-cavity unitary to arbitrary accuracy on \(\mathcal{H}_d\).
 
 This synthesis strategy provides a concrete route from a small set of experimentally natural primitives to general bosonic control. Fock-state preparation, cat-state generation, logical-state encoding, and more general non-Gaussian cavity gates all arise as special cases of the same framework. The essential point is that the cavity is not controlled directly through a native cavity nonlinearity; rather, the nonlinearity is borrowed from the transmon and converted, through the dispersive interaction and echoed conditional displacements, into programmable phase-space control.
 
-The remainder of this chapter uses this viewpoint throughout. Once the cavity--qubit system is equipped with the gate set $\{\mathrm{ECD}(\beta),R(\theta,\phi)\}$, single-mode bosonic control reduces to the problem of compiling the desired operation into an experimentally feasible sequence of echoed conditional displacements and qubit rotations.
+The remainder of this chapter uses this viewpoint throughout. Once the cavity--qubit system is equipped with the gate set \(\{\mathrm{ECD}(\beta),R(\theta,\phi)\}\), single-mode bosonic control reduces to the problem of compiling the desired operation into an experimentally feasible sequence of echoed conditional displacements and qubit rotations.
 
-\section{3-Wave Mixing and Beam-Splitting Interactions for Two-Mode Entanglement}
-\label{sec:three_wave_mixing_two_mode}
+\begin{figure}[H]
+    \centering
+\includegraphics[width=\linewidth]{thesis/ch2_figures/qoc/fig_ecd.pdf}
+    \caption{Two-mode ECD scheme unitary decomposition.}[Decomposition of an arbitrary two-mode control sequence into modular blocks. Each block (enclosed by dashed lines) consists of a pair of ECD gates acting on the two cavity modes, interleaved with ancilla rotations. Reproduced from Ref.~\cite{You2024}.]
+    \label{fig:placeholder}
+\end{figure}
 
-The control framework developed so far addresses a single cavity mode. That is sufficient for arbitrary single-mode bosonic unitaries, but it is not sufficient for genuinely multimode tasks such as state transfer, nonlocal interference, and, most importantly, entanglement generation between spatially distinct cavity modes. Reaching that regime requires going beyond single-mode control and engineering a coherent interaction between two bosonic modes. In superconducting circuits, this is naturally achieved by using a flux-tunable nonlinear element as a parametric coupler.
+\section{Two-mode entanglement}
+\label{sec:two_mode_entanglement}
 
-Consider therefore two cavity modes, \(\hat{a}\) and \(\hat{b}\), coupled through a flux-tunable transmon or related Josephson nonlinear element represented by a third mode \(\hat{c}\). Under flux modulation, the Josephson nonlinearity acts as a three-wave mixer and mediates coherent exchange between the two cavity modes. The essential point is that the external pump does not merely drive the system; it selects which interaction channel becomes resonant.
+The previous section showed that the single-cavity ECD scheme provides universal control of a bosonic mode. For the two-mode problem, there are likewise two complementary routes. One can extend ECD to two cavity modes and obtain universal control in the two-mode Hilbert space. Alternatively, in the cavity--flux-tunable-transmon--cavity architecture considered here, one can use flux modulation of the intermediate nonlinear element to activate an effective interaction between the two cavities. We discuss these two approaches in turn.
 
-\subsection{Three-wave mixing from a flux-tunable nonlinear element}
+\subsection{Two-mode ECD as a universal-control approach}
+\label{sec:two_mode_ecd}
 
-The uncoupled Hamiltonian of the three modes is
+The ECD framework extends naturally from a single bosonic mode to two bosonic modes. In that setting, conditional displacements and qubit-assisted control operations can be used to realize universal control over the two-mode Hilbert space and, in particular, to prepare and manipulate entangled cavity states. This provides a conceptually direct generalization of the single-mode protocol discussed in the previous section. A detailed treatment of the two-mode ECD protocol is given in Ref.~\cite{You2024}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\linewidth]{thesis/ch2_figures/fig_ecd.pdf}
+\caption{Decomposition of an arbitrary two-mode control sequence into modular blocks. Each block (enclosed by dashed lines) consists of a pair of ECD gates acting on the two cavity modes, interleaved with ancilla rotations. Reproduced from Ref.~\cite{You2024}.}
+\label{fig:two_mode_ecd}
+\end{figure}
+
+In the remainder of this section, however, we focus on a different route that is more closely tied to the present hardware: parametrically activated control in a cavity--flux-tunable-transmon--cavity system.
+
+\subsection{Parametrically activated two-mode interaction in a cavity--FTT--cavity system}
+\label{sec:parametric_two_mode_control}
+
+To generate a coherent interaction between two cavity modes, the relevant hardware is not a directly coupled cavity pair, but a cavity--coupler--cavity system. Here we use a flux-tunable transmon (FTT) as the coupler. The two cavity modes do not couple directly to each other. Instead, each cavity couples to the same FTT, which mediates the effective interaction.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{thesis/ch2_figures/twomode.pdf}
+\caption{Parametric-drive model and circuit implementation. (a) Graph representation of the three-mode system, where the bare modes are coupled capacitively (light-gray edges) and mode \(b\) is a flux-tunable transmon whose frequency is modulated by a parametric flux drive. (b) Superconducting-circuit implementation of the model, in which modes \(a\) and \(c\) are cavity modes and mode \(b\) is realized as a flux-tunable transmon coupler.}
+\label{fig:twomode}
+\end{figure}
+
+\subsubsection{Starting Hamiltonian and flux-dependent transmon frequency}
+
+We consider an FTT capacitively coupled to two cavities, as shown in Fig.~\ref{fig:twomode}. Let \(\hat a\) and \(\hat c\) denote the two linear cavity modes, and let \(\hat b\) denote the FTT mode. The circuit Hamiltonian is
 \begin{equation}
-    \hat{H}_0
+    \hat H
     =
-    \omega_a \hat{a}^\dagger \hat{a}
+    \hat H_{\mathrm{lin}}(t)
     +
-    \omega_b \hat{b}^\dagger \hat{b}
-    +
-    \omega_c \hat{c}^\dagger \hat{c}.
+    \hat H_{\mathrm{nl}},
 \end{equation}
-Because the coupler is nonlinear and flux tunable, its Josephson energy becomes time dependent,
+with
 \begin{equation}
-    E_J\bigl[\Phi_{\mathrm{ext}}(t)\bigr],
-    \qquad
+    \hat H_{\mathrm{lin}}(t)
+    =
+    \omega_a \hat a^\dagger \hat a
+    +
+    \omega_c \hat c^\dagger \hat c
+    +
+    \omega_q\!\left(\Phi_{\mathrm{ext}}(t)\right)\hat b^\dagger \hat b
+    +
+    g_{ab}(\hat a^\dagger \hat b + \hat a \hat b^\dagger)
+    +
+    g_{bc}(\hat c^\dagger \hat b + \hat c \hat b^\dagger),
+    \label{eq:Hlin_bare}
+\end{equation}
+and
+\begin{equation}
+    \hat H_{\mathrm{nl}}
+    =
+    -\frac{K_b}{2}\hat b^{\dagger 2}\hat b^2 .
+    \label{eq:Hnl_bare}
+\end{equation}
+Here the coupling terms have already been written in the rotating-wave approximation, so the linear part consists of the bare mode energies together with Jaynes--Cummings interactions between each cavity and the FTT. Importantly, there is no direct term of the form
+\(
+g_{ac}(\hat a^\dagger \hat c + \hat a \hat c^\dagger)
+\).
+
+The external flux is taken to be
+\begin{equation}
     \Phi_{\mathrm{ext}}(t)
     =
     \Phi_{\mathrm{dc}}
     +
-    \Phi_p \cos(\omega_p t + \phi_p),
+    \Phi_{\mathrm{ac}}\cos(\omega_d t+\phi_d),
+    \label{eq:flux_drive}
 \end{equation}
-so that the normal modes inherit parametrically activated mixing terms. To leading order, the resulting nonlinear interaction can be written as a cubic Hamiltonian
+and the FTT frequency is
 \begin{equation}
-    \hat{H}_{3\mathrm{wm}}
-    =
-    g_3
-    (\hat{a}+\hat{a}^\dagger)
-    (\hat{b}+\hat{b}^\dagger)
-    (\hat{c}+\hat{c}^\dagger),
-    \label{eq:full_3wm}
+    \omega_q(\Phi_{\mathrm{ext}})
+    \approx
+    \sqrt{8E_C E_J(\Phi_{\mathrm{ext}})}
+    -
+    E_C .
+    \label{eq:omegaq_flux}
 \end{equation}
-where \(g_3\) is the effective three-wave-mixing strength set by the circuit parameters and the flux bias point.
-
-Expanding Eq.~\eqref{eq:full_3wm} generates several operator products, including terms such as
+Expanding around the dc bias point gives
 \begin{equation}
-    g_3
-    \left(
-        \hat{a}\hat{b}^\dagger \hat{c}
-        +
-        \hat{a}^\dagger \hat{b}\hat{c}^\dagger
-    \right),
-\end{equation}
-which describe coherent conversion between the two cavity modes mediated by the nonlinear mode, as well as terms such as
-\begin{equation}
-    g_3
-    \left(
-        \hat{a}\hat{b}\hat{c}^\dagger
-        +
-        \hat{a}^\dagger \hat{b}^\dagger \hat{c}
-    \right),
-\end{equation}
-which describe pair creation and annihilation processes.
-
-To activate a controlled interaction between \(\hat{a}\) and \(\hat{b}\), the nonlinear mode \(\hat{c}\) is driven strongly and treated in the stiff-pump approximation as a classical field,
-\begin{equation}
-    \hat{c}
-    \;\rightarrow\;
-    \xi_p e^{-i(\omega_p t+\phi_p)}
+    \omega_q\!\left(\Phi_{\mathrm{ext}}(t)\right)
+    \approx
+    \bar\omega_q
     +
-    \xi_p^* e^{i(\omega_p t+\phi_p)},
+    \delta\omega_q \cos(\omega_d t+\phi_d),
+    \label{eq:omegaq_expand}
 \end{equation}
-where \(\xi_p\) is the complex pump amplitude. Substituting this into Eq.~\eqref{eq:full_3wm} yields an effective bilinear interaction between the two cavity modes,
+where
 \begin{equation}
-    \hat{H}_{\mathrm{eff}}
+    \bar\omega_q = \omega_q(\Phi_{\mathrm{dc}}),
+    \qquad
+    \delta\omega_q
     =
-    G
-    \bigl(
-        e^{-i(\omega_p t+\phi_p)}
-        +
-        e^{i(\omega_p t+\phi_p)}
-    \bigr)
-    (\hat{a}+\hat{a}^\dagger)
-    (\hat{b}+\hat{b}^\dagger),
-    \label{eq:effective_bilinear}
+    \left.
+    \frac{\partial \omega_q}{\partial \Phi}
+    \right|_{\Phi_{\mathrm{dc}}}
+    \Phi_{\mathrm{ac}} .
+\end{equation}
+Thus, an AC flux drive produces an AC modulation of the FTT frequency.
+
+\subsubsection{Black-box quantization of the static quadratic sector}
+
+The black-box quantization strategy treats the linear circuit as a passive network whose normal modes are found first, while the nonlinear elements are then added perturbatively on top of these dressed modes \cite{PhysRevLett.108.240502bbq}. In the present setting, it is therefore convenient to separate the Hamiltonian into a static quadratic part and a perturbation,
+\begin{equation}
+    \hat H
+    =
+    \hat H^{(0)}
+    +
+    \hat H^{(1)}(t),
 \end{equation}
 with
 \begin{equation}
-    G = g_3 |\xi_p|.
-\end{equation}
-Thus, the strong pump converts the native three-mode nonlinearity into a tunable two-mode coupling.
-
-\subsection{Pump selection and rotating-wave approximation}
-
-To determine which interaction is realized, move to the interaction picture with respect to \(\hat{H}_0\). Using
-\begin{equation}
-    \hat{a}(t)=\hat{a}e^{-i\omega_a t},
-    \qquad
-    \hat{b}(t)=\hat{b}e^{-i\omega_b t},
-\end{equation}
-Eq.~\eqref{eq:effective_bilinear} becomes
-\begin{align}
-    \hat{H}_I
+    \hat H^{(0)}
     =
-    G \Big[
-        &
-        \hat{a}\hat{b}^\dagger
-        e^{-i(\omega_a-\omega_b-\omega_p)t-i\phi_p}
+    \omega_a \hat a^\dagger \hat a
+    +
+    \omega_c \hat c^\dagger \hat c
+    +
+    \bar\omega_q \hat b^\dagger \hat b
+    +
+    g_{ab}(\hat a^\dagger \hat b + \hat a \hat b^\dagger)
+    +
+    g_{bc}(\hat c^\dagger \hat b + \hat c \hat b^\dagger),
+    \label{eq:H0_static}
+\end{equation}
+and
+\begin{equation}
+    \hat H^{(1)}(t)
+    =
+    -\frac{K_b}{2}\hat b^{\dagger 2}\hat b^2
+    +
+    \delta\omega_q \cos(\omega_d t+\phi_d)\,\hat b^\dagger \hat b .
+    \label{eq:H1_pert}
+\end{equation}
+Diagonalizing only the static sector is advantageous because the result is a time-independent basis in which the drive and nonlinearity can be treated perturbatively; the drive frequency \(\omega_d\) then selects which normal-mode transition is activated.
+
+Writing the normal-mode transformation as
+\begin{equation}
+    \hat \mu
+    =
+    \sum_{\nu=a,b,c}
+    u_{\mu\nu}\hat \nu_{\mathrm N},
+    \qquad
+    \mu=a,b,c,
+\end{equation}
+one obtains
+\begin{equation}
+    \hat H^{(0)}
+    =
+    \tilde\omega_a \hat a_{\mathrm N}^\dagger \hat a_{\mathrm N}
+    +
+    \tilde\omega_b \hat b_{\mathrm N}^\dagger \hat b_{\mathrm N}
+    +
+    \tilde\omega_c \hat c_{\mathrm N}^\dagger \hat c_{\mathrm N} .
+    \label{eq:H0_diag}
+\end{equation}
+Here \(u_{\mu\nu}\) is an element of the inverse diagonalization matrix, expressing bare mode \(\mu\) in terms of normal mode \(\nu\).
+
+In the parameter regime of interest, two of these normal modes remain predominantly cavity-like and one remains predominantly transmon-like. For notational simplicity, we henceforth drop the subscript \(\mathrm N\) and write \(\hat a\), \(\hat b\), and \(\hat c\) for the dressed normal modes unless stated otherwise. In this basis,
+\begin{equation}
+    \hat b
+    =
+    \sum_{\nu=a,b,c}
+    u_{b\nu}\hat \nu ,
+\end{equation}
+so that
+\begin{equation}
+    \hat b^\dagger \hat b
+    =
+    \sum_{\mu,\nu=a,b,c}
+    u_{b\mu}^* u_{b\nu}\,
+    \hat \mu^\dagger \hat \nu .
+\end{equation}
+The perturbation therefore becomes
+\begin{equation}
+    \hat H^{(1)}(t)
+    \approx
+    -\frac{\tilde K_b}{2}\hat b^{\dagger 2}\hat b^2
+    +
+    \delta\omega_q \cos(\omega_d t+\phi_d)
+    \sum_{\mu,\nu=a,b,c}
+    \eta_{\mu\nu}\hat \mu^\dagger \hat \nu ,
+    \label{eq:H1_normalmode}
+\end{equation}
+with
+\begin{equation}
+    \eta_{\mu\nu} = u_{b\mu}^* u_{b\nu}.
+\end{equation}
+
+\subsubsection{Drive-selected interaction and rotating-wave approximation}
+
+Equation~\eqref{eq:H1_normalmode} contains both diagonal frequency shifts and off-diagonal mode-conversion terms. For the cavity-like modes, the relevant off-diagonal coefficient is
+\begin{equation}
+    \eta_{ac} = u_{ba}^* u_{bc},
+\end{equation}
+with \(\eta_{ca}=\eta_{ac}^*\). The corresponding drive-induced interaction is therefore
+\begin{equation}
+    \hat H^{(1)}_{ac}(t)
+    =
+    \delta\omega_q \cos(\omega_d t+\phi_d)
+    \left(
+        \eta_{ac}\hat a^\dagger \hat c
         +
-        \hat{a}^\dagger\hat{b}
-        e^{+i(\omega_a-\omega_b-\omega_p)t+i\phi_p}
+        \eta_{ac}^*\hat a \hat c^\dagger
+    \right).
+    \label{eq:Hac_drive}
+\end{equation}
+Writing
+\begin{equation}
+    \eta_{ac}=|\eta_{ac}|e^{i\theta_{ac}},
+\end{equation}
+we define the real modulation amplitude
+\begin{equation}
+    \delta g_{ac}=\delta\omega_q|\eta_{ac}|,
+\end{equation}
+and absorb the hybridization phase \(\theta_{ac}\) into an effective drive phase,
+\begin{equation}
+    \phi_{\mathrm{eff}}=\phi_d+\theta_{ac}.
+\end{equation}
+Equation~\eqref{eq:Hac_drive} can then be written as
+\begin{equation}
+    \hat H^{(1)}_{ac}(t)
+    =
+    \delta g_{ac}\cos(\omega_d t+\phi_{\mathrm{eff}})
+    \left(
+        \hat a^\dagger \hat c + \hat a \hat c^\dagger
+    \right).
+\end{equation}
+
+Moving to the interaction picture with respect to
+\(
+\tilde\omega_a \hat a^\dagger \hat a
++
+\tilde\omega_c \hat c^\dagger \hat c
+\),
+the interaction becomes
+\begin{align}
+    \hat H_{I,ac}(t)
+    =
+    \frac{\delta g_{ac}}{2}
+    \Big[
+        &
+        \hat a^\dagger \hat c\,
+        e^{-i(\tilde\omega_c-\tilde\omega_a-\omega_d)t+i\phi_{\mathrm{eff}}}
+        +
+        \hat a \hat c^\dagger\,
+        e^{+i(\tilde\omega_c-\tilde\omega_a-\omega_d)t-i\phi_{\mathrm{eff}}}
         \nonumber\\
         &
         +
-        \hat{a}\hat{b}
-        e^{-i(\omega_a+\omega_b-\omega_p)t-i\phi_p}
+        \hat a^\dagger \hat c\,
+        e^{-i(\tilde\omega_c-\tilde\omega_a+\omega_d)t-i\phi_{\mathrm{eff}}}
         +
-        \hat{a}^\dagger\hat{b}^\dagger
-        e^{+i(\omega_a+\omega_b-\omega_p)t+i\phi_p}
-    \Big]
-    +
-    \hat{H}_{\mathrm{fast}},
-    \label{eq:interaction_picture_3wm}
+        \hat a \hat c^\dagger\,
+        e^{+i(\tilde\omega_c-\tilde\omega_a+\omega_d)t+i\phi_{\mathrm{eff}}}
+    \Big].
+    \label{eq:Hac_interaction}
 \end{align}
-where \(\hat{H}_{\mathrm{fast}}\) collects the counter-rotating terms oscillating at frequencies \(\omega_a \pm \omega_b + \omega_p\). When these fast terms oscillate much faster than the induced coupling strength \(G\), they average to zero under the rotating-wave approximation.
-
-The interaction selected by the pump is therefore determined by which exponential in Eq.~\eqref{eq:interaction_picture_3wm} is made stationary.
-
-\subsection{Beam-splitter interaction}
-
-If the pump is chosen at the mode-difference frequency,
+Choosing the drive frequency
 \begin{equation}
-    \omega_p = |\omega_b-\omega_a|,
+    \omega_d = \tilde\omega_c-\tilde\omega_a
 \end{equation}
-the near-resonant terms are
+makes the first pair of terms stationary, while the remaining terms oscillate at frequency \(2\omega_d\) and are dropped under the rotating-wave approximation. The RWA is valid when
 \begin{equation}
-    \hat{a}\hat{b}^\dagger
-    \qquad \text{and} \qquad
-    \hat{a}^\dagger \hat{b},
+    2\omega_d \gg G_{ac},
 \end{equation}
-while all others rotate rapidly and are discarded under the RWA. Assuming \(\omega_b > \omega_a\) for definiteness, so that \(\omega_p=\omega_b-\omega_a\), the effective Hamiltonian becomes
+so that the off-resonant terms average out on the interaction timescale. The effective Hamiltonian is then
 \begin{equation}
-    \hat{H}_{\mathrm{BS}}
+    \hat H_{\mathrm{BS}}
     =
-    G
+    G_{ac}
     \left(
-        e^{-i\phi_p}\hat{a}\hat{b}^\dagger
+        e^{+i\phi_{\mathrm{eff}}}\hat a^\dagger \hat c
         +
-        e^{i\phi_p}\hat{a}^\dagger \hat{b}
-    \right).
-    \label{eq:beam_splitter_hamiltonian}
+        e^{-i\phi_{\mathrm{eff}}}\hat a \hat c^\dagger
+    \right),
+    \label{eq:HBS_ac}
 \end{equation}
-This is the beam-splitter, or frequency-conversion, interaction. It conserves the total excitation number,
+with
 \begin{equation}
-    \left[
-        \hat{H}_{\mathrm{BS}},
-        \hat{a}^\dagger\hat{a}+\hat{b}^\dagger\hat{b}
-    \right]
-    = 0,
+    G_{ac} = \frac{\delta g_{ac}}{2}.
 \end{equation}
-and coherently swaps excitations between the two cavity modes. Its unitary evolution is
-\begin{equation}
-    \hat{U}_{\mathrm{BS}}(t)
-    =
-    \exp\!\left[
-        -itG
-        \left(
-            e^{-i\phi_p}\hat{a}\hat{b}^\dagger
-            +
-            e^{i\phi_p}\hat{a}^\dagger\hat{b}
-        \right)
-    \right].
-\end{equation}
-Physically, Eq.~\eqref{eq:beam_splitter_hamiltonian} hybridizes the two modes exactly as an optical beam splitter mixes two traveling fields. It is therefore the natural interaction for state transfer, interference, and mode conversion.
 
-By itself, however, the beam-splitter interaction does not create entanglement from the two-mode vacuum, since
-\begin{equation}
-    \hat{H}_{\mathrm{BS}}\ket{0,0}=0.
-\end{equation}
-Its role in entanglement generation is instead indirect but essential: when one mode is first prepared in a nonclassical state, or when the beam-splitter is combined with single-mode bosonic control from Section~\ref{sec:ecd_single_cavity}, the mixing operation converts local nonclassicality into nonlocal correlations between the two cavities.
+This is the parametrically activated beam-splitter interaction between the two cavity-like modes. Its physical origin is explicit: the two cavities are not directly coupled; the interaction is mediated by the FTT, whose AC-flux-modulated frequency produces the resonant mode-conversion term after diagonalization of the static linear sector and application of the rotating-wave approximation.
 
 
-\subsection{Control perspective and relevance for the rest of the chapter}
 
-The key advantage of three-wave mixing is that the same nonlinear hardware element can realize different effective interactions simply by changing the pump frequency. A pump at the difference frequency activates the beam-splitter channel in Eq.~\eqref{eq:beam_splitter_hamiltonian}; a pump at the sum frequency activates the two-mode-squeezing channel in Eq.~\eqref{eq:tms_hamiltonian}. The pump amplitude sets the interaction strength \(G\), while the pump phase \(\phi_p\) sets the interaction phase. In this way, the flux-tunable transmon functions as a programmable nonlinear mixer for bosonic modes.
-
-This flexibility is precisely what is needed for multimode bosonic control. The beam-splitter interaction enables coherent transfer and interference between cavities, while the two-mode-squeezing interaction provides a direct entangling resource. Together with the single-mode cavity control developed earlier, these parametrically activated interactions furnish the basic toolbox for preparing and manipulating two-mode entangled bosonic states in circuit QED.
