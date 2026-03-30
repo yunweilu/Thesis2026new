@@ -37,11 +37,11 @@
 \nomenclatureentry{a$P_X(t)$@[{$P_X(t)$}]\begingroup coherence signal\nomeqref {0}|nompageref}{v}
 \nomenclatureentry{a$\omega_\mathrm{ir}$@[{$\omega_\mathrm{ir}$}]\begingroup infrared cutoff of the $1/f$ noise spectrum\nomeqref {0}|nompageref}{v}
 \nomenclatureentry{a$\gamma_{\phi,n\rightarrow m}$@[{$\gamma_{\phi,n\rightarrow m}$}]\begingroup dephasing rate of cavity transitions induced by FTT-frequency fluctuations\nomeqref {0}|nompageref}{v}
-\nomenclatureentry{aGRAPE@[{GRAPE}]\begingroup Gradient Ascent Pulse Engineering\nomeqref {3.0}|nompageref}{34}
-\nomenclatureentry{a$H_s$@[{$H_s$}]\begingroup Static system Hamiltonian\nomeqref {3.1}|nompageref}{35}
-\nomenclatureentry{a$h_c$@[{$h_c$}]\begingroup Control operator coupling the field to the system\nomeqref {3.1}|nompageref}{35}
-\nomenclatureentry{a$U_n$@[{$U_n$}]\begingroup Short-time propagator for time step $n$\nomeqref {3.3}|nompageref}{36}
-\nomenclatureentry{a$\mu$@[{$\mu$}]\begingroup Number of matrix-vector multiplications required for propagator-state product evaluation\nomeqref {3.52}|nompageref}{48}
-\nomenclatureentry{a$\kappa$@[{$\kappa$}]\begingroup Number of stored Hamiltonian matrix elements\nomeqref {4.0}|nompageref}{54}
-\nomenclatureentry{a$\varepsilon_I$, $\varepsilon_Q$@[{$\varepsilon_I$, $\varepsilon_Q$}]\begingroup Control envelopes in the $I$ and $Q$ quadratures\nomeqref {5.2}|nompageref}{65}
-\nomenclatureentry{a$K_\text{q}$@[{$K_\text{q}$}]\begingroup Transmon anharmonicity (self-Kerr)\nomeqref {5.2}|nompageref}{65}
+\nomenclatureentry{aGRAPE@[{GRAPE}]\begingroup Gradient Ascent Pulse Engineering\nomeqref {3.0}|nompageref}{42}
+\nomenclatureentry{a$H_s$@[{$H_s$}]\begingroup Static system Hamiltonian\nomeqref {3.1}|nompageref}{43}
+\nomenclatureentry{a$h_c$@[{$h_c$}]\begingroup Control operator coupling the field to the system\nomeqref {3.1}|nompageref}{43}
+\nomenclatureentry{a$U_n$@[{$U_n$}]\begingroup Short-time propagator for time step $n$\nomeqref {3.3}|nompageref}{44}
+\nomenclatureentry{a$\mu$@[{$\mu$}]\begingroup Number of matrix-vector multiplications required for propagator-state product evaluation\nomeqref {3.52}|nompageref}{57}
+\nomenclatureentry{a$\kappa$@[{$\kappa$}]\begingroup Number of stored Hamiltonian matrix elements\nomeqref {4.0}|nompageref}{63}
+\nomenclatureentry{a$\varepsilon_I$, $\varepsilon_Q$@[{$\varepsilon_I$, $\varepsilon_Q$}]\begingroup Control envelopes in the $I$ and $Q$ quadratures\nomeqref {5.2}|nompageref}{75}
+\nomenclatureentry{a$K_\text{q}$@[{$K_\text{q}$}]\begingroup Transmon anharmonicity (self-Kerr)\nomeqref {5.2}|nompageref}{75}

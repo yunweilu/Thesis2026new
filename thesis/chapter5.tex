@@ -71,7 +71,7 @@ Instead, I propose a method that, while not guaranteed to be equivalent, yields 
 The method consists of two steps: (1)~employing closed-system optimization to minimize $C_\text{c}$ for each potential duration, and (2)~with given decoherence rates, evaluating $C_\text{o}$ for the optimized pulses from the first step, then selecting the pulse with the lowest $C_\text{o}$. 
 The approach is summarized in Fig.~\ref{fig:optflow}.
 
-For the closed-system optimization, I use Gradient Ascent Pulse Engineering (GRAPE), a method widely employed for optimal control in various contexts~\cite{khaneja2005optimalrobustmetric,lu2023optimalgrape,koch2022quantumqocreview}. The gradients required in GRAPE are calculated by using automatic differentiation, thereby eliminating the need for manually coding the analytical gradients of the cost function~\cite{adscalingbaydin2014automatic,PhysRevA.95.042318ad,PhysRevA.99.052327ad}. The initial pulse ansatz is
+For the closed-system optimization, I use Gradient Ascent Pulse Engineering (GRAPE), a method widely employed for optimal control in various contexts~\cite{khaneja2005optimalrobustmetric,lu2023optimalgrape,koch2022quantumqocreview}. The gradients required in GRAPE are calculated by using automatic differentiation, thereby eliminating the need for manually coding the analytical gradients of the cost function~\cite{adscalingbaydin2014automatic,pacleung2017speedup,abdelhafez2019gradient}. The initial pulse ansatz is
 \begin{align}
 \label{eq:initial_pulse}
     \varepsilon^\text{initial}_I(t) &=\frac{1}{t_\text{g}}\big[ (a-\theta/2)\cos(2\pi t /t_\text{g}) + (b-a)\cos(4\pi t /t_\text{g})\\ 

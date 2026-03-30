@@ -517,7 +517,7 @@ where \(\epsilon(t)\) is the cavity-drive envelope and \(\Omega(t)\) is the full
 
 \subsection{Echoed conditional displacement}
 
-The basic idea of ECD \cite{eickbusch2022ecd,campagne-ibarcq2020} is to use the dispersive interaction to convert an ordinary cavity drive into a qubit-state-dependent displacement. Introduce a time-dependent displacement operator
+The basic idea of ECD \cite{eickbusch2022ecd,CampagneIbarcq2020} is to use the dispersive interaction to convert an ordinary cavity drive into a qubit-state-dependent displacement. Introduce a time-dependent displacement operator
 \begin{equation}
     \hat{D}[\alpha(t)] = \exp\!\left[\alpha(t)\hat{a}^\dagger-\alpha^*(t)\hat{a}\right],
 \end{equation}
@@ -810,13 +810,6 @@ This synthesis strategy provides a concrete route from a small set of experiment
 
 The remainder of this chapter uses this viewpoint throughout. Once the cavity--qubit system is equipped with the gate set \(\{\mathrm{ECD}(\beta),R(\theta,\phi)\}\), single-mode bosonic control reduces to the problem of compiling the desired operation into an experimentally feasible sequence of echoed conditional displacements and qubit rotations.
 
-\begin{figure}[H]
-    \centering
-\includegraphics[width=\linewidth]{thesis/ch2_figures/qoc/fig_ecd.pdf}
-    \caption{Two-mode ECD scheme unitary decomposition.}[Decomposition of an arbitrary two-mode control sequence into modular blocks. Each block (enclosed by dashed lines) consists of a pair of ECD gates acting on the two cavity modes, interleaved with ancilla rotations. Reproduced from Ref.~\cite{You2024}.]
-    \label{fig:placeholder}
-\end{figure}
-
 \section{Two-mode entanglement}
 \label{sec:two_mode_entanglement}
 
@@ -829,8 +822,8 @@ The ECD framework extends naturally from a single bosonic mode to two bosonic mo
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\linewidth]{thesis/ch2_figures/fig_ecd.pdf}
-\caption{Decomposition of an arbitrary two-mode control sequence into modular blocks. Each block (enclosed by dashed lines) consists of a pair of ECD gates acting on the two cavity modes, interleaved with ancilla rotations. Reproduced from Ref.~\cite{You2024}.}
+\includegraphics[width=0.75\linewidth]{ch2_figures/fig_ecd.pdf}
+\caption[Two-mode ECD scheme: unitary decomposition.]{Decomposition of an arbitrary two-mode control sequence into modular blocks. Each block (enclosed by dashed lines) consists of a pair of ECD gates acting on the two cavity modes, interleaved with ancilla rotations. Reproduced from Ref.~\cite{You2024}.}
 \label{fig:two_mode_ecd}
 \end{figure}
 
@@ -843,7 +836,7 @@ To generate a coherent interaction between two cavity modes, the relevant hardwa
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\linewidth]{thesis/ch2_figures/twomode.pdf}
+\includegraphics[width=0.8\linewidth]{ch2_figures/twomode.pdf}
 \caption{Parametric-drive model and circuit implementation. (a) Graph representation of the three-mode system, where the bare modes are coupled capacitively (light-gray edges) and mode \(b\) is a flux-tunable transmon whose frequency is modulated by a parametric flux drive. (b) Superconducting-circuit implementation of the model, in which modes \(a\) and \(c\) are cavity modes and mode \(b\) is realized as a flux-tunable transmon coupler.}
 \label{fig:twomode}
 \end{figure}
