@@ -83,10 +83,10 @@ I illustrate the discussed scaling by benchmark studies for concrete optimizatio
 The first benchmark example studies the following state-transfer problem. Consider a setup in which a driven flux-tunable transmon is capacitively coupled to a superconducting cavity, and perform a state transfer from the cavity vacuum state to the 20-photon Fock state. The Hamiltonian in the frame co-rotating with the transmon drive is
 \begin{equation}
 \label{eq:fockH}
-    H_1(t)=\Delta b^\dagger b+\frac{1}{2}\alpha b^\dagger b(b^\dagger b-1)+g(cb^\dagger+c^\dagger b)+a_{z}(t)b^\dagger b
+    H_1(t)=\Delta b^\dagger b-\frac{K_b}{2}b^{\dagger 2}b^2+g(cb^\dagger+c^\dagger b)+a_{z}(t)b^\dagger b
     +a_{x}(t)(b+b^\dagger).
 \end{equation}
-Here, the drive is both longitudinal and transverse; $c$ and $b$ are the annihilation operators for cavity photons and transmon excitations, respectively. $\alpha$, $g$, and $\Delta$ denote anharmonicity, interaction strength, and the difference between the transmon and cavity frequencies. 
+Here, the drive is both longitudinal and transverse; $c$ and $b$ are the annihilation operators for the cavity mode and the transmon mode, respectively, in the same sense as modes $c$ and $b$ in Fig.~\ref{fig:twomode} and Eqs.~\eqref{eq:Hlin_bare}--\eqref{eq:Hnl_bare}. The transmon Kerr nonlinearity is written as in Eq.~\eqref{eq:Hnl_bare}, with $K_b>0$. The parameters $K_b$, $g$, and $\Delta$ denote the Kerr coefficient, interaction strength, and the detuning between the transmon and cavity frequencies. 
  
 Optimization proceeds by minimizing the infidelity $C_1^{st}$ and limiting the occupation of higher transmon levels by including the cost contribution $C_2^{st}$ [Eq.~\eqref{eq:c2st}]. The latter has the additional benefit of enabling the truncation to only a few transmon levels. I measure runtime and peak memory usage of full-AD,\footnote{AD is implemented by the package \texttt{Autograd}~\cite{maclaurin2015autograd} in this benchmark. This package does not support sparse linear algebra, so I implement dense matrix storage for the Hamiltonian in both full-AD and HG for fair comparison.} semi-AD, and HG for a single optimization iteration. The runtime is measured by the package \texttt{Temci}~\cite{temci} and
 the peak memory usage is monitored by the \texttt{memory\_profiler} package~\cite{memory}. The optimization is performed on an AMD Ryzen Threadripper 3970X 32-Core CPU with 3.7\,GHz frequency. 
@@ -94,7 +94,7 @@ the peak memory usage is monitored by the \texttt{memory\_profiler} package~\cit
 
 \begin{figure}[t]
   \includegraphics[width=\linewidth]{ch3_figures/state.pdf} 
-  \caption[Benchmark results for Fock state generation in a system consisting of a cavity coupled to a transmon.]{Benchmark results for Fock state generation in a system consisting of a cavity coupled to a transmon. (a)~Runtime per iteration and (b)~memory usage versus Hilbert space dimension $d$. The dimension is varied by increasing the cavity dimension while fixing the transmon dimension to 6. (c)~Memory usage as a function of the number of time steps for $d=240$. All plots are in log-log scale. Dashed lines are power-law fits. (Parameters: $\Delta/2\pi=3\,$GHz, $g/2\pi=0.1\,$GHz, $\alpha/2\pi=-0.225\,$GHz, and constant controls $a_z/2\pi=a_x/2\pi=0.1\,$GHz.)}
+  \caption[Benchmark results for Fock state generation in a system consisting of a cavity coupled to a transmon.]{Benchmark results for Fock state generation in a system consisting of a cavity coupled to a transmon. (a)~Runtime per iteration and (b)~memory usage versus Hilbert space dimension $d$. The dimension is varied by increasing the cavity dimension while fixing the transmon dimension to 6. (c)~Memory usage as a function of the number of time steps for $d=240$. All plots are in log-log scale. Dashed lines are power-law fits. (Parameters: $\Delta/2\pi=3\,$GHz, $g/2\pi=0.1\,$GHz, $K_b/2\pi=0.225\,$GHz, and constant controls $a_z/2\pi=a_x/2\pi=0.1\,$GHz.)}
   \label{fig:state_time}
 \end{figure}
 
@@ -105,13 +105,13 @@ Benchmark results for the state-transfer optimization are shown in Fig.~\ref{fig
 I next turn to an example for optimizing a unitary gate. This benchmark is performed for three driven transmons with nearest-neighbor coupling. The target gate consists of simultaneous Hadamard operations on each of the three transmons. For concreteness, I consider the case of transmons with the same frequency, driven resonantly. The full Hamiltonian in the rotating frame of the drive is
 \begin{equation}
 \label{eq:gateH}
-    H_2(t)=\sum_{\nu=1}^{3}\bigg[\frac{1}{2}\alpha b_\nu^\dagger b_\nu (b_\nu^\dagger b_\nu-1)+a^{(\nu)}(t)(b_\nu+b_\nu^\dagger)\bigg]+g(b_1b_{2}^\dagger+b_2b_{3}^\dagger+\text{h.c.}).
+    H_2(t)=\sum_{\nu=1}^{3}\bigg[-\frac{K_b}{2}b_\nu^{\dagger 2}b_\nu^2+a^{(\nu)}(t)(b_\nu+b_\nu^\dagger)\bigg]+g(b_1b_{2}^\dagger+b_2b_{3}^\dagger+\text{h.c.}).
 \end{equation}
 The goal of the optimization is to minimize the infidelity $C_2^{ g}$. The setup for this benchmark is the same as in the previous example.
 
 \begin{figure}[t]
   \includegraphics[width=\linewidth]{ch3_figures/gate.pdf}
-  \caption[Benchmark results for unitary gate optimization in a system consisting of three coupled transmons.]{Benchmark results for unitary gate optimization in a system consisting of three coupled transmons. (a)~Runtime per iteration and (b)~memory usage versus Hilbert space dimension $d$. The total Hilbert space dimension $d$ is increased by enlarging the cutoff of each transmon from 10 to 14 simultaneously. (c)~Memory usage as a function of the number of time steps for $d=12^3=1728$. Full-AD (not shown) would require more memory than available resources (estimated: 1\,TB). All plots are in log-log scale. Dashed lines are power-law fits. (Parameters: $g/2\pi=0.1\,$GHz, $\alpha/2\pi=-0.225\,$GHz, and $a^{(\nu)}/2\pi=0.1\,$GHz.)}
+  \caption[Benchmark results for unitary gate optimization in a system consisting of three coupled transmons.]{Benchmark results for unitary gate optimization in a system consisting of three coupled transmons. (a)~Runtime per iteration and (b)~memory usage versus Hilbert space dimension $d$. The total Hilbert space dimension $d$ is increased by enlarging the cutoff of each transmon from 10 to 14 simultaneously. (c)~Memory usage as a function of the number of time steps for $d=12^3=1728$. Full-AD (not shown) would require more memory than available resources (estimated: 1\,TB). All plots are in log-log scale. Dashed lines are power-law fits. (Parameters: $g/2\pi=0.1\,$GHz, $K_b/2\pi=0.225\,$GHz, and $a^{(\nu)}/2\pi=0.1\,$GHz.)}
   \label{fig:gate}
 \end{figure}
 

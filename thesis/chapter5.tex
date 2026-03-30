@@ -12,7 +12,7 @@ of quantum optimal control. Our approach involves the development and implementa
 
 Detuning-robust control for two-level systems has been extensively investigated using various approaches, including reverse engineering~\cite{PhysRevLett.111.050404inverseengi,PhysRevLett.125.250403inverseengi}, space curve quantum control~\cite{barnes2022dynamicallyspacecurve}, pulse engineering~\cite{barnes2022dynamicallyspacecurve,wang2012compositepulse,PhysRevA.83.053420pulse,PhysRevA.86.022315pulse,tycko1983broadbandpulse,PhysRevA.107.023103pulse,ball2021softwarepulseengi,wimperis1994broadbandpulse,pasini2009optimizedinitialpulse}, and the collocation method~\cite{propson2022robustcollocation,Trowbridge2023}. However, protocols developed for two-level systems cannot be directly applied to weakly anharmonic transmons due to leakage out of the qubit subspace. One promising solution is to apply the DRAG scheme to robust single-quadrature pulses developed for two-level systems~\cite{hai2023universalcompare}. 
 Additionally, Ref.~\cite{qctrl} directly optimizes two-quadrature pulses for transmons.
-In the following, I introduce an alternative optimization-based procedure to design detuning-robust control for transmon $\hat{X}_{\theta}$ gates and benchmark its performance.
+In the following, I introduce an alternative optimization-based procedure to design detuning-robust control for transmon $X_{\theta}$ gates and benchmark its performance.
 
 \section{Metrics of robust control}
 \label{sec:metrics}
@@ -28,23 +28,23 @@ Here, the probability distribution $p(\delta)$ satisfies $\int_\mathbb{D}\mathrm
 In the case of interest, the Hamiltonian governing the transmon qubit in the co-rotating frame of the drive frequency is 
 \begin{equation}
 \label{eq:H_trans}
-    \hat{H}_\text{trans}(t) = K_\text{q} \hat{q}^{\dagger 2} \hat{q}^2/2 + \varepsilon_I(t)(\hat{q}^\dagger+\hat{q})+i\varepsilon_Q(t)(\hat{q}^\dagger-\hat{q})+\delta \hat{q}^\dagger \hat{q}.
+    H_\text{trans}(t) = -\frac{K_b}{2} b^{\dagger 2} b^2 + \varepsilon_I(t)(b^\dagger+b)+i\varepsilon_Q(t)(b^\dagger-b)+\delta b^\dagger b.
 \end{equation}
-Here, $\varepsilon_I(t)$ and $\varepsilon_Q(t)$ describe control envelopes in the $I$ and $Q$ quadratures, and $\delta$ denotes the difference between the drive frequency and the unknown shifted qubit frequency.%
+Here $b$ and $b^\dagger$ are the transmon ladder operators in the same convention as mode~$b$ in Sec.~\ref{sec:parametric_two_mode_control} (cf.\ Eq.~\eqref{eq:Hnl_bare}), with $K_b>0$ the corresponding Kerr coefficient. The quantities $\varepsilon_I(t)$ and $\varepsilon_Q(t)$ describe control envelopes in the $I$ and $Q$ quadratures, and $\delta$ denotes the difference between the drive frequency and the unknown shifted qubit frequency.%
 \nomenclature{$\varepsilon_I$, $\varepsilon_Q$}{Control envelopes in the $I$ and $Q$ quadratures}%
-\nomenclature{$K_\text{q}$}{Transmon anharmonicity (self-Kerr)}%
+\nomenclature{$K_b$}{Transmon Kerr coefficient (as in Eq.~\eqref{eq:Hnl_bare})}%
 The closed-system gate infidelity follows 
 \begin{equation}\label{eq:fid_single}
-\mathcal{I}_\text{c}(\delta) = 1-\frac{1}{4}\left|\Tr\left[\hat{P}_{0,1}\hat{U}_\text{target}^\dagger \hat{U}_\delta(t_\text{g})\right]\right|^2,
+\mathcal{I}_\text{c}(\delta) = 1-\frac{1}{4}\left|\Tr\left[P_{0,1}U_\text{target}^\dagger U_\delta(t_\text{g})\right]\right|^2,
 \end{equation}
-where $\hat{P}_{0,1}$ is a projector onto the computational subspace formed by the lowest two eigenstates. Here, $\hat{U}_\text{target}$ is the target unitary on the transmon, and $\hat{U}_\delta(t_\text{g})=\mathcal{T}\exp[-i\int_0^{t_\text{g}} \mathrm{d}\tau \, \hat{H}_\text{trans}(\tau)]$ is the actual unitary achieved over a gate duration $t_\text{g}$, where $\mathcal{T}$ is the time-ordering operator. 
+where $P_{0,1}$ is a projector onto the computational subspace formed by the lowest two eigenstates. Here, $U_\text{target}$ is the target unitary on the transmon, and $U_\delta(t_\text{g})=\mathcal{T}\exp[-i\int_0^{t_\text{g}} \mathrm{d}\tau \, H_\text{trans}(\tau)]$ is the actual unitary achieved over a gate duration $t_\text{g}$, where $\mathcal{T}$ is the time-ordering operator. 
 
 In the presence of decoherence, the open-system infidelity follows~\cite{abdelhafez2019quantumthesis}
 \begin{equation}
 \label{eq:open_inf}
 \mathcal{I}_\text{o}(\delta) = 1-\frac{1}{4}\Tr[\mathcal{P}_{0,1}\mathcal{L}_\text{target}^\dagger \mathcal{L}_\delta(t_\text{g})].
 \end{equation}
-Here, the density matrix is vectorized by stacking the elements row-by-row. $\mathcal{P}_{0,1}=\hat{P}_{0,1}\otimes\hat{P}_{0,1}$ is the superprojector onto the computational subspace, $\mathcal{L}_\text{target}=\hat{U}_\text{target}\otimes \hat{U}^*_\text{target}$ is the target superoperator, and $\mathcal{L}_\delta(t_\text{g})$ is the superoperator realized by the Lindblad master equation. Note that in the absence of decoherence, $\mathcal{L}_\delta(t_\text{g})=\hat{U}_\delta(t_\text{g})\otimes \hat{U}_\delta^*(t_\text{g})$.
+Here, the density matrix is vectorized by stacking the elements row-by-row. $\mathcal{P}_{0,1}=P_{0,1}\otimes P_{0,1}$ is the superprojector onto the computational subspace, $\mathcal{L}_\text{target}=U_\text{target}\otimes U^*_\text{target}$ is the target superoperator, and $\mathcal{L}_\delta(t_\text{g})$ is the superoperator realized by the Lindblad master equation. Note that in the absence of decoherence, $\mathcal{L}_\delta(t_\text{g})=U_\delta(t_\text{g})\otimes U_\delta^*(t_\text{g})$.
 
 \section{Optimization procedure}
 \label{sec:opt_procedure}
@@ -58,8 +58,8 @@ Here, $\delta_i$ denotes sample values of detunings within the specified range o
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.7\linewidth]{ch4_figures/fig_flowchart.pdf}
-    \caption[Optimization procedure to obtain detuning-robust $\hat{X}_\theta$ gates in transmons.]{
-    Optimization procedure to obtain detuning-robust $\hat{X}_\theta$ gates in transmons. Input includes pulse constraints, transmon parameters, and a set of $M$ pulse durations. The choice of duration should be shorter than the decay time $T_1$ and longer than $1/\varepsilon_\text{max}$, where $\varepsilon_\text{max}$ is the maximum pulse amplitude. Closed-system GRAPE is performed for each duration to obtain the corresponding pulse profiles. Subsequently, an open-system solver evaluates the cost function $C_\text{o}$ for pulses with varying durations, selecting the pulse that minimizes $C_\text{o}$.}
+    \caption[Optimization procedure to obtain detuning-robust $X_\theta$ gates in transmons.]{
+    Optimization procedure to obtain detuning-robust $X_\theta$ gates in transmons. Input includes pulse constraints, transmon parameters, and a set of $M$ pulse durations. The choice of duration should be shorter than the decay time $T_1$ and longer than $1/\varepsilon_\text{max}$, where $\varepsilon_\text{max}$ is the maximum pulse amplitude. Closed-system GRAPE is performed for each duration to obtain the corresponding pulse profiles. Subsequently, an open-system solver evaluates the cost function $C_\text{o}$ for pulses with varying durations, selecting the pulse that minimizes $C_\text{o}$.}
     \label{fig:optflow}
 \end{figure}
 
@@ -76,9 +76,9 @@ For the closed-system optimization, I use Gradient Ascent Pulse Engineering (GRA
 \label{eq:initial_pulse}
     \varepsilon^\text{initial}_I(t) &=\frac{1}{t_\text{g}}\big[ (a-\theta/2)\cos(2\pi t /t_\text{g}) + (b-a)\cos(4\pi t /t_\text{g})\\ 
 \nonumber     &+(c-b)\cos(6\pi t / t_\text{g}) - c\cos(8\pi t / t_\text{g}) + \theta/2\big],\\
-\nonumber    \varepsilon_Q^\text{initial}(t) & = -\dot{\varepsilon}_I^\text{initial}(t) / K_\text{q},
+\nonumber    \varepsilon_Q^\text{initial}(t) & = \dot{\varepsilon}_I^\text{initial}(t) / K_b,
 \end{align}
-where $\theta$ is the rotation angle for the target $\hat{X}_\theta$ gate ($\theta=\pi,\pi/2$ in this study). This ansatz for the $I$-quadrature control has been used to obtain robust control for two-level systems~\cite{pasini2009optimizedinitialpulse}. The initial guess for the $Q$-quadrature is inspired by the DRAG pulse scheme~\cite{Motzoi2009} to suppress leakage. 
+where $\theta$ is the rotation angle for the target $X_\theta$ gate ($\theta=\pi,\pi/2$ in this study). This ansatz for the $I$-quadrature control has been used to obtain robust control for two-level systems~\cite{pasini2009optimizedinitialpulse}. The initial guess for the $Q$-quadrature is inspired by the DRAG pulse scheme~\cite{Motzoi2009} to suppress leakage. 
 The pulse is then optimized starting from various initial guesses for parameters $a,b,c\in\{-10,-8,-6,\cdots,10\}$, and the pulse with the lowest cost value $C_\text{c}$ is selected. This process is accelerated by parallelizing with different initial values.
 
 Throughout the closed-system optimization process, I ensure pulse smoothness by filtering out frequency components that exceed maximum allowed bandwidths of $5/t_\text{g}$ and $10/t_\text{g}$ for $\varepsilon_I(t)$ and $\varepsilon_Q(t)$, respectively. These empirical values effectively balance pulse smoothness and the level of robustness required.
@@ -89,18 +89,18 @@ Throughout the closed-system optimization process, I ensure pulse smoothness by 
 \begin{figure}[t]
     \centering
     \includegraphics[width=\textwidth]{ch4_figures/fig_qoc.pdf}
-    \caption[Optimization results for the $\hat{X}_\pi$ gate.]{
-    Optimization results for the $\hat{X}_\pi$ gate. 
+    \caption[Optimization results for the $X_\pi$ gate.]{
+    Optimization results for the $X_\pi$ gate. 
 (a)~Average infidelities in Eq.~\eqref{eq:avg_inf} versus pulse durations for both closed (dashed line) and open (solid line) systems. The optimal duration selected from the range considered for this optimization is 20\,ns (indicated by a star). 
 (b)~$I$ and $Q$ quadratures of the pulse envelopes for the selected 20-ns pulse from~(a).
 (c)~The frequency components of the pulse envelopes, corresponding to the 20-ns pulse. 
 (d)~Comparative analysis of the 20-ns pulses, from both QOC (blue) and DRAG (red) pulses, in terms of their infidelities as a function of detuning.
 The average and standard deviation of the infidelities are tabulated correspondingly by considering a uniform distribution of $\rho(\delta)$ for simplicity. The result shows that the optimized pulse is more robust than the commonly used DRAG pulse.
-[Parameters: $\delta_i/2\pi\in\{\pm 1,\pm 3,\pm 4,\pm 7,\pm 10\}$\,MHz, $K_\text{q}/2\pi=-200$\,MHz, $T_1=50$\,$\mu$s, $T_\phi=50$\,$\mu$s.]}
+[Parameters: $\delta_i/2\pi\in\{\pm 1,\pm 3,\pm 4,\pm 7,\pm 10\}$\,MHz, $K_b/2\pi=200$\,MHz, $T_1=50$\,$\mu$s, $T_\phi=50$\,$\mu$s.]}
     \label{fig:fig_qoc}
 \end{figure}
 
-I benchmark the optimization procedure for a transmon with typical parameters: $K_\text{q}/2\pi=-200$\,MHz, $T_1=50$\,$\mu$s, and $T_\phi=50$\,$\mu$s. The optimization results for the $\hat{X}_\pi$ gate are shown in Fig.~\ref{fig:fig_qoc}. 
+I benchmark the optimization procedure for a transmon with typical parameters: $K_b/2\pi=200$\,MHz, $T_1=50$\,$\mu$s, and $T_\phi=50$\,$\mu$s. The optimization results for the $X_\pi$ gate are shown in Fig.~\ref{fig:fig_qoc}. 
 Figure~\ref{fig:fig_qoc}(a) shows the average infidelities obtained for closed- and open-system simulations with varying pulse durations. 
 Without decoherence, extending the pulse duration generally leads to a reduction in the cost value. In contrast, in the presence of decoherence, utilizing shorter pulses is more effective in reducing the infidelity. 
 Given the particular transmon parameters under consideration, a pulse duration of 20\,ns achieves the lowest cost.
@@ -113,14 +113,14 @@ The open-system infidelities obtained from these two pulses are limited by disti
 \begin{figure}[t]
     \centering
     \includegraphics[width=\textwidth]{ch4_figures/fig_qoc_qctrl.pdf}
-    \caption[Comparison of optimization results between Q-CTRL and QOC for the $\hat{X}_{\pi}$ gate.]{
-Comparison of optimization results between Q-CTRL and QOC for the $\hat{X}_{\pi}$ gate.
+    \caption[Comparison of optimization results between Q-CTRL and QOC for the $X_{\pi}$ gate.]{
+Comparison of optimization results between Q-CTRL and QOC for the $X_{\pi}$ gate.
 (a)~Average infidelities of a closed system [Eq.~\eqref{eq:avg_inf}] versus pulse durations derived from Q-CTRL (red) and QOC (blue). The optimal duration selected for Q-CTRL from the range considered is 20\,ns (indicated by a red star).
 (b)~$I$ and $Q$ quadratures of the Q-CTRL pulse envelopes for the selected 20-ns pulse from~(a).
 (c)~Frequency components of the Q-CTRL pulse envelopes corresponding to the 20-ns pulse.
 (d)~Comparative analysis of the 20-ns pulses from both QOC (blue) and Q-CTRL (red) in terms of their infidelities as a function of detuning.
 The average and standard deviation of the infidelities are tabulated considering a uniform distribution of $\rho(\delta)$ for simplicity.
-[Parameters: $\delta_i/2\pi \in \{\pm 1, \pm 3, \pm 4, \pm 7, \pm 10\}$\,MHz, $K_\text{q}/2\pi = -200$\,MHz, $T_1 = 50$\,$\mu$s, $T_\phi = 50$\,$\mu$s.]}
+[Parameters: $\delta_i/2\pi \in \{\pm 1, \pm 3, \pm 4, \pm 7, \pm 10\}$\,MHz, $K_b/2\pi = 200$\,MHz, $T_1 = 50$\,$\mu$s, $T_\phi = 50$\,$\mu$s.]}
     \label{fig:fig_qoc_qctrl}
 \end{figure}
 

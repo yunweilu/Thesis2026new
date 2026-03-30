@@ -44,4 +44,4 @@
 \nomenclatureentry{a$\mu$@[{$\mu$}]\begingroup Number of matrix-vector multiplications required for propagator-state product evaluation\nomeqref {3.52}|nompageref}{57}
 \nomenclatureentry{a$\kappa$@[{$\kappa$}]\begingroup Number of stored Hamiltonian matrix elements\nomeqref {4.0}|nompageref}{63}
 \nomenclatureentry{a$\varepsilon_I$, $\varepsilon_Q$@[{$\varepsilon_I$, $\varepsilon_Q$}]\begingroup Control envelopes in the $I$ and $Q$ quadratures\nomeqref {5.2}|nompageref}{75}
-\nomenclatureentry{a$K_\text{q}$@[{$K_\text{q}$}]\begingroup Transmon anharmonicity (self-Kerr)\nomeqref {5.2}|nompageref}{75}
+\nomenclatureentry{a$K_b$@[{$K_b$}]\begingroup Transmon Kerr coefficient (as in Eq.~\eqref{eq:Hnl_bare})\nomeqref {5.2}|nompageref}{75}

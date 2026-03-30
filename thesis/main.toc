@@ -25,7 +25,7 @@
 \contentsline {subsection}{\numberline {2.4.2}Parametrically activated two-mode interaction in a cavity--FTT--cavity system}{35}{subsection.2.4.2}%
 \contentsline {subsubsection}{\numberline {2.4.2.1}Starting Hamiltonian and flux-dependent transmon frequency}{37}{subsubsection.2.4.2.1}%
 \contentsline {subsubsection}{\numberline {2.4.2.2}Black-box quantization of the static quadratic sector}{38}{subsubsection.2.4.2.2}%
-\contentsline {subsubsection}{\numberline {2.4.2.3}Drive-selected interaction and rotating-wave approximation}{39}{subsubsection.2.4.2.3}%
+\contentsline {subsubsection}{\numberline {2.4.2.3}Drive-selected interaction and rotating-wave approximation}{40}{subsubsection.2.4.2.3}%
 \contentsline {chapter}{\numberline {3}GRAPE Based on Hard-Coded Gradients}{42}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Brief sketch of GRAPE}{43}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Analytical gradients}{45}{section.3.2}%
@@ -58,68 +58,68 @@
 \contentsline {section}{\numberline {5.1}Metrics of robust control}{74}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Optimization procedure}{75}{section.5.2}%
 \contentsline {section}{\numberline {5.3}Benchmarking and comparison}{77}{section.5.3}%
-\contentsline {chapter}{\numberline {6}Cavity Dephasing Inherited from Transmon Flux Noise}{82}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Introduction}{82}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Hamiltonian Derivation and Noise Analysis}{84}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Obtain $H_d$ by a Schrieffer--Wolff transformation}{87}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Transformation}{89}{section.6.4}%
-\contentsline {subsection}{\numberline {6.4.1}Transformation of Hamiltonian}{89}{subsection.6.4.1}%
-\contentsline {subsection}{\numberline {6.4.2}Transformation of $H_{\text {noise}}$}{91}{subsection.6.4.2}%
-\contentsline {subsection}{\numberline {6.4.3}Transformation of Lindbladian}{93}{subsection.6.4.3}%
-\contentsline {subsection}{\numberline {6.4.4}Further approximation under two regimes}{96}{subsection.6.4.4}%
-\contentsline {paragraph}{Unselective regime}{96}{paragraph*.10}%
-\contentsline {paragraph}{Selective regime.}{97}{paragraph*.11}%
-\contentsline {section}{\numberline {6.5}Dephasing mitigation by drive}{99}{section.6.5}%
-\contentsline {subsection}{\numberline {6.5.1}System setup}{99}{subsection.6.5.1}%
-\contentsline {subsection}{\numberline {6.5.2}Driven sweet spots}{100}{subsection.6.5.2}%
-\contentsline {paragraph}{Unselective Regime.}{102}{paragraph*.12}%
-\contentsline {paragraph}{Selective Regime.}{103}{paragraph*.13}%
-\contentsline {paragraph}{Sweet-Spot Map and Regime Crossover.}{104}{paragraph*.14}%
-\contentsline {chapter}{\numberline {7}Overall Dephasing Rate and Performance Analysis}{107}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Overall dephasing rate}{107}{section.7.1}%
-\contentsline {subsection}{\numberline {7.1.1}Total dephasing in the unselective regime}{107}{subsection.7.1.1}%
-\contentsline {paragraph}{Interpretation of the dissipators.}{108}{paragraph*.15}%
-\contentsline {paragraph}{Interpretation of the noise Hamiltonian.}{108}{paragraph*.16}%
-\contentsline {paragraph}{Total cavity dephasing rate.}{109}{paragraph*.17}%
-\contentsline {subsection}{\numberline {7.1.2}Total dephasing in the selective regime}{109}{subsection.7.1.2}%
-\contentsline {subsection}{\numberline {7.1.3}Numerical evaluation of the total dephasing rate}{110}{subsection.7.1.3}%
-\contentsline {section}{\numberline {7.2}Exact calculation of $D_{0\rightarrow 1}$}{111}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Numerical details of obtaining dephasing rates}{112}{section.7.3}%
-\contentsline {paragraph}{Generation of $1/f$ noise.}{113}{paragraph*.18}%
-\contentsline {paragraph}{Extraction of dephasing time.}{113}{paragraph*.19}%
-\contentsline {section}{\numberline {7.4}Adiabatic transition}{115}{section.7.4}%
-\contentsline {chapter}{\numberline {8}Applications to Bosonic Error-Correction Codes}{122}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Application to Bosonic Encodings}{122}{section.8.1}%
-\contentsline {subsection}{\numberline {8.1.1}Binomial encoding}{122}{subsection.8.1.1}%
-\contentsline {subsection}{\numberline {8.1.2}Dual-rail encoding}{125}{subsection.8.1.2}%
-\contentsline {section}{\numberline {8.2}Conclusion}{126}{section.8.2}%
-\contentsline {section}{\numberline {8.3}Sweet spots from higher-order corrections}{127}{section.8.3}%
-\contentsline {section}{\numberline {8.4}Example of a SNAIL coupler}{128}{section.8.4}%
-\contentsline {section}{\numberline {8.5}Amplitude-noise-induced dephasing}{130}{section.8.5}%
-\contentsline {chapter}{\numberline {9}Conclusion and Future Work}{133}{chapter.9}%
-\contentsline {chapter}{References}{133}{chapter.9}%
+\contentsline {chapter}{\numberline {6}Cavity Dephasing Inherited from Transmon Flux Noise}{83}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Introduction}{83}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Hamiltonian Derivation and Noise Analysis}{85}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Obtain $H_d$ by a Schrieffer--Wolff transformation}{88}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Transformation}{90}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Transformation of Hamiltonian}{90}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Transformation of $H_{\text {noise}}$}{92}{subsection.6.4.2}%
+\contentsline {subsection}{\numberline {6.4.3}Transformation of Lindbladian}{94}{subsection.6.4.3}%
+\contentsline {subsection}{\numberline {6.4.4}Further approximation under two regimes}{97}{subsection.6.4.4}%
+\contentsline {paragraph}{Unselective regime}{97}{paragraph*.10}%
+\contentsline {paragraph}{Selective regime.}{98}{paragraph*.11}%
+\contentsline {section}{\numberline {6.5}Dephasing mitigation by drive}{100}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}System setup}{100}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}Driven sweet spots}{101}{subsection.6.5.2}%
+\contentsline {paragraph}{Unselective Regime.}{103}{paragraph*.12}%
+\contentsline {paragraph}{Selective Regime.}{104}{paragraph*.13}%
+\contentsline {paragraph}{Sweet-Spot Map and Regime Crossover.}{105}{paragraph*.14}%
+\contentsline {chapter}{\numberline {7}Overall Dephasing Rate and Performance Analysis}{108}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Overall dephasing rate}{108}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Total dephasing in the unselective regime}{108}{subsection.7.1.1}%
+\contentsline {paragraph}{Interpretation of the dissipators.}{109}{paragraph*.15}%
+\contentsline {paragraph}{Interpretation of the noise Hamiltonian.}{109}{paragraph*.16}%
+\contentsline {paragraph}{Total cavity dephasing rate.}{110}{paragraph*.17}%
+\contentsline {subsection}{\numberline {7.1.2}Total dephasing in the selective regime}{110}{subsection.7.1.2}%
+\contentsline {subsection}{\numberline {7.1.3}Numerical evaluation of the total dephasing rate}{111}{subsection.7.1.3}%
+\contentsline {section}{\numberline {7.2}Exact calculation of $D_{0\rightarrow 1}$}{112}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Numerical details of obtaining dephasing rates}{113}{section.7.3}%
+\contentsline {paragraph}{Generation of $1/f$ noise.}{114}{paragraph*.18}%
+\contentsline {paragraph}{Extraction of dephasing time.}{114}{paragraph*.19}%
+\contentsline {section}{\numberline {7.4}Adiabatic transition}{116}{section.7.4}%
+\contentsline {chapter}{\numberline {8}Applications to Bosonic Error-Correction Codes}{123}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Application to Bosonic Encodings}{123}{section.8.1}%
+\contentsline {subsection}{\numberline {8.1.1}Binomial encoding}{123}{subsection.8.1.1}%
+\contentsline {subsection}{\numberline {8.1.2}Dual-rail encoding}{126}{subsection.8.1.2}%
+\contentsline {section}{\numberline {8.2}Conclusion}{127}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Sweet spots from higher-order corrections}{128}{section.8.3}%
+\contentsline {section}{\numberline {8.4}Example of a SNAIL coupler}{129}{section.8.4}%
+\contentsline {section}{\numberline {8.5}Amplitude-noise-induced dephasing}{131}{section.8.5}%
+\contentsline {chapter}{\numberline {9}Conclusion and Future Work}{134}{chapter.9}%
+\contentsline {chapter}{References}{134}{chapter.9}%
 \renewcommand {\cftchappresnum }{Appendix }
 \renewcommand {\cftchapnumwidth }{6em}
-\contentsline {chapter}{\numberline {A}Scaling of the Number of Matrix-Vector Multiplications $\mu $}{142}{appendix.1.A}%
-\contentsline {chapter}{\numberline {B}Alternative Hard-Coded Gradient Scheme: Numerical Implementation and Scaling}{145}{appendix.1.B}%
-\contentsline {section}{\numberline {B.1}Evaluation of propagator derivative}{145}{section.1.B.1}%
-\contentsline {section}{\numberline {B.2}Scaling analysis}{147}{section.1.B.2}%
-\contentsline {chapter}{\numberline {C}Floquet formalism and justification of the RWA}{149}{appendix.1.C}%
-\contentsline {section}{\numberline {C.1}Floquet Formalism}{149}{section.1.C.1}%
-\contentsline {subsection}{\numberline {C.1.1}Floquet Theorem}{149}{subsection.1.C.1.1}%
-\contentsline {subsection}{\numberline {C.1.2}Construction of the Solution}{149}{subsection.1.C.1.2}%
-\contentsline {subsection}{\numberline {C.1.3}Quasienergy and Floquet States under $H_{\text {disp}}$}{153}{subsection.1.C.1.3}%
-\contentsline {subsubsection}{\numberline {C.1.3.1}Quasienergy Operator for the Driven Dispersive Hamiltonian}{153}{subsubsection.1.C.1.3.1}%
-\contentsline {subsubsection}{\numberline {C.1.3.2}Approximation of Quasienergy and Floquet States}{154}{subsubsection.1.C.1.3.2}%
-\contentsline {subsubsection}{\numberline {C.1.3.3}Connection with the RWA}{156}{subsubsection.1.C.1.3.3}%
-\contentsline {chapter}{\numberline {D}Higher-order sweet spots}{158}{appendix.1.D}%
-\contentsline {section}{\numberline {D.1}Sweet spots from higher-order corrections}{158}{section.1.D.1}%
-\contentsline {chapter}{\numberline {E}SNAIL coupler generalization}{160}{appendix.1.E}%
-\contentsline {section}{\numberline {E.1}Example of a SNAIL coupler}{160}{section.1.E.1}%
-\contentsline {chapter}{\numberline {F}Numerical details}{162}{appendix.1.F}%
-\contentsline {section}{\numberline {F.1}Numerical details of obtaining dephasing rates}{162}{section.1.F.1}%
-\contentsline {paragraph}{Generation of $1/f$ noise.}{162}{paragraph*.21}%
-\contentsline {paragraph}{Extraction of dephasing time.}{164}{paragraph*.22}%
-\contentsline {section}{\numberline {F.2}Rates in the unselective regime}{165}{section.1.F.2}%
-\contentsline {subsection}{\numberline {F.2.1}Dephasing rates}{165}{subsection.1.F.2.1}%
-\contentsline {subsection}{\numberline {F.2.2}Decay rates}{166}{subsection.1.F.2.2}%
+\contentsline {chapter}{\numberline {A}Scaling of the Number of Matrix-Vector Multiplications $\mu $}{143}{appendix.1.A}%
+\contentsline {chapter}{\numberline {B}Alternative Hard-Coded Gradient Scheme: Numerical Implementation and Scaling}{146}{appendix.1.B}%
+\contentsline {section}{\numberline {B.1}Evaluation of propagator derivative}{146}{section.1.B.1}%
+\contentsline {section}{\numberline {B.2}Scaling analysis}{148}{section.1.B.2}%
+\contentsline {chapter}{\numberline {C}Floquet formalism and justification of the RWA}{150}{appendix.1.C}%
+\contentsline {section}{\numberline {C.1}Floquet Formalism}{150}{section.1.C.1}%
+\contentsline {subsection}{\numberline {C.1.1}Floquet Theorem}{150}{subsection.1.C.1.1}%
+\contentsline {subsection}{\numberline {C.1.2}Construction of the Solution}{150}{subsection.1.C.1.2}%
+\contentsline {subsection}{\numberline {C.1.3}Quasienergy and Floquet States under $H_{\text {disp}}$}{154}{subsection.1.C.1.3}%
+\contentsline {subsubsection}{\numberline {C.1.3.1}Quasienergy Operator for the Driven Dispersive Hamiltonian}{154}{subsubsection.1.C.1.3.1}%
+\contentsline {subsubsection}{\numberline {C.1.3.2}Approximation of Quasienergy and Floquet States}{155}{subsubsection.1.C.1.3.2}%
+\contentsline {subsubsection}{\numberline {C.1.3.3}Connection with the RWA}{157}{subsubsection.1.C.1.3.3}%
+\contentsline {chapter}{\numberline {D}Higher-order sweet spots}{159}{appendix.1.D}%
+\contentsline {section}{\numberline {D.1}Sweet spots from higher-order corrections}{159}{section.1.D.1}%
+\contentsline {chapter}{\numberline {E}SNAIL coupler generalization}{161}{appendix.1.E}%
+\contentsline {section}{\numberline {E.1}Example of a SNAIL coupler}{161}{section.1.E.1}%
+\contentsline {chapter}{\numberline {F}Numerical details}{163}{appendix.1.F}%
+\contentsline {section}{\numberline {F.1}Numerical details of obtaining dephasing rates}{163}{section.1.F.1}%
+\contentsline {paragraph}{Generation of $1/f$ noise.}{163}{paragraph*.21}%
+\contentsline {paragraph}{Extraction of dephasing time.}{165}{paragraph*.22}%
+\contentsline {section}{\numberline {F.2}Rates in the unselective regime}{166}{section.1.F.2}%
+\contentsline {subsection}{\numberline {F.2.1}Dephasing rates}{166}{subsection.1.F.2.1}%
+\contentsline {subsection}{\numberline {F.2.2}Decay rates}{167}{subsection.1.F.2.2}%
