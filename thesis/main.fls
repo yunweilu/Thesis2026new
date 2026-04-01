@@ -2,7 +2,7 @@ PWD /Users/yunwei/Desktop/project/Thesis/Thesis2026/thesis
 INPUT /usr/local/texlive/2024/texmf.cnf
 INPUT /usr/local/texlive/2024/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/yunwei/Desktop/project/Thesis/Thesis2026/thesis/main.tex
+INPUT main.tex
 OUTPUT main.log
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/report.cls
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/report.cls
@@ -555,24 +555,44 @@ INPUT ./ch4_figures/fig_qoc_qctrl.pdf
 INPUT ./ch4_figures/fig_qoc_qctrl.pdf
 INPUT ./ch4_figures/fig_qoc_qctrl.pdf
 INPUT ./ch4_figures/fig_qoc_qctrl.pdf
-INPUT ./chapter6.tex
-INPUT ./chapter6.tex
-INPUT chapter6.tex
+INPUT ./chapter6/main.tex
+INPUT ./chapter6/main.tex
+INPUT chapter6/main.tex
+INPUT ./chapter6/sections/introduction.tex
+INPUT ./chapter6/sections/introduction.tex
+INPUT ./chapter6/sections/introduction.tex
+INPUT ./chapter6/sections/introduction.tex
+INPUT chapter6/sections/introduction.tex
 INPUT ../6949db0bfd19311f68336ca1/introduction/introduction.tex
 INPUT ../6949db0bfd19311f68336ca1/introduction/introduction.tex
 INPUT ../6949db0bfd19311f68336ca1/introduction/introduction.tex
 INPUT ../6949db0bfd19311f68336ca1/introduction/introduction.tex
 INPUT ../6949db0bfd19311f68336ca1/introduction/introduction.tex
+INPUT ./chapter6/sections/hamiltonian_derivation_and_noise_analysis.tex
+INPUT ./chapter6/sections/hamiltonian_derivation_and_noise_analysis.tex
+INPUT ./chapter6/sections/hamiltonian_derivation_and_noise_analysis.tex
+INPUT ./chapter6/sections/hamiltonian_derivation_and_noise_analysis.tex
+INPUT chapter6/sections/hamiltonian_derivation_and_noise_analysis.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/Hamiltonian Derivation and Noise Analysis.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/Hamiltonian Derivation and Noise Analysis.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/Hamiltonian Derivation and Noise Analysis.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/Hamiltonian Derivation and Noise Analysis.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/Hamiltonian Derivation and Noise Analysis.tex
+INPUT ./chapter6/sections/obtain_hd_schrieffer_wolff.tex
+INPUT ./chapter6/sections/obtain_hd_schrieffer_wolff.tex
+INPUT ./chapter6/sections/obtain_hd_schrieffer_wolff.tex
+INPUT ./chapter6/sections/obtain_hd_schrieffer_wolff.tex
+INPUT chapter6/sections/obtain_hd_schrieffer_wolff.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/Obtain H_d by Schrieffer–Wolff transformation.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/Obtain H_d by Schrieffer–Wolff transformation.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/Obtain H_d by Schrieffer–Wolff transformation.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/Obtain H_d by Schrieffer–Wolff transformation.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/Obtain H_d by Schrieffer–Wolff transformation.tex
+INPUT ./chapter6/sections/transformation.tex
+INPUT ./chapter6/sections/transformation.tex
+INPUT ./chapter6/sections/transformation.tex
+INPUT ./chapter6/sections/transformation.tex
+INPUT chapter6/sections/transformation.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/Transformation.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/Transformation.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/Transformation.tex
@@ -582,6 +602,11 @@ INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmri7t.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmri7t.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/vf/adobe/times/ptmri7t.vf
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
+INPUT ./chapter6/sections/sec2_setup.tex
+INPUT ./chapter6/sections/sec2_setup.tex
+INPUT ./chapter6/sections/sec2_setup.tex
+INPUT ./chapter6/sections/sec2_setup.tex
+INPUT chapter6/sections/sec2_setup.tex
 INPUT ../6949db0bfd19311f68336ca1/Sec 2/setup.tex
 INPUT ../6949db0bfd19311f68336ca1/Sec 2/setup.tex
 INPUT ../6949db0bfd19311f68336ca1/Sec 2/setup.tex
@@ -591,6 +616,11 @@ INPUT ../6949db0bfd19311f68336ca1/plot/device_plot/deviceplot/device.pdf
 INPUT ../6949db0bfd19311f68336ca1/plot/device_plot/deviceplot/device.pdf
 INPUT ../6949db0bfd19311f68336ca1/plot/device_plot/deviceplot/device.pdf
 INPUT ../6949db0bfd19311f68336ca1/plot/device_plot/deviceplot/device.pdf
+INPUT ./chapter6/sections/sec2_driven_points.tex
+INPUT ./chapter6/sections/sec2_driven_points.tex
+INPUT ./chapter6/sections/sec2_driven_points.tex
+INPUT ./chapter6/sections/sec2_driven_points.tex
+INPUT chapter6/sections/sec2_driven_points.tex
 INPUT ../6949db0bfd19311f68336ca1/Sec 2/driven-induced-flux-insensitive-points.tex
 INPUT ../6949db0bfd19311f68336ca1/Sec 2/driven-induced-flux-insensitive-points.tex
 INPUT ../6949db0bfd19311f68336ca1/Sec 2/driven-induced-flux-insensitive-points.tex
@@ -600,14 +630,24 @@ INPUT ../6949db0bfd19311f68336ca1/Sec 2/compare.pdf
 INPUT ../6949db0bfd19311f68336ca1/Sec 2/compare.pdf
 INPUT ../6949db0bfd19311f68336ca1/Sec 2/compare.pdf
 INPUT ../6949db0bfd19311f68336ca1/Sec 2/compare.pdf
-INPUT ./chapter7.tex
-INPUT ./chapter7.tex
-INPUT chapter7.tex
+INPUT ./chapter7/main.tex
+INPUT ./chapter7/main.tex
+INPUT chapter7/main.tex
+INPUT ./chapter7/sections/unselective.tex
+INPUT ./chapter7/sections/unselective.tex
+INPUT ./chapter7/sections/unselective.tex
+INPUT ./chapter7/sections/unselective.tex
+INPUT chapter7/sections/unselective.tex
 INPUT ../6949db0bfd19311f68336ca1/Sec 3/unselective.tex
 INPUT ../6949db0bfd19311f68336ca1/Sec 3/unselective.tex
 INPUT ../6949db0bfd19311f68336ca1/Sec 3/unselective.tex
 INPUT ../6949db0bfd19311f68336ca1/Sec 3/unselective.tex
 INPUT ../6949db0bfd19311f68336ca1/Sec 3/unselective.tex
+INPUT ./chapter7/sections/selective.tex
+INPUT ./chapter7/sections/selective.tex
+INPUT ./chapter7/sections/selective.tex
+INPUT ./chapter7/sections/selective.tex
+INPUT chapter7/sections/selective.tex
 INPUT ../6949db0bfd19311f68336ca1/Sec 3/selective.tex
 INPUT ../6949db0bfd19311f68336ca1/Sec 3/selective.tex
 INPUT ../6949db0bfd19311f68336ca1/Sec 3/selective.tex
@@ -617,11 +657,21 @@ INPUT ../6949db0bfd19311f68336ca1/Sec 3/total_rate.pdf
 INPUT ../6949db0bfd19311f68336ca1/Sec 3/total_rate.pdf
 INPUT ../6949db0bfd19311f68336ca1/Sec 3/total_rate.pdf
 INPUT ../6949db0bfd19311f68336ca1/Sec 3/total_rate.pdf
+INPUT ./chapter7/sections/simulation_details.tex
+INPUT ./chapter7/sections/simulation_details.tex
+INPUT ./chapter7/sections/simulation_details.tex
+INPUT ./chapter7/sections/simulation_details.tex
+INPUT chapter7/sections/simulation_details.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/simulation details.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/simulation details.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/simulation details.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/simulation details.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/simulation details.tex
+INPUT ./chapter7/sections/numerics_trajectory.tex
+INPUT ./chapter7/sections/numerics_trajectory.tex
+INPUT ./chapter7/sections/numerics_trajectory.tex
+INPUT ./chapter7/sections/numerics_trajectory.tex
+INPUT chapter7/sections/numerics_trajectory.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/numerics_trajectory.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/numerics_trajectory.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/numerics_trajectory.tex
@@ -631,6 +681,11 @@ INPUT ../6949db0bfd19311f68336ca1/Appendix/noise_spectrum_plot.pdf
 INPUT ../6949db0bfd19311f68336ca1/Appendix/noise_spectrum_plot.pdf
 INPUT ../6949db0bfd19311f68336ca1/Appendix/noise_spectrum_plot.pdf
 INPUT ../6949db0bfd19311f68336ca1/Appendix/noise_spectrum_plot.pdf
+INPUT ./chapter7/sections/adiabatic_transition.tex
+INPUT ./chapter7/sections/adiabatic_transition.tex
+INPUT ./chapter7/sections/adiabatic_transition.tex
+INPUT ./chapter7/sections/adiabatic_transition.tex
+INPUT chapter7/sections/adiabatic_transition.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/Adiabatic transition.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/Adiabatic transition.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/Adiabatic transition.tex
@@ -640,9 +695,14 @@ INPUT ../6949db0bfd19311f68336ca1/Appendix/preparation_fidelity_plot.pdf
 INPUT ../6949db0bfd19311f68336ca1/Appendix/preparation_fidelity_plot.pdf
 INPUT ../6949db0bfd19311f68336ca1/Appendix/preparation_fidelity_plot.pdf
 INPUT ../6949db0bfd19311f68336ca1/Appendix/preparation_fidelity_plot.pdf
-INPUT ./chapter8.tex
-INPUT ./chapter8.tex
-INPUT chapter8.tex
+INPUT ./chapter8/main.tex
+INPUT ./chapter8/main.tex
+INPUT chapter8/main.tex
+INPUT ./chapter8/sections/sec4.tex
+INPUT ./chapter8/sections/sec4.tex
+INPUT ./chapter8/sections/sec4.tex
+INPUT ./chapter8/sections/sec4.tex
+INPUT chapter8/sections/sec4.tex
 INPUT ../6949db0bfd19311f68336ca1/Sec4/Sec4.tex
 INPUT ../6949db0bfd19311f68336ca1/Sec4/Sec4.tex
 INPUT ../6949db0bfd19311f68336ca1/Sec4/Sec4.tex
@@ -652,11 +712,21 @@ INPUT ../6949db0bfd19311f68336ca1/Sec4/qec_plot.pdf
 INPUT ../6949db0bfd19311f68336ca1/Sec4/qec_plot.pdf
 INPUT ../6949db0bfd19311f68336ca1/Sec4/qec_plot.pdf
 INPUT ../6949db0bfd19311f68336ca1/Sec4/qec_plot.pdf
+INPUT ./chapter8/sections/conclusion.tex
+INPUT ./chapter8/sections/conclusion.tex
+INPUT ./chapter8/sections/conclusion.tex
+INPUT ./chapter8/sections/conclusion.tex
+INPUT chapter8/sections/conclusion.tex
 INPUT ../6949db0bfd19311f68336ca1/Conclusion.tex
 INPUT ../6949db0bfd19311f68336ca1/Conclusion.tex
 INPUT ../6949db0bfd19311f68336ca1/Conclusion.tex
 INPUT ../6949db0bfd19311f68336ca1/Conclusion.tex
 INPUT ../6949db0bfd19311f68336ca1/Conclusion.tex
+INPUT ./chapter8/sections/higher_order.tex
+INPUT ./chapter8/sections/higher_order.tex
+INPUT ./chapter8/sections/higher_order.tex
+INPUT ./chapter8/sections/higher_order.tex
+INPUT chapter8/sections/higher_order.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/higher-order.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/higher-order.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/higher-order.tex
@@ -666,6 +736,11 @@ INPUT ../6949db0bfd19311f68336ca1/Appendix/higher_order.pdf
 INPUT ../6949db0bfd19311f68336ca1/Appendix/higher_order.pdf
 INPUT ../6949db0bfd19311f68336ca1/Appendix/higher_order.pdf
 INPUT ../6949db0bfd19311f68336ca1/Appendix/higher_order.pdf
+INPUT ./chapter8/sections/snail.tex
+INPUT ./chapter8/sections/snail.tex
+INPUT ./chapter8/sections/snail.tex
+INPUT ./chapter8/sections/snail.tex
+INPUT chapter8/sections/snail.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/SNAIL.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/SNAIL.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/SNAIL.tex
@@ -675,6 +750,11 @@ INPUT ../6949db0bfd19311f68336ca1/Appendix/SNAILss.pdf
 INPUT ../6949db0bfd19311f68336ca1/Appendix/SNAILss.pdf
 INPUT ../6949db0bfd19311f68336ca1/Appendix/SNAILss.pdf
 INPUT ../6949db0bfd19311f68336ca1/Appendix/SNAILss.pdf
+INPUT ./chapter8/sections/amplitude_noise.tex
+INPUT ./chapter8/sections/amplitude_noise.tex
+INPUT ./chapter8/sections/amplitude_noise.tex
+INPUT ./chapter8/sections/amplitude_noise.tex
+INPUT chapter8/sections/amplitude_noise.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/amplitude_noise.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/amplitude_noise.tex
 INPUT ../6949db0bfd19311f68336ca1/Appendix/amplitude_noise.tex
