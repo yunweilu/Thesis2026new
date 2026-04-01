@@ -1,3 +1,102 @@
-\chapter{Conclusion and Future Work}
+\chapter{Conclusion}
 \label{chap:conclusion}
 
+This thesis addressed two bottlenecks that become acute as 
+bosonic quantum processors move toward larger encodings and 
+multimode architectures: the computational cost of optimizing 
+control pulses in large Hilbert spaces, and the physical 
+degradation of cavity coherence through flux-noise-induced 
+dephasing. The two parts of the thesis developed complementary 
+solutions to these challenges.
+
+\section*{Part I: Quantum Optimal Control for large system}
+
+Numerical quantum optimal control (QOC) is the systematic 
+approach to finding microwave pulse sequences that implement 
+target operations on a quantum system while respecting 
+experimental constraints such as bandwidth limits, leakage 
+suppression, and crosstalk avoidance. Current state-of-the-art 
+QOC frameworks rely on automatic differentiation (AD) to compute 
+the required gradients. While flexible, AD works by recording 
+every intermediate operation during the forward propagation of 
+the quantum state and replaying that record in reverse to 
+accumulate gradients. In large Hilbert spaces this record becomes 
+prohibitively expensive to store, and memory rather than 
+computation time becomes the practical bottleneck.
+
+This thesis revisited the gradient computation underlying the 
+GRAPE framework and derived analytically hard-coded gradients for 
+key cost functions arising in state-transfer and 
+gate-optimization problems. These gradients avoid storing the 
+full propagation history and were evaluated numerically using the 
+scaling-and-squaring method and the auxiliary matrix method, 
+culminating in a memory-efficient forward-backward propagation 
+scheme. A systematic scaling analysis compared the runtime and 
+memory usage of hard-coded gradients, full-AD, and semi-AD 
+approaches across problem sizes, with benchmark studies on both 
+state-transfer and gate-optimization tasks. A decision tree was 
+developed to guide practitioners in selecting the optimal 
+numerical strategy for a given problem. As a concrete 
+application, the GRAPE framework was used to design 
+detuning-robust control pulses for transmon gates; the resulting 
+pulses were benchmarked against conventional DRAG pulses and 
+pulses from Q-CTRL, demonstrating improved robustness to 
+qubit-frequency fluctuations.
+
+\section*{Part II: Suppression of Flux-Noise-Induced Cavity 
+Dephasing}
+
+Superconducting cavities are attractive for bosonic quantum error 
+correction precisely because their noise is strongly biased 
+toward photon loss, with dephasing playing a comparatively minor 
+role. This noise bias is the property that makes bosonic 
+encodings efficient: when photon loss is the dominant error, 
+increasing the encoding size can strongly reduce logical failure 
+rates. However, to enable universal cavity control beyond what 
+dispersive coupling alone provides, one must couple the cavity to 
+a flux-tunable nonlinear element. Making a circuit element 
+flux-tunable opens a pathway through which magnetic-flux noise in 
+the environment modulates the coupler parameters, which in turn 
+dephases the cavity. This inherited dephasing erodes the 
+noise-bias advantage that makes bosonic codes attractive in the 
+first place.
+
+This thesis developed a complete theoretical framework for this 
+dephasing mechanism, tracing the noise transduction pathway from 
+flux fluctuations through the Lamb shift to the cavity frequency. 
+It then introduced a driven sweet-spot protocol in which an 
+off-resonant microwave drive on the transmon renders the cavity 
+frequency first-order insensitive to flux fluctuations, without 
+any hardware modifications. Analytical sweet-spot conditions were 
+derived and confirmed by Floquet numerics. An effective Lindblad 
+master equation in the drive frame was developed to identify the 
+competing dephasing channels under sweet-spot driving and derive 
+their scalings analytically. Full Monte Carlo simulations 
+validated the analytical predictions, and time-domain simulations 
+demonstrated an approximately twentyfold enhancement of the 
+cavity dephasing time in a representative device. Finally, the 
+protocol was applied directly to bosonic quantum error 
+correction: a single drive setting was shown to simultaneously 
+suppress flux-noise sensitivity across all relevant transitions 
+of a binomial code and to reduce dephasing in both rails of a 
+dual-rail qubit, with improvements confirmed experimentally via 
+Wigner tomography and logical-subspace tomography.
+
+\section*{Outlook}
+
+The two contributions of this thesis point toward a common 
+frontier. As bosonic encodings grow more powerful---spanning 
+larger Fock-space supports and entangling more cavity 
+modes---both the control and the coherence challenges addressed 
+here will intensify. On the control side, extending the 
+hard-coded gradient framework to multimode systems that explicitly penalize pulse duration would further improve the fidelity of bosonic 
+gate sequences against decoherence. On the coherence side, the driven sweet-spot 
+mechanism applies to any circuit in which a flux-tunable element 
+mediates a coupling; generalizing the analytical framework to 
+SNAIL-based couplers and to multimode architectures with several 
+flux-tunable elements is a natural next step. More broadly, the 
+combination of memory-efficient optimal control and dynamical 
+noise suppression provides a practical toolkit for pushing 
+cavity-based quantum processors toward the regime where logical 
+error rates fall well below the physical error rates of their 
+components.
