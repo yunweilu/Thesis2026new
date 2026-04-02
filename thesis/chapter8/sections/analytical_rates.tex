@@ -1,0 +1,77 @@
+\section{Analytical calculation of dephasing rates}
+\label{sec:analytical_rates}
+
+With the effective master equation established in the preceding section, we now extract analytical expressions for the cavity dephasing rate in the two operating regimes.
+
+\subsection{Unselective regime}
+\label{subsec:unselective_analytical}
+
+In the unselective regime $|\Delta_{bd}|\gg|\chi|$, the master equation can be expanded to first order in $|\chi/\Delta_{bd}|$ about the sweet-spot condition (Eq.\ \eqref{eq:ss_unselective}). This yields the Lindblad master equation for the density matrix in the effective drive frame $\rho_d$,
+\begin{align}
+\label{eq:Ldiss_unselective}
+&\dot{\rho}_d = -i \bigl[ H_d + H_{\text{noise}}^d , \rho_d \bigr] \nonumber 
++ \widetilde{\gamma}_{b\downarrow}^{\mathrm{un}} \mathcal{D}[\sigma^-]\rho_d
++ \gamma_{b\uparrow}^{\mathrm{un}} \mathcal{D}[\sigma^+]\rho_d\\
++ &2\gamma_{c\phi}^{\mathrm{un}} \mathcal{D}[c^\dagger c]\rho_d
++ \widetilde{\gamma}_{c\downarrow}^{\mathrm{un}} \mathcal{D}[c]\rho_d,
+\end{align}
+See Sec.~\ref{subsec:Lindbladian_regime} for the derivation.
+The effective rates $\widetilde{\gamma}_{b\downarrow}^{\mathrm{un}}$, $\gamma_{b\uparrow}^{\mathrm{un}}$, $\gamma_{c\phi}^{\mathrm{un}}$, and $\widetilde{\gamma}_{c\downarrow}^{\mathrm{un}}$ are given below.
+Here, $H_d$ is the effective driven Hamiltonian Eq.\ \eqref{eq:Hd_far_detuned}, and $H_{\text{noise}}^d$ is the noise Hamiltonian in the effective-drive frame. In the unselective limit it takes the approximate form
+\begin{align}
+\label{eq:Hnoise_unselective}
+H_{\text{noise}}^d &\approx \delta \omega_b \Bigg[ \big(1- \frac{\Delta_{bd}}{2K}\big) \sigma^+ \sigma^- \nonumber+ \frac{2 g^2}{\Delta_{bc}^2} \left( 1 - \frac{2 K}{\Delta_{bc}} \right) \sigma^+ \sigma^- c^\dagger c  
+\\
+&-\frac{1}{2} \sqrt{\frac{\Delta_{bd}}{K}} \sigma_x \Bigg].
+\end{align}
+Although the sweet-spot condition cancels the leading direct cavity-dephasing contribution (\(D_{0\to1}=0\)), it does not eliminate all noise channels in the effective-drive frame, which are discussed below.
+\paragraph{Interpretation of the dissipators.}
+The dissipators in Eq.~\eqref{eq:Ldiss_unselective} represent (i) drive-renormalized FTT relaxation,
+$\widetilde{\gamma}_{b\downarrow}^{\mathrm{un}}\mathcal{D}[\sigma^-]$; (ii) drive-induced FTT excitation,
+$\gamma_{b\uparrow}^{\mathrm{un}}\mathcal{D}[\sigma^+]$, which produces photon-shot-noise dephasing of the cavity via the dispersive coupling \cite{shotnoise,PhysRevA.75.042302Ashphotonshot}; (iii) cavity pure dephasing,
+$2\gamma_{c\phi}^{\mathrm{un}}\mathcal{D}[c^\dagger c]$ (the prefactor $2$ is conventional); and (iv) renormalized cavity decay,
+$\widetilde{\gamma}_{c\downarrow}^{\mathrm{un}}\mathcal{D}[c]$.
+At the sweet-spot condition of Eq.~\eqref{eq:ss_unselective}, the corresponding rates are
+\begin{align}
+\widetilde{\gamma}_{b\downarrow}^{\mathrm{un}}
+&= \gamma_{b\downarrow}\left(1-\frac{\Delta_{bd}}{K}\right), \nonumber\\
+\gamma_{b\uparrow}^{\mathrm{un}}
+&= \frac{\gamma_{b\downarrow}}{16}\left(\frac{\Delta_{bd}}{K}\right)^2
+\left(1-\frac{2\Delta_{bd}}{K}\right), \nonumber\\
+\gamma_{c\phi}^{\mathrm{un}}
+&= \frac{1}{2}\gamma_{b\downarrow}\left(\frac{g}{\Delta_{bc}}\right)^4\frac{K}{\Delta_{bd}}, \qquad
+\widetilde{\gamma}_{c\downarrow}^{\mathrm{un}}
+= \gamma_{c\downarrow}\left(1+\frac{g^2}{\Delta_{bc}^2}\right).
+\end{align}
+The cavity-decay renormalization scales as $g^2/\Delta_{bc}^2$ and remains small (e.g., $\sim 0.01$) even in the relatively strong dispersive-coupling regime.
+
+\paragraph{Interpretation of the noise Hamiltonian.}
+At the sweet spot, cavity dephasing $c^\dagger c$ in Eq.~\eqref{eq:Hnoise_unselective} vanishes by construction, suppressing direct cavity-frequency noise. Also, AC-Stark-shift-induced cavity-frequency fluctuations are neglected because the FTT is barely excited if it is initialized in the ground state. Residual dephasing is dominated by a transverse component $\propto\sigma_x$, which induces FTT depolarization under $1/f$ flux noise. The transverse-noise-induced excitation rate is
+\begin{equation}
+\gamma_{b\uparrow}^{1/f,\mathrm{un}}=\left(\frac{\Omega_0}{\Delta_{bd}}\frac{\partial\omega_b}{\partial\Phi}\right)^2\frac{S_0^2}{|\Delta_{bd}/2\pi|}
+\overset{\eqref{eq:ss_unselective}}{=}\frac{1}{4}\left(\frac{\partial\omega_b}{\partial\Phi}\right)^2\frac{S_0^2}{|K/2\pi|}
+\end{equation}
+at the sweet-spot condition.
+
+\paragraph{Total cavity dephasing rate.}
+In the unselective regime, evaluated at the sweet spot, the total cavity dephasing rate is the sum of the three contributions in \begin{align}
+\label{eq:Gamma_phi_total_unselective}
+&\Gamma_{\phi,\mathrm{total}}
+=\gamma_{b\uparrow}^{1/f,\mathrm{un}}+\gamma_{b\uparrow}^{\mathrm{un}}+\gamma_{c\phi}^{\mathrm{un}} \nonumber\\
+&=\left(\frac{\partial\omega_b}{\partial\Phi}\right)^2\frac{S_0^2}{4K}
++\frac{\gamma_{b\downarrow}}{16}\left(\frac{\Delta_{bd}}{K}\right)^2\bigg(1-\frac{2\Delta_{bd}}{K}\bigg)\nonumber
+\\&+\frac{\gamma_{b\downarrow}}{2}\left(\frac{g}{\Delta_{bc}}\right)^4\frac{K}{\Delta_{bd}}.
+\end{align}
+We approximate the photon-shot-noise contribution to cavity dephasing by the FTT heating rate $\gamma_{b\uparrow}^{\mathrm{un}}$ in the limit $\chi \gg \widetilde{\gamma}_{b\downarrow}$ \cite{serge}, because a single photon event is sufficient to entirely destroy phase coherence before the photon decays.
+
+\subsection{Selective regime}
+\label{subsec:selective_analytical}
+
+Operating at the selective-regime sweet spot protects the cavity states
+$\lvert g,m^\star\rangle$--$\lvert g,m^\star\!+\!1\rangle$ from flux-noise dephasing.
+Under drive, however, the residual dephasing budget in the selective regime is set by two
+contributions: (i) cavity pure dephasing at a rate
+$\gamma_{c\phi}^{\mathrm{sel}}=\bigl(g^2/\Delta_{bc}^2\bigr)\gamma_{b\downarrow}$,
+arising from the Purcell-like mixing of cavity and FTT decay channels, and
+(ii) FTT heating at a rate $\gamma_{b\uparrow}^{\mathrm{sel}}\propto 1/\lvert\Delta_{bd}\rvert$
+induced by photon shot noise (see Sec.~\ref{subsec:Lindbladian_regime} for derivations). Because the shot-noise contribution scales unfavorably as $1/\lvert\Delta_{bd}\rvert$, operating at larger detuning---i.e., in the unselective regime---yields a lower total dephasing rate.

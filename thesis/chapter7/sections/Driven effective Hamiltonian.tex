@@ -1,0 +1,360 @@
+\section{Driven effective Hamiltonian}
+
+When a coherent drive $2\Omega_0\cos(\omega_d t)(b+b^\dagger)$ is added to the FTT, the Hamiltonian becomes
+\begin{equation}
+\begin{split}
+H(t) \approx\,&
+\omega_b b^\dagger b + \omega_c c^\dagger c + \frac{K}{2} b^{\dagger 2} b^2 \\
+&+ g\,(bc^\dagger + b^\dagger c)
++ 2\Omega_0 \cos(\omega_d t)\,(b+b^\dagger).
+\end{split}
+\end{equation}
+Applying the same dispersive transformation to the full driven Hamiltonian gives
+\begin{align}
+H'_{\mathrm{disp}}
+&= e^{-D_{\mathrm{disp}}} H(t)\, e^{D_{\mathrm{disp}}}
+\nonumber\\
+&\approx H_{\mathrm{disp}}
++ \Omega_0 \cos(\omega_d t)\,
+\Bigl[e^{-D_{\mathrm{disp}}}(b+b^\dagger)e^{D_{\mathrm{disp}}}\Bigr]
+\nonumber\\
+&\approx H_{\mathrm{disp}}
++ \Omega_0 \cos(\omega_d t)\,
+\Bigl[b^\dagger+[D_{\mathrm{disp}},b]+\mathrm{h.c.}\Bigr].
+\end{align}
+Using the expansion above,
+\begin{equation}
+[D_{\mathrm{disp}},b]
+\approx
+-\frac{g}{\Delta_{bc}}\,c
+-\frac{Kg}{\Delta_{bc}^2}\,b\,c^\dagger
++\frac{2Kg}{\Delta_{bc}^2}\,b^\dagger b\,c.
+\end{equation}
+These terms rotate at frequencies set by detunings involving the $b$--$c$ manifold and the bare $c$ mode. Because $\omega_d$ is far detuned from these transitions, the rotating-wave approximation allows them to be neglected, leaving
+\begin{equation}
+H'_{\mathrm{disp}} \approx H_{\mathrm{disp}} + \Omega_0 \cos(\omega_d t)\,(b+b^\dagger).
+\end{equation}
+
+The explicit time dependence of the drive is then removed by moving to the rotating frame defined by
+\begin{equation}
+U_R=e^{i\omega_d t\, b^\dagger b}.
+\end{equation}
+The transformed Hamiltonian is
+\begin{align}
+H'_R
+&= U_R^\dagger\left(H'_{\mathrm{disp}}-i\frac{\partial}{\partial t}\right)U_R
+\nonumber\\
+&\approx H_R+\left(\Omega_0 e^{-i\omega_d t}b+\mathrm{h.c.}\right),
+\end{align}
+and a final rotating-wave approximation removes the counter-rotating terms at frequencies $\pm 2\omega_d$, yielding the effective Hamiltonian 
+\begin{equation}
+\label{eq:H_R_floquet}
+H_R =
+\Delta_{bd}\, b^\dagger b
++ \frac{K}{2}\, b^{\dagger 2} b^{2}
++ \overline{\omega}_c\, c^\dagger c
++ \chi\, b^\dagger b\, c^\dagger c
++ \Omega_0\, ( b + b^\dagger ).
+\end{equation}
+Here $\Delta_{bd}=\bar{\omega}_b-\omega_d$ is the FTT--drive detuning. The drive couples $|g,m\rangle$ and $|e,m\rangle$ at fixed cavity photon number $m$, producing level repulsion that lowers the energy of $|g,m\rangle$. The dispersive interaction offsets the detuning by $m\chi$, so the relevant detuning is $\Delta_m \equiv \Delta_{bd}+m\chi$ and the drive-induced energy shift becomes photon-number dependent. Examples for $m=0,1$ are shown in Fig.~\ref{fig:device}(c), and this $m$-dependent shift can be tuned to cancel fluctuations of the static Lamb shift [Fig.~\ref{fig:device}(d)].
+
+An analytic expression follows in the weak-drive regime, assuming (i) $\Omega_0 \ll \min_m|\Delta_m|$ over the photon numbers of interest, so that the drive does not strongly hybridize $|g,m\rangle$ and $|e,m\rangle$, and (ii) $|\Omega_0|\ll |K+2\Delta_{bd}|$, so that hybridization with the state $|f,m\rangle$ remains weak. Under these conditions, a Schrieffer--Wolff transformation diagonalizes $H_R$. Retaining terms up to $\mathcal{O}(\Omega_0^2/\Delta_m^2)$ and projecting onto the $\{|g,m\rangle,|e,m\rangle\}$ subspace gives
+\begin{equation}
+\label{eq:mainHd_two_level}
+\begin{aligned}
+H_d =\;&
+\widetilde{\Delta}_{bd}\,\sigma^+\sigma^-
++\bar\omega_c\,c^\dagger c
+-\sum_m \frac{\Omega_0^2}{\Delta_m}\,|m\rangle\langle m|
+\\
+&+\sigma^+\sigma^-\!\left[
+\chi\,c^\dagger c
++\sum_m \frac{2\Omega_0^2}{\Delta_m}\,|m\rangle\langle m|
+\right],
+\end{aligned}
+\end{equation}
+where $\sigma^+\sigma^- \equiv |e\rangle\langle e|$ and $|m\rangle$ denotes a cavity Fock state. The drive renormalizes the FTT detuning, $\widetilde{\Delta}_{bd}\equiv \Delta_{bd}-\Omega_0^2/K$, and generates an $m$-dependent shift of the cavity transition frequency together with an additional Stark shift. The essential point is that this drive-induced shift can be tuned to cancel the flux-sensitive static Lamb shift, thereby creating a driven sweet spot.
+
+Starting from the rotating-frame Hamiltonian (three-level truncation of the FTT),
+\begin{equation}
+\label{eq:HR_start}
+\begin{aligned}
+H_R =\;&
+\Delta_{bd}\,|e\rangle\langle e|
++\bigl(2\bar\omega_b + K\bigr)\,|f\rangle\langle f|
++\bar\omega_c\,c^\dagger c \\
+&+\chi\bigl(|e\rangle\langle e|+2|f\rangle\langle f|\bigr)c^\dagger c \\
+&+\Omega_0\Bigl(|g\rangle\langle e|+
+\sqrt{2}\,|e\rangle\langle f|+
+\mathrm{h.c.}\Bigr),
+\end{aligned}
+\end{equation}
+the weak-drive regime $\Omega_0\ll K$ allows the decomposition
+\begin{equation}
+\label{eq:H0_plus_V}
+H_R = H_0 + V,
+\end{equation}
+where $H_0$ is the $\Omega_0$-independent part of Eq.~\eqref{eq:HR_start} (diagonal in the bare basis) and $V$ is the drive term.
+
+A Schrieffer--Wolff transformation uses an anti-Hermitian generator $D_d=-D_d^\dagger$ to obtain
+\begin{equation}
+\label{eq:SWT_def}
+H_d' = e^{-D_d}H_R e^{D_d},
+\end{equation}
+which is diagonal in the bare basis. To first order,
+\begin{equation}
+\label{eq:Dd_first_order}
+\begin{aligned}
+&D_d=\\
+&
+\sum_{m}\Biggl[
+-\frac{\Omega_0}{\Delta_m}\,|e,m\rangle\langle g,m|
++\frac{\sqrt{2}\,\Omega_0}{\Delta_m+K}\,|f,m\rangle\langle e,m|
+-\mathrm{h.c.}
+\Biggr] \\
+&\approx
+\sum_{m}\Biggl[
+-\frac{\Omega_0}{\Delta_m}\,|e,m\rangle\langle g,m|
++\frac{\sqrt{2}\,\Omega_0}{K}\,|f,m\rangle\langle e,m|
+-\mathrm{h.c.}
+\Biggr],
+\end{aligned}
+\end{equation}
+where the approximation keeps the leading order in $\mathcal{O}(\Delta_m/K)$.
+
+Keeping terms up to second order in the SWT gives
+\begin{align}
+H_d' \approx\;& H_R + \sum_m \Omega_0^2\Biggl[
+-\frac{1}{\Delta_m}\,|g,m\rangle\langle g,m|
++(\frac{1}{\Delta_m}
+\nonumber\\
+&-\frac{1}{K}) |e,m\rangle\langle e,m|
++\frac{1}{K}\,|f,m\rangle\langle f,m|
+\Biggr].
+\label{eq:Hd_second_order_explicit}
+\end{align}
+
+Because the FTT is initialized in $|g\rangle$ and $\Omega_0\ll K$, population of $|f\rangle$ remains negligible; projecting onto the $\{|g\rangle,|e\rangle\}$ subspace yields
+\begin{equation}
+\label{eq:Hd_two_level}
+\begin{aligned}
+H_d=\;&\widetilde{\Delta}_{bd}\sigma^+\sigma^-
++\bar\omega_c\,c^\dagger c
+-\sum_m \frac{\Omega_0^2}{\Delta_m}\,|m\rangle\langle m| \\
+&+\sigma^+\sigma^-\!\Biggl[
+\chi\,c^\dagger c
++\sum_m \frac{2\Omega_0^2}{\Delta_m}\,|m\rangle\langle m|
+\Biggr],
+\end{aligned}
+\end{equation}
+where $\widetilde{\Delta}_{bd} = \Delta_{bd}-\frac{\Omega_0^2}{K}$ is the shifted FTT frequency. The drive generates an $m$-dependent shift of the cavity transition frequency together with an additional Stark shift. The essential point is that this drive-induced shift can be tuned to cancel the flux-sensitive static Lamb shift, thereby creating a driven sweet spot.
+
+%% ---------- Floquet justification of the RWA ----------
+
+The derivation above relied on two successive rotating-wave approximations to arrive at the static Hamiltonian $H_R$~\eqref{eq:H_R_floquet}. We now place this procedure on rigorous footing by showing that the eigenvalues of $H_R$ approximate the Floquet quasienergies of the full time-periodic driven dispersive Hamiltonian.
+
+\subsection{Floquet Theorem}
+\label{sec:floquet}
+Consider a Hilbert space $\mathcal{H}$ of dimension $N$ and a time-dependent Hamiltonian $H(t)$ with period $\tau$, satisfying $H(t+\tau) = H(t)$. According to Floquet's theorem, there exists a $\tau$-periodic orthonormal basis $\{\ket{\psi_n(t)}\}$ and a set of quasienergies $\{\varepsilon_n\}$ such that the solutions to the Schr\"odinger equation, $\ket{\phi_n(t)}$, can be written as:
+\begin{equation}
+    \ket{\phi_n(t)} = e^{-i\varepsilon_n t} \ket{\psi_n(t)}.
+\end{equation}
+
+\subsection{Construction of the Solution}
+
+To acquire a differential equation that relates the periodic modes $\ket{\psi_n(t)}$ and quasienergies $\varepsilon_n$ to the Hamiltonian $H(t)$, we substitute the ansatz solution into the time-dependent Schr\"odinger equation:
+\begin{equation}
+    i\frac{\partial}{\partial t}\ket{\Psi(t)} = H(t)\,\ket{\Psi(t)}.
+\end{equation}
+Substituting $\ket{\Psi(t)} = e^{-i\varepsilon_n t} \ket{\psi_n(t)}$ yields the Floquet eigenvalue equation:
+\begin{equation}
+    \label{quasienergy equation}
+    \bigl(H(t)-i\partial_{t}\bigr)\,\ket{\psi_n(t)} = \varepsilon_n\,\ket{\psi_n(t)}.
+\end{equation}
+Since the quantities on both sides of Eq.~\eqref{quasienergy equation} are periodic, we can treat the time dependence using Fourier analysis. A concise way to formalize this is to introduce the \emph{Extended Hilbert space} $\mathcal{F}$, also known as Sambe space:
+\begin{equation}
+    \mathcal{F} = \mathrm{span}\bigl\{\kett{\mu,n} \;\big|\; \mu\in\mathbb{Z},\; n=1,\dots,N\bigr\}.
+\end{equation}
+We use the double ket notation $\kett{\cdot}$ to denote a basis vector in this extended space. Each basis vector corresponds to a function mapping time $t \in \mathbb{R}$ to a state in the physical space $\mathcal{H}$:
+\begin{equation}
+    \kett{\mu,n} : \mathbb{R} \rightarrow \mathcal{H}.
+\end{equation}
+Specifically, these basis states are defined as:
+\begin{equation}
+    \kett{\mu,n}(t) = \ket{n}\,e^{i\mu\omega_d t}, \qquad \omega_d \equiv \frac{2\pi}{\tau},
+\end{equation}
+where $\{\ket{n}\}$ is an orthonormal basis in $\mathcal{H}$. The inner product on $\mathcal{F}$ is defined by averaging over one period:
+\begin{align}
+    \bbrakett{\mu',n'}{\mu,n}
+    &\equiv \frac{1}{\tau}\int_{0}^{\tau}
+    \bigl[\kett{\mu',n'}(t)\bigr]^\dagger \!\kett{\mu,n}(t)\,dt \nonumber\\
+    &= \frac{1}{\tau}\int_{0}^{\tau} e^{-i\mu'\omega_d t}\bra{n'}\ket{n}e^{i\mu\omega_d t}\,dt \nonumber\\
+    &= \delta_{n,n'} \frac{1}{\tau}\int_{0}^{\tau} e^{i(\mu-\mu')\omega_d t}\,dt \nonumber\\
+    &= \delta_{\mu,\mu'}\,\delta_{n,n'}.
+\end{align}
+To rewrite Eq.~\eqref{quasienergy equation} in the basis $\kett{\mu,n}$, we define the quasienergy operator $\overline{Q}:\mathcal{F}\to\mathcal{F}$ such that its action in the time domain is:
+\begin{equation}
+    \bigl(\overline{Q}\,\kett{f}\bigr)(t) = \bigl(H(t)-i\partial_{t}\bigr)\,\ket{f(t)}.
+\end{equation}
+We define the vector $\kett{\psi_n} \in \mathcal{F}$ corresponding to the periodic function $\ket{\psi_n(t)}$ as:
+\begin{equation}
+    \label{eigenvector definition}
+    \kett{\psi_n}(t) = \ket{\psi_n(t)}.
+\end{equation}
+Consequently, Eq.~\eqref{quasienergy equation} is represented as an eigenvalue problem in the extended Hilbert space:
+\begin{equation}
+    \label{evals equation}
+    \overline{Q}\,\kett{\psi_n} = \varepsilon_n\,\kett{\psi_n}.
+\end{equation}
+To compute the eigenvalues and eigenvectors, we find the matrix representation of $\overline{Q}$ in the basis $\kett{\mu,n}$:
+\begin{equation}
+    \overline{Q} = \sum_{\mu',n'}\sum_{\mu,n} \bar{q}_{\mu' n',\mu n}\;\kett{\mu',n'}\bbra{\mu,n},
+\end{equation}
+with the corresponding matrix elements:
+\begin{align}
+    \bar{q}_{\mu' n',\mu n}
+    &= \bbrakett{\mu',n'}{\overline{Q}|\mu,n} \nonumber\\
+    &= \frac{1}{\tau}\int_{0}^{\tau} \bigl[\kett{\mu',n'}(t)\bigr]^\dagger\, \bigl(\overline{Q}\,\kett{\mu,n}(t)\bigr)\,dt.
+\end{align}
+Substituting the explicit form $\kett{\mu,n}(t)=\ket{n}e^{i\mu\omega_d t}$:
+\begin{align}
+    &\bar{q}_{\mu' n',\mu n}
+    = \frac{1}{\tau}\int_{0}^{\tau} e^{-i\mu'\omega_d t} \bra{n'} \bigl(H(t)-i\partial_t\bigr) \bigl(\ket{n}e^{i\mu\omega_d t}\bigr) \,dt \nonumber \\
+    &= \frac{1}{\tau}\int_{0}^{\tau} \langle n'|H(t)|n\rangle\,e^{i(\mu-\mu')\omega_d t}\,dt \;+\; \mu\,\omega_d\,\delta_{\mu'\mu}\,\delta_{n'n} \nonumber \\
+    &= h_{n' n}^{(\mu-\mu')} \;+\; \mu\,\omega_d\,\delta_{\mu'\mu}\,\delta_{n'n},
+\end{align}
+where $h_{n'n}^{(k)}$ are the Fourier components of the Hamiltonian:
+\begin{equation}
+    H^{(k)} = \frac{1}{\tau}\int_{0}^{\tau} H(t)\,e^{ik\omega_d t}\,dt, \qquad h^{(k)}_{n' n}=\langle n'|H^{(k)}|n\rangle.
+\end{equation}
+Thus, the operator $\overline{Q}$ can be written as a block matrix with indices $\mu$ running (for example) from $-2$ to $2$:
+\begin{widetext}
+\begin{equation}
+    \bar{q} = \begin{pmatrix}
+    \ddots & & & & & \\
+     & h^{(0)}-2\omega_d I & h^{(1)} & h^{(2)}  & h^{(3)} & h^{(4)}  \\
+     & h^{(-1)}            & h^{(0)}-\omega_d I & h^{(1)} & h^{(2)} & h^{(3)}  \\
+     & h^{(-2)}            & h^{(-1)}  & h^{(0)}    & h^{(1)} & h^{(2)}  \\
+     & h^{(-3)}            & h^{(-2)}  & h^{(-1)}   & h^{(0)}+\omega_d I & h^{(1)} \\
+     & h^{(-4)}            & h^{(-3)}  & h^{(-2)}   & h^{(-1)} & h^{(0)}+2\omega_d I \\
+     & & & & & \ddots
+    \end{pmatrix},
+\end{equation}
+\end{widetext}
+where $I$ is the identity matrix. Note that the off-diagonal blocks depend on the difference in indices, $H^{(\mu-\mu')}$. Finally, the quasienergies are found by solving the characteristic equation:
+\begin{equation}
+    \det\bigl(\bar{q}-\varepsilon \bar{I}\bigr)=0,
+\end{equation}
+where $\bar{I}$ is the identity operator in the extended Hilbert space.
+
+\subsection{Quasienergy and Floquet States under $H_{\text{disp}}$}
+We now apply the Floquet formalism to the driven dispersive Hamiltonian and show that the eigenvalues of $H_R$ approximate the quasienergies.
+
+\subsubsection{Quasienergy Operator for the Driven Dispersive Hamiltonian}
+
+The driven dispersive Hamiltonian is:
+\begin{equation}
+\begin{split}
+\label{Driven dispersive}
+    H(t) &= \bar{\omega}_b b^\dagger b + \frac{K}{2} b^{\dagger 2} b^2 + \bar{\omega}_c c^\dagger c \\
+    &\quad + \chi b^\dagger b c^\dagger c + 2\Omega_0 \cos(\omega_d t) (b + b^\dagger).
+\end{split}
+\end{equation}
+Following the recipe in the previous subsection, the quasienergy operator in the extended Hilbert space $\mathcal{F}$ is written as
+\begin{equation}
+    \overline{Q} = \overline{Q}_0 + \overline{V}.
+\end{equation}
+A convenient basis is $\kett{\mu,(n,m)}$, where $\kett{\mu,(n,m)}(t) = e^{i\mu\omega_dt}|n,m\rangle$ maps time to basis of the static dispersive Hamiltonian. The unperturbed component $\overline{Q}_0$ is diagonal in the basis $\kett{\mu,(n,m)}$:
+\begin{widetext}
+\begin{align}
+\overline{Q}_0 &= \sum_{\mu,n,m} \left( \bar{\omega}_b n + \frac{K}{2} n(n-1) + \bar{\omega}_c m + \chi nm + \mu \omega_d \right)
+\kett{\mu,(n,m)}\bbra{\mu,(n,m)}, \\
+\overline{V} &= \Omega_0 \sum_{\mu,n,m} \sqrt{n+1}
+\left( \kett{\mu+1,(n+1,m)}\bbra{\mu,(n,m)}
++ \kett{\mu-1,(n+1,m)}\bbra{\mu,(n,m)} \right)
++ \text{h.c.}
+\end{align}
+\end{widetext}
+
+The perturbation $\overline{V}$ arises from the periodic drive,
+\begin{equation}
+    2\Omega_0 \cos(\omega_d t)=\Omega_0\!\left(e^{i\omega_d t}+e^{-i\omega_d t}\right),
+\end{equation}
+which mixes adjacent photon sectors. In the extended (Floquet) Hilbert space, the Fourier components $e^{\pm i\omega_d t}$ connect adjacent sectors $\mu\to\mu\mp 1$, while the drive excites FTT from $n\to n+1$. These processes have detunings
+\begin{align}
+    \Delta E_1 &= (\bar{\omega}_b - \omega_d)n + (n-1)K + \chi m,\\
+    \Delta E_2 &=(\bar{\omega}_b + \omega_d)n + (n-1)K + \chi m,
+\end{align}
+respectively.
+For our parameter regime of interest $|\bar{\omega}_b - \omega_d|\ll\omega_d$, we have parameters hierarchy
+\begin{equation}
+\label{hierarchy}
+    \Omega_0 < \Delta E_1 \ll \Delta E_2.
+\end{equation}
+so that $\overline{V}$ can be treated perturbatively.
+
+\subsubsection{Approximation of Quasienergy and Floquet States}
+To show eigenvalue of $H_R$ can approximate quasienergies, we block-diagonalize the operator $\bar Q$  via a Schrieffer--Wolff transformation within the near-resonant subspace selected by the hierarchy in Eq.~\eqref{hierarchy}. Specifically, we define the projectors
+\begin{equation}
+    \bar P_\mu=\sum_{n,m}\ket{\mu-n,n,m}\bra{\mu-n,n,m},
+\end{equation}
+which collect the states coupled most strongly by the drive. Since $\bar P_\mu$ mixes different $\mu$ indices, it is convenient to relabel the basis with the unitary
+\begin{equation}
+    \bar R=\sum_{\mu,n,m}\ket{\mu,n,m}\bra{\mu-n,n,m}.
+\end{equation}
+In this relabeled frame,
+\begin{align}
+    \bar P_\mu^{R} &= \bar R^\dagger \bar P_\mu \bar R
+    =\sum_{n,m}\ket{\mu,n,m}\bra{\mu,n,m},\\
+    \bar Q_{R} &= \bar R^\dagger \bar Q\,\bar R,
+\end{align}
+so that $\bar Q_R$ acquires a block structure in the fixed-$\mu$ sectors:
+\begin{widetext}
+\begin{equation}
+    \bar q_R=
+    \begin{pmatrix}
+     \ddots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots \\
+     \cdots & [H_R-2\omega_d I] & 0 & [b] & 0 & 0 & \cdots \\
+     \cdots & 0 & [H_R-\omega_d I] & 0 & [b] & 0 & \cdots \\
+     \cdots & [b^\dagger] & 0 & [H_R] & 0 & [b] & \cdots \\
+     \cdots & 0 & [b^\dagger] & 0 & [H_R+\omega_d I] & 0 & \cdots \\
+     \cdots & 0 & 0 & [b^\dagger] & 0 & [H_R+2\omega_d I] & \cdots \\
+     \ddots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots
+    \end{pmatrix},
+\end{equation}
+\end{widetext}
+where $[O]$ denotes the matrix of $O$ in the $\{\ket{n,m}\}$ basis. To first order, the effective quasienergy operator is given by the block-diagonal part,
+\begin{equation}
+    \sum_\mu \bar P_\mu^{R}\,\bar Q_R\,\bar P_\mu^{R}.
+\end{equation}
+It therefore suffices to diagonalize a single sector (e.g., $\mu=0$), denoted by $H_R$:
+\begin{equation}
+    H_R\ket{\psi_j}=E_j\ket{\psi_j},
+    \qquad
+    \ket{\psi_j}=\sum_{n,m}c_{nm}^j\ket{n,m}.
+\end{equation}
+The quasienergy  is then
+\begin{equation}
+    \varepsilon_{j,\mu}=E_j+\mu\omega_d,
+\end{equation}
+with corresponding Floquet states (in the relabeled frame)
+\begin{equation}
+    \ket{\psi_{j,\mu}}_{R}=\sum_{n,m}c_{nm}^j\ket{\mu,n,m}.
+\end{equation}
+\subsubsection{Connection with the RWA}
+The relabeling $\bar R$ in extended Hilbert space implements the same rotation as a standard rotating-frame transformation in the physical Hilbert space. Acting on a Floquet basis state and evaluating its time dependence gives
+\begin{align}
+    \bigl(\bar R\ket{\mu,n,m}\bigr)(t)
+    &= \ket{\mu+n,n,m}(t)
+     = \ket{n,m}\,e^{i(\mu+n)\omega_d t} \nonumber\\
+    &= \bigl(e^{in\omega_d t}\ket{n,m}\bigr)\,e^{i\mu\omega_d t},
+\end{align}
+so $\bar R$ amounts to multiplying $\ket{n,m}$ by the phase $e^{in\omega_d t}$. This is precisely the action of the rotating-frame unitary
+\begin{equation}
+    U_R(t)=e^{i\omega_d t\, b^\dagger b},
+\end{equation}
+which yields the effective Hamiltonian
+\begin{equation}
+    H_{\mathrm{eff}}(t)=U_R^\dagger(t)H(t)U_R(t)-i\,U_R^\dagger(t)\dot U_R(t).
+\end{equation}
+In this frame, terms oscillating at $\pm 2\omega_d$ are rapidly varying; neglecting them under the rotating-wave approximation produces a time-independent Hamiltonian $H_R$.

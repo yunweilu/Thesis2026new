@@ -1,0 +1,25 @@
+\section{Full model under consideration}
+\label{sec:full_model}
+
+The driven sweet spot developed in the preceding chapter suppresses low-frequency flux-induced dephasing by canceling the first-order sensitivity of the dressed cavity frequency to fluctuations of $\omega_b$. However, the drive also opens new dephasing channels when FTT relaxation is present. This chapter quantifies these residual channels and evaluates the total cavity dephasing rate.
+
+To this end, the system is modeled with a stochastic master equation. For a given flux-noise realization $\delta\Phi(t)$, the density matrix $\rho(t)$ obeys
+\begin{align}
+\dot{\rho}
+&= -i\left[\,H_{\mathrm{sys}} + \delta\omega_b(t)\, b^\dagger b,\ \rho\,\right]
++ \gamma_{b\downarrow}\,\mathcal{D}[b]\rho,
+\nonumber \\
+H_{\mathrm{sys}}
+&= H_{\mathrm{static}} + 2\Omega_0 \cos(\omega_d t)\,(b + b^\dagger).
+\label{eq:Linblad_ch8}\end{align}
+Here $\mathcal{D}[b]\rho = b\rho b^\dagger - \tfrac{1}{2}\{b^\dagger b, \rho\}$ describes FTT relaxation at rate $\gamma_{b\downarrow}$ (the FTT energy-relaxation rate).
+
+Flux noise in these devices typically exhibits a $1/f$ spectrum. The corresponding power spectral density is taken as
+\begin{equation}
+S_{1/f}(\omega)
+= \int_{-\infty}^{\infty} d\tau\, \langle \delta\Phi(\tau)\,\delta\Phi(0)\rangle\, e^{i\omega \tau}
+= \frac{S_0^{\,2}}{\left|\omega/2\pi\right|},
+\end{equation}
+where $S_0$ sets the flux-noise amplitude.
+
+The following analysis is carried out in the effective-drive frame to separate the roles of relaxation and dephasing. The equation of motion is first derived in the interaction picture (Sec.~\ref{sec:eom_interaction}), and then analytical (Sec.~\ref{sec:analytical_rates}) and numerical (Sec.~\ref{sec:numerical_rates}) calculations of the dephasing rates are presented for the unselective and selective regimes in turn.
