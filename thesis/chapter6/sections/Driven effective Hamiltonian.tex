@@ -1,0 +1,151 @@
+\section{Driven effective Hamiltonian}
+
+When a coherent drive $2\Omega_0\cos(\omega_d t)(b+b^\dagger)$ is added to the FTT, the Hamiltonian becomes
+\begin{equation}
+\begin{split}
+H(t) \approx\,&
+\omega_b b^\dagger b + \omega_c c^\dagger c + \frac{K}{2} b^{\dagger 2} b^2 \\
+&+ g\,(bc^\dagger + b^\dagger c)
++ 2\Omega_0 \cos(\omega_d t)\,(b+b^\dagger).
+\end{split}
+\end{equation}
+Applying the same dispersive transformation to the full driven Hamiltonian gives
+\begin{align}
+H'_{\mathrm{disp}}
+&= e^{-D_{\mathrm{disp}}} H(t)\, e^{D_{\mathrm{disp}}}
+\nonumber\\
+&\approx H_{\mathrm{disp}}
++ \Omega_0 \cos(\omega_d t)\,
+\Bigl[e^{-D_{\mathrm{disp}}}(b+b^\dagger)e^{D_{\mathrm{disp}}}\Bigr]
+\nonumber\\
+&\approx H_{\mathrm{disp}}
++ \Omega_0 \cos(\omega_d t)\,
+\Bigl[b^\dagger+[D_{\mathrm{disp}},b]+\mathrm{h.c.}\Bigr].
+\end{align}
+Using the expansion above,
+\begin{equation}
+[D_{\mathrm{disp}},b]
+\approx
+-\frac{g}{\Delta_{bc}}\,c
+-\frac{Kg}{\Delta_{bc}^2}\,b\,c^\dagger
++\frac{2Kg}{\Delta_{bc}^2}\,b^\dagger b\,c.
+\end{equation}
+These terms rotate at frequencies set by detunings involving the $b$--$c$ manifold and the bare $c$ mode. Because $\omega_d$ is far detuned from these transitions, the rotating-wave approximation allows them to be neglected, leaving
+\begin{equation}
+H'_{\mathrm{disp}} \approx H_{\mathrm{disp}} + \Omega_0 \cos(\omega_d t)\,(b+b^\dagger).
+\end{equation}
+
+The explicit time dependence of the drive is then removed by moving to the rotating frame defined by
+\begin{equation}
+U_R=e^{i\omega_d t\, b^\dagger b}.
+\end{equation}
+The transformed Hamiltonian is
+\begin{align}
+H'_R
+&= U_R^\dagger\left(H'_{\mathrm{disp}}-i\frac{\partial}{\partial t}\right)U_R
+\nonumber\\
+&\approx H_R+\left(\Omega_0 e^{-i\omega_d t}b+\mathrm{h.c.}\right),
+\end{align}
+and a final rotating-wave approximation removes the counter-rotating terms at frequencies $\pm 2\omega_d$, yielding the effective Hamiltonian 
+\begin{equation}
+\label{eq:H_R_floquet}
+H_R =
+\Delta_{bd}\, b^\dagger b
++ \frac{K}{2}\, b^{\dagger 2} b^{2}
++ \overline{\omega}_c\, c^\dagger c
++ \chi\, b^\dagger b\, c^\dagger c
++ \Omega_0\, ( b + b^\dagger ).
+\end{equation}
+Here $\Delta_{bd}=\bar{\omega}_b-\omega_d$ is the FTT--drive detuning. The drive couples $|g,m\rangle$ and $|e,m\rangle$ at fixed cavity photon number $m$, producing level repulsion that lowers the energy of $|g,m\rangle$. The dispersive interaction offsets the detuning by $m\chi$, so the relevant detuning is $\Delta_m \equiv \Delta_{bd}+m\chi$ and the drive-induced energy shift becomes photon-number dependent. Examples for $m=0,1$ are shown in Fig.~\ref{fig:device}(c), and this $m$-dependent shift can be tuned to cancel fluctuations of the static Lamb shift [Fig.~\ref{fig:device}(d)].
+
+An analytic expression follows in the weak-drive regime, assuming (i) $\Omega_0 \ll \min_m|\Delta_m|$ over the photon numbers of interest, so that the drive does not strongly hybridize $|g,m\rangle$ and $|e,m\rangle$, and (ii) $|\Omega_0|\ll |K+2\Delta_{bd}|$, so that hybridization with the state $|f,m\rangle$ remains weak. Under these conditions, a Schrieffer--Wolff transformation diagonalizes $H_R$. Retaining terms up to $\mathcal{O}(\Omega_0^2/\Delta_m^2)$ and projecting onto the $\{|g,m\rangle,|e,m\rangle\}$ subspace gives
+\begin{equation}
+\label{eq:mainHd_two_level}
+\begin{aligned}
+H_d =\;&
+\widetilde{\Delta}_{bd}\,\sigma^+\sigma^-
++\bar\omega_c\,c^\dagger c
+-\sum_m \frac{\Omega_0^2}{\Delta_m}\,|m\rangle\langle m|
+\\
+&+\sigma^+\sigma^-\!\left[
+\chi\,c^\dagger c
++\sum_m \frac{2\Omega_0^2}{\Delta_m}\,|m\rangle\langle m|
+\right],
+\end{aligned}
+\end{equation}
+where $\sigma^+\sigma^- \equiv |e\rangle\langle e|$ and $|m\rangle$ denotes a cavity Fock state. The drive renormalizes the FTT detuning, $\widetilde{\Delta}_{bd}\equiv \Delta_{bd}-\Omega_0^2/K$, and generates an $m$-dependent shift of the cavity transition frequency together with an additional Stark shift. The essential point is that this drive-induced shift can be tuned to cancel the flux-sensitive static Lamb shift, thereby creating a driven sweet spot.
+
+Starting from the rotating-frame Hamiltonian (three-level truncation of the FTT),
+\begin{equation}
+\label{eq:HR_start}
+\begin{aligned}
+H_R =\;&
+\Delta_{bd}\,|e\rangle\langle e|
++\bigl(2\bar\omega_b + K\bigr)\,|f\rangle\langle f|
++\bar\omega_c\,c^\dagger c \\
+&+\chi\bigl(|e\rangle\langle e|+2|f\rangle\langle f|\bigr)c^\dagger c \\
+&+\Omega_0\Bigl(|g\rangle\langle e|+
+\sqrt{2}\,|e\rangle\langle f|+
+\mathrm{h.c.}\Bigr),
+\end{aligned}
+\end{equation}
+the weak-drive regime $\Omega_0\ll K$ allows the decomposition
+\begin{equation}
+\label{eq:H0_plus_V}
+H_R = H_0 + V,
+\end{equation}
+where $H_0$ is the $\Omega_0$-independent part of Eq.~\eqref{eq:HR_start} (diagonal in the bare basis) and $V$ is the drive term.
+
+A Schrieffer--Wolff transformation uses an anti-Hermitian generator $D_d=-D_d^\dagger$ to obtain
+\begin{equation}
+\label{eq:SWT_def}
+H_d' = e^{-D_d}H_R e^{D_d},
+\end{equation}
+which is diagonal in the bare basis. To first order,
+\begin{equation}
+\label{eq:Dd_first_order}
+\begin{aligned}
+&D_d=\\
+&
+\sum_{m}\Biggl[
+-\frac{\Omega_0}{\Delta_m}\,|e,m\rangle\langle g,m|
++\frac{\sqrt{2}\,\Omega_0}{\Delta_m+K}\,|f,m\rangle\langle e,m|
+-\mathrm{h.c.}
+\Biggr] \\
+&\approx
+\sum_{m}\Biggl[
+-\frac{\Omega_0}{\Delta_m}\,|e,m\rangle\langle g,m|
++\frac{\sqrt{2}\,\Omega_0}{K}\,|f,m\rangle\langle e,m|
+-\mathrm{h.c.}
+\Biggr],
+\end{aligned}
+\end{equation}
+where the approximation keeps the leading order in $\mathcal{O}(\Delta_m/K)$.
+
+Keeping terms up to second order in the SWT gives
+\begin{align}
+H_d' \approx\;& H_R + \sum_m \Omega_0^2\Biggl[
+-\frac{1}{\Delta_m}\,|g,m\rangle\langle g,m|
++(\frac{1}{\Delta_m}
+\nonumber\\
+&-\frac{1}{K}) |e,m\rangle\langle e,m|
++\frac{1}{K}\,|f,m\rangle\langle f,m|
+\Biggr].
+\label{eq:Hd_second_order_explicit}
+\end{align}
+
+Because the FTT is initialized in $|g\rangle$ and $\Omega_0\ll K$, population of $|f\rangle$ remains negligible; projecting onto the $\{|g\rangle,|e\rangle\}$ subspace yields
+\begin{equation}
+\label{eq:Hd_two_level}
+\begin{aligned}
+H_d=\;&\widetilde{\Delta}_{bd}\sigma^+\sigma^-
++\bar\omega_c\,c^\dagger c
+-\sum_m \frac{\Omega_0^2}{\Delta_m}\,|m\rangle\langle m| \\
+&+\sigma^+\sigma^-\!\Biggl[
+\chi\,c^\dagger c
++\sum_m \frac{2\Omega_0^2}{\Delta_m}\,|m\rangle\langle m|
+\Biggr],
+\end{aligned}
+\end{equation}
+where $\widetilde{\Delta}_{bd} = \Delta_{bd}-\frac{\Omega_0^2}{K}$ is the shifted FTT frequency. The drive generates an $m$-dependent shift of the cavity transition frequency together with an additional Stark shift. The essential point is that this drive-induced shift can be tuned to cancel the flux-sensitive static Lamb shift, thereby creating a driven sweet spot.
+

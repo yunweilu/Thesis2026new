@@ -1,0 +1,76 @@
+\section{Cavity dephasing due to Lamb-shift fluctuations}
+
+The Hamiltonian of the FTT--cavity system is
+\begin{align}
+H(t) &= H_{\mathrm{static}} + H_{\mathrm{noise}}, \label{H}\\
+H_{\mathrm{static}} &=
+\omega_b\, b^\dagger b
++ \frac{K}{2}\, b^{\dagger 2} b^{2}
++ \omega_c\, c^\dagger c
++ g\,(b+b^\dagger)(c+c^\dagger), \label{Hstatic}\\
+H_{\mathrm{noise}} &= \delta\omega_b(t)\, b^\dagger b .
+\end{align}
+Here, $b$ ($c$) annihilates an excitation in the FTT (cavity) mode, $K$ is the FTT anharmonicity, and $g$ is the coupling strength. Flux noise can cause both depolarization and dephasing. Treating the flux noise as small-amplitude $1/f$ noise, we neglect depolarization from GHz-frequency transitions (see Appendix~\ref{app:hamiltonian-derivation-noise} for details). The dominant effect is therefore an FTT-frequency fluctuation,
+\begin{equation}
+\delta\omega_b(t)=\delta\Phi(t)\,\partial\omega_b/\partial\Phi,
+\end{equation}
+where $\Phi$ is the static flux bias and $\delta\Phi(t)$ is its fluctuation.
+
+In the dispersive regime
+\begin{equation}
+|g| \ll |\omega_c-\omega_b| \ll |\omega_c+\omega_b|,
+\end{equation}
+the counter-rotating terms in $H_{\mathrm{static}}$ can be neglected, giving
+\begin{equation}
+H_{\mathrm{static}}
+\approx
+\omega_b b^\dagger b + \omega_c c^\dagger c + \frac{K}{2} b^{\dagger 2} b^2
++ g\,(bc^\dagger + b^\dagger c).
+\end{equation}
+To remove the interaction term $g(bc^\dagger + b^\dagger c)$, we apply a second-order Schrieffer--Wolff transformation with $U_{\mathrm{disp}}=e^{D_{\mathrm{disp}}}$,
+\begin{equation}
+H_{\mathrm{static}}^{\mathrm{disp}}
+=
+e^{-D_{\mathrm{disp}}} H_{\mathrm{static}} e^{D_{\mathrm{disp}}}.
+\end{equation}
+The generator $D_{\mathrm{disp}}$ is chosen to eliminate the off-diagonal terms at first order,
+\begin{equation}
+\label{Ddisp}
+D_{\mathrm{disp}}=
+\sum_n \sqrt{n+1}\,
+\frac{g}{\omega_b+nK-\omega_c}\,
+|n+1\rangle\langle n|\,c
+-\mathrm{h.c.}
+\end{equation}
+Expanding in the detuning $\Delta_{bc}=\omega_b-\omega_c$ yields
+\begin{equation}
+D_{\mathrm{disp}}
+\approx
+\frac{g}{\Delta_{bc}}\,b^\dagger c
+-\frac{gK}{\Delta_{bc}^2}(b^\dagger b-1)\,b^\dagger c
++\mathcal{O}\!\left((nK/\Delta_{bc})^2\right).
+\end{equation}
+
+In the dispersive frame \cite{cqedreview2021}, the transformed static Hamiltonian takes the form
+\begin{align}
+\label{Hdisp}
+H_\text{disp} =
+\bar{\omega}_b\, b^\dagger b
++ \frac{K}{2}\, b^{\dagger 2} b^{2}
++ \bar{\omega}_c\, c^\dagger c
++ \chi\, b^\dagger b\, c^\dagger c,
+\end{align}
+where $\chi$ is the dispersive shift and $\bar{\omega}_b$ and $\bar{\omega}_c$ are the Lamb-shifted FTT and cavity frequencies,
+\begin{align}
+\chi &\approx 2\frac{g^2}{\Delta_{bc}^2}K,\quad
+\bar{\omega}_b \approx \omega_b + \frac{g^2}{\Delta_{bc}}, \quad
+\bar{\omega}_c \approx \omega_c - \frac{g^2}{\Delta_{bc}}.
+\end{align}
+
+The noise Hamiltonian $H_{\mathrm{noise}}$ primarily induces dephasing between eigenstates of $H_\text{disp}$ (see Appendix~\ref{Hnoise_transfer}). In particular, because $\bar{\omega}_c$ depends on the detuning $\Delta_{bc}$, FTT-frequency fluctuations $\delta\omega_b(t)$ produce cavity-frequency fluctuations,
+\begin{align}
+\delta\bar{\omega}_c(t)
+= \frac{\partial \bar{\omega}_c}{\partial \omega_b}\,\delta\omega_b(t)
+\approx \frac{g^2}{\Delta_{bc}^2}\,\delta\omega_b(t),
+\end{align}
+thereby generating cavity dephasing. This mechanism is summarized in Fig.~\ref{fig:device}(b).
