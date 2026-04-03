@@ -49,7 +49,7 @@ Here, the density matrix is vectorized by stacking the elements row-by-row. $\ma
 \section{Optimization procedure}
 \label{sec:opt_procedure}
 
-Quantum optimal control has been extensively used to develop robust control schemes by minimizing cost functions that encode robustness metrics. One approach is to penalize the derivative of the closed- or open-system fidelity with respect to detuning $\delta$~\cite{Watanabe,hai2023universalcompare,qctrl}. However, a more intuitive and pragmatic method is to penalize the average infidelity~\cite{reinhold2019controllingthesisrobustmetric,allen2020robustmetric,kosut2013robustmetric,khaneja2005optimalrobustmetric,rembold2020introductionrobustmetric}
+Quantum optimal control has been extensively used to develop robust control schemes by minimizing cost functions that encode robustness metrics. One approach is to penalize the derivative of the closed- or open-system fidelity with respect to detuning $\delta$~\cite{Watanabe,hai2023universalcompare,qctrl}. However, a more intuitive and pragmatic method is to penalize the average infidelity~\cite{reinhold2019controllingthesisrobustmetric,allen2020robustmetric,kosut2013robustmetric,nmrkhaneja2005optimal,rembold2020introductionrobustmetric}
 \begin{equation}\label{eq:avg_inf}
 C_{\text{o},\text{c}} = \frac{1}{N}\sum_{i=1}^N\mathcal{I}_{\text{o},\text{c}}(\delta_i).
 \end{equation}
@@ -71,7 +71,7 @@ Instead, I propose a method that, while not guaranteed to be equivalent, yields 
 The method consists of two steps: (1)~employing closed-system optimization to minimize $C_\text{c}$ for each potential duration, and (2)~with given decoherence rates, evaluating $C_\text{o}$ for the optimized pulses from the first step, then selecting the pulse with the lowest $C_\text{o}$. 
 The approach is summarized in Fig.~\ref{fig:optflow}.
 
-For the closed-system optimization, I use Gradient Ascent Pulse Engineering (GRAPE), a method widely employed for optimal control in various contexts~\cite{khaneja2005optimalrobustmetric,lu2023optimalgrape,koch2022quantumqocreview}. The gradients required in GRAPE are calculated by using automatic differentiation, thereby eliminating the need for manually coding the analytical gradients of the cost function~\cite{adscalingbaydin2014automatic,pacleung2017speedup,abdelhafez2019gradient}. The initial pulse ansatz is
+For the closed-system optimization, I use Gradient Ascent Pulse Engineering (GRAPE), a method widely employed for optimal control in various contexts~\cite{nmrkhaneja2005optimal,lu2023optimalgrape,koch2022quantumqocreview}. The gradients required in GRAPE are calculated by using automatic differentiation, thereby eliminating the need for manually coding the analytical gradients of the cost function~\cite{adscalingbaydin2014automatic,pacleung2017speedup,abdelhafez2019gradient}. The initial pulse ansatz is
 \begin{align}
 \label{eq:initial_pulse}
     \varepsilon^\text{initial}_I(t) &=\frac{1}{t_\text{g}}\big[ (a-\theta/2)\cos(2\pi t /t_\text{g}) + (b-a)\cos(4\pi t /t_\text{g})\\ 
