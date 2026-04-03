@@ -14,6 +14,7 @@
 % \usepackage[backend=bibtex, sorting=none, bibstyle=ieee]{biblatex}  %reference manager
 \usepackage[bookmarks=true, hidelinks]{hyperref}
 \usepackage{appendix}  %for appendices
+\usepackage{import}  % \subimport: paths relative to this file (Overleaf CWD != local)
 \usepackage{rotating}  %for rotated, landscape images
 \usepackage[normalem]{ulem}  %for italicized text
 \usepackage{xcolor}
@@ -275,7 +276,7 @@
 % Appendices
 %%%%%%%%%%%%%%%%
 % \pagestyle{fancy} 
-\input{thesis/Appendix/main}
+\subimport{appendix/}{main}
 
 
 
