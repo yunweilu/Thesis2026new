@@ -1,0 +1,28 @@
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.synctex.gz
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.ist
+*.nlo
+*.nls
+
+# Build output PDF (figure PDFs are kept)
+thesis/main.pdf
+
+# OS files
+.DS_Store
