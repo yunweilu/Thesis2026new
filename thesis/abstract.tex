@@ -4,6 +4,11 @@
 \vspace{\baselineskip}
 \end{centering}
 
-% Abstract text will be added here.
+Superconducting qubits are among the most promising platforms for realizing fault-tolerant quantum computation. Achieving the operation fidelities that fault tolerance demands requires solving two distinct problems: optimizing control pulses to maximize coherent gate performance, and suppressing decoherence to preserve that performance under realistic noise. This thesis addresses both --- efficient gradient-based pulse optimization for the former, and a drive-based dephasing suppression protocol for the latter.
 
+In the control setting, I revisit GRAPE with hard-coded gradients, circumventing the memory bottleneck of automatic differentiation while preserving runtime scaling. Systematic scaling analysis and benchmarks across the three gradient strategies yield a practical decision tree for selecting the optimal approach for a given problem. I then apply this framework to optimize robust transmon gates, demonstrating significant fidelity improvements over standard pulse designs.
+
+In the noise setting, I show that cavity dephasing induced by $1/f$ flux noise in a flux-tunable transmon can be strongly suppressed by a weak off-resonant drive that creates Stark-induced sweet spots. At these operating points, the drive-induced AC-Stark shift opposes the Lamb-shift fluctuations to first order, rendering the cavity transition frequency insensitive to transmon frequency noise. Monte Carlo simulations using realistic parameters predict an approximately twentyfold enhancement of cavity dephasing time, and the protocol extends naturally to bosonic encodings: a single drive simultaneously suppresses flux-noise sensitivity across all relevant transitions of a binomial code and reduces dephasing in both rails of a dual-rail qubit.
+
+Together, these results provide practical, hardware-efficient tools for reducing both coherent errors and decoherence in superconducting circuits, bringing fault-tolerant operation closer to reach.
 \clearpage

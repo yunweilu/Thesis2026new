@@ -1,4 +1,65 @@
-\chapter{Third chapter}
-\label{chap:third}
+\chapter{GRAPE: Theory, Gradients, and Implementation}
+\label{chap:grape}
 
-% Main text, figures, and sections will be added here.
+\section{Gradient Ascent Pulse Engineering: Theory and Notation}
+\label{sec:grape-theory}
+
+\subsection{Pulse Parametrization and Time Discretization}
+\label{subsec:pulse-param}
+
+\subsection{Cost Functions: State-Transfer Infidelity, Gate Infidelity, and Additional Contributions}
+\label{subsec:cost-functions}
+
+\subsection{Pulse Optimization Based on Gradient Information}
+\label{subsec:pulse-opt-gradient}
+
+\section{Gradient Computation Strategies}
+\label{sec:gradient-strategies}
+
+\subsection{Full Automatic Differentiation}
+\label{subsec:full-ad}
+
+\subsection{Semi-Automatic Differentiation}
+\label{subsec:semi-ad}
+
+\subsection{Hard-Coded Gradients: Analytical Derivation}
+\label{subsec:hard-coded-gradients}
+
+\subsubsection{Gradient of State-Transfer Infidelity}
+\label{subsubsec:grad-state-transfer}
+
+\subsubsection{Gradient of Gate Infidelity}
+\label{subsubsec:grad-gate-infidelity}
+
+\subsubsection{Gradients of Additional Cost Contributions}
+\label{subsubsec:grad-additional-cost}
+
+\section{Numerical Evaluation of Hard-Coded Gradients}
+\label{sec:numerical-gradients}
+
+\subsection{State Propagation via the Scaling and Squaring Method}
+\label{subsec:scaling-squaring}
+
+\subsubsection{Bounding Numerical Errors}
+\label{subsubsec:ss-bounding-errors}
+
+\subsubsection{Choosing the Scaling Factor and Truncation Order}
+\label{subsubsec:ss-scaling-truncation}
+
+\subsubsection{Numerical Comparison Between Different Implementations of Scaling and Squaring}
+\label{subsubsec:ss-comparison}
+
+\subsection{Propagator Derivative Acting on a State via the Auxiliary Matrix Method}
+\label{subsec:auxiliary-matrix}
+
+\section{Scaling Analysis of Runtime and Memory Usage for Three Gradient Strategies}
+\label{sec:scaling-analysis}
+
+\subsection{Hard-Coded Gradients}
+\label{subsec:scale-hard-coded}
+
+\subsection{Full Automatic Differentiation}
+\label{subsec:scale-full-ad}
+
+\subsection{Semi-Automatic Differentiation}
+\label{subsec:scale-semi-ad}
