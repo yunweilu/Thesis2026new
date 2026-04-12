@@ -1,0 +1,143 @@
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+
+mpl.rcParams['svg.fonttype'] = 'path'   # for SVG
+mpl.rcParams['pdf.fonttype'] = 42       # TrueType in PDF, generally safer
+
+# ══════════════════════════════════════════════════════════════════
+# Normal plot (single-column width, small fonts)
+# ══════════════════════════════════════════════════════════════════
+fig_width_pt = 246.0
+inches_per_pt = 1.0 / 72.27
+fig_width = fig_width_pt * inches_per_pt
+fig_height = fig_width / 1.45
+
+normal_plot = {
+    "figure.figsize": (fig_width, fig_height),
+    "figure.dpi": 150,
+    "savefig.dpi": 600,
+    "savefig.bbox": "tight",
+    "savefig.pad_inches": 0.02,
+
+    "font.family": "STIXGeneral",
+    "font.size": 8.5,
+    "axes.labelsize": 9,
+    "xtick.labelsize": 8,
+    "ytick.labelsize": 8,
+    "legend.fontsize": 8,
+    "mathtext.fontset": "stix",
+
+    "lines.linewidth": 1.6,
+    "lines.markersize": 4.0,
+
+    "axes.linewidth": 0.8,
+    "xtick.direction": "in",
+    "ytick.direction": "in",
+    "xtick.major.size": 3.5,
+    "ytick.major.size": 3.5,
+    "xtick.major.width": 0.8,
+    "ytick.major.width": 0.8,
+    "xtick.minor.visible": True,
+    "ytick.minor.visible": True,
+    "xtick.minor.size": 2.0,
+    "ytick.minor.size": 2.0,
+
+    "axes.spines.top": False,
+    "axes.spines.right": False,
+    "legend.frameon": False,
+    "axes.grid": False,
+}
+
+# ══════════════════════════════════════════════════════════════════
+# Small plot (square, large fonts for inset / subfigure use)
+# ══════════════════════════════════════════════════════════════════
+sz = 4.0  # square figure size in inches
+
+small_plot = {
+    "figure.figsize": (sz, sz),
+    "figure.dpi": 150,
+    "savefig.dpi": 600,
+    "savefig.bbox": "tight",
+    "savefig.pad_inches": 0.02,
+
+    "font.family": "STIXGeneral",
+    "font.size": 18,
+    "axes.labelsize": 18,
+    "xtick.labelsize": 16,
+    "ytick.labelsize": 16,
+    "legend.fontsize": 16,
+    "mathtext.fontset": "stix",
+
+    "lines.linewidth": 2.0,
+    "lines.markersize": 5.0,
+
+    "axes.linewidth": 1.2,
+    "xtick.direction": "in",
+    "ytick.direction": "in",
+    "xtick.major.size": 5,
+    "ytick.major.size": 5,
+    "xtick.major.width": 1.2,
+    "ytick.major.width": 1.2,
+    "xtick.minor.visible": True,
+    "ytick.minor.visible": True,
+    "xtick.minor.size": 3.0,
+    "ytick.minor.size": 3.0,
+
+    "axes.spines.top": False,
+    "axes.spines.right": False,
+    "legend.frameon": False,
+    "axes.grid": False,
+}
+
+# Usage:
+#   mpl.rcParams.update(normal_plot)   # for full-width manuscript figures
+#   mpl.rcParams.update(small_plot)    # for small subfigures / insets
+
+
+def add_axis_arrows(ax, arrow_lw=0.8, arrow_color="black", arrow_scale=1.0):
+    """Add arrowheads to x/y axis ends in axes coordinates."""
+    ax.annotate(
+        "",
+        xy=(1.02, 0.0),
+        xytext=(1.0, 0.0),
+        xycoords="axes fraction",
+        textcoords="axes fraction",
+        arrowprops=dict(
+            arrowstyle="-|>",
+            lw=arrow_lw,
+            color=arrow_color,
+            mutation_scale=10 * arrow_scale,
+        ),
+    )
+    ax.annotate(
+        "",
+        xy=(0.0, 1.02),
+        xytext=(0.0, 1.0),
+        xycoords="axes fraction",
+        textcoords="axes fraction",
+        arrowprops=dict(
+            arrowstyle="-|>",
+            lw=arrow_lw,
+            color=arrow_color,
+            mutation_scale=10 * arrow_scale,
+        ),
+    )
+
+Use the provided Matplotlib style presets and helper functions to make the plot publication-ready.
+
+If the requested plot size is **"normal"**, apply `normal_plot`.
+If the requested plot size is **"small"**, apply `small_plot`.
+
+After choosing the appropriate style, refine the figure using these principles:
+
+* ensure the plot is readable at its final manuscript size,
+* use colorblind-safe colors and distinguishable visual encodings,
+* keep typography simple and consistent across axes, labels, legends, annotations, and insets,
+* minimize unnecessary boxes, frames, and visual clutter,
+* prefer direct labeling of curves instead of detached legends whenever practical,
+* make the main scientific message as clear as possible,
+* maintain visual consistency with the other figures in the paper.
+
+Finally, always add arrowheads to the positive ends of both the x-axis and y-axis using `add_axis_arrows(ax)`.
+
+Do not change the underlying data or scientific meaning of the plot. Only improve its presentation, clarity, and consistency.
