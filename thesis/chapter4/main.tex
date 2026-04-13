@@ -4,8 +4,31 @@
 \section{Flux-Noise-Induced Cavity Dephasing in the Dispersive Regime}
 \label{sec:flux-noise-dephasing}
 
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\textwidth]{chapter4/figures/device.pdf}
+    \caption[Scheme for engineering a cavity frequency at a driven sweet spot.]{
+\textbf{Scheme for engineering a cavity frequency at a driven sweet spot.}
+\textbf{(a)} Circuit schematic of a flux-tunable transmon (FTT) dispersively coupled to a superconducting cavity and driven by a coherent voltage source $V_g$. Flux noise $\delta\Phi(t)$ modulates the FTT frequency and provides the dominant noise channel.
+\textbf{(b)} Noise transduction via the Lamb shift. The bare modes have frequencies $\omega_c$ and $\omega_b(\delta\Phi)$ with flux-dependent detuning $\Delta_{bc}(\delta\Phi)=\omega_b(\delta\Phi)-\omega_c$. The coupling $g$ hybridizes the modes, yielding dressed frequencies $\bar{\omega}_{b/c}(\delta\Phi)$; the cavity frequency acquires a Lamb shift $-g^2/\Delta_{bc}$ and therefore inherits sensitivity to $\delta\Phi(t)$.
+\textbf{(c)} Drive-induced, photon-number--dependent shift in the frame rotating at $\omega_d$. A coherent drive of amplitude $\Omega_0$ hybridizes the manifolds $|{g,m}\rangle$ and $|{e,m}\rangle$, producing level repulsion (green) that renormalizes the cavity transition frequency in an $m$-dependent manner.
+\textbf{(d)} First-order noise cancellation at the driven sweet spot. In the presence of $\delta\Phi(t)$ (gray), the static Lamb-shift contribution to the cavity frequency (black) is compensated by the drive-induced shift (green) at an appropriate drive, yielding a net cavity frequency $\tilde{\omega}_c$ (thick black) that is first-order insensitive to flux fluctuations (a flux-insensitive point in the sense of vanishing first-order susceptibility).
+}
+    \label{fig:stark_device}
+\end{figure}
+
 \section{Creating Stark-Induced Sweet Spots}
 \label{sec:creating-stark-sweet-spots}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\textwidth]{chapter4/figures/compare.pdf}
+    \caption{Drive-induced flux sweet spots, defined by \(D_{0\rightarrow 1}=0\).
+(a) Unselective regime at \(\Omega_0/2\pi=10~\mathrm{MHz}\), showing a single sweet spot.
+(b) Selective regime at \(\Omega_0/2\pi=0.05~\mathrm{MHz}\), showing two symmetric sweet spots about the effective resonance.
+(c) Two-dimensional map of \(D_{0\rightarrow 1}\) versus drive amplitude \(\Omega_0\) and detuning \(\Delta_{bd}\); dashed curves denote analytical sweet-spot conditions.}
+\label{fig:drive_sweet_spots_compare}
+\end{figure}
 
 \subsection{AC-Stark Cancellation of Lamb-Shift Fluctuations}
 \label{subsec:ac-stark-cancellation}
@@ -16,8 +39,29 @@
 \subsection{Strong-Drive Regime}
 \label{subsec:strong-drive}
 
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.9\linewidth]{chapter4/figures/higher_order.pdf}
+    \caption{Susceptibility $D_0$ including higher-order corrections in the Schrieffer--Wolff expansion. An additional sweet spot appears near $-\Delta_{bd}\simeq K/2$, arising from hybridization between $|g\rangle$ and $|f\rangle$ states.}
+    \label{fig:higher_order_sweet_spot}
+\end{figure}
+
 \subsection{Choosing Appropriate Drive Parameters}
 \label{subsec:drive-parameters}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.9\linewidth]{chapter4/figures/SNAILss.pdf}
+    \caption{Drive-induced sweet spot in a SNAIL--cavity system. Under continuous drive, the cavity transition energy exhibits a maximum near \(\Phi \simeq 0.311\,\Phi_0\), indicating reduced first-order flux susceptibility. Solid lines show numerical results and dashed lines show the perturbative prediction.}
+    \label{fig:snail_sweet_spot}
+\end{figure}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{chapter4/figures/preparation_fidelity_plot.pdf}
+    \caption{State-preparation infidelity $\mathcal{I}(\tau)$ versus ramp time $\tau$ for several detunings $\Delta_{bd}$, comparing Gaussian and DRAG ramps. The non-monotonic dependence reflects the trade-off between coherent leakage from unwanted transitions (suppressed for longer $\tau$) and decoherence (which accumulates for longer $\tau$).}
+    \label{fig:prep_fidelity_ramp}
+\end{figure}
 
 \section{Residual Dephasing at the Stark-Induced Sweet Spot}
 \label{sec:residual-dephasing}
@@ -37,8 +81,53 @@
 \subsection{Numerical Validation via Monte Carlo Simulation}
 \label{subsec:mc-validation}
 
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{chapter4/figures/noise_spectrum_plot.pdf}
+    \caption{Power spectral density of $\delta\Phi(t)$ for 100 representative $1/f$ noise trajectories generated with the cutoffs specified in the main text.}
+    \label{fig:noise_psd_mc}
+\end{figure}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{chapter4/figures/relaxation_excitation_plot.pdf}
+    \caption{Numerical validation of rates in the unselective regime.
+(a) Reference dephasing rate \(\gamma_{b\uparrow}^{\mathrm{un}}+\gamma_{c\phi}^{\mathrm{un}}\) extracted from Monte Carlo simulations with \(\delta\Phi(t)=0\), compared with the analytical large-detuning approximation.
+(b) Flux-noise-induced depolarization rate \(\gamma_{b\uparrow}^{1/f,\mathrm{un}}\) versus noise amplitude \(S_0\). The quadratic scaling in \(S_0\) and agreement with the analytical prediction (black dashed line) are observed.
+(c) Cavity decay rate with sweet-spot drive.}
+    \label{fig:relaxation_excitation_mc}
+\end{figure}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{chapter4/figures/total_rate.pdf}
+    \caption{Numerical evaluation and time-domain validation of the total cavity dephasing
+    rate under sweet-spot driving. (a) Total dephasing rate $\Gamma_{\phi,\mathrm{total}}$
+    extracted from full-system simulations as a function of detuning $\Delta_{bd}$, with
+    the drive amplitude chosen at each detuning to satisfy the sweet-spot condition.
+    $S_0$ denotes the amplitude of $1/f$ flux noise. (b) DRAG-style adiabatic ramp pulse.
+    (c) Time-domain decay of
+$P_X(t)=\mathrm{Tr}\!\left[\rho(t)\,X(t)\right]$, with
+$X(t)=\ket{\phi_{g,1}(t)}\!\bra{\phi_{g,0}(t)}+\mathrm{H.c.}$.
+The time-dependent Floquet states are labeled by their bare-state correspondence.
+The driven system exhibits a cavity dephasing time of $\sim 2~\mathrm{ms}$,
+compared to $\sim 100~\mu\mathrm{s}$ in the undriven case.}
+    \label{fig:total_dephasing_rate_mc}
+\end{figure}
+
 \section{Application to Bosonic Quantum Error Correction}
 \label{sec:bosonic-qec}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\textwidth]{chapter4/figures/qec_plot.pdf}
+    \caption{\textbf{Driven sweet-spot protection for bosonic encodings} (\(\Omega_0/2\pi=10\,\mathrm{MHz}\) throughout).
+    \emph{Binomial code}---\textbf{(a)}~Dephasing rate \(\gamma_{\phi,n\rightarrow m}\) of cavity transitions due to FTT-frequency fluctuations as a function of \(\Delta_{bd}\); the star marks \(\Delta_{bd}/2\pi=-30\,\mathrm{MHz}\), where all relevant \(\gamma_{\phi,n\rightarrow m}\) are suppressed by at least \(\sim\!13\times\).
+    \textbf{(b)}~Wigner function of \(|+_L\rangle\) at \(t=300\,\mu\mathrm{s}\): the driven case retains the interference fringes that are lost without the drive.
+    \emph{Dual-rail encoding}---\textbf{(c)}~Dephasing rate \(\gamma_{\phi,0\rightarrow 1}^{(i)}\) for each cavity as a function of \(\Delta_{bd}\); both cavities exhibit \(\sim 10\times\) lower dephasing near \(-\Delta_{bd}/2\pi\sim 29\,\mathrm{MHz}\).
+    \textbf{(d)}~Logical-subspace tomography for one dual-rail qubit: the drive suppresses dephasing, while leakage from single-photon loss remains unchanged.}
+\label{fig:qec_bosonic_driven}
+\end{figure}
 
 \subsection{Multi-Transition Protection in Binomial Codes}
 \label{subsec:binomial-codes}
