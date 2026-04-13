@@ -574,7 +574,9 @@ Here, $\mathcal{A}_n$ is defined as
 0 & -iH_n\Delta t
 \end{matrix}\biggr)},
 \end{equation}
-which is a $2\times2$ matrix of operators each acting on the Hilbert space with dimension $d$. Once a basis is chosen, $\mathcal{A}_n$ can be represented as a $2d\times2d$ matrix of complex numbers. Numerical evaluation of the left-hand side of the identity~\eqref{eq:auxiliary} gives a $2d$-dimensional vector. The first $d$ entries of the vector correspond to $\partial (e^{B_n}_m)^s / \partial a_n \dket{\Psi}$, which is an approximation of $\frac{\partial U_n}{\partial a_n} \dket{\Psi}$. 
+which is a $2\times2$ matrix of operators each acting on the Hilbert space with dimension $d$. Once a basis is chosen, $\mathcal{A}_n$ can be represented as a $2d\times2d$ matrix of complex numbers. Numerical evaluation of the left-hand side of the identity~\eqref{eq:auxiliary} gives a $2d$-dimensional vector. The first $d$ entries of the vector correspond to $\partial (e^{B_n}_m)^s / \partial a_n \dket{\Psi}$, which is an approximation of $\frac{\partial U_n}{\partial a_n} \dket{\Psi}$.
+
+As an alternative to Taylor series and scaling-and-squaring for $U_n=e^{-iH_n\Delta t}$, the propagator can be built from a diagonalization of $-iH_n\Delta t$, with $\partial U_n/\partial a_n$ obtained from the closed form in Appendix~\ref{app:matdiag}. That route changes the asymptotic costs of HG: memory and runtime scale as summarized in the scaling discussion there and enter the comparison with scaling-and-squaring in Sec.~\ref{sec:scaling-analysis} and in the decision-tree discussion below.
 
 \section{Scaling Analysis of Runtime and Memory Usage for Three Gradient Strategies}
 \label{sec:scaling-analysis}

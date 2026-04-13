@@ -35,9 +35,75 @@ For this example, the numerical results show that the scaling $\mu\sim\Theta(\no
 Here, $E_{Ci}$, $E_{Ji}$, $E_{Li}$ denote the charging, inductive, and Josephson energies of two fluxonium qubits, and $g$ is the interaction strength. $\varphi$ and $n$ are the phase and charge number operators, defined in the usual way. The Hamiltonian is represented in the harmonic oscillator basis. Fig.~\ref{fig:muscaling}(d) shows that the scaling of $\mu$ is superlinear with $\norm{A}_1$ for $\tau=10^{-8}$. The scaling relation between $\mu$ and $d$ is therefore determined numerically for $\tau=10^{-8}$ by increasing the dimensional cutoff for both fluxonium qubits simultaneously. The observed scaling is $\mu\sim \Theta (d^{0.65})$, see Fig.~\ref{fig:muscaling}(h).
 
 
-\chapter{Alternative hard-coded gradient scheme: matrix diagonalization and scaling}
+\chapter{Alternative Hard-Coded Gradient Scheme: Numerical Implementation and Scaling}
 \label{app:matdiag}
 
-% Numerical implementation via matrix diagonalization and comparison to scaling-and-squaring runtime.
+The numerical implementation of the hard-coded gradient scheme requires evaluation of the short-time propagator and its derivative. Under certain conditions, it can be advantageous to evaluate the short-time propagator by matrix diagonalization rather than scaling and squaring. This appendix first derives the propagator derivative in that setting and then summarizes memory and runtime scaling of HG relative to the scaling-and-squaring discussion in Sec.~\ref{sec:numerical-gradients}.
+
+\section{Evaluation of propagator derivative}
+\label{sec:app_prop_deriv}
+
+The operator $-iH\Delta t$ is anti-Hermitian, and hence can be diagonalized and exponentiated according to
+\begin{align}
+\label{eq:matrix_dia}    &A=SDS^\dagger,\\
+    &e^A=Se^DS^\dagger.
+\end{align}
+Here, $S$ is unitary and $D$ diagonal. As a result, the propagator derivative can be written as
+\begin{align}
+\label{eq:D1}
+    \frac{d e^{A}}{d a}=Se^D\frac{dD}{da}S^\dagger+\frac{dS}{da}e^DS^\dagger+Se^D\frac{dS^\dagger}{da}.
+\end{align}
+Applying the inverse unitary transformation to $\frac{d e^{A}}{d a}$~\eqref{eq:D1} yields
+\begin{align}
+\label{eq:D3}
+    S^\dagger\frac{de^A}{da}S=e^D\frac{dD}{da}+S^\dagger\frac{dS}{da}e^D+e^D\frac{dS^\dagger}{da}S.
+\end{align}
+Based on $\frac{dS^\dagger}{da}S+S^\dagger\frac{dS}{da}=0$, Eq.~\eqref{eq:D3} can be rewritten as
+\begin{align}
+\label{eq:D4}
+    S^\dagger \frac{de^A}{da}S=e^D\frac{dD}{da}+E\circ(S^\dagger\frac{dS}{da})
+\end{align}
+with $E_{ij}:=e^{D_{jj}}-e^{D_{ii}}$. Here, $\circ$ denotes the Hadamard product (element-wise multiplication). To obtain $dD/da$ and $dS/da$, one takes the derivative of Eq.~\eqref{eq:matrix_dia} and repeats the same steps as for Eqs.~\eqref{eq:D3} and~\eqref{eq:D4}, leading to
+\begin{align}
+\label{eq:D5}
+    S^\dagger\frac{dA}{da}S=\frac{dD}{da}+E'\circ(S^\dagger\frac{dS}{da}),
+\end{align}
+where $E'_{ij}:=D_{jj}-D_{ii}$.
+Since the diagonal elements of $E'$ are zero, it follows that
+\begin{align}
+\label{eq:dD}
+    \frac{dD}{da}=I\circ (S^\dagger\frac{dA}{da}S).
+\end{align}
+For off-diagonal elements of the operator in Eq.~\eqref{eq:D5}:
+\begin{align}
+\label{eq:dF}
+    F\circ (S^\dagger\frac{dA}{da}S)+G=S^\dagger\frac{dS}{da},
+\end{align}
+where
+\begin{align}
+    &F_{ij}:=
+  \begin{cases}
+    \frac{1}{D_{jj}-D_{ii}},& \text{if $D_{jj}-D_{ii} \neq 0$}.\\
+    0, & \text{otherwise}.
+  \end{cases}\\
+\nonumber  &G_{ij}:=
+  \begin{cases}
+    0, & \text{if $D_{jj}-D_{ii} \neq 0$}.\\
+    (S^\dagger\frac{dS}{da})_{ij}, & \text{otherwise}.
+\end{cases}
+\end{align}
+Inserting Eqs.~\eqref{eq:dD} and~\eqref{eq:dF} into Eq.~\eqref{eq:D4} gives
+\begin{align}
+\label{eq:propagator_der}
+    \frac{de^A}{da}=S\big((e^D+E \circ F)\circ(S^\dagger \frac{dA}{da}S)\big)S^\dagger,
+\end{align}
+where $E\circ G=0$ has been used.
+
+\section{Scaling analysis}
+\label{sec:app_scaling}
+
+The gradients of the contributions to the cost function (for the case of state transfer) are evaluated by the forward-backward propagation scheme. In this scheme, the storage required for states does not scale with the number of intermediate time steps. The matrices that must be stored are the system and control Hamiltonians as well as the dense matrices $S$, $E$, and $E'$. Thus, the total memory usage scales as $O(d^2)$. The runtime of the scheme is dominated by $O(N)$ evaluations of the propagator and its derivative. Employing matrix diagonalization for the propagator evaluation requires a runtime scaling $\sim O(d^3)$~\cite{matridiagcomppan1999complexity}. Calculation of the propagator derivative involves matrix-matrix multiplication and Hadamard product with runtime scaling $O(d^3)$ and $O(d^2)$, respectively. Thus, the overall runtime of the HG scheme scales as $O(Nd^3)$.
+
+The gradients of the contributions to the gate-operation cost function are evaluated in an analogous manner, resulting in the same runtime and memory scaling.
 
 \end{appendices}
