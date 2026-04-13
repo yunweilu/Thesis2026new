@@ -159,7 +159,7 @@ the transmon is only weakly anharmonic.
 
 \subsubsection{Flux-tunable transmon}
 
-Replacing the single Josephson junction by a SQUID loop makes the Josephson energy tunable with an external magnetic flux, as shown in Fig.\ \ref{fig:flux_tunable_transmon}. A SQUID consists of two Josephson junctions connected in parallel around a superconducting loop. The applied flux \(\Phi_{\mathrm{ext}}\) imposes a phase difference between the two branches, so the total tunneling amplitude is the coherent sum of two Josephson paths. The SQUID therefore behaves as a single effective junction with flux-dependent Josephson energy.
+Replacing the single Josephson junction by a SQUID loop makes the Josephson energy tunable with an external magnetic flux, as shown in Fig.\ \ref{fig:flux_tunable_transmon}. A SQUID consists of two Josephson junctions connected in parallel around a superconducting loop. The applied flux \(\Phi_{\mathrm{ex}}\) imposes a phase difference between the two branches, so the total tunneling amplitude is the coherent sum of two Josephson paths. The SQUID therefore behaves as a single effective junction with flux-dependent Josephson energy.
 
 \begin{figure}
     \centering
@@ -170,13 +170,13 @@ Replacing the single Josephson junction by a SQUID loop makes the Josephson ener
 
 For junction energies \(E_{J1}\) and \(E_{J2}\), and neglecting the loop inductance, the SQUID is equivalent to a single junction with effective Josephson energy
 \begin{equation}
-    E_J(\Phi_{\mathrm{ext}})
+    E_J(\Phi_{\mathrm{ex}})
     =
     E_{J\Sigma}
     \sqrt{
-        \cos^2\!\left(\pi\frac{\Phi_{\mathrm{ext}}}{\Phi_0}\right)
+        \cos^2\!\left(\pi\frac{\Phi_{\mathrm{ex}}}{\Phi_0}\right)
         +
-        d^2 \sin^2\!\left(\pi\frac{\Phi_{\mathrm{ext}}}{\Phi_0}\right)
+        d^2 \sin^2\!\left(\pi\frac{\Phi_{\mathrm{ex}}}{\Phi_0}\right)
     },
 \end{equation}
 where
@@ -185,19 +185,19 @@ where
     \qquad
     d = \frac{E_{J1}-E_{J2}}{E_{J1}+E_{J2}}.
 \end{equation}
-The parameter \(d\) quantifies the junction asymmetry. For a symmetric SQUID, \(d=0\), the tunability is maximal. For \(d\neq 0\), the effective Josephson energy does not vanish at \(\Phi_{\mathrm{ext}}=\Phi_0/2\), so the tuning range is reduced and the qubit retains a nonzero minimum frequency.
+The parameter \(d\) quantifies the junction asymmetry. For a symmetric SQUID, \(d=0\), the tunability is maximal. For \(d\neq 0\), the effective Josephson energy does not vanish at \(\Phi_{\mathrm{ex}}=\Phi_0/2\), so the tuning range is reduced and the qubit retains a nonzero minimum frequency.
 
 The transmon transition frequency therefore becomes flux dependent:
 \begin{equation}
-    \omega_b(\Phi_{\mathrm{ext}})
+    \omega_b(\Phi_{\mathrm{ex}})
     \approx
-    \sqrt{8E_C\,E_J(\Phi_{\mathrm{ext}})} - E_C.
+    \sqrt{8E_C\,E_J(\Phi_{\mathrm{ex}})} - E_C.
 \end{equation}
-As shown in Fig.~\ref{fig:flux_tunable_transmon}(b), \(\omega_b\) is periodic in \(\Phi_{\mathrm{ext}}\) with period \(\Phi_0\). It reaches its maximum at integer flux bias and decreases toward half-integer flux bias, where the reduction in \(E_J\) lowers the qubit frequency. 
+As shown in Fig.~\ref{fig:flux_tunable_transmon}(b), \(\omega_b\) is periodic in \(\Phi_{\mathrm{ex}}\) with period \(\Phi_0\). It reaches its maximum at integer flux bias and decreases toward half-integer flux bias, where the reduction in \(E_J\) lowers the qubit frequency. 
 
 Flux tuning provides direct control over the transmon spectrum. It can be used to adjust qubit detunings, bring the qubit into or out of resonance with other circuit elements, and access interactions that are otherwise off resonant. Since \(E_C\) is set primarily by the shunt capacitance, the anharmonicity remains approximately \(\alpha \approx -E_C\) throughout the tuning range, while the transition frequency can vary by several GHz.
 
-Time-dependent flux control extends this tunability to parametric driving. Modulating \(\Phi_{\mathrm{ext}}\) generates sidebands and enables controllable interactions between cavity modes, as discussed later in Secs.~\ref{subsec:analytical-control}.
+Time-dependent flux control extends this tunability to parametric driving. Modulating \(\Phi_{\mathrm{ex}}\) generates sidebands and enables controllable interactions between cavity modes, as discussed later in Secs.~\ref{subsec:analytical-control}.
 \endgroup
 
 \subsection{The Fluxonium}
@@ -208,7 +208,7 @@ The transmon suppresses charge sensitivity by operating in the regime $E_J/E_C \
 \begin{figure}[t]
     \centering
     \includegraphics[width=1\linewidth]{thesis/chapter2/fluxonium.pdf}
-    \caption[Fluxonium qubit with $E_J/2\pi = 5.0\;\text{GHz}$, $E_C/2\pi = 1.0\;\text{GHz}$, and $E_L/2\pi = 1.0\;\text{GHz}$.]{Fluxonium qubit with $E_J/2\pi = 5.0\;\text{GHz}$, $E_C/2\pi = 1.0\;\text{GHz}$, and $E_L/2\pi = 1.0\;\text{GHz}$. (a)~Lumped-element circuit: a Josephson junction with energy $E_J$ shunted by a capacitance with charging energy $E_C$ and a superinductance with inductive energy $E_L$, threaded by an external flux $\Phi_{\mathrm{ext}}$. (b)~Energy spectrum of the three lowest levels as a function of $\Phi_{\mathrm{ext}}/\Phi_0$. (c,\,d)~Potential landscape (gray) and probability densities of the ground (green) and first excited (orange) states at $\Phi_{\mathrm{ext}} = 0.4\,\Phi_0$ (c) and at the half-flux sweet spot $\Phi_{\mathrm{ext}} = 0.5\,\Phi_0$.}
+    \caption[Fluxonium qubit with $E_J/2\pi = 5.0\;\text{GHz}$, $E_C/2\pi = 1.0\;\text{GHz}$, and $E_L/2\pi = 1.0\;\text{GHz}$.]{Fluxonium qubit with $E_J/2\pi = 5.0\;\text{GHz}$, $E_C/2\pi = 1.0\;\text{GHz}$, and $E_L/2\pi = 1.0\;\text{GHz}$. (a)~Lumped-element circuit: a Josephson junction with energy $E_J$ shunted by a capacitance with charging energy $E_C$ and a superinductance with inductive energy $E_L$, threaded by an external flux $\Phi_{\mathrm{ex}}$. (b)~Energy spectrum of the three lowest levels as a function of $\Phi_{\mathrm{ex}}/\Phi_0$. (c,\,d)~Potential landscape (gray) and probability densities of the ground (green) and first excited (orange) states at $\Phi_{\mathrm{ex}} = 0.4\,\Phi_0$ (c) and at the half-flux sweet spot $\Phi_{\mathrm{ex}} = 0.5\,\Phi_0$.}
     \label{fig:fluxonium}
 \end{figure}
 

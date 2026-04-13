@@ -1,20 +1,16 @@
 \renewcommand{\nomname}{List of Symbols}
-% Entries below: symbols that appear more than twice in Introduction, chapters~2--4,
-% conclusion, and appendix (counts from the project \texttt{.tex} sources).
+% Symbols listed here appear in at least two distinct \texttt{\textbackslash subsection}
+% scopes among Introduction, chapters~2--4, conclusion, and appendix (current body text).
 
-% --- Energy scales and circuit parameters ---
+% --- Energy scales ---
 \nomenclature[E01]{$E_J$}{Josephson coupling energy of a junction (or effective junction).}
 \nomenclature[E02]{$E_C$}{Charging energy, $e^2/(2C_\Sigma)$ for the transmon island.}
-\nomenclature[E03]{$E_L$}{Inductive energy $(\Phi_0/2\pi)^2/L$ associated with a linear inductor.}
-\nomenclature[I01]{$I_c$}{Critical current of a Josephson junction.}
 
 % --- Charge and phase ---
 \nomenclature[N01]{$n_g$}{Dimensionless offset (gate) charge on the island.}
 \nomenclature[P01]{$\varphi$}{Gauge-invariant superconducting phase difference across the junction.}
 \nomenclature[P02]{$\Phi_0$}{Superconducting flux quantum, $h/2e$.}
-\nomenclature[P03]{$\Phi_{\mathrm{ext}}$}{External magnetic flux threading a superconducting loop.}
-\nomenclature[P04]{$\Phi_{\mathrm{ex}}$}{External flux coordinate in the $1/f$ flux-noise model.}
-\nomenclature[P05]{$\phi_e$}{Reduced external flux, $2\pi\Phi_e/\Phi_0$, biasing fluxonium.}
+\nomenclature[P03]{$\Phi_{\mathrm{ex}}$}{External magnetic flux threading the circuit (bias and noise coordinate in flux-tunable devices).}
 
 % --- Frequencies and anharmonicity ---
 \nomenclature[G01]{$\alpha$}{Leading transmon anharmonicity ($\approx -E_C$); in DRAG, also $\omega_{12}-\omega_{01}$.}
@@ -23,24 +19,11 @@
 \nomenclature[G04]{$\omega_d$}{Angular frequency of a parametric flux drive.}
 \nomenclature[G05]{$\omega_q$}{Qubit transition angular frequency in the noise model.}
 
-% --- Decoherence times and rates ---
+% --- Decoherence ---
 \nomenclature[D01]{$T_1$}{Energy relaxation (depolarization) time.}
-\nomenclature[D02]{$\Gamma_{\downarrow}$}{Relaxation rate from $\ket{1}$ to $\ket{0}$.}
-\nomenclature[D03]{$\Gamma_{\uparrow}$}{Thermal excitation rate from $\ket{0}$ to $\ket{1}$.}
 
 % --- Noise model ---
-\nomenclature[S01]{$\lambda_0$}{Nominal (mean) value of a fluctuating control parameter $\lambda$.}
-\nomenclature[S02]{$\delta\lambda$}{Stochastic fluctuation of $\lambda$ about $\lambda_0$.}
-\nomenclature[S03]{$B_\lambda$}{First-order system operator coupled to $\delta\lambda$ in $H\approx H_0+B_\lambda\,\delta\lambda$.}
-\nomenclature[S04]{$S_\lambda$}{Spectral density of $\delta\lambda$.}
-\nomenclature[S05]{$k_B$}{Boltzmann constant.}
-
-% --- Control and parametric interactions ---
-\nomenclature[C01]{$\Omega_x$, $\Omega_y$}{In-phase and quadrature envelopes of the microwave drive (DRAG construction).}
-\nomenclature[C02]{$\delta\omega_b$}{Amplitude of flux-induced modulation of the transmon frequency.}
-\nomenclature[C03]{$\eta_{ac}$}{Dressed-basis mixing coefficient $u_{ba}^*u_{bc}$ for cavity-like modes.}
-\nomenclature[C04]{\mbox{$\delta g_{ac}$}}{Scale factor for the driven beam-splitter coupling in the three-mode model.}
-\nomenclature[H01]{$H^{(0)}$}{Static part of a time-dependent Hamiltonian.}
-\nomenclature[H02]{$H^{(1)}$}{Time-dependent perturbation Hamiltonian.}
+\nomenclature[S01]{$B_\lambda$}{First-order system operator coupled to $\delta\lambda$ in $H\approx H_0+B_\lambda\,\delta\lambda$.}
+\nomenclature[S02]{$k_B$}{Boltzmann constant.}
 
 \printnomenclature
