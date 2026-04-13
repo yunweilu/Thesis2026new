@@ -540,6 +540,30 @@ In conclusion, the implementation presented here has better numerical stability 
 \subsection{Propagator Derivative Acting on a State via the Auxiliary Matrix Method}
 \label{subsec:auxiliary-matrix}
 
+Having addressed the challenges associated with numerically evaluating $e^A\dket{\Psi}$, I now turn to the calculation of $\frac{\partial U_n}{\partial a_n} \dket{\Psi}$, which is crucial for computing cost function gradients as in Eqs.~\eqref{stgradient} and~\eqref{gategradient}. This evaluation is based on the approximation 
+\begin{align}
+    \frac{\partial U_n}{\partial a_n} \dket{\Psi}\approx \frac{\partial (e^{B_n}_m)^s}{\partial a_n} \dket{\Psi},
+\end{align}
+where $B_n={-iH_n\Delta t}/{s}$. I proceed by using the auxiliary matrix method based on the identity~\cite{auxigoodwin2015auxiliary,najfeld1995derivatives}
+\begin{equation}
+\label{eq:auxiliary}
+    \begin{aligned}
+    (e^{\mathcal{A}_n/s}_m)^s
+    \binom{0}{|\Psi\rangle}&=
+    \binom{
+    \frac{\partial (e^{B_{n}}_m)^s}{\partial a_n}  \dket{\Psi}}{{(e^{B_n}_m)^s|\Psi\rangle}}.
+\end{aligned}
+\end{equation}
+Here, $\mathcal{A}_n$ is defined as
+\begin{equation}
+\mathcal{A}_n:=
+{\biggl(\begin{matrix}
+-iH_n \Delta t& -ih_c\Delta t \\
+0 & -iH_n\Delta t
+\end{matrix}\biggr)},
+\end{equation}
+which is a $2\times2$ matrix of operators each acting on the Hilbert space with dimension $d$. Once a basis is chosen, $\mathcal{A}_n$ can be represented as a $2d\times2d$ matrix of complex numbers. Numerical evaluation of the left-hand side of the identity~\eqref{eq:auxiliary} gives a $2d$-dimensional vector. The first $d$ entries of the vector correspond to $\partial (e^{B_n}_m)^s / \partial a_n \dket{\Psi}$, which is an approximation of $\frac{\partial U_n}{\partial a_n} \dket{\Psi}$. 
+
 \section{Scaling Analysis of Runtime and Memory Usage for Three Gradient Strategies}
 \label{sec:scaling-analysis}
 
