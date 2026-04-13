@@ -6,6 +6,38 @@
 
 \thispagestyle{fancy}
 
-% Appendices will be added here.
+\chapter{Scaling of the number of matrix-vector multiplications \texorpdfstring{$\mu$}{mu}}
+\label{app:muscaling}
+
+The asymptotic behavior of runtime, discussed in Sec.~\ref{sec:scaling-analysis}, is governed by the scaling of $\mu$~\eqref{eq:mudefnition} with the dimension $d$ of the Hilbert space. The dependence $\mu(d)$ is specific to the matrix $A$ to be exponentiated (which is proportional to the Hamiltonian). This prevents a general scaling relation from being stated. The following discusses several concrete examples.
+
+Consider first the transmon--cavity system, see Eq.~\eqref{eq:fockH}, where $d$ is increased via the cavity dimension $d_c$ while leaving the transmon cutoff fixed. The corresponding Hamiltonian $H_1$, written in the bare product basis, then has a constant maximum number of non-zero elements in each row. (I.e., the parameter $\sigma'$~\eqref{eq:sigmapdef} is independent of $d$.) Numerically, in this case $\mu$ scales linearly with $\norm{A}_1$ \big($\mu\sim\Theta(\norm{A}_1)$\big), and this linearity holds for a wide range of $\tau$, see Fig.~\ref{fig:muscaling}(a). In this example, two ingredients lead to the scaling $\norm{A}_1\sim \Theta(d^{1/2})$: (1)~$d$ is a constant multiple of $d_c$, and (2)~the cavity ladder operators in $H_1$ which have a one-norm scaling $\Theta(d_c^{1/2})$. Thus, the overall scaling $\mu\sim \Theta(d^{1/2})$ is obtained, see Fig.~\ref{fig:muscaling}(e). As a second example, take the system of three coupled transmons, see Eq.~\eqref{eq:gateH}. The Hamiltonian $H_2$ is written in the harmonic oscillator basis and has a constant $\sigma'$, which leads to $\mu\sim\Theta(\norm{A}_1)$ [Fig.~\ref{fig:muscaling}(b)]. The one-norm of operator $(b^\dagger b)^2$ in $H_2$ has quadratic scaling with each transmon dimension. Since $d$ is increased by enlarging the dimensions of all three transmons simultaneously, $\norm{A}_1\sim\Theta(d^{2/3})$. This scaling results in $\mu\sim \Theta(d^{2/3})$, see Fig.~\ref{fig:muscaling}(f).
+
+For other Hamiltonian matrices where $\sigma'$ depends on $d$, the scaling $\mu\sim\Theta(\norm{A}_1)$ may still hold. The following gives two concrete examples---one where linearity holds, and another where it breaks. First consider a driven system of $N_q$ qubits with nearest-neighbor $\sigma_z$ coupling. In the rotating frame, the system is described by
+\begin{align}
+\label{eq:H3}
+ H_3(t)=\sum_{\nu=1}^{N_q}[a_x^{(\nu)}(t)\sigma^{(\nu)}_x+a_y^{(\nu)}(t)\sigma^{(\nu)}_y]+\sum_{\nu=1}^{N_q-1}g\sigma_z^{(\nu)}\sigma_z^{{(\nu+1)}}.
+\end{align}
+
+\begin{figure}[t]
+  \includegraphics[width=\linewidth]{appendix/figures/uscaling.pdf}
+  \caption[Scaling of $\mu$, the number of matrix-vector multiplications.]{Scaling of $\mu$, the number of matrix-vector multiplications. (a)--(d)~The scaling of $\mu$ with $\norm{A}_1$ for Hamiltonians $H_j$, $j=1,2,3,4$, when considering several error tolerances $\tau$. (e)--(h)~The scaling of $\mu$ with dimension $d$ when considering $\tau=10^{-8}$ for each $H_j$, respectively. In all figures, dots are sampling data and solid lines are fitting curves. The parameter setup of $H_1$, $H_2$ is the same as those given in the captions of Figs.~\ref{fig:state_time} and~\ref{fig:gate}. Parameters of $H_3$ and $H_4$ are as follows: for $H_3$, $E_{Ci}/2\pi=2.5$\,GHz, $E_{Ji}/2\pi=8.9$\,GHz, $E_{Li}/2\pi=0.5$\,GHz, $g/2\pi=0.1$\,GHz, and $\phi=0.33$; for $H_4$, $a_x^{(\nu)}/2\pi=a_y^{(\nu)}/2\pi=0.5$\,GHz and $g/2\pi=0.1$\,GHz.}
+  \label{fig:muscaling}
+\end{figure}
+
+
+
+Each qubit is controlled via drive fields $a_x^{(\nu)}$ and $a_y^{(\nu)}$.
+For this example, the numerical results show that the scaling $\mu\sim\Theta(\norm{A}_1)$ still holds, see Fig.~\ref{fig:muscaling}(c). Since $d$ is increased by enlarging $N_q$, $\norm{A}_1\sim\Theta(N_q)\sim\Theta(\log_2d)$. This scaling results in $\mu\sim \Theta(\log_2d)$, see Fig.~\ref{fig:muscaling}(g). For the second example, consider two capacitively coupled fluxonium qubits with Hamiltonian
+\begin{align}
+\label{eq:fluxonium}    H_4(t)&=\sum_{i=1}^2 \big(4E_{Ci}n_i^2-E_{Ji}\cos(\varphi_i)+\frac{E_{Li}}{2}[\varphi_i-\phi_i(t)]^2\big) + gn_1n_2.
+\end{align}
+Here, $E_{Ci}$, $E_{Ji}$, $E_{Li}$ denote the charging, inductive, and Josephson energies of two fluxonium qubits, and $g$ is the interaction strength. $\varphi$ and $n$ are the phase and charge number operators, defined in the usual way. The Hamiltonian is represented in the harmonic oscillator basis. Fig.~\ref{fig:muscaling}(d) shows that the scaling of $\mu$ is superlinear with $\norm{A}_1$ for $\tau=10^{-8}$. The scaling relation between $\mu$ and $d$ is therefore determined numerically for $\tau=10^{-8}$ by increasing the dimensional cutoff for both fluxonium qubits simultaneously. The observed scaling is $\mu\sim \Theta (d^{0.65})$, see Fig.~\ref{fig:muscaling}(h).
+
+
+\chapter{Alternative hard-coded gradient scheme: matrix diagonalization and scaling}
+\label{app:matdiag}
+
+% Numerical implementation via matrix diagonalization and comparison to scaling-and-squaring runtime.
 
 \end{appendices}

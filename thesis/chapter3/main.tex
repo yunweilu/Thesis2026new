@@ -4,19 +4,19 @@
 One of the prominent techniques for implementing quantum optimal control is Gradient Ascent Pulse Engineering (GRAPE). The central goal of optimal control is to adjust control parameters in such a way that the infidelity of the desired state transfer or gate operation is minimized. In GRAPE, the minimization is based on gradient descent and thus generally requires the evaluation of gradients. Automatic differentiation (AD) \cite{baydin2018automatic} is a convenient tool that has also made an impact on quantum optimal control with GRAPE \cite{pacleung2017speedup,pacqoc,abdelhafez2019gradient,grapead}.
 Internally, AD builds a computational graph and applies the chain rule to automatically compute the gradient of a given function. 
 
-However, the convenience of AD comes at the cost of memory required for storing the full computational graph. The use of semi-automatic differentiation (semi-AD) \cite{semiadgoerz2022quantum} partially reduces the memory overhead compared to full automatic differentiation (full-AD). This reduction can still be insufficient to tackle optimal control for quantum systems of rapidly growing size \cite{arute2019quantum,gong2021quantum}. This motivates us to revisit the original GRAPE scheme \cite{nmrkhaneja2005optimal} which is based on hard-coded gradients (HG), and has the smallest possible memory cost. We perform a scaling analysis of memory usage and runtime, and thereby develop a decision tree guiding the optimal choice of strategy among HG, semi-AD and full-AD. We exemplify the scaling behavior with benchmarks for concrete optimization tasks.
+However, the convenience of AD comes at the cost of memory required for storing the full computational graph. The use of semi-automatic differentiation (semi-AD) \cite{semiadgoerz2022quantum} partially reduces the memory overhead compared to full automatic differentiation (full-AD). This reduction can still be insufficient to tackle optimal control for quantum systems of rapidly growing size \cite{arute2019quantum,gong2021quantum}. This motivates revisiting the original GRAPE scheme \cite{Khaneja2005}, which is based on hard-coded gradients (HG) and has the smallest possible memory cost. This work performs a scaling analysis of memory usage and runtime and thereby develops a decision tree guiding the optimal choice of strategy among HG, semi-AD, and full-AD. The scaling behavior is exemplified with benchmarks for concrete optimization tasks.
 
-The outline of this chaper is as follows. Sec.\ \ref{sec:grape-theory} briefly reviews GRAPE and introduces necessary notation. In Sec.\ \ref{sec:gradient-strategies}, we review three strategies of gradient computation: full automatic differentiation, semi-automatic differentiation and hard-coded gradients. Sec.\ \ref{sec:numerical-gradients}illustrate derivation and memory-efficient implementation of the gradients for the most commonly used cost function contributions. Our numerical implementation of HG further improves the efficiency of state propagation. In Sec.\ \ref{sec:scaling-analysis}, we analyze and compare the scaling of runtime and memory usage scaling for HG, AD and semi-AD. Sec.\ \ref{sec:benchmark-studies}present results from concrete benchmark studies. In Sec.\ \ref{sec:decision-tree}, we formulate a decision tree that facilitates the choice of optimal numerical strategy for GRAPE-based quantum optimal control. 
+The outline of this chapter is as follows. Sec.\ \ref{sec:grape-theory} briefly reviews GRAPE and introduces necessary notation. In Sec.\ \ref{sec:gradient-strategies}, this work reviews three strategies of gradient computation: full automatic differentiation, semi-automatic differentiation, and hard-coded gradients. Sec.\ \ref{sec:numerical-gradients} illustrates the derivation and memory-efficient implementation of the gradients for the most commonly used cost function contributions. The numerical implementation of HG in this work further improves the efficiency of state propagation. In Sec.\ \ref{sec:scaling-analysis}, this work analyzes and compares the scaling of runtime and memory usage for HG, AD, and semi-AD. Sec.\ \ref{sec:benchmark-studies} presents results from concrete benchmark studies. In Sec.\ \ref{sec:decision-tree}, this work formulates a decision tree that facilitates the choice of optimal numerical strategy for GRAPE-based quantum optimal control. 
 \section{Gradient Ascent Pulse Engineering: Theory and Notation}
 \label{sec:grape-theory}
-We briefly sketch the basics of GRAPE \cite{nmrkhaneja2005optimal}, mainly to establish the notion used in subsequent sections. 
+This work briefly sketches the basics of GRAPE \cite{Khaneja2005}, mainly to establish the notion used in subsequent sections. 
 \subsection{Pulse Parametrization and Time Discretization}
 \label{subsec:pulse-param}
 Consider a system described by the Hamiltonian
 \begin{align}
      H(t) = H_s + a(t)\, h_c.
 \end{align}
-Here, $H_s$ denotes the static system Hamiltonian and $h_c$ is an operator coupling the classical control field $a(t)$ to the system\footnote{For simplicity, we consider one control channel with real-valued $a(t)$. Generalizations to multiple control channels and complex $a$ are straightforward.}. Quantum optimal control aims to adjust $a(t)$ such that a desired unitary gate or state transfer is performed within a given time interval $0\le t \le T$. To facilitate optimization, the total control time $T$ is divided into $N$ intervals of duration $\Delta t=T/N$, and the control field is specified by the amplitudes at the discrete times $t_n=n\Delta t$ ($n=1,2,\dots,N$). The discretization interval $\Delta t$ is chosen such that control amplitudes are approximately constant within each $\Delta t$. This treatment is actually quite close to modeling the actual drive output of an arbitrary waveform generator, where $\Delta t$ can be chosen to align with the available resolution. We denote the time-discretized values by
+Here, $H_s$ denotes the static system Hamiltonian and $h_c$ is an operator coupling the classical control field $a(t)$ to the system\footnote{For simplicity, this work considers one control channel with real-valued $a(t)$. Generalizations to multiple control channels and complex $a$ are straightforward.}. Quantum optimal control aims to adjust $a(t)$ such that a desired unitary gate or state transfer is performed within a given time interval $0\le t \le T$. To facilitate optimization, the total control time $T$ is divided into $N$ intervals of duration $\Delta t=T/N$, and the control field is specified by the amplitudes at the discrete times $t_n=n\Delta t$ ($n=1,2,\dots,N$). The discretization interval $\Delta t$ is chosen such that control amplitudes are approximately constant within each $\Delta t$. This treatment is actually quite close to modeling the actual drive output of an arbitrary waveform generator, where $\Delta t$ can be chosen to align with the available resolution. Denote the time-discretized values by
 \begin{align}
 \label{eq2}
     a_n \coloneqq a(t_n),
@@ -36,7 +36,7 @@ where $H_n=\, H_s+a_n\, h_c $.
 
 \subsection{Cost Functions: State-Transfer Infidelity, Gate Infidelity, and Additional Contributions}
 \label{subsec: cost functions}
-Optimization of the control field proceeds via minimization of a cost function $C$. Typically, $C$ includes the state-transfer or gate infidelity, along with additional cost contributions employed to moderate pulse characteristics such as maximal power or bandwidth. Here we introduce the cost functions studied in this thesis.
+Optimization of the control field proceeds via minimization of a cost function $C$. Typically, $C$ includes the state-transfer or gate infidelity, along with additional cost contributions employed to moderate pulse characteristics such as maximal power or bandwidth. This section introduces the cost functions studied in this work.
 
 For state-transfer problems, a central objective is to minimize the final-time state-transfer infidelity
 \begin{equation}
@@ -55,7 +55,7 @@ C_1^{g}
 \end{equation}
 where $U_T$ is the target unitary gate, $U_R=U_N\cdots U_1$ is the realized gate, and $d$ is the Hilbert-space dimension.
 
-In addition to these final-time objectives, we also consider cost contributions that depend on the entire trajectory. One example is
+In addition to these final-time objectives, this work also considers cost contributions that depend on the entire trajectory. One example is
 \begin{equation}
 \label{c2st}
 C_2^{\mathrm{st}}
@@ -112,9 +112,9 @@ Here, $j$ enumerates steepest-descent iterations and $\eta_j>0$ is the learning 
 \subsection{Hard-Coded Gradients: Analytical Derivation}
 \label{subsec:hard-coded-gradients}
 The convenience of AD is bought at the cost of significant memory consumption
-which can be prohibitive for large quantum systems. Therefore, we are motivated to revisit hard-coded gradients
+which can be prohibitive for large quantum systems. Therefore, this work revisits hard-coded gradients
 in a computationally efficient scheme for key cost contributions.
-We now present analytical gradient expressions for the cost functions introduced in Sec\ \ref{subsec: cost functions}.
+Analytical gradient expressions for the cost functions introduced in Sec.\ \ref{subsec: cost functions} are presented next.
 
 For the state-transfer infidelity $C_1^{\mathrm{st}}$, the gradient is
 \begin{align}
@@ -160,7 +160,7 @@ U_{n+1}^\dagger \cdots U_N^\dagger U_T \dket{\psi_0^h}.
 \end{equation}
 Equivalently, $\dket{\phi_n^h}$ is obtained by applying the target unitary $U_T$ to the basis state $\dket{\psi_0^h}$ and then backward propagating the result to time step $n$.
 
-We next turn to the additional cost contributions. For
+The additional cost contributions are treated next. For
 \begin{equation}
 C_2^{\mathrm{st}}
 =
@@ -300,7 +300,7 @@ Thus, all gradients considered here can be evaluated with closely related forwar
 
 \section{Numerical Evaluation of Hard-Coded Gradients}
 \label{sec:numerical-gradients}
-The analytical gradient expressions, such as $\nabla C_1^{st}$ in Eq.\ \eqref{stgradient}, are generally complicated and involve a large number of contributing quantities. Depending on grouping and ordering of operations, these quantities may need to be stored simultaneously or computed repeatedly with critical implications for runtime and memory usage. The scheme originally proposed by Khaneja\ \textit{et al.}\ \cite{nmrkhaneja2005optimal} strikes a favorable compromise that avoids the proliferation of stored intermediate state vectors. More specifically, the final quantum state $\dket{\psi_N}$ is obtained by forward propagating $\dket{\psi_0}$. Then, backward propagation of $\dket{\psi_N},\dket{\phi_T}$ is carried out to calculate the matrix element $\langle\phi_{n}|\frac {\partial U_n }{\partial a_{n}}|\psi_{n-1}\rangle$ needed for the $n$-th component of the gradient, thus building up the gradient in descending order. For both propagation directions, only the current intermediate states are stored, leading to a memory cost of $\Theta(1)$. \footnote{Here, $f(x)=\Theta
+The analytical gradient expressions, such as $\nabla C_1^{st}$ in Eq.\ \eqref{stgradient}, are generally complicated and involve a large number of contributing quantities. Depending on grouping and ordering of operations, these quantities may need to be stored simultaneously or computed repeatedly with critical implications for runtime and memory usage. The scheme originally proposed by Khaneja\ \textit{et al.}\ \cite{Khaneja2005} strikes a favorable compromise that avoids the proliferation of stored intermediate state vectors. More specifically, the final quantum state $\dket{\psi_N}$ is obtained by forward propagating $\dket{\psi_0}$. Then, backward propagation of $\dket{\psi_N},\dket{\phi_T}$ is carried out to calculate the matrix element $\langle\phi_{n}|\frac {\partial U_n }{\partial a_{n}}|\psi_{n-1}\rangle$ needed for the $n$-th component of the gradient, thus building up the gradient in descending order. For both propagation directions, only the current intermediate states are stored, leading to a memory cost of $\Theta(1)$. \footnote{Here, $f(x)=\Theta
 (g(x))$ is the usual Bachmann–Landau notation for $f(x)$ bounded above and below by $g(x)$ in the asymptotic sense.}
 The scheme is illustrated by Fig.\ \ref{fig:GRAPE}.
 
@@ -315,7 +315,7 @@ Scaling and squaring~\cite{codenotti1992error} is based on the identity
 \label{eq:scaling_squaring}
    e^A=\big(e^{A/s}\big)^s,
 \end{align}
-where the right-hand side matrix exponential now involves the matrix $B=A/s$ which has a norm that is reduced compared to $\norm{A}$. This generally allows for a lower truncation order $m $ of the exponential series\footnote{While Chebyshev expansion has faster convergence than Taylor expansion, their numerical implementations have the same runtime scaling. Here, I focus on Taylor expansion due to its simplicity.}, 
+where the right-hand side matrix exponential now involves the matrix $B=A/s$ which has a norm that is reduced compared to $\norm{A}$. This generally allows for a lower truncation order $m $ of the exponential series\footnote{While Chebyshev expansion has faster convergence than Taylor expansion, their numerical implementations have the same runtime scaling. This work focuses on Taylor expansion due to its simplicity.}, 
 \begin{align}
 \label{eq:eBm}
     e^B\approx e^B_m:=\sum_{q=0}^m\frac{ B^q}{q!}.
@@ -334,7 +334,7 @@ To proceed with the evaluation of $e^A\dket{\Psi}$, the truncation order $m$ and
 \label{eq:error_def}
     \varepsilon_{A,\dket{\Psi}}(m,s) := \frac{\norm{e^A\dket{\Psi}-\llbracket (e^B_m)^s\dket{\Psi}\rrbracket}}{\norm{e^A\dket{\Psi}}}< \tau .
 \end{equation}
-Here, $\llbracket \bullet{}  \rrbracket$ denotes the floating point representation of $\bullet$. Since this error $\varepsilon_{A,\dket{\Psi}}$ is difficult and costly to evaluate, I instead derive an upper bound $E_A(m,s)$ and resort to the inequality 
+Here, $\llbracket \bullet{}  \rrbracket$ denotes the floating point representation of $\bullet$. Since this error $\varepsilon_{A,\dket{\Psi}}$ is difficult and costly to evaluate, this work instead derives an upper bound $E_A(m,s)$ and resorts to the inequality 
 \begin{equation}
 \label{eq:accuracy_inequality}
     \varepsilon_{A,\dket{\Psi}}(m,s)<E_A(m,s)\leq \tau.
@@ -342,7 +342,7 @@ Here, $\llbracket \bullet{}  \rrbracket$ denotes the floating point representati
 
 \subsubsection{Bounding Numerical Errors}
 \label{subsubsec:ss-bounding-errors}
-The approximation of $e^A\dket{\Psi}$ required the determination of an upper bound $E_A(m,s)$ for the error $\varepsilon_{A,\dket{\Psi}}(m,s)$ [Eq.~\eqref{eq:error_def}]. Here, I show how to acquire such bound.
+The approximation of $e^A\dket{\Psi}$ required the determination of an upper bound $E_A(m,s)$ for the error $\varepsilon_{A,\dket{\Psi}}(m,s)$ [Eq.~\eqref{eq:error_def}]. The following shows how to obtain such a bound.
 
 Considering the expression for the error [Eq.~\eqref{eq:error_def}], the denominator is simply 1. The error $\varepsilon_{A,\dket{\Psi}}$ is bounded as follows:
 \begin{align}
@@ -351,7 +351,7 @@ Considering the expression for the error [Eq.~\eqref{eq:error_def}], the denomin
 \nonumber    &\quad \leq \underbrace{\norm{e^A\dket{\Psi}-(e^B_m)^s\dket{\Psi}}_2}_{\varepsilon_t}+\underbrace{\norm{(e^B_m)^s\dket{\Psi}-\llbracket (e^B_m)^s\dket{\Psi}\rrbracket}_2}_{\varepsilon_r}.\\
 \label{eq:epsilonA}
 \end{align}
-The error $\varepsilon_t$ arises from the truncation of the Taylor series and rounding error $\varepsilon_r$ is due to finite-precision arithmetics. I proceed to derive the upper bounds for these two errors separately.
+The error $\varepsilon_t$ arises from the truncation of the Taylor series and rounding error $\varepsilon_r$ is due to finite-precision arithmetics. The upper bounds for these two errors are derived separately below.
 
 \paragraph{Upper bound for the truncation error \texorpdfstring{$\varepsilon_t$}{epsilon\_t}.}
 The truncation error can be rewritten as
@@ -366,7 +366,7 @@ Employing the triangle inequality and submultiplicativity~\cite{higham2002accura
 \end{equation}
 Here the second equality utilizes the fact that the state is normalized and $e^B$ is unitary. 
 
-This upper bound must be evaluated numerically to determine $m$ and $s$. However, computing the matrix 2-norm is inconvenient since it requires the use of an eigensolver. To mitigate this, I switch to the matrix 1-norm by exploiting\footnote{Generally, $\norm{B}_2\leq\sqrt{\norm{B}_\infty\norm{B}_1}$~\cite{wilkinson1994rounding} holds true for any $B$. When $B$ is anti-Hermitian, $\norm{B}_\infty=\norm{B}_1$ leads to the inequality in Eq.~\eqref{eq:norm_inequality}.}
+This upper bound must be evaluated numerically to determine $m$ and $s$. However, computing the matrix 2-norm is inconvenient since it requires the use of an eigensolver. To mitigate this, this work switches to the matrix 1-norm by exploiting\footnote{Generally, $\norm{B}_2\leq\sqrt{\norm{B}_\infty\norm{B}_1}$~\cite{wilkinson1994rounding} holds true for any $B$. When $B$ is anti-Hermitian, $\norm{B}_\infty=\norm{B}_1$ leads to the inequality in Eq.~\eqref{eq:norm_inequality}.}
 \begin{equation}
 \label{eq:norm_inequality}
     \norm{B}_2\leq\norm{B}_1.
@@ -395,7 +395,7 @@ with $|\delta|\leq u$. Arithmetic operations such as addition and multiplication
 \end{equation}
 where $u':=2\sqrt{2}u/(1-2u)$~\cite{higham2002accuracy}. The relative deviation shown in Eqs.~\eqref{eq:representation_error}, \eqref{eq:operation_error} generally depend on both numbers involved as well as the operation in question. In the following, different $\delta$ are distinguished with subscript $\nu$.
 
-Using Eqs.~\eqref{eq:representation_error}, \eqref{eq:operation_error}, I derive an upper bound for the rounding error in the evaluation of the dot product, which is the basic arithmetic operation in evaluating $e^B_m\dket{\Psi}$ according to Eq.~\eqref{eq:eBmpsi}.
+Using Eqs.~\eqref{eq:representation_error}, \eqref{eq:operation_error}, this work derives an upper bound for the rounding error in the evaluation of the dot product, which is the basic arithmetic operation in evaluating $e^B_m\dket{\Psi}$ according to Eq.~\eqref{eq:eBmpsi}.
 
 \subparagraph{Upper bound for the rounding error associated with evaluating the dot product.}
 The rounding error incurred when evaluating the dot product is given by $|\Sigma_d-\llbracket \Sigma_d\rrbracket|$ with $\Sigma_d=\boldsymbol{w^\text{T}z}$ ($\boldsymbol{w},\boldsymbol {z} \in\mathbb{C}^{d}$). Here, $\boldsymbol{w^\text{T}}$ is a row of $B=i\delta t H/s$. Based on Eqs.~\eqref{eq:representation_error} and \eqref{eq:operation_error}, one has
@@ -425,7 +425,7 @@ The vector $e^B_m\dket{\Psi}$ is evaluated recursively via
 \label{eq:recursive_relation_1}
     b_j= \frac{B}{j}b_{j-1},\qquad e^B_j b_0=b_{j-1}+b_j
 \end{equation}
-where $j=1,2,\cdots,m$ and $b_0$ is a vector representation of $\dket{\Psi}$ under a choice of orthonormal basis. Before evaluating the upper bound for the error $\norm{\llbracket e^B_mb_0\rrbracket-e^B_mb_0}_2$, I first derive an upper bound for the error of a vector component $\big|\llbracket e^B_mb_0 \rrbracket^{(i)}-(e^B_mb_0) ^{(i)}\big|$.
+where $j=1,2,\cdots,m$ and $b_0$ is a vector representation of $\dket{\Psi}$ under a choice of orthonormal basis. Before evaluating the upper bound for the error $\norm{\llbracket e^B_mb_0\rrbracket-e^B_mb_0}_2$, an upper bound is first derived for the error of a vector component $\big|\llbracket e^B_mb_0 \rrbracket^{(i)}-(e^B_mb_0) ^{(i)}\big|$.
 
 For the case $m=0$:
 \begin{equation}
@@ -467,7 +467,7 @@ The vector $(e^B_m)^sb_0 $ is evaluated by the recursive relation
     c_l=e^B_m c_{l-1},\qquad l=1,2,\cdots,s,
 \end{equation}
 where $c_0=b_0$. 
-I illustrate how to bound the error $\varepsilon_r=\norm{\llbracket (e^B_m)^sb_0\rrbracket-(e^B_m)^sb_0 }_2$ for $s=1,2$, and give the general result subsequently. 
+The error $\varepsilon_r=\norm{\llbracket (e^B_m)^sb_0\rrbracket-(e^B_m)^sb_0 }_2$ is bounded for $s=1,2$ below, and the general result is given subsequently. 
 
 For $s=1$: 
 \begin{equation}
@@ -499,7 +499,7 @@ Generalizing this strategy further yields the expression for the upper bound of 
     &<\beta\sum_{l=0}^{s-1}(\alpha+\beta)^{s-l-1}\alpha^{l}=(\alpha+\beta)^s-\alpha^s.
 \end{align}    
 
-Combining the upper bounds for $\varepsilon_r$ and $\varepsilon_t$, I return to Eq.~\eqref{eq:epsilonA} and obtain
+Combining the upper bounds for $\varepsilon_r$ and $\varepsilon_t$, Eq.~\eqref{eq:epsilonA} yields
 \begin{equation}
 \label{eq:overallupperbound}
 \varepsilon_{A,\dket{\Psi}}< E_A(m,s)=sR_m(\norm{B}_1)\frac{1-\big(sR_m(\norm{B}_1)\big)^s}{1-sR_m(\norm{B}_1)}+(\alpha+\beta)^s-\alpha^s,
@@ -508,7 +508,7 @@ where $\norm{B}_1=\norm{A}_1/s$, $\alpha=\alpha(\norm{A}_1,m,s)$ and $\beta=\bet
 
 \subsubsection{Choosing scaling factor and truncation order}
 
-For a given $A$ when computing state propagation by scaling and squaring discussed in Sec.~\ref{subsec:scaling-squaring}, the inequality~\eqref{eq:accuracy_inequality} generally has multiple solutions for $m$ and $s$. As shown in the previous section, the evaluation requires $ms$ matrix-vector multiplications, which are observed to dominate the runtime. Since systematic minimization of $ms$ requires significant runtime itself, I instead: (1) select solutions to Eq.~\eqref{eq:accuracy_inequality} with the smallest $s$, which is denoted by $\mathbb{s}$, and (2) among these pairs, choose the one with smallest $m$ (denoted by $\mathbb{m}$). 
+For a given $A$ when computing state propagation by scaling and squaring discussed in Sec.~\ref{subsec:scaling-squaring}, the inequality~\eqref{eq:accuracy_inequality} generally has multiple solutions for $m$ and $s$. As shown in the previous section, the evaluation requires $ms$ matrix-vector multiplications, which are observed to dominate the runtime. Since systematic minimization of $ms$ requires significant runtime itself, this work instead (1) selects solutions to Eq.~\eqref{eq:accuracy_inequality} with the smallest $s$, which is denoted by $\mathbb{s}$, and (2) among these pairs, chooses the one with smallest $m$ (denoted by $\mathbb{m}$). 
 
 Thus, calculating $e^A\dket{\Psi}$ requires
 \begin{equation}
@@ -517,8 +517,18 @@ Thus, calculating $e^A\dket{\Psi}$ requires
 \end{equation}
 matrix-vector multiplications.%
 \nomenclature{$\mu$}{Number of matrix-vector multiplications required for propagator-state product evaluation}
-As shown in the following, for two concrete examples, this method for evaluating $e^A\dket{\Psi}$ can achieve better runtime performance and accuracy than \texttt{expm\_multiply} function~\cite{al2011computing} implmented in \texttt{Scipy} .
-
+As shown in the following, for two concrete examples, this method for evaluating $e^A\dket{\Psi}$ can achieve better runtime performance and accuracy than \texttt{expm\_multiply} function~\cite{virtanen2020scipy,al2011computing} implemented in \texttt{SciPy}. The comparisons employ sparse matrix--vector products for two model Hamiltonians that are reused when reporting full GRAPE benchmarks later in this chapter. A driven cavity--transmon system is described in the frame co-rotating with the transmon drive by
+\begin{equation}
+\label{eq:fockH}
+    H_1(t)=\Delta b^\dagger b-\frac{K_b}{2}b^{\dagger 2}b^2+g(cb^\dagger+c^\dagger b)+a_{z}(t)b^\dagger b
+    +a_{x}(t)(b+b^\dagger),
+\end{equation}
+where $c$ and $b$ are the cavity and transmon annihilation operators, $K_b>0$ is the transmon Kerr coefficient, $g$ is the coupling strength, and $\Delta$ is the detuning between transmon and cavity. Three coupled transmons with nearest-neighbor hopping are modeled by
+\begin{equation}
+\label{eq:gateH}
+    H_2(t)=\sum_{\nu=1}^{3}\bigg[-\frac{K_b}{2}b_\nu^{\dagger 2}b_\nu^2+a^{(\nu)}(t)(b_\nu+b_\nu^\dagger)\bigg]+g(b_1b_{2}^\dagger+b_2b_{3}^\dagger+\text{h.c.}).
+\end{equation}
+Unless noted otherwise, the numerical tests use $\Delta/2\pi=3$\,GHz, $g/2\pi=0.1$\,GHz, $K_b/2\pi=0.225$\,GHz, constant controls $a_z/2\pi=a_x/2\pi=0.1$\,GHz when propagating with $H_1$, and $a^{(\nu)}/2\pi=0.1$\,GHz when propagating with $H_2$.
 
 \subsubsection{Numerical Comparison Between Different Implementations of Scaling and Squaring}
 \label{subsubsec:ss-comparison}
@@ -526,16 +536,16 @@ As shown in the following, for two concrete examples, this method for evaluating
 \begin{figure}[t]
   \centering
   \includegraphics[width=\linewidth]{chapter3/figures/Comparison.pdf}
-  \caption[Comparison between scaling and squaring and \texttt{Scipy}'s \texttt{expm\_multiply}.]{Comparison between scaling and squaring as implemented here and \texttt{Scipy}'s \texttt{expm\_multiply}, considering relative error and runtime. (a),~(c)~Relative error versus matrix norm. (b),~(d)~Ratios of runtime and $\mu$ (i.e.\ number of matrix-vector multiplications) between the two implementations as functions of the matrix norm. The matrix norm $\norm{-iH\Delta t}_2$ is varied by increasing $\Delta t\in [1,10]$. In all panels, colors encode different error tolerances $\tau$. The results of the first and second rows are obtained based on the cavity--transmon and three-coupled-transmons Hamiltonians, respectively. The system parameters of these two Hamiltonians are the same as those given in the captions of Figs.~\ref{fig:state_time} and~\ref{fig:gate}.}
+  \caption[Comparison between scaling and squaring and \texttt{SciPy}'s \texttt{expm\_multiply}.]{Comparison between scaling and squaring as implemented here and \texttt{SciPy}'s \texttt{expm\_multiply}, considering relative error and runtime. (a),~(c)~Relative error versus matrix norm. (b),~(d)~Ratios of runtime and $\mu$ (i.e.\ number of matrix-vector multiplications) between the two implementations as functions of the matrix norm. The matrix norm $\norm{-iH\Delta t}_2$ is varied by increasing $\Delta t\in [1,10]$. In all panels, colors encode different error tolerances $\tau$. The first row uses $H_1(t)$ [Eq.~\eqref{eq:fockH}]; the second row uses $H_2(t)$ [Eq.~\eqref{eq:gateH}], with the parameter values stated in the text above.}
   \label{fig:sas_numerical_experiments}
 \end{figure}
-Scaling and squaring is used to evaluate the propagator-state product, $e^{-iH\Delta t }\dket{\Psi}$. I compare relative error and runtime between the implementation of scaling and squaring presented here and \texttt{Scipy}'s implementation, \texttt{expm\_multiply}~\cite{al2011computing}. The relative errors follow the general expression in Eq.~\eqref{eq:error_def}, but differ in the specific choice of $m$ and $s$. As a proxy for the exact propagator-state product, I apply Taylor expansion to the matrix exponential with 400-digit precision by \texttt{Sympy}; the result of the product converges at 30 digits after the decimal point. The runtime is measured with the help of the \texttt{Temci} package~\cite{temci}.
+Scaling and squaring is used to evaluate the propagator-state product, $e^{-iH\Delta t }\dket{\Psi}$. This work compares relative error and runtime between the implementation of scaling and squaring presented in this work and \texttt{SciPy}'s implementation, \texttt{expm\_multiply}~\cite{virtanen2020scipy,al2011computing}. The relative errors follow the general expression in Eq.~\eqref{eq:error_def}, but differ in the specific choice of $m$ and $s$. As a proxy for the exact propagator-state product, Taylor expansion is applied to the matrix exponential with 400-digit precision by \texttt{SymPy}~\cite{meurer2017sympy}; the result of the product converges at 30 digits after the decimal point. The runtime is measured with the help of the \texttt{Temci} package~\cite{temci}.
 
-As the basis for this comparison, I use the examples of Hamiltonians~\eqref{eq:fockH} and~\eqref{eq:gateH} and implement sparse storage for them. The relative errors are shown in Fig.~\ref{fig:sas_numerical_experiments}(a) and~(c) as a function of the matrix norm $\norm{-iH\Delta t}_2$, respectively. In both examples, the relative errors for the implementation presented here are bounded by the error tolerance $\tau$, while the relative errors for \texttt{Scipy}'s implementation tend to exceed the tolerance for large norms. There are two reasons for this tendency. First, rounding errors are not considered in the derivation of the upper bound for the errors~\cite{al2011computing}; second, the truncation of $e^B_m$ [Eq.~\eqref{eq:eBm}] is merely based on a heuristic criterion. 
+As the basis for this comparison, the examples of Hamiltonians~\eqref{eq:fockH} and~\eqref{eq:gateH} are used with sparse storage. The relative errors are shown in Fig.~\ref{fig:sas_numerical_experiments}(a) and~(c) as a function of the matrix norm $\norm{-iH\Delta t}_2$, respectively. In both examples, the relative errors for the implementation presented in this work are bounded by the error tolerance $\tau$, while the relative errors for \texttt{SciPy}'s implementation tend to exceed the tolerance for large norms. There are two reasons for this tendency. First, rounding errors are not considered in the derivation of the upper bound for the errors~\cite{al2011computing}; second, the truncation of $e^B_m$ [Eq.~\eqref{eq:eBm}] is merely based on a heuristic criterion. 
 
-Even though the relative errors of \texttt{Scipy}'s implementation are worse, it achieves a smaller number of matrix-vector multiplications $\mu$. This is illustrated in Fig.~\ref{fig:sas_numerical_experiments}(b) and~(d): the ratio of $\mu$ between the two implementations is always larger than 1. Although \texttt{Scipy}'s implementation spends less time on matrix-vector multiplications, the total runtime of \texttt{Scipy}'s implementation is larger, see Fig.~\ref{fig:sas_numerical_experiments}(b) and~(d). This is due to the larger runtime overhead of \texttt{Scipy}'s implementation for determining $(m,s)$. 
+Even though the relative errors of \texttt{SciPy}'s implementation are worse, it achieves a smaller number of matrix-vector multiplications $\mu$. This is illustrated in Fig.~\ref{fig:sas_numerical_experiments}(b) and~(d): the ratio of $\mu$ between the two implementations is always larger than 1. Although \texttt{SciPy}'s implementation spends less time on matrix-vector multiplications, the total runtime of \texttt{SciPy}'s implementation is larger, see Fig.~\ref{fig:sas_numerical_experiments}(b) and~(d). This is due to the larger runtime overhead of \texttt{SciPy}'s implementation for determining $(m,s)$. 
 
-In conclusion, the implementation presented here has better numerical stability and runtime than \texttt{Scipy}'s implementation in these numerical experiments. 
+In conclusion, the implementation presented in this work has better numerical stability and runtime than \texttt{SciPy}'s implementation in these numerical experiments. 
 
 \subsection{Propagator Derivative Acting on a State via the Auxiliary Matrix Method}
 \label{subsec:auxiliary-matrix}
@@ -567,14 +577,73 @@ which is a $2\times2$ matrix of operators each acting on the Hilbert space with 
 \section{Scaling Analysis of Runtime and Memory Usage for Three Gradient Strategies}
 \label{sec:scaling-analysis}
 
-\subsection{Hard-Coded Gradients}
+Having established the numerical machinery for evaluating hard-coded gradients above, this section compares three methods for computing gradients within GRAPE: evaluation of hard-coded gradients (HG), full automatic differentiation (full-AD)~\cite{pacleung2017speedup}, and semi-automatic differentiation (semi-AD)~\cite{semiadgoerz2022quantum}. To determine the method most appropriate for a given problem, the memory usage and runtime scaling of these three approaches are inspected.
+
+Runtime and memory usage can pose significant challenges when performing optimization tasks for quantum systems with large Hilbert space dimension ($d$) or for time evolution requiring a significant number of time steps ($N$). In this section, this work analyzes the scaling of memory usage and runtime with respect to both $N$ and $d$, focusing on the cost contribution $C_1$ for state-transfer and unitary-gate optimization. The findings can be generalized to other cost contributions beyond $C_1$.
+
+\subsection{Hard-coded gradients}
 \label{subsec:scale-hard-coded}
 
-\subsection{Full Automatic Differentiation}
+Consider first state-transfer problems. The \textit{memory usage} for evaluating $\nabla C_1^{st}$ is mainly determined by the required storage of quantum states and the Hamiltonian. In forward-backward propagation, the number of states and instances of Hamiltonian matrices stored at any given time is of the order of unity. Each individual state vector of dimension $d$ consumes memory $\sim\Theta(d)$. Memory usage for the Hamiltonian depends on the employed storage scheme. In the ``worst'' case of dense matrix storage, the memory required for the Hamiltonian is $\Theta(d^2)$. For sparse matrix storage, memory usage generally depends on sparsity and is determined by the number of stored Hamiltonian matrix elements (here denoted as $\kappa$).%
+\nomenclature{$\kappa$}{Number of stored Hamiltonian matrix elements}
+For example, for a diagonal or tridiagonal matrix, memory usage is $\kappa\sim\Theta(d)$; for a linear chain of qubits with nearest-neighbor $\sigma_z$ coupling, it is $\Theta(d\, \log_2 d)$. Combining the scaling relations above gives an overall asymptotic behavior of memory usage $\Theta(d+\kappa)$.
+
+The \textit{runtime} of the scheme is dominated by the required $\Theta(N)$ evaluations of propagator-state products and their derivative counterparts. Numerically approximating a single propagator-state product requires $\mu$ matrix-vector multiplications [see Eq.~\eqref{eq:mudefnition}], where the runtime of one instance of matrix-vector multiplication scales as $\Theta(\kappa)$.  The implicit dependence of $\mu=\mu(d)$ on $d$ is specific to each particular system and can be difficult to obtain analytically. Numerically, for the cavity--transmon model $H_1(t)$ in Eq.~\eqref{eq:fockH}, $\mu\sim\Theta(\sqrt{d})$; for a linear chain of coupled qubits, the scaling is $\Theta(\log_2 d)$; see Appendix~\ref{app:muscaling} for more details.
+Once combined, the above individual scaling relations lead to an overall runtime asymptotic behavior
+$\Theta(N\mu\, \kappa)$. For example, in the case of the linear chain of coupled qubits, runtime scales as $\Theta(Nd\, (\log_2 d )^2)$.
+
+For gate-optimization problems, the scaling behavior of memory usage and runtime is as follows. The gradient $\nabla C_1^{ g}$ is calculated by sequentially
+applying forward-backward propagation to each of the $d$ basis states. The memory usage is $\Theta(d+\kappa)$, the same as for $\nabla C_1^{st}$. The runtime scaling is $\Theta(N\mu\kappa d)$, which is $d$ times larger than the runtime scaling for $\nabla C_1^{st}$. (Another way of calculating $\nabla C_1^{ g}$ consists of parallelized forward-backward propagation of all basis states. The concrete scaling behavior then depends on the parallelization scheme; that discussion is beyond the scope of this work.)
+
+Thanks to the similarities in the expressions and the existence of recursion relations, forward-backward schemes akin to Fig.~\ref{fig:GRAPE}
+can also be applied to $\nabla C_2^{st}$, $\nabla C_3^{st}$, and $\nabla C_3^{g}$. As a result, the scaling analysis leads to the same memory usage and runtime requirements as $\nabla C_1^{st}$ and $\nabla C_1^{g}$.
+
+
+
+\subsection{Full automatic differentiation}
 \label{subsec:scale-full-ad}
 
-\subsection{Semi-Automatic Differentiation}
+Reverse-mode automatic differentiation extracts gradients by a forward pass and a reverse pass through the computational tree. With the forward pass the cost function $C$ is computed, and the backward pass accumulates the gradient via the chain rule.
+
+The \textit{memory usage} for evaluating $\nabla C_1^{st}$ is determined by the requirement that all intermediate numerical results must be stored as part of the forward pass and act as input to the reverse pass. Specifically, as shown in Fig.~\ref{fig:GRAPE}, the forward pass evolves the initial state vector to the final state vector in $N$ time steps. The total number of vectors that have to be stored along the way is $\Theta
+(N\mu)$, since computation of a single short-time propagator-state product via scaling and squaring necessitates $\mu$ iterations. In addition, considering the memory usage for the Hamiltonian, the full scaling is $\Theta(N\mu d +\kappa)$.
+
+The \textit{runtime} for evaluating $\nabla C_1^{st}$ combines forward and reverse passes. It is dominated by the evaluation of $\Theta(N)$ propagator-state products, each of which has the runtime scaling $\Theta(\mu\kappa)$, leading to an overall runtime scaling of $\Theta(N\mu \kappa )$.
+
+For gate-optimization problems, $C_1^{ g}$ is evaluated by evolving not only a single initial state but a whole set of $d$ basis vectors. Evaluating $Nd$ propagator-state products requires $\Theta(N\mu d^2+\kappa)$ memory, where the number of stored Hamiltonian matrix elements $\kappa$ takes into account storage of the Hamiltonian. Since $\kappa$ has the worst-case scaling $\Theta(d^2)$ in the case of a dense Hamiltonian matrix, the overall scaling is $\Theta(N\mu d^2)$. Assuming that the evolution of individual basis vectors is not parallelized, runtime also grows by a factor of $d$, so that runtime scaling for $\nabla C_1^{ g}$ is $\Theta(N\mu\kappa d)$.
+
+Despite the specific differences among the expressions of cost contributions $C_2^{st}$, $C_3^{st}$, and $C_3^{g}$, the scaling of runtime and memory usage is again set by the need to store intermediate vectors and repeatedly perform matrix-vector multiplications. Consequently, the scaling remains the same as for the cost contributions discussed above.
+
+\subsection{Semi-automatic differentiation}
 \label{subsec:scale-semi-ad}
+
+For gradients of cost contributions that are tedious to derive analytically, semi-automatic differentiation~\cite{semiadgoerz2022quantum} offers an alternative approach in which some derivatives are hard-coded and others treated by automatic differentiation. Compared to full-AD, semi-AD has the benefit that the memory usage scaling is independent of $\mu$ while maintaining the same runtime scaling.
+
+\subsection{Comparison}
+\label{sec:scaling_comparison}
+
+\begin{table}[t]
+\renewcommand{\arraystretch}{1.5}
+\centering
+\caption[Memory usage and runtime scaling with respect to Hilbert space dimension $d$, number of time steps $N$, the number of stored Hamiltonian matrix elements $\kappa=\kappa(d)$, and the number of matrix-vector multiplications required for evaluating propagator-state products $\mu=\mu(d)$.]{Memory usage and runtime scaling with respect to Hilbert space dimension $d$, number of time steps $N$, the number of stored Hamiltonian matrix elements $\kappa=\kappa(d)$, and the number of matrix-vector multiplications required for evaluating propagator-state products $\mu=\mu(d)$. (The scaling of $\mu$ and $\kappa$ depends on the specific optimization task.) The table contrasts scaling for state transfer and gate operation for hard-coded gradients (HG), full automatic differentiation (full-AD), and semi-automatic differentiation (semi-AD).}
+\label{tab:scalingtable}
+\begin{tabular}
+{p{0.27\textwidth}p{0.13\textwidth}p{0.17\textwidth}p{0.13\textwidth}p{0.17\textwidth}}
+\hline
+\hline
+& \multicolumn{2}{c}{\textbf{\textsc{State transfer}}} & \multicolumn{2}{c}{\textbf{\textsc{Gate operation}}}\\
+\hline
+& \textbf{Runtime} & \textbf{Memory usage} & \textbf{Runtime} & \textbf{Memory usage}
+\\
+\hline
+HG & $\Theta(N\mu \kappa)$ & $\Theta(d+\kappa)$ & $\Theta(N\mu \kappa d)$ & $\Theta(d+\kappa)$\\
+Full-AD & $\Theta(N\mu \kappa)$ & $\Theta(N\mu d+\kappa)$ & $\Theta(N\mu \kappa d)$ & $\Theta(N\mu d^2)$  \\
+Semi-AD & $\Theta(N\mu \kappa)$ & $\Theta(Nd+\kappa)$ & $\Theta(N\mu \kappa d)$ & $\Theta(Nd^2)$\\
+\hline \hline
+\end{tabular}
+\end{table}
+
+The results of this scaling analysis are summarized in Table~\ref{tab:scalingtable}. For full-AD, memory usage grows linearly with respect to $\mu$ and number of time steps $N$. By contrast, memory usage for HG does not increase with $\mu$ and $N$, but remains constant. This advantage is not bought at the cost of worse runtime scaling. Therefore, HG is preferable over full-AD in the optimal control of large quantum systems where memory usage would otherwise be prohibitively large. Semi-AD presents an interesting compromise viable whenever the memory bottleneck is not too severe. Note that the runtime scaling $\Theta(N\mu\kappa d)$ of HG via scaling and squaring can in principle exceed the scaling $O(Nd^3)$ for matrix exponentiation based on matrix diagonalization (see Appendix~\ref{app:matdiag}). In that case, the latter is the better option.
 
 \section{Benchmark Studies of Runtime and Memory Usage for the Three Gradient Strategies}
 \label{sec:benchmark-studies}
@@ -582,22 +651,35 @@ which is a $2\times2$ matrix of operators each acting on the Hilbert space with 
 \subsection{State-Transfer Benchmarks}
 \label{subsec:state-transfer-benchmarks}
 
+The first benchmark example studies state transfer in a driven flux-tunable transmon capacitively coupled to a superconducting cavity, from the cavity vacuum to the 20-photon Fock state, using the Hamiltonian $H_1(t)$ already introduced in Eq.~\eqref{eq:fockH}.
+
+Optimization proceeds by minimizing the infidelity $C_1^{\mathrm{st}}$ and limiting the occupation of higher transmon levels by including the cost contribution $C_2^{\mathrm{st}}$ [Eq.~\eqref{c2st}]. The latter has the additional benefit of enabling the truncation to only a few transmon levels. This work measures runtime and peak memory usage of full-AD,\footnote{AD is implemented by the package \texttt{Autograd}~\cite{maclaurin2015autograd} in this benchmark. This package does not support sparse linear algebra, so dense matrix storage for the Hamiltonian is implemented in both full-AD and HG for fair comparison.} semi-AD, and HG for a single optimization iteration. The runtime is measured by the package \texttt{Temci}~\cite{temci} and
+the peak memory usage is monitored by the \texttt{memory\_profiler} package~\cite{memory}. The optimization is performed on an AMD Ryzen Threadripper 3970X 32-Core CPU with 3.7\,GHz frequency.
+
+
 \begin{figure}[t]
-  \centering
   \includegraphics[width=\linewidth]{chapter3/figures/state.pdf}
-  \caption[Benchmark results for Fock state generation in a cavity--transmon system.]{Benchmark results for Fock state generation in a system consisting of a cavity coupled to a transmon. (a)~Runtime per iteration and (b)~memory usage versus Hilbert space dimension $d$. The dimension is varied by increasing the cavity dimension while fixing the transmon dimension to 6. (c)~Memory usage as a function of the number of time steps for $d=240$. All plots are in log-log scale. Dashed lines are power-law fits. (Parameters: $\Delta/2\pi=3\,$GHz, $g/2\pi=0.1\,$GHz, $K_b/2\pi=0.225\,$GHz, and constant controls $a_z/2\pi=a_x/2\pi=0.1\,$GHz.)}
+  \caption[Benchmark results for Fock state generation in a system consisting of a cavity coupled to a transmon.]{Benchmark results for Fock state generation in a system consisting of a cavity coupled to a transmon. (a)~Runtime per iteration and (b)~memory usage versus Hilbert space dimension $d$. The dimension is varied by increasing the cavity dimension while fixing the transmon dimension to 6. (c)~Memory usage as a function of the number of time steps for $d=240$. All plots are in log-log scale. Dashed lines are power-law fits. (Parameters: $\Delta/2\pi=3\,$GHz, $g/2\pi=0.1\,$GHz, $K_b/2\pi=0.225\,$GHz, and constant controls $a_z/2\pi=a_x/2\pi=0.1\,$GHz.)}
   \label{fig:state_time}
 \end{figure}
+
+Benchmark results for the state-transfer optimization are shown in Fig.~\ref{fig:state_time}. This work considers a single time step ($N=1$) and measures the runtime versus $d$. The results in Fig.~\ref{fig:state_time}(a) confirm that full-AD, semi-AD, and HG have the same scaling of runtime per time step with respect to $d$ (Table~\ref{tab:scalingtable}). The observed runtime scaling $\Theta(d^{5/2})$ is consistent with $\kappa \sim \Theta(d^2)$ due to dense matrix storage for $H_1$, and $\mu\sim \Theta(d^{1/2})$ (see Appendix~\ref{app:muscaling}). The scaling of the required memory resources is illustrated in Fig.~\ref{fig:state_time}(b): memory usage scales with dimension $d$ as $\Theta(d^2)$ for full-AD, semi-AD, and HG, consistent with $\kappa\sim \Theta(d^2)$ being the dominant contribution. As anticipated, the scaling of memory with $N$ differs between full-AD, semi-AD, and HG [Fig.~\ref{fig:state_time}(c)]. For full-AD and semi-AD, the scaling is linear with $N$, while it is independent of $N$ for HG. The slope of full-AD is much larger than the one of semi-AD, since the former has extra dependence on $\mu$ (Table~\ref{tab:scalingtable}), which is a constant $\approx 100$ in this benchmark. The results confirm the favorable memory efficiency of HG and semi-AD compared to full-AD in state-transfer problems with large number of time steps.
 
 \subsection{Gate-Operation Benchmarks}
 \label{subsec:gate-operation-benchmarks}
 
+This work next turns to unitary gate optimization for three driven transmons with nearest-neighbor coupling. The target gate consists of simultaneous Hadamard operations on each transmon, using the Hamiltonian $H_2(t)$ in Eq.~\eqref{eq:gateH}. The goal is to minimize the gate infidelity $C_1^{\mathrm{g}}$. The numerical setup (Autograd, dense storage for fair comparison, timing tools) matches the state-transfer benchmark above.
+
 \begin{figure}[t]
-  \centering
   \includegraphics[width=\linewidth]{chapter3/figures/gate.pdf}
-  \caption[Benchmark results for unitary gate optimization in three coupled transmons.]{Benchmark results for unitary gate optimization in a system consisting of three coupled transmons. (a)~Runtime per iteration and (b)~memory usage versus Hilbert space dimension $d$. The total Hilbert space dimension $d$ is increased by enlarging the cutoff of each transmon from 10 to 14 simultaneously. (c)~Memory usage as a function of the number of time steps for $d=12^3=1728$. Full-AD (not shown) would require more memory than available resources (estimated: 1\,TB). All plots are in log-log scale. Dashed lines are power-law fits. (Parameters: $g/2\pi=0.1\,$GHz, $K_b/2\pi=0.225\,$GHz, and $a^{(\nu)}/2\pi=0.1\,$GHz.)}
+  \caption[Benchmark results for unitary gate optimization in a system consisting of three coupled transmons.]{Benchmark results for unitary gate optimization in a system consisting of three coupled transmons. (a)~Runtime per iteration and (b)~memory usage versus Hilbert space dimension $d$. The total Hilbert space dimension $d$ is increased by enlarging the cutoff of each transmon from 10 to 14 simultaneously. (c)~Memory usage as a function of the number of time steps for $d=12^3=1728$. Full-AD (not shown) would require more memory than available resources (estimated: 1\,TB). All plots are in log-log scale. Dashed lines are power-law fits. (Parameters: $g/2\pi=0.1\,$GHz, $K_b/2\pi=0.225\,$GHz, and $a^{(\nu)}/2\pi=0.1\,$GHz.)}
   \label{fig:gate}
 \end{figure}
+
+
+
+Fig.~\ref{fig:gate} records the benchmarks based on a single time step ($N=1$). The observed runtime scaling with dimension $d$ is $\Theta(d^{11/3})$ for full-AD, semi-AD, and HG, see Fig.~\ref{fig:gate}(a). This power law arises from $\Theta(\mu\kappa d)$ for $\kappa\sim \Theta(d^2)$ and $\mu\sim \Theta(d^{2/3})$ [see Appendix~\ref{app:muscaling}]. The memory usage scaling with $d$ is illustrated in Fig.~\ref{fig:gate}(b), confirming that full-AD has an unfavorable extra $\mu \sim \Theta(d^{2/3})$ dependence compared to HG and semi-AD (Table~\ref{tab:scalingtable}). The memory usage scaling with $N$ is as expected [Fig.~\ref{fig:gate}(c)]: for semi-AD, the scaling is linear with $N$; for HG, it is independent of $N$. (The memory usage of full-AD in this case exceeds available resources, and thus is not shown.) Throughout this benchmark, this linear dependence with $N$ causes semi-AD to consume about 10 times more memory than HG. This underlines that HG is preferable whenever memory constraints become a limitation in optimization problems with large Hilbert space dimension and large number of time steps. This improvement is achieved without worsening the runtime scaling.
+
 
 \section{Decision Tree: A Practical Guide for Selecting Optimization Strategies}
 \label{sec:decision-tree}
@@ -605,6 +687,12 @@ which is a $2\times2$ matrix of operators each acting on the Hilbert space with 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{chapter3/figures/decision_tree.pdf}
-\caption[Decision trees for selecting the optimal numerical strategy.]{Decision trees for selecting the optimal numerical strategy. (a)~Choosing among three numerical methods for evaluating gradients: full automatic differentiation, semi-automatic differentiation, hard-coded analytical gradients. (Here, $\mu\sim\Theta(d)$ is assumed; see the scaling discussion in Sec.~\ref{sec:scaling-analysis} for other regimes.) (b)~Determining the appropriate strategy for evaluating propagator-state products.}
+\caption[Decision trees for selecting the optimal numerical strategy.]{Decision trees for selecting the optimal numerical strategy. (a)~Choosing among three numerical methods for evaluating gradients: full automatic differentiation, semi-automatic differentiation, hard-coded analytical gradients. (Here, $\mu\sim\Theta(d)$ is assumed; for different scaling see Table~\ref{tab:scalingtable}.) (b)~Determining the appropriate strategy for evaluating propagator-state products.}
 \label{fig:decision_tree}
 \end{figure}
+
+There are several considerations which determine whether full-AD, HG, or semi-AD is the optimal strategy for a given optimization problem, see the decision tree in Fig.~\ref{fig:decision_tree}. Whenever the Hilbert space dimension $d$ and the number of time steps $N$ are sufficiently small, memory usage may not be a bottleneck. In this case, full-AD may be preferable, since it eliminates the need for hard-coded gradients. If the memory cost of full-AD is not affordable but analytical gradients are tedious to compute, semi-AD may be a viable compromise, though still less memory efficient than HG. In all other cases, HG is the method of choice, since it can handle optimization with larger $N$ and $d$ compared to full-AD and semi-AD.
+
+The choice of implementing HG via scaling and squaring or matrix diagonalization should be informed by whether the Hamiltonian is sparse and $\kappa$ scales better than $\Theta(d^2)$. In the latter case, scaling and squaring is preferable and leads to an overall memory usage $\sim \Theta(d+\kappa)$, which is better than the memory scaling $O(d^2)$ of matrix diagonalization. By contrast, for Hamiltonians with $\kappa\sim \Theta(d^2)$, these two methods are equivalent in memory usage scaling, and the one with better runtime for a specific optimization task should be selected. While the runtime for optimization using matrix diagonalization scales as $O(d^3)$ [Appendix~\ref{app:matdiag}], the runtime for optimization based on scaling and squaring differs between state-transfer and gate optimizations: (1)~for state transfer, the runtime scales as $\Theta(\mu d^2)$; hence, whenever $\mu$ scales better than $\Theta(d)$, scaling and squaring wins over matrix diagonalization; (2)~for gate optimization, the runtime scales as $\Theta(\mu d^3)$; hence matrix diagonalization is preferable.
+
+The scaling analysis and benchmarks presented in this section confirm that hard-coded gradients provide the most memory-efficient approach for GRAPE-based optimization of large quantum systems.
