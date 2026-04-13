@@ -4,7 +4,7 @@
 One of the prominent techniques for implementing quantum optimal control is Gradient Ascent Pulse Engineering (GRAPE). The central goal of optimal control is to adjust control parameters in such a way that the infidelity of the desired state transfer or gate operation is minimized. In GRAPE, the minimization is based on gradient descent and thus generally requires the evaluation of gradients. Automatic differentiation (AD) \cite{baydin2018automatic} is a convenient tool that has also made an impact on quantum optimal control with GRAPE \cite{pacleung2017speedup,pacqoc,abdelhafez2019gradient,grapead}.
 Internally, AD builds a computational graph and applies the chain rule to automatically compute the gradient of a given function. 
 
-However, the convenience of AD comes at the cost of memory required for storing the full computational graph. The use of semi-automatic differentiation (semi-AD) \cite{semiadgoerz2022quantum} partially reduces the memory overhead compared to full automatic differentiation (full-AD). This reduction can still be insufficient to tackle optimal control for quantum systems of rapidly growing size \cite{arute2019,gong2021}. This motivates us to revisit the original GRAPE scheme \cite{nmrkhaneja2005optimal} which is based on hard-coded gradients (HG), and has the smallest possible memory cost. We perform a scaling analysis of memory usage and runtime, and thereby develop a decision tree guiding the optimal choice of strategy among HG, semi-AD and full-AD. We exemplify the scaling behavior with benchmarks for concrete optimization tasks.
+However, the convenience of AD comes at the cost of memory required for storing the full computational graph. The use of semi-automatic differentiation (semi-AD) \cite{semiadgoerz2022quantum} partially reduces the memory overhead compared to full automatic differentiation (full-AD). This reduction can still be insufficient to tackle optimal control for quantum systems of rapidly growing size \cite{arute2019quantum,gong2021quantum}. This motivates us to revisit the original GRAPE scheme \cite{nmrkhaneja2005optimal} which is based on hard-coded gradients (HG), and has the smallest possible memory cost. We perform a scaling analysis of memory usage and runtime, and thereby develop a decision tree guiding the optimal choice of strategy among HG, semi-AD and full-AD. We exemplify the scaling behavior with benchmarks for concrete optimization tasks.
 
 The outline of this chaper is as follows. Sec.\ \ref{sec:grape-theory} briefly reviews GRAPE and introduces necessary notation. In Sec.\ \ref{sec:gradient-strategies}, we review three strategies of gradient computation: full automatic differentiation, semi-automatic differentiation and hard-coded gradients. Sec.\ \ref{sec:numerical-gradients}illustrate derivation and memory-efficient implementation of the gradients for the most commonly used cost function contributions. Our numerical implementation of HG further improves the efficiency of state propagation. In Sec.\ \ref{sec:scaling-analysis}, we analyze and compare the scaling of runtime and memory usage scaling for HG, AD and semi-AD. Sec.\ \ref{sec:benchmark-studies}present results from concrete benchmark studies. In Sec.\ \ref{sec:decision-tree}, we formulate a decision tree that facilitates the choice of optimal numerical strategy for GRAPE-based quantum optimal control. 
 \section{Gradient Ascent Pulse Engineering: Theory and Notation}
@@ -300,15 +300,225 @@ Thus, all gradients considered here can be evaluated with closely related forwar
 
 \section{Numerical Evaluation of Hard-Coded Gradients}
 \label{sec:numerical-gradients}
+The analytical gradient expressions, such as $\nabla C_1^{st}$ in Eq.\ \eqref{stgradient}, are generally complicated and involve a large number of contributing quantities. Depending on grouping and ordering of operations, these quantities may need to be stored simultaneously or computed repeatedly with critical implications for runtime and memory usage. The scheme originally proposed by Khaneja\ \textit{et al.}\ \cite{nmrkhaneja2005optimal} strikes a favorable compromise that avoids the proliferation of stored intermediate state vectors. More specifically, the final quantum state $\dket{\psi_N}$ is obtained by forward propagating $\dket{\psi_0}$. Then, backward propagation of $\dket{\psi_N},\dket{\phi_T}$ is carried out to calculate the matrix element $\langle\phi_{n}|\frac {\partial U_n }{\partial a_{n}}|\psi_{n-1}\rangle$ needed for the $n$-th component of the gradient, thus building up the gradient in descending order. For both propagation directions, only the current intermediate states are stored, leading to a memory cost of $\Theta(1)$. \footnote{Here, $f(x)=\Theta
+(g(x))$ is the usual Bachmann–Landau notation for $f(x)$ bounded above and below by $g(x)$ in the asymptotic sense.}
+The scheme is illustrated by Fig.\ \ref{fig:GRAPE}.
+
+The calculation of gradients in Eqs.\ \eqref{stgradient} and \eqref{gategradient} requires numerical evaluation of expressions of the form $U_n\dket{\Psi}$  and $\frac{\partial U_n}{\partial a_n} \dket{\Psi}$. 
+Here, the short-time propagator $U_n$ is given by a matrix exponential $e^A$ and $A=-iH_n\Delta t$. 
 
 \subsection{State Propagation via the Scaling and Squaring Method}
 \label{subsec:scaling-squaring}
 
+Scaling and squaring~\cite{codenotti1992error} is based on the identity
+\begin{align}
+\label{eq:scaling_squaring}
+   e^A=\big(e^{A/s}\big)^s,
+\end{align}
+where the right-hand side matrix exponential now involves the matrix $B=A/s$ which has a norm that is reduced compared to $\norm{A}$. This generally allows for a lower truncation order $m $ of the exponential series\footnote{While Chebyshev expansion has faster convergence than Taylor expansion, their numerical implementations have the same runtime scaling. Here, I focus on Taylor expansion due to its simplicity.}, 
+\begin{align}
+\label{eq:eBm}
+    e^B\approx e^B_m:=\sum_{q=0}^m\frac{ B^q}{q!}.
+\end{align}
+Typically, $m$ is smaller than the one required for the original $e^A$.
+The goal is to approximate the state vector $e^A \dket{\Psi}\approx (e^B_m)^s\dket{\Psi}$ where 
+\begin{equation}
+\label{eq:eBmpsi}
+   e^B_m\dket{\Psi}= \parenthesis{1+B+\frac{B^2}{2!}+\cdots+\frac{B^m}{m!}}\dket{\Psi}
+   =\dket{\Psi}+B\dket{\Psi}+\frac{B\parenthesis{B\dket{\Psi}}}{2}+\cdots+\frac{B\parenthesis{\cdots \parenthesis{B\dket{\Psi}}}}{m!}\text{   . }
+\end{equation}
+According to the last expression, approximation of $e^A\dket{\Psi}$ can thus proceed by repeated application of $B=A/s$ to a vector, without ever invoking matrix-matrix multiplication. This boosts runtime performance from $O(d^3)$ to $O(d^2)$.
+
+To proceed with the evaluation of $e^A\dket{\Psi}$, the truncation order $m$ and scaling factor $s$ are determined in such a way that the error remains below the error tolerance $\tau$, 
+\begin{equation}
+\label{eq:error_def}
+    \varepsilon_{A,\dket{\Psi}}(m,s) := \frac{\norm{e^A\dket{\Psi}-\llbracket (e^B_m)^s\dket{\Psi}\rrbracket}}{\norm{e^A\dket{\Psi}}}< \tau .
+\end{equation}
+Here, $\llbracket \bullet{}  \rrbracket$ denotes the floating point representation of $\bullet$. Since this error $\varepsilon_{A,\dket{\Psi}}$ is difficult and costly to evaluate, I instead derive an upper bound $E_A(m,s)$ and resort to the inequality 
+\begin{equation}
+\label{eq:accuracy_inequality}
+    \varepsilon_{A,\dket{\Psi}}(m,s)<E_A(m,s)\leq \tau.
+\end{equation}
+
 \subsubsection{Bounding Numerical Errors}
 \label{subsubsec:ss-bounding-errors}
+The approximation of $e^A\dket{\Psi}$ required the determination of an upper bound $E_A(m,s)$ for the error $\varepsilon_{A,\dket{\Psi}}(m,s)$ [Eq.~\eqref{eq:error_def}]. Here, I show how to acquire such bound.
 
-\subsubsection{Choosing the Scaling Factor and Truncation Order}
-\label{subsubsec:ss-scaling-truncation}
+Considering the expression for the error [Eq.~\eqref{eq:error_def}], the denominator is simply 1. The error $\varepsilon_{A,\dket{\Psi}}$ is bounded as follows:
+\begin{align}
+\nonumber    &\varepsilon_{A,\dket{\Psi}}
+    =\norm{e^A\dket{\Psi}-(e^B_m)^s\dket{\Psi}+(e^B_m)^s\dket{\Psi}-\llbracket (e^B_m)^s\dket{\Psi}\rrbracket}_2\\
+\nonumber    &\quad \leq \underbrace{\norm{e^A\dket{\Psi}-(e^B_m)^s\dket{\Psi}}_2}_{\varepsilon_t}+\underbrace{\norm{(e^B_m)^s\dket{\Psi}-\llbracket (e^B_m)^s\dket{\Psi}\rrbracket}_2}_{\varepsilon_r}.\\
+\label{eq:epsilonA}
+\end{align}
+The error $\varepsilon_t$ arises from the truncation of the Taylor series and rounding error $\varepsilon_r$ is due to finite-precision arithmetics. I proceed to derive the upper bounds for these two errors separately.
+
+\paragraph{Upper bound for the truncation error \texorpdfstring{$\varepsilon_t$}{epsilon\_t}.}
+The truncation error can be rewritten as
+\begin{equation}
+    \varepsilon_t = \norm{e^A\dket{\Psi}-(e^B-R_m(B))^s\dket{\Psi}}_2=  \norm{\sum_{i=1}^{s}\frac{s!}{i!(s-i)!} (-R_m(B))^i(e^B)^{s-i}\dket{\Psi}}_2,
+\end{equation}
+where $R_m(B)=\sum_{q=m+1}^{\infty}B^q/q!$ denotes the matrix-valued error of the truncated exponential series.
+Employing the triangle inequality and submultiplicativity~\cite{higham2002accuracy}, one finds the bound
+\begin{equation}
+    \varepsilon_t \leq 
+    \sum_{i=1}^{s}\frac{s!}{i!(s-i)!}\big(R_m(\norm{B}_2)\big)^i\norm{e^B}_2^{s-i}\norm{\dket{\Psi}}_2=\sum_{i=1}^{s}\frac{s!}{i!(s-i)!}\big(R_m(\norm{B}_2)\big)^i.
+\end{equation}
+Here the second equality utilizes the fact that the state is normalized and $e^B$ is unitary. 
+
+This upper bound must be evaluated numerically to determine $m$ and $s$. However, computing the matrix 2-norm is inconvenient since it requires the use of an eigensolver. To mitigate this, I switch to the matrix 1-norm by exploiting\footnote{Generally, $\norm{B}_2\leq\sqrt{\norm{B}_\infty\norm{B}_1}$~\cite{wilkinson1994rounding} holds true for any $B$. When $B$ is anti-Hermitian, $\norm{B}_\infty=\norm{B}_1$ leads to the inequality in Eq.~\eqref{eq:norm_inequality}.}
+\begin{equation}
+\label{eq:norm_inequality}
+    \norm{B}_2\leq\norm{B}_1.
+\end{equation}
+Monotonicity of $R_m$ leads to
+\begin{equation}
+    \label{eq:truncation}
+    \varepsilon_t \leq 
+    \sum_{i=1}^{s}\frac{s!}{i!(s-i)!}\big(R_m(\norm{B}_1)\big)^i
+    < sR_m(\norm{B}_1)\frac{1-\big(sR_m(\norm{B}_1)\big)^s}{1-sR_m(\norm{B}_1)}.
+\end{equation}
+
+
+\paragraph{Upper bound for the rounding error \texorpdfstring{$\varepsilon_r$}{epsilon\_r}.}
+\label{par:rounding_error}
+
+The rounding error $\varepsilon_r$ originates from the finite precision of the floating-point representation of real numbers as well as the finite accuracy of basic arithmetic operations. The floating-point representation  $\llbracket \xi \rrbracket$ for the real number $\xi $ can be written as $\llbracket \xi \rrbracket=\xi(1+\delta)$ where $\delta=\delta(\xi)$ is the relative deviation~\cite{higham2002accuracy}. Its magnitude is always smaller than machine precision, i.e.\ $|\delta|<u$. Similarly, the complex number $z$ obeys 
+\begin{equation}
+    \label{eq:representation_error}
+    \llbracket z\rrbracket=z(1+\delta)
+\end{equation}
+with $|\delta|\leq u$. Arithmetic operations such as addition and multiplication with two complex numbers $z_1, z_2$ incur a relative deviation $\delta=\delta(z_1,z_2)$ such that 
+\begin{equation}
+\label{eq:operation_error}
+    \llbracket z_1 \text{ + } z_2\rrbracket =(\llbracket z_1 \rrbracket+\llbracket z_2\rrbracket)(1+\delta),\ |\delta|\leq u, \quad\llbracket z_1 z_2 \rrbracket=\llbracket z_1\rrbracket \llbracket z_2\rrbracket(1+\delta),\ |\delta|\leq u',
+\end{equation}
+where $u':=2\sqrt{2}u/(1-2u)$~\cite{higham2002accuracy}. The relative deviation shown in Eqs.~\eqref{eq:representation_error}, \eqref{eq:operation_error} generally depend on both numbers involved as well as the operation in question. In the following, different $\delta$ are distinguished with subscript $\nu$.
+
+Using Eqs.~\eqref{eq:representation_error}, \eqref{eq:operation_error}, I derive an upper bound for the rounding error in the evaluation of the dot product, which is the basic arithmetic operation in evaluating $e^B_m\dket{\Psi}$ according to Eq.~\eqref{eq:eBmpsi}.
+
+\subparagraph{Upper bound for the rounding error associated with evaluating the dot product.}
+The rounding error incurred when evaluating the dot product is given by $|\Sigma_d-\llbracket \Sigma_d\rrbracket|$ with $\Sigma_d=\boldsymbol{w^\text{T}z}$ ($\boldsymbol{w},\boldsymbol {z} \in\mathbb{C}^{d}$). Here, $\boldsymbol{w^\text{T}}$ is a row of $B=i\delta t H/s$. Based on Eqs.~\eqref{eq:representation_error} and \eqref{eq:operation_error}, one has
+\begin{equation}
+\label{eq:c7}
+    |\llbracket \Sigma_1\rrbracket-\Sigma_1|=|\llbracket w_1  z_1\rrbracket-w_1z_1|<|w_1||z_1|\big|\prod_{\nu=1}^3(1+\delta_\nu)-1\big|<\gamma_3 |w_1||z_1|,
+\end{equation}
+where $\big|\prod_{\nu=1}^n(1+\delta_\nu)-1\big|<\frac{nu'}{1-nu'}$~\cite{higham2002accuracy}, and $\gamma_n:=\frac{nu'}{1-nu'}$. For $d=2$, the upper bound of the error is
+\begin{equation}
+\label{eq:c8}
+     |\llbracket \Sigma_2\rrbracket-\Sigma_2|=|(\llbracket \Sigma_1\rrbracket+\llbracket w_2 z_2\rrbracket )(1+\delta_1)-\Sigma_2|<\gamma_4\sum_{i=1}^2|w_i||z_i|.
+\end{equation}
+The general upper bound for arbitrary $d$ is:
+\begin{equation}
+    |\llbracket \Sigma_d\rrbracket-\Sigma_d| <\gamma_{d+2}\sum_{j=1}^{d}|w_j|| z_j|.
+\end{equation}
+Since $\boldsymbol{w^\text{T}}$ is proportional to a row of the Hamiltonian matrix, sparsity of $H$ implies sparsity of $\boldsymbol{w^\text{T}}$. Vanishing entries in $\boldsymbol{w^\text{T}}$ are special because they do not incur rounding errors. Thus, one can obtain a stronger upper bound
+\begin{equation}
+\label{eq:C10}
+    |\llbracket \Sigma_d\rrbracket-\Sigma_d|<\gamma_{\sigma+2}\sum_{j=1}^{d}|w_j|| z_j|
+\end{equation}
+where $\sigma$ is the number of non-zero elements in $\boldsymbol{w^\text{T}}$.
+
+\subparagraph{Upper bound for the rounding error of $e^B_m\dket{\Psi}$.}
+The vector $e^B_m\dket{\Psi}$ is evaluated recursively via
+\begin{equation}
+\label{eq:recursive_relation_1}
+    b_j= \frac{B}{j}b_{j-1},\qquad e^B_j b_0=b_{j-1}+b_j
+\end{equation}
+where $j=1,2,\cdots,m$ and $b_0$ is a vector representation of $\dket{\Psi}$ under a choice of orthonormal basis. Before evaluating the upper bound for the error $\norm{\llbracket e^B_mb_0\rrbracket-e^B_mb_0}_2$, I first derive an upper bound for the error of a vector component $\big|\llbracket e^B_mb_0 \rrbracket^{(i)}-(e^B_mb_0) ^{(i)}\big|$.
+
+For the case $m=0$:
+\begin{equation}
+    \big|\llbracket e^B_0b_0 \rrbracket^{(i)} -(e^B_0b_0)^{(i)} \big|
+    =\big|\llbracket b_0\rrbracket ^{(i)} -b_0 ^{(i)}\big|<\gamma_2|b_0^{(i)}|.
+\end{equation}
+For $m=1$:
+\begin{align}
+\label{eq:c17}
+    &|\llbracket e^B_1b_0 \rrbracket^{(i)}-(e^B_1b_0 )^{(i)}|
+    =\big|\big(\llbracket b_0\rrbracket ^{(i)}+\llbracket 
+    b_1\rrbracket^{(i)}\big)(1+\delta_1)-(e^B_1b_0 )^{(i)}\big| \\
+\nonumber    &\quad=\big|\llbracket b_0\rrbracket ^{(i)}(1+\delta_1)+\frac{\llbracket Ab_0\rrbracket}{s}^{(i)}\prod_{\nu=1}^3(1+\delta_\nu)^3-(e^B_1b_0 )^{(i)}\big| \overset{\eqref{eq:C10}}{<}\gamma_3|b_0^{(i)}| + \gamma_{\sigma_i+5}\sum_l|B^{(il)}||b_0^{(l)}|,
+\end{align}
+where $\sigma_i$ is the number of non-zero elements in the $i$th row of $B$.
+The general upper bound for arbitrary $m$ is:
+\begin{equation}
+\label{eq:c16}
+    \big|\llbracket e^B_mb_0 \rrbracket^{(i)} -(e^B_mb_0 )^{(i)}\big|<\sum_{k=0}^m\gamma_{k(\sigma_i+2)+m+2}\big(\frac{|B|^k}{k!}|b_0|\big)^i,
+\end{equation}
+where $|B|,|b_0|$ denote the matrix and the vector with elements $|B^{il}|$, $|b_0^{i}|$, respectively. Defining
+\begin{equation}
+\label{eq:sigmapdef}
+    \sigma':=\max_i \sigma_i
+\end{equation} 
+and using Eq.~\eqref{eq:c16}:
+\begin{align}
+\nonumber    & \norm{\llbracket e^B_mb_0 \rrbracket -(e^B_mb_0 )}_2=\big|\big||\llbracket e^B_mb_0 \rrbracket -(e^B_mb_0 )|\big|\big|_2<\sum_{k=0}^m\gamma_{k(\sigma'+2)+m+2}\big|\big|\frac{|B|^k}{k!}|b_0|\big|\big|_2\\
+\label{eq:B23} &\quad <\sum_{k=0}^m\gamma_{k(\sigma'+2)+m+2}\frac{\big|\big||B|\big|\big|_2^k}{k!}\big|\big||b_0|\big|\big|_2
+ \overset{\eqref{eq:norm_inequality}}{<}\sum_{k=0}^m\gamma_{k(\sigma'+2)+m+2}\frac{\big|\big||B|\big|\big|_1^k}{k!}\big|\big||b_0|\big|\big|_2=\beta||b_0||_2
+\end{align}
+with $\beta:=\sum_{k=0}^m\gamma_{k(\sigma'+2)+m+2}\frac{||B||_1^k}{k!}$. Here, $\beta||b_0||_2$ is the desired upper bound for the rounding error of $e^B_m\dket{\Psi}$. 
+
+\subparagraph{Upper bound for the error $\varepsilon_r$.}
+\label{par:upper_bound_eps_r}
+The vector $(e^B_m)^sb_0 $ is evaluated by the recursive relation
+\begin{equation}
+\label{eq:recursive_relation2}
+    c_l=e^B_m c_{l-1},\qquad l=1,2,\cdots,s,
+\end{equation}
+where $c_0=b_0$. 
+I illustrate how to bound the error $\varepsilon_r=\norm{\llbracket (e^B_m)^sb_0\rrbracket-(e^B_m)^sb_0 }_2$ for $s=1,2$, and give the general result subsequently. 
+
+For $s=1$: 
+\begin{equation}
+\label{eq:s1}
+    \norm{\llbracket e^B_mb_0\rrbracket-e^B_mb_0 }_2\overset{\eqref{eq:B23}}{<}\beta||b_0||_2=\beta.
+\end{equation}
+For $s=2$:
+\begin{align}
+\label{eq:C22}
+\nonumber    \norm{\llbracket (e^B_m)^2b_0\rrbracket-(e^B_m)^2b_0 }_2 &\leq\norm{\llbracket (e^B_m)^2b_0\rrbracket-     
+    e^B_m\llbracket e^B_mb_0\rrbracket}_2+\norm{e^B_m\llbracket e^B_mb_0\rrbracket-(e^B_m)^2b_0}_2\\
+   &\, <\norm{\llbracket e^B_m \llbracket e^B_mb_0\rrbracket\rrbracket-     
+    e^B_m\llbracket e^B_mb_0\rrbracket}_2+\beta\norm{e^B_m}_2,
+\end{align} 
+where the last step is enabled by Eq.~\eqref{eq:s1}.
+The matrix norm in the second term is bounded by
+\begin{equation}
+    \norm{e^B_m}_2=\norm{e^B-R_m(B)}_2\leq 1+R_m(\norm{B}_2)\overset{\eqref{eq:norm_inequality}}{\leq} 1+R_m(\norm{B}_1)=:\alpha.
+\end{equation}
+Since Eq.~\eqref{eq:B23} holds for any complex vector $b_0$, the error in Eq.~\eqref{eq:C22} is further bounded by:
+\begin{align}
+    \norm{\llbracket (e^B_m)^2b_0\rrbracket-(e^B_m)^2b_0 }_2\overset{\eqref{eq:B23}}{<}\beta\norm{\llbracket e^B_mb_0\rrbracket}_2+\beta\alpha &=\beta\norm{\llbracket e^B_mb_0\rrbracket-e^B_mb_0+e^B_mb_0}_2+\beta\alpha\quad\\
+    &\overset{\eqref{eq:s1}}{<}\beta(\beta+\alpha)+\beta\alpha.
+\end{align}
+Generalizing this strategy further yields the expression for the upper bound of $\varepsilon_r$: 
+\begin{align}
+\label{eq:rounding}
+\nonumber    \varepsilon_r=\norm{\llbracket (e^B_m)^sb_0\rrbracket-(e^B_m)^sb_0 }_2 &\leq \sum_{l=0}^{s-1}\norm{(e^B_m)^l \llbracket (e^B_m)^{s-l}b_0\rrbracket-(e^B_m)^{l+1}\llbracket (e^B_m)^{s-l-1}b_0\rrbracket}_2\\
+    &<\beta\sum_{l=0}^{s-1}(\alpha+\beta)^{s-l-1}\alpha^{l}=(\alpha+\beta)^s-\alpha^s.
+\end{align}    
+
+Combining the upper bounds for $\varepsilon_r$ and $\varepsilon_t$, I return to Eq.~\eqref{eq:epsilonA} and obtain
+\begin{equation}
+\label{eq:overallupperbound}
+\varepsilon_{A,\dket{\Psi}}< E_A(m,s)=sR_m(\norm{B}_1)\frac{1-\big(sR_m(\norm{B}_1)\big)^s}{1-sR_m(\norm{B}_1)}+(\alpha+\beta)^s-\alpha^s,
+\end{equation}
+where $\norm{B}_1=\norm{A}_1/s$, $\alpha=\alpha(\norm{A}_1,m,s)$ and $\beta=\beta(\sigma',\norm{A}_1,m,s)$.
+
+\subsubsection{Choosing scaling factor and truncation order}
+
+For a given $A$ when computing state propagation by scaling and squaring discussed in Sec.~\ref{subsec:scaling-squaring}, the inequality~\eqref{eq:accuracy_inequality} generally has multiple solutions for $m$ and $s$. As shown in the previous section, the evaluation requires $ms$ matrix-vector multiplications, which are observed to dominate the runtime. Since systematic minimization of $ms$ requires significant runtime itself, I instead: (1) select solutions to Eq.~\eqref{eq:accuracy_inequality} with the smallest $s$, which is denoted by $\mathbb{s}$, and (2) among these pairs, choose the one with smallest $m$ (denoted by $\mathbb{m}$). 
+
+Thus, calculating $e^A\dket{\Psi}$ requires
+\begin{equation}
+\label{eq:mudefnition}
+    \mu:=\mathbb{m}\mathbb{s}
+\end{equation}
+matrix-vector multiplications.%
+\nomenclature{$\mu$}{Number of matrix-vector multiplications required for propagator-state product evaluation}
+As shown in the following, for two concrete examples, this method for evaluating $e^A\dket{\Psi}$ can achieve better runtime performance and accuracy than \texttt{expm\_multiply} function~\cite{al2011computing} implmented in \texttt{Scipy} .
+
 
 \subsubsection{Numerical Comparison Between Different Implementations of Scaling and Squaring}
 \label{subsubsec:ss-comparison}
@@ -319,6 +529,13 @@ Thus, all gradients considered here can be evaluated with closely related forwar
   \caption[Comparison between scaling and squaring and \texttt{Scipy}'s \texttt{expm\_multiply}.]{Comparison between scaling and squaring as implemented here and \texttt{Scipy}'s \texttt{expm\_multiply}, considering relative error and runtime. (a),~(c)~Relative error versus matrix norm. (b),~(d)~Ratios of runtime and $\mu$ (i.e.\ number of matrix-vector multiplications) between the two implementations as functions of the matrix norm. The matrix norm $\norm{-iH\Delta t}_2$ is varied by increasing $\Delta t\in [1,10]$. In all panels, colors encode different error tolerances $\tau$. The results of the first and second rows are obtained based on the cavity--transmon and three-coupled-transmons Hamiltonians, respectively. The system parameters of these two Hamiltonians are the same as those given in the captions of Figs.~\ref{fig:state_time} and~\ref{fig:gate}.}
   \label{fig:sas_numerical_experiments}
 \end{figure}
+Scaling and squaring is used to evaluate the propagator-state product, $e^{-iH\Delta t }\dket{\Psi}$. I compare relative error and runtime between the implementation of scaling and squaring presented here and \texttt{Scipy}'s implementation, \texttt{expm\_multiply}~\cite{al2011computing}. The relative errors follow the general expression in Eq.~\eqref{eq:error_def}, but differ in the specific choice of $m$ and $s$. As a proxy for the exact propagator-state product, I apply Taylor expansion to the matrix exponential with 400-digit precision by \texttt{Sympy}; the result of the product converges at 30 digits after the decimal point. The runtime is measured with the help of the \texttt{Temci} package~\cite{temci}.
+
+As the basis for this comparison, I use the examples of Hamiltonians~\eqref{eq:fockH} and~\eqref{eq:gateH} and implement sparse storage for them. The relative errors are shown in Fig.~\ref{fig:sas_numerical_experiments}(a) and~(c) as a function of the matrix norm $\norm{-iH\Delta t}_2$, respectively. In both examples, the relative errors for the implementation presented here are bounded by the error tolerance $\tau$, while the relative errors for \texttt{Scipy}'s implementation tend to exceed the tolerance for large norms. There are two reasons for this tendency. First, rounding errors are not considered in the derivation of the upper bound for the errors~\cite{al2011computing}; second, the truncation of $e^B_m$ [Eq.~\eqref{eq:eBm}] is merely based on a heuristic criterion. 
+
+Even though the relative errors of \texttt{Scipy}'s implementation are worse, it achieves a smaller number of matrix-vector multiplications $\mu$. This is illustrated in Fig.~\ref{fig:sas_numerical_experiments}(b) and~(d): the ratio of $\mu$ between the two implementations is always larger than 1. Although \texttt{Scipy}'s implementation spends less time on matrix-vector multiplications, the total runtime of \texttt{Scipy}'s implementation is larger, see Fig.~\ref{fig:sas_numerical_experiments}(b) and~(d). This is due to the larger runtime overhead of \texttt{Scipy}'s implementation for determining $(m,s)$. 
+
+In conclusion, the implementation presented here has better numerical stability and runtime than \texttt{Scipy}'s implementation in these numerical experiments. 
 
 \subsection{Propagator Derivative Acting on a State via the Auxiliary Matrix Method}
 \label{subsec:auxiliary-matrix}
