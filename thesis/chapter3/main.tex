@@ -517,18 +517,7 @@ Thus, calculating $e^A\dket{\Psi}$ requires
 \end{equation}
 matrix-vector multiplications.%
 \nomenclature{$\mu$}{Number of matrix-vector multiplications required for propagator-state product evaluation}
-As shown in the following, for two concrete examples, this method for evaluating $e^A\dket{\Psi}$ can achieve better runtime performance and accuracy than \texttt{expm\_multiply} function~\cite{virtanen2020scipy,al2011computing} implemented in \texttt{SciPy}. The comparisons employ sparse matrix--vector products for two model Hamiltonians that are reused when reporting full GRAPE benchmarks later in this chapter. A driven cavity--transmon system is described in the frame co-rotating with the transmon drive by
-\begin{equation}
-\label{eq:fockH}
-    H_1(t)=\Delta b^\dagger b-\frac{K_b}{2}b^{\dagger 2}b^2+g(cb^\dagger+c^\dagger b)+a_{z}(t)b^\dagger b
-    +a_{x}(t)(b+b^\dagger),
-\end{equation}
-where $c$ and $b$ are the cavity and transmon annihilation operators, $K_b>0$ is the transmon Kerr coefficient, $g$ is the coupling strength, and $\Delta$ is the detuning between transmon and cavity. Three coupled transmons with nearest-neighbor hopping are modeled by
-\begin{equation}
-\label{eq:gateH}
-    H_2(t)=\sum_{\nu=1}^{3}\bigg[-\frac{K_b}{2}b_\nu^{\dagger 2}b_\nu^2+a^{(\nu)}(t)(b_\nu+b_\nu^\dagger)\bigg]+g(b_1b_{2}^\dagger+b_2b_{3}^\dagger+\text{h.c.}).
-\end{equation}
-Unless noted otherwise, the numerical tests use $\Delta/2\pi=3$\,GHz, $g/2\pi=0.1$\,GHz, $K_b/2\pi=0.225$\,GHz, constant controls $a_z/2\pi=a_x/2\pi=0.1$\,GHz when propagating with $H_1$, and $a^{(\nu)}/2\pi=0.1$\,GHz when propagating with $H_2$.
+As shown in the following, for two concrete examples, this method for evaluating $e^A\dket{\Psi}$ can achieve better runtime performance and accuracy than \texttt{expm\_multiply} function~\cite{virtanen2020scipy,al2011computing} implemented in \texttt{SciPy}. 
 
 \subsubsection{Numerical Comparison Between Different Implementations of Scaling and Squaring}
 \label{subsubsec:ss-comparison}
@@ -540,6 +529,19 @@ Unless noted otherwise, the numerical tests use $\Delta/2\pi=3$\,GHz, $g/2\pi=0.
   \label{fig:sas_numerical_experiments}
 \end{figure}
 Scaling and squaring is used to evaluate the propagator-state product, $e^{-iH\Delta t }\dket{\Psi}$. This work compares relative error and runtime between the implementation of scaling and squaring presented in this work and \texttt{SciPy}'s implementation, \texttt{expm\_multiply}~\cite{virtanen2020scipy,al2011computing}. The relative errors follow the general expression in Eq.~\eqref{eq:error_def}, but differ in the specific choice of $m$ and $s$. As a proxy for the exact propagator-state product, Taylor expansion is applied to the matrix exponential with 400-digit precision by \texttt{SymPy}~\cite{meurer2017sympy}; the result of the product converges at 30 digits after the decimal point. The runtime is measured with the help of the \texttt{Temci} package~\cite{temci}.
+
+The comparisons are based on two example of Hamiltonians. (1) A driven cavity--transmon system is described in the frame co-rotating with the transmon drive by
+\begin{equation}
+\label{eq:fockH}
+    H_1(t)=\Delta b^\dagger b-\frac{K_b}{2}b^{\dagger 2}b^2+g(cb^\dagger+c^\dagger b)+a_{z}(t)b^\dagger b
+    +a_{x}(t)(b+b^\dagger),
+\end{equation}
+where $c$ and $b$ are the cavity and transmon annihilation operators, $K_b>0$ is the transmon Kerr coefficient, $g$ is the coupling strength, and $\Delta$ is the detuning between transmon and cavity. (2) Three coupled transmons with nearest-neighbor hopping are modeled by
+\begin{equation}
+\label{eq:gateH}
+    H_2(t)=\sum_{\nu=1}^{3}\bigg[-\frac{K_b}{2}b_\nu^{\dagger 2}b_\nu^2+a^{(\nu)}(t)(b_\nu+b_\nu^\dagger)\bigg]+g(b_1b_{2}^\dagger+b_2b_{3}^\dagger+\text{h.c.}).
+\end{equation}
+Unless noted otherwise, the numerical tests use $\Delta/2\pi=3$\,GHz, $g/2\pi=0.1$\,GHz, $K_b/2\pi=0.225$\,GHz, constant controls $a_z/2\pi=a_x/2\pi=0.1$\,GHz when propagating with $H_1$, and $a^{(\nu)}/2\pi=0.1$\,GHz when propagating with $H_2$.
 
 As the basis for this comparison, the examples of Hamiltonians~\eqref{eq:fockH} and~\eqref{eq:gateH} are used with sparse storage. The relative errors are shown in Fig.~\ref{fig:sas_numerical_experiments}(a) and~(c) as a function of the matrix norm $\norm{-iH\Delta t}_2$, respectively. In both examples, the relative errors for the implementation presented in this work are bounded by the error tolerance $\tau$, while the relative errors for \texttt{SciPy}'s implementation tend to exceed the tolerance for large norms. There are two reasons for this tendency. First, rounding errors are not considered in the derivation of the upper bound for the errors~\cite{al2011computing}; second, the truncation of $e^B_m$ [Eq.~\eqref{eq:eBm}] is merely based on a heuristic criterion. 
 
@@ -619,7 +621,7 @@ Despite the specific differences among the expressions of cost contributions $C_
 
 For gradients of cost contributions that are tedious to derive analytically, semi-automatic differentiation~\cite{semiadgoerz2022quantum} offers an alternative approach in which some derivatives are hard-coded and others treated by automatic differentiation. Compared to full-AD, semi-AD has the benefit that the memory usage scaling is independent of $\mu$ while maintaining the same runtime scaling.
 
-\subsection{Comparison}
+\subsection{Comparison of the three strategies}
 \label{sec:scaling_comparison}
 
 \begin{table}[t]
