@@ -1,11 +1,11 @@
 \chapter{Superconducting Qubits: Coherence and Control}
 \label{chap:sc-qubits}
 
-This chapter introduces the superconducting circuits and control techniques used throughout the thesis. The discussion is organized around the three hardware paradigms introduced in Chapter~\ref{chap:intro}: the transmon, fluxonium, and bosonic qubits. Detailed discussion of decoherence mechanisms and coherence metrics is deferred to Sec.~\ref{sec:decoherence}, and Sec.~\ref{sec:control} presents the analytical and numerical techniques used to control these systems.\ref{sec:control}
+This chapter introduces the superconducting circuits and control techniques used throughout the thesis. The discussion in Sec. \ref{sec:sc-qubits} is organized around the three hardware paradigms introduced in Chapter~\ref{chap:intro}: the transmon, fluxonium, and bosonic qubits. Detailed discussion of decoherence mechanisms and coherence metrics is deferred to Sec.~\ref{sec:decoherence}. Sec.~\ref{sec:control} presents the analytical and numerical techniques used to control these systems.
 \section{Superconducting Qubits}
 \label{sec:sc-qubits}
 
-All superconducting qubits rely on one or more Josephson junctions, whose nonlinear inductance makes the circuit spectrum anharmonic. This anharmonicity allows individual transitions to be spectrally resolved and the lowest two levels to be addressed as an effective qubit. The central design trade-off is between spectral selectivity and robustness to fluctuations: stronger anharmonicity improves addressability and suppresses leakage to noncomputational states, while reduced parameter sensitivity improves stability against noise. Different qubits resolve this trade-off through their circuit topology, parameter regime, and operating point. The following subsections introduce the three platforms most relevant to this thesis.
+All superconducting qubits rely on Josephson junctions, which makes the circuit spectrum anharmonic. This anharmonicity allows individual transitions to be spectrally distinguished and the two lowest levels to be used as an effective qubit. Qubit design must achieve two main goals: sufficiently strong anharmonicity to suppress leakage into noncomputational states, and reduced sensitivity to parameter fluctuations in order to improve robustness against noise. Different qubit modalities realize this balance through their circuit topology, parameter regime, and operating point. The following subsections introduce two widely used platforms, the transmon and the fluxonium. We also discuss a complementary platform, bosonic qubits, which encode quantum information in linear cavities.
 
 \subsection{The Transmon}
 \label{sec:transmon}
@@ -25,7 +25,7 @@ The transmon is a superconducting circuit built from a Josephson junction shunte
 
 \subsubsection{Transmon Hamiltonian}
 
-A Josephson junction consists of two superconductors separated by a thin insulating barrier through which Cooper pairs tunnel coherently. The junction is characterized by the nonlinear current--phase relation \cite{Josephson1962,Golubov2004}.
+A Josephson junction consists of two superconductors separated by a thin insulating barrier through which Cooper pairs tunnel coherently~\cite{Gu2017junction,Oliver2013junction}. The junction is characterized by the nonlinear current--phase relation \cite{Josephson1962,Golubov2004}.
 \begin{equation}
     I = I_c \sin \varphi,
 \end{equation}
@@ -278,7 +278,7 @@ while the anharmonicity remains large, as shown in Fig.~\ref{fig:fluxonium}(b). 
     \label{fig:bosonic_qec}
 \end{figure}
 
-Transmon and fluxonium qubits encode quantum information in the lowest two levels of an anharmonic circuit. Bosonic qubits follow a different strategy: they encode a logical qubit in the large Hilbert space of a harmonic oscillator, typically a superconducting microwave cavity. Because the cavity mode contains no Josephson junction, it can be much longer lived than junction-based qubits, particularly in three-dimensional architectures \cite{Paik2011,Reagor2016,Milul2023}. Its dominant error channel is often single-photon loss, rather than the broader combination of relaxation, dephasing, and leakage that affects nonlinear qubits. This pronounced noise bias makes bosonic modes a natural platform for hardware-efficient quantum error correction, in which the encoding is tailored to the dominant physical error \cite{Cai2021,Copetudo2024}.
+Transmon and fluxonium qubits encode quantum information in the lowest two levels of an anharmonic circuit. Bosonic qubits follow a different strategy: they encode a logical qubit in the large Hilbert space of a harmonic oscillator, typically a superconducting microwave cavity. Because the cavity mode contains no Josephson junction, it can be much longer lived than junction-based qubits, particularly in three-dimensional architectures \cite{Paik2011,Reagor2016,Milul2023}. Its dominant error channel is often single-photon loss rather than pure dephasing. This pronounced noise bias makes bosonic modes a natural platform for hardware-efficient quantum error correction, in which the encoding is tailored to the dominant physical error \cite{Cai2021,Copetudo2024}.
 
 The central idea of Bosonic encoding is to use the oscillator Hilbert space to encode a logical qubit redundantly, so that the dominant error produces a detectable and, in favorable cases, correctable signature. The need for such redundancy is clear from comparison with an ordinary two-level qubit. If a qubit is measured in $|0\rangle$, the final result alone does not reveal whether the computation genuinely produced $|0\rangle$ or whether an intended $|1\rangle$ relaxed before readout. The error acts within the computational subspace and leaves no direct flag.
 
@@ -304,7 +304,7 @@ So the coefficients $\alpha$ and $\beta$ are preserved. The binomial code theref
 
 Other bosonic encodings implement the same idea with different state structures and noise models. Cat codes \cite{Mirrahimi2014,Grimm2020} use superpositions of coherent states and typically extract the error syndrome through photon-number parity, while Gottesman--Kitaev--Preskill (GKP) states \cite{Gottesman2001,CampagneIbarcq2020} encode information in a grid-like structure in phase space. Despite these differences, the common principle is the same: the encoding is matched to the dominant noise channel of the bosonic mode.
 
-Due to absence of non-linearity, linear driving cavity can only produces coherent states. Preparation of the non-Gaussian states required for bosonic encoding, such as cat states and GKP states requires coupling the cavity to a nonlinear ancilla. In the dispersive regime, this ancilla enables qubit-state-dependent operations on the cavity and provides the basis for universal bosonic control, as discussed in Sec.~\ref{subsec:analytical-control}.
+Due to absence of non-linearity, linear driving cavity can only produces coherent states. Preparation of the non-Gaussian states required for bosonic encoding, such as cat states and GKP states requires coupling the cavity to a nonlinear ancilla or coupler, as discussed in Sec.~\ref{subsec:analytical-control}.
 
 \section{Decoherence in Superconducting Qubits}
 \label{sec:decoherence}
@@ -524,9 +524,15 @@ matching its $\ket{1}\leftrightarrow\ket{2}$ component to the counter-diabatic t
 \]
 The DRAG-based pulse has been demonstrated in obtaining high-fidelity transmon gate, and the pulse outperforms naive single-quadrature Gaussian pulse~\cite{Hyyppa2024}.
 
-\paragraph{Paramatric Drive}
+\paragraph{Parametric Drive}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\linewidth]{thesis/chapter2/twomode.pdf}
+\caption{Parametric-drive model and circuit implementation. (a) Graph representation of the three-mode system, where the bare modes are coupled capacitively (light-gray edges) and mode \(b\) is a flux-tunable transmon whose frequency is modulated by a parametric flux drive. (b) Superconducting-circuit implementation of the model, in which modes \(a\) and \(c\) are cavity modes and mode \(b\) is realized as a flux-tunable transmon coupler.}
+\label{fig:twomode}
+\end{figure}
 
-Whereas DRAG suppresses leakage during single-qubit control, parametric driving is used to activate desired interactions between different modes. We begin from
+Parametric driving is used to activate desired interactions between different qubits. For illustration, we consider an FTT capacitively coupled to two cavities, as shown in Fig.~\ref{fig:twomode}. The system Hamiltonian is~\cite{PhysRevApplied.19.044003accurate}
 \begin{equation}
     H = H^{(0)} + H^{(1)}(t),
 \end{equation}
@@ -538,7 +544,7 @@ with
     +
     \omega_c c^\dagger c
     +
-    \bar{\omega}_b b^\dagger b
+    \omega_b b^\dagger b
     +
     g_{ab}(a^\dagger b + a b^\dagger)
     +
@@ -552,18 +558,18 @@ and
     +
     \delta\omega_b \cos(\omega_d t+\phi_d)\, b^\dagger b.
 \end{equation}
-Here \(\delta\omega_b\) is the flux-induced modulation amplitude of the transmon-like mode, and \(\omega_d\) and \(\phi_d\) are the drive frequency and phase. The linear part \(H^{(0)}\) can be diagonalized to obtain the normal modes of the coupled system,
+Here \(\delta\omega_b\) is the flux-induced modulation amplitude of the transmon frequency, while \(\omega_d\) and \(\phi_d\) are the drive frequency and phase. Diagonalizing the linear part \(H^{(0)}\) yields the normal modes of the coupled system,
 \begin{equation}
     H^{(0)}
     =
-    \tilde{\omega}_a a_{\mathrm N}^\dagger a_{\mathrm N}
+    \tilde{\omega}_a a^\dagger a
     +
-    \tilde{\omega}_b b_{\mathrm N}^\dagger b_{\mathrm N}
+    \tilde{\omega}_b b^\dagger b
     +
-    \tilde{\omega}_c c_{\mathrm N}^\dagger c_{\mathrm N}.
+    \tilde{\omega}_c c^\dagger c.
     \label{eq:H0_diag_compact}
 \end{equation}
-The dressed frequencies \(\tilde{\omega}_{a,b,c}\) and the normal-mode transformation coefficients \(u_{\mu\nu}\) depend on the bare frequencies \(\omega_{a,b,c}\) and the static couplings \(g_{ab}\) and \(g_{bc}\). In the parameter regime of interest, two normal modes remain predominantly cavity-like and one remains predominantly transmon-like; for notational simplicity, we henceforth denote these dressed modes again by \(a\), \(b\), and \(c\).
+The dressed frequencies \(\tilde{\omega}_{a,b,c}\) and the mode compositions depend on the bare frequencies \(\omega_{a,b,c}\) and the static couplings \(g_{ab}\) and \(g_{bc}\). In the dispersive regime, two modes remain predominantly cavity-like, while one remains predominantly transmon-like.
 
 Expressing the bare transmon-like operator in the dressed basis as
 \begin{equation}
@@ -584,11 +590,11 @@ where
 \begin{equation}
     \eta_{\mu\nu}=u_{b\mu}^*u_{b\nu}.
 \end{equation}
-Thus, the flux modulation generates not only diagonal frequency shifts but also off-diagonal mode-conversion terms between dressed modes. In particular, the coupling between the two cavity-like modes is governed by the coefficient
+Thus, the flux modulation generates not only diagonal frequency shifts but also off-diagonal mode-conversion terms between the dressed modes. In particular, the interaction between the two cavity-like modes is governed by the coefficient
 \begin{equation}
     \eta_{ac}=u_{ba}^*u_{bc},
 \end{equation}
-which yields the interaction
+which gives
 \begin{equation}
     H_{ac}(t)
     =
@@ -600,13 +606,13 @@ which yields the interaction
     \right).
 \end{equation}
 
-Writing \(\eta_{ac}=|\eta_{ac}|e^{i\theta_{ac}}\), one may define
+Writing \(\eta_{ac}=|\eta_{ac}|e^{i\theta_{ac}}\), we define
 \begin{equation}
     \delta g_{ac}=\delta\omega_b |\eta_{ac}|,
     \qquad
-    \phi_{\mathrm{eff}}=\phi_d+\theta_{ac},
+    \phi_{\mathrm{eff}}=\phi_d+\theta_{ac}.
 \end{equation}
-so that
+The interaction then becomes
 \begin{equation}
     H_{ac}(t)
     =
@@ -615,11 +621,11 @@ so that
         a^\dagger c + a c^\dagger
     \right).
 \end{equation}
-Moving to the interaction picture with respect to the dressed mode energies and choosing
+Moving to the interaction picture with respect to the dressed-mode energies and choosing
 \begin{equation}
     \omega_d=\tilde{\omega}_c-\tilde{\omega}_a,
 \end{equation}
-makes the exchange term resonant. Under the rotating-wave approximation, the rapidly oscillating terms are neglected, and the effective interaction reduces to
+makes the exchange term resonant. Under the rotating-wave approximation, the rapidly oscillating terms are neglected. The effective interaction then reduces to
 \begin{equation}
     H_{\mathrm{BS}}
     =
@@ -632,7 +638,13 @@ makes the exchange term resonant. Under the rotating-wave approximation, the rap
     \qquad
     G_{ac}=\frac{\delta g_{ac}}{2}.
 \end{equation}
-This is the parametrically activated beam-splitter interaction between the two cavity-like modes. Its origin is the static hybridization with the transmon-like mode, while the drive frequency selects which dressed-mode transition is resonantly activated. The same mechanism more generally underlies parametrically driven two-qubit gates, where modulation is used to selectively turn on entangling interactions.
+This is the parametrically activated beam-splitter interaction between the two cavity-like modes. It originates from the static hybridization with the transmon-like mode, while the drive frequency selects which dressed-mode transition is activated resonantly. More generally, the same mechanism underlies parametrically driven two-qubit gates, where modulation selectively turns on entangling interactions~\cite{Strand2013,Noguchi2020,Fasciati2024}.
+
 
 \subsection{Numerical Optimization of Control Parameters}
-\label{subsec:numerical-control}
+
+Analytical optimization is often insufficient once multiple sources of gate infidelity and hardware constraints must be treated simultaneously. Pulse design is therefore frequently recast as a numerical optimization problem~\cite{Koch2022,Song2022,Werninghaus2021}. In the strong-driving regime, approximations such as the rotating-wave approximation begin to fail. Counter-rotating terms can then renormalize gate parameters and generate Bloch--Siegert frequency shifts and spurious transitions, all of which contribute to gate errors~\cite{Petrescu2023,Pietikainen2017,Rower2024}. Moreover, the waveform generated by the electronics is generally not identical to the pulse seen by the qubit, because the control line introduces filtering and distortion that must often be characterized on-chip and corrected by predistortion~\cite{Rol2020,Guo2024,Hyyppa2024}. Since it is difficult to incorporate all of these effects analytically within a single framework, high-fidelity control is often achieved through numerical optimization based on a realistic device model~\cite{Koch2022,Song2022,Werninghaus2021}.
+
+To incorporate these effects systematically, pulse design is formulated as an optimization problem for the time-dependent control fields $\{u_k(t)\}$. These fields are chosen so that the realized evolution $U(T)$ approximates a target operation while minimizing a cost functional. In practice, the cost functional may include not only gate infidelity, but also penalties for leakage, pulse amplitude, finite bandwidth, smoothness, robustness, and control-line distortion~\cite{Khaneja2005,Reich2012,Song2022}. Several numerical methods are widely used in this setting. Gradient-based methods such as GRAPE optimize discretized control amplitudes using derivatives of the cost functional with respect to the pulse parameters~\cite{Khaneja2005}. Krotov-type methods construct iterative updates with monotonic improvement under suitable conditions~\cite{Palao2003,Reich2012}. Basis-expansion approaches such as CRAB optimize a reduced set of pulse coefficients in a truncated function basis~\cite{Caneva2011}. 
+
+In superconducting-qubit platforms, these methods are particularly useful for suppressing leakage in fast gates, compensating for control-line distortion, and designing high-fidelity single- and two-qubit operations in realistic multilevel architectures~\cite{Werninghaus2021,Huang2014,Rol2020,Song2022}. In practice, numerical optimization is often most effective when combined with analytically motivated pulse ans\"atze or prior physical insight~\cite{Song2022}. In this thesis, we focus on GRAPE which is one of the most commonly used quantum optimal control technique.
