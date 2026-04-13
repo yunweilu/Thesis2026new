@@ -18,7 +18,7 @@ All superconducting qubits rely on Josephson junctions, which makes the circuit 
 The transmon is a superconducting circuit built from a Josephson junction shunted by a large capacitance, as shown in Fig.~\ref{fig:transmon}(a). The Josephson junction provides the nonlinearity that makes the spectrum anharmonic, while the capacitive shunt reduces the circuit's sensitivity to offset charge. To see this, we start from the circuit Hamiltonian.
 \begin{figure}[t]
   \centering
-  \includegraphics[width=1\linewidth]{thesis/chapter2/transmon.pdf}
+  \includegraphics[width=1\linewidth]{chapter2/transmon.pdf}
   \caption[Transmon qubit.]{Transmon qubit. (a)~Lumped-element circuit: a Josephson junction with energy $E_J$ shunted by a capacitance with charging energy $E_C$. (b)~Cosine potential (solid blue) compared with the harmonic approximation (dashed red). The two lowest transition frequencies, $\omega_b$ and $\omega_b - E_C$, illustrate the weak anharmonicity. (c)~Energy spectrum as a function of offset charge $n_g$ at fixed $E_J/2\pi = 7.1\;\text{GHz}$ for two regimes: $E_J/E_C = 5$ (left, $E_C/2\pi = 1.42\;\text{GHz}$, Cooper-pair-box regime) and $E_J/E_C = 50$ (right, $E_C/2\pi = 0.142\;\text{GHz}$, transmon regime). In the transmon limit the charge dispersion is exponentially suppressed, rendering the spectrum insensitive to $n_g$.}
   \label{fig:transmon}
 \end{figure}
@@ -163,7 +163,7 @@ Replacing the single Josephson junction by a SQUID loop makes the Josephson ener
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\linewidth]{thesis/chapter2/FTT.pdf}
+    \includegraphics[width=0.8\linewidth]{chapter2/FTT.pdf}
     \caption[Flux dependence of the transmon transition frequency \(\omega_b/2\pi\) for a SQUID-based transmon.]{Flux dependence of the transmon transition frequency \(\omega_b/2\pi\) for a SQUID-based transmon. Parameters: \(E_{J1}/h = 12.0~\mathrm{GHz}\), \(E_{J2}/h = 8.0~\mathrm{GHz}\), and \(E_C/h = 0.25~\mathrm{GHz}\). The frequency is maximal at integer flux bias and remains finite at half-integer flux bias because of the junction asymmetry.}
     \label{fig:flux_tunable_transmon}
 \end{figure}
@@ -207,7 +207,7 @@ The transmon suppresses charge sensitivity by operating in the regime $E_J/E_C \
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=1\linewidth]{thesis/chapter2/fluxonium.pdf}
+    \includegraphics[width=1\linewidth]{chapter2/fluxonium.pdf}
     \caption[Fluxonium qubit with $E_J/2\pi = 5.0\;\text{GHz}$, $E_C/2\pi = 1.0\;\text{GHz}$, and $E_L/2\pi = 1.0\;\text{GHz}$.]{Fluxonium qubit with $E_J/2\pi = 5.0\;\text{GHz}$, $E_C/2\pi = 1.0\;\text{GHz}$, and $E_L/2\pi = 1.0\;\text{GHz}$. (a)~Lumped-element circuit: a Josephson junction with energy $E_J$ shunted by a capacitance with charging energy $E_C$ and a superinductance with inductive energy $E_L$, threaded by an external flux $\Phi_{\mathrm{ex}}$. (b)~Energy spectrum of the three lowest levels as a function of $\Phi_{\mathrm{ex}}/\Phi_0$. (c,\,d)~Potential landscape (gray) and probability densities of the ground (green) and first excited (orange) states at $\Phi_{\mathrm{ex}} = 0.4\,\Phi_0$ (c) and at the half-flux sweet spot $\Phi_{\mathrm{ex}} = 0.5\,\Phi_0$.}
     \label{fig:fluxonium}
 \end{figure}
@@ -273,7 +273,7 @@ while the anharmonicity remains large, as shown in Fig.~\ref{fig:fluxonium}(b). 
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=1\linewidth]{thesis/chapter2/qec.pdf}
+    \includegraphics[width=1\linewidth]{chapter2/qec.pdf}
     \caption[Bosonic quantum error correction.]{Bosonic quantum error correction. (a)~Dual-rail encoding: the logical subspace is spanned by $|01\rangle$ and $|10\rangle$ across two bosonic modes. Single-photon loss maps both logical states to the vacuum $|00\rangle$, a leakage state outside the code space, making the error detectable. Orange arrows indicate leakage transitions to higher-excitation states due to thermal excitation. (b)~Binomial code. The code space (left, blue) is spanned by logical states built from even-photon-number Fock states; their Wigner functions are shown at the vertices of a Bloch-sphere representation. A single photon loss maps the code space into a distinguishable error space (right, purple) that retains the logical amplitudes. Parity monitoring detects the error, and feedback applies a corrective operation. These two figures are modified from Refs.\ \cite{teoh2023dual},\cite{Ni2023} respectively.}
     \label{fig:bosonic_qec}
 \end{figure}
@@ -523,7 +523,7 @@ The DRAG-based pulse has been demonstrated in obtaining high-fidelity transmon g
 \paragraph{Parametric Drive}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.6\linewidth]{thesis/chapter2/twomode.pdf}
+\includegraphics[width=0.6\linewidth]{chapter2/twomode.pdf}
 \caption[Parametric-drive model and circuit implementation.]{Parametric-drive model and circuit implementation. (a) Graph representation of the three-mode system, where the bare modes are coupled capacitively (light-gray edges) and mode \(b\) is a flux-tunable transmon whose frequency is modulated by a parametric flux drive. (b) Superconducting-circuit implementation of the model, in which modes \(a\) and \(c\) are cavity modes and mode \(b\) is realized as a flux-tunable transmon coupler.}
 \label{fig:twomode}
 \end{figure}
