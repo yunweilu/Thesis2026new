@@ -100,6 +100,18 @@ After choosing cost functions of interest, a composite cost function $C(\textbf{
 \end{align}
 Here, $j$ enumerates steepest-descent iterations and $\eta_j>0$ is the learning rate governing the step size. 
 
+\nomenclature{$N$}{Number of piecewise-constant control intervals (time steps)}
+\nomenclature{$d$}{Hilbert space dimension}
+\nomenclature{$\Delta t$}{Duration of each control interval in the time discretization}
+\nomenclature{$a_n$}{Control amplitude at discrete time $t_n$}
+\nomenclature{$U_n$}{Short-time unitary propagator for the $n$th interval}
+\nomenclature{$H_n$}{Piecewise-constant Hamiltonian during the $n$th interval ($H_n=H_s+a_n h_c$)}
+\nomenclature{$h_c$}{Operator coupling the control field into the Hamiltonian}
+\nomenclature{$U_T$}{Target unitary gate (gate optimization)}
+\nomenclature{$\Omega$}{Hermitian operator in the trajectory cost $C_2^{\mathrm{st}}$}
+\nomenclature{$\phi_T$}{Target state (state-transfer optimization)}
+\nomenclature{$\psi_0$}{Initial quantum state before forward propagation}
+
 \section{Gradient Computation Strategies}
 \label{sec:gradient-strategies}
 A critical ingredient for GRAPE is the computation of cost function gradients. We discuss three gradient Computation Strategies in this section.
@@ -567,7 +579,7 @@ where $\norm{B}_1=\norm{A}_1/s$, $\alpha=\alpha(\norm{A}_1,m,s)$ and $\beta=\bet
 \subsubsection{Choosing scaling factor and truncation order}
 
 For a given $A$ when computing state propagation by scaling and squaring discussed in Sec.~\ref{subsec:scaling-squaring}, the inequality~\eqref{eq:accuracy_inequality} generally has multiple solutions for $m$ and $s$. As shown in the previous section, the evaluation requires $ms$ matrix-vector multiplications, which are observed to dominate the runtime. Since systematic minimization of $ms$ requires significant runtime itself, this work instead (1) selects solutions to Eq.~\eqref{eq:accuracy_inequality} with the smallest $s$, which is denoted by $\mathbb{s}$, and (2) among these pairs, chooses the one with smallest $m$ (denoted by $\mathbb{m}$). 
-
+ 
 Thus, calculating $e^A\dket{\Psi}$ requires
 \begin{equation}
 \label{eq:mudefnition}
