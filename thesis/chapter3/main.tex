@@ -102,17 +102,75 @@ Here, $j$ enumerates steepest-descent iterations and $\eta_j>0$ is the learning 
 
 \section{Gradient Computation Strategies}
 \label{sec:gradient-strategies}
-
+A critical ingredient for GRAPE is the computation of cost function gradients. We discuss three gradient Computation Strategies in this section.
 \subsection{Full Automatic Differentiation}
 \label{subsec:full-ad}
+In quantum optimal control, adding new cost contributions often requires deriving extra gradient contributions by hand, which can hinder the rapid development of new control protocols. AD avoids this bottleneck by constructing the objective as a computational graph of elementary operations and evaluating gradients efficiently through reverse-mode chain-rule propagation. Since both quantum control and machine learning rely on linear algebra and gradient-based optimization, AD is a natural tool for this setting. It provides gradients with the accuracy and stability of analytic derivations, while removing the need for problem-specific manual gradient calculations.
 
+The central idea of AD is that a complicated objective function is represented as a composition of elementary operations. One first specifies a set of primitive operations, such as addition and multiplication, together with their local derivative rules. During the forward pass, the computational graph is evaluated sequentially from the inputs to the output, and the intermediate numerical values are stored. During the backward pass, the derivative rule associated with each primitive operation is applied in reverse order, and the chain rule is used to accumulate gradients with respect to the input variables. In this way, AD computes gradients by systematically reusing the predefined local derivatives of the primitive operations together with the stored intermediate values.
+
+To illustrate the basic mechanism, we consider the scalar cost function
+\begin{equation}
+    C(x_1,x_2) = (x_1+x_2)e^{x_1}.
+\end{equation}
+This function may be decomposed into the intermediate variables
+\begin{equation}
+    z_0 = x_1 + x_2, \qquad
+    z_1 = e^{x_1}, \qquad
+    C = z_0 z_1.
+\end{equation}
+The corresponding computational graph therefore consists of three primitive operations: addition, exponentiation, and multiplication. In the forward pass, the inputs \(x_1\) and \(x_2\) are used to evaluate \(z_0\), then \(z_1\), and finally the output \(C\). The primal values \(z_0\), \(z_1\), and \(C\) are stored because they are reused later in the backward pass.
+In reverse-mode AD, adjoint variables are defined as the derivatives of the output with respect to each intermediate variable. The backward pass is initialized by setting
+\begin{equation}
+    \bar C \equiv \frac{\partial C}{\partial C} = 1.
+\end{equation}
+Applying the local derivative rule for the multiplication \(C=z_0z_1\) then gives
+\begin{equation}
+    \bar z_0 = \bar C \frac{\partial C}{\partial z_0} = z_1,
+    \qquad
+    \bar z_1 = \bar C \frac{\partial C}{\partial z_1} = z_0.
+\end{equation}
+These expressions show that the adjoints of the intermediate variables are obtained from the stored forward-pass values together with the local derivative rule for the multiplication operation. Proceeding further backward through the graph, the gradients with respect to the inputs are determined from the derivative rules for the addition and exponential operations. Since \(z_0=x_1+x_2\) and \(z_1=e^{x_1}\), one has
+\begin{equation}
+    \frac{\partial z_0}{\partial x_1}=1,
+    \qquad
+    \frac{\partial z_0}{\partial x_2}=1,
+    \qquad
+    \frac{\partial z_1}{\partial x_1}=e^{x_1}=z_1.
+\end{equation}
+The gradient with respect to \(x_1\) receives contributions from two distinct paths in the computational graph, namely
+\(x_1 \rightarrow z_0 \rightarrow C\) and \(x_1 \rightarrow z_1 \rightarrow C\). Reverse-mode AD accumulates these contributions automatically:
+\begin{equation}
+    \bar x_1
+    =
+    \bar z_0 \frac{\partial z_0}{\partial x_1}
+    +
+    \bar z_1 \frac{\partial z_1}{\partial x_1}
+    =
+    z_1 + z_0 z_1
+    =
+    e^{x_1}(x_1+x_2+1).
+\end{equation}
+By contrast, the variable \(x_2\) contributes through only a single path,
+\(x_2 \rightarrow z_0 \rightarrow C\), and therefore
+\begin{equation}
+    \bar x_2
+    =
+    \bar z_0 \frac{\partial z_0}{\partial x_2}
+    =
+    z_1
+    =
+    e^{x_1}.
+\end{equation}
+This simple example illustrates the essential structure of reverse-mode AD. Its implementation in quantum optimal control is discussed in Ref.~\cite{pacleung2017speedup}.
 \subsection{Semi-Automatic Differentiation}
 \label{subsec:semi-ad}
+The convenience of AD comes at the cost of memory required to store the full computational graph. The semi-AD approach~\cite{semiadgoerz2022quantum} partially reduces this memory overhead compared to full automatic differentiation (full-AD). This is achieved by applying AD only to the differentiation of the final cost function with respect to selected intermediate variables. Using the example discussed in Sec.~\ref{subsec:full-ad}, AD is employed only to evaluate the top-level adjoints \(\bar z_0\) and \(\bar z_1\). Once these adjoints are initialized automatically, the remainder of the backward pass, namely the evaluation of \(\bar x_1\) and \(\bar x_2\), is carried out analytically. This avoids the need to store the intermediate values that full-AD would otherwise require to compute \(\bar x_1\) and \(\bar x_2\). For an implementation of semi-AD in quantum optimal control, see Ref.~\cite{semiadgoerz2022quantum}.\
 
 \subsection{Hard-Coded Gradients: Analytical Derivation}
 \label{subsec:hard-coded-gradients}
-The convenience of AD is bought at the cost of significant memory consumption
-which can be prohibitive for large quantum systems. Therefore, this work revisits hard-coded gradients
+Semi-AD partially reduces memory overhead compared to full-AD. However, this reduction can still be insufficient to tackle optimal
+control for quantum systems of rapidly growing size. Therefore, we revisit hard-coded gradients
 in a computationally efficient scheme for key cost contributions.
 Analytical gradient expressions for the cost functions introduced in Sec.\ \ref{subsec: cost functions} are presented next.
 
@@ -651,7 +709,8 @@ The results of this scaling analysis are summarized in Table~\ref{tab:scalingtab
 
 \section{Benchmark Studies of Runtime and Memory Usage for the Three Gradient Strategies}
 \label{sec:benchmark-studies}
-
+Following the scaling analysis in previous section, we present benchmark studies of specific state-transfer and gate-operation
+problems to illustrate the scaling behavior.
 \subsection{State-Transfer Benchmarks}
 \label{subsec:state-transfer-benchmarks}
 
@@ -675,7 +734,7 @@ Benchmark results for the state-transfer optimization are shown in Fig.~\ref{fig
 This work next turns to unitary gate optimization for three driven transmons with nearest-neighbor coupling. The target gate consists of simultaneous Hadamard operations on each transmon, using the Hamiltonian $H_2(t)$ in Eq.~\eqref{eq:gateH}. The goal is to minimize the gate infidelity $C_1^{\mathrm{g}}$. The numerical setup (Autograd, dense storage for fair comparison, timing tools) matches the state-transfer benchmark above.
 
 \begin{figure}[t]
-  \includegraphics[width=\linewidth]{chapter3/figures/gate.pdf}
+  \includegraphics[width=0.9\linewidth]{chapter3/figures/gate.pdf}
   \caption[Benchmark results for unitary gate optimization in a system consisting of three coupled transmons.]{Benchmark results for unitary gate optimization in a system consisting of three coupled transmons. (a)~Runtime per iteration and (b)~memory usage versus Hilbert space dimension $d$. The total Hilbert space dimension $d$ is increased by enlarging the cutoff of each transmon from 10 to 14 simultaneously. (c)~Memory usage as a function of the number of time steps for $d=12^3=1728$. Full-AD (not shown) would require more memory than available resources (estimated: 1\,TB). All plots are in log-log scale. Dashed lines are power-law fits. (Parameters: $g/2\pi=0.1\,$GHz, $K_b/2\pi=0.225\,$GHz, and $a^{(\nu)}/2\pi=0.1\,$GHz.)}
   \label{fig:gate}
 \end{figure}
