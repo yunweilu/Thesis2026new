@@ -1,68 +1,67 @@
 \chapter{Superconducting Qubits: Coherence and Control}
 \label{chap:sc-qubits}
 
-This chapter introduces the superconducting circuits and control techniques used throughout the thesis. The discussion in Sec. \ref{sec:sc-qubits} is organized around the three hardware paradigms introduced in Chapter~\ref{chap:intro}: the transmon, fluxonium, and bosonic qubits. Detailed discussion of decoherence mechanisms and coherence metrics is deferred to Sec.~\ref{sec:decoherence}. Sec.~\ref{sec:control} presents the analytical and numerical techniques used to control these systems.
+This chapter introduces the basic superconducting circuits, decoherence, control techniques. The discussion in Sec.~\ref{sec:sc-qubits} is organized around the three hardware paradigms including transmon, fluxonium, and bosonic qubits. A detailed discussion of decoherence mechanisms and coherence metrics is deferred to Sec.~\ref{sec:decoherence}. In Section~\ref{sec:analyticalcontrol}, this thesis presents the analytical and numerical techniques used to control these systems.
+
 \section{Superconducting Qubits}
 \label{sec:sc-qubits}
 
-All superconducting qubits rely on Josephson junctions, which makes the circuit spectrum anharmonic. This anharmonicity allows individual transitions to be spectrally distinguished and the two lowest levels to be used as an effective qubit. Qubit design must achieve two main goals: sufficiently strong anharmonicity to suppress leakage into noncomputational states, and reduced sensitivity to parameter fluctuations in order to improve robustness against noise. Different qubit modalities realize this balance through their circuit topology, parameter regime, and operating point. The following subsections introduce two widely used platforms, the transmon and the fluxonium. We also discuss a complementary platform, bosonic qubits, which encode quantum information in linear cavities.
+All superconducting qubits rely on Josephson junctions, which render the circuit spectrum anharmonic. This anharmonicity allows individual transitions to be spectrally resolved and the two lowest levels to be used as an effective qubit. Qubit design must achieve two main goals: sufficiently strong anharmonicity to suppress leakage into noncomputational states, and reduced sensitivity to parameter fluctuations to improve robustness against noise. Different qubit modalities achieve these goals through their circuit topology, parameter regime, and operating point. The following subsections introduce two widely used non-linear platforms, transmon and fluxonium qubits. We also discuss a complementary platform, bosonic qubits, which encode quantum information in linear cavities.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=1\linewidth]{chapter2/transmon.pdf}
+  \caption[Transmon qubit.]{The transmon qubit. (a)~Lumped-element circuit: a Josephson junction with Josephson energy $E_J$ shunted by a capacitance characterized by charging energy $E_C$. (b)~Cosine potential (solid blue) and its harmonic approximation (dashed red). The two lowest transition frequencies, $\omega_b$ and $\omega_b - E_C$, highlight the weak anharmonicity. (c)~Energy spectrum as a function of offset charge $n_g$ at fixed $E_J/2\pi = 7.1\;\text{GHz}$ for two regimes: $E_J/E_C = 5$ (left, $E_C/2\pi = 1.42\;\text{GHz}$, Cooper-pair-box regime) and $E_J/E_C = 50$ (right, $E_C/2\pi = 0.142\;\text{GHz}$, transmon regime). In the transmon limit, the charge dispersion is exponentially suppressed, rendering the spectrum insensitive to $n_g$.}
+  \label{fig:transmon}
+\end{figure}
 
 \subsection{The Transmon}
 \label{sec:transmon}
-
 % titlesec writes TOC lines regardless of \c@tocdepth; suppress only these subsubsection lines (see main.tex \tableofcontents).
 \begingroup
 \makeatletter
 \let\ttl@addcontentsline\@gobbletwo
 \makeatother
-The transmon is a superconducting circuit built from a Josephson junction shunted by a large capacitance, as shown in Fig.~\ref{fig:transmon}(a). The Josephson junction provides the nonlinearity that makes the spectrum anharmonic, while the capacitive shunt reduces the circuit's sensitivity to offset charge. To see this, we start from the circuit Hamiltonian.
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=1\linewidth]{chapter2/transmon.pdf}
-  \caption[Transmon qubit.]{Transmon qubit. (a)~Lumped-element circuit: a Josephson junction with energy $E_J$ shunted by a capacitance with charging energy $E_C$. (b)~Cosine potential (solid blue) compared with the harmonic approximation (dashed red). The two lowest transition frequencies, $\omega_b$ and $\omega_b - E_C$, illustrate the weak anharmonicity. (c)~Energy spectrum as a function of offset charge $n_g$ at fixed $E_J/2\pi = 7.1\;\text{GHz}$ for two regimes: $E_J/E_C = 5$ (left, $E_C/2\pi = 1.42\;\text{GHz}$, Cooper-pair-box regime) and $E_J/E_C = 50$ (right, $E_C/2\pi = 0.142\;\text{GHz}$, transmon regime). In the transmon limit the charge dispersion is exponentially suppressed, rendering the spectrum insensitive to $n_g$.}
-  \label{fig:transmon}
-\end{figure}
+The transmon is a superconducting circuit composed of a Josephson junction shunted by a large capacitance, as shown in Fig.~\ref{fig:transmon}(a). The Josephson junction provides the nonlinearity that renders the spectrum anharmonic, while the capacitive shunt reduces sensitivity to offset charge. This is seen by analyzing the circuit Hamiltonian.
 
 \subsubsection{Transmon Hamiltonian}
 
-A Josephson junction consists of two superconductors separated by a thin insulating barrier through which Cooper pairs tunnel coherently~\cite{Gu2017junction,Oliver2013junction}. The junction is characterized by the nonlinear current--phase relation \cite{Josephson1962,Golubov2004}.
+A single Josephson junction shunted by a capacitor [Fig.~\ref{fig:transmon}(a)] is described by the Hamiltonian
 \begin{equation}
-    I = I_c \sin \varphi,
+    H = 4E_C (n - n_g)^2 - E_J \cos \varphi,
 \end{equation}
-where $I_c$ is the critical current and $\varphi$ is the superconducting phase difference across the barrier.
+where
+\begin{equation}
+    E_C = \frac{e^2}{2C_\Sigma},
+    \qquad
+    E_J = \frac{\Phi_0 I_c}{2\pi}.
+\end{equation}
+Here, \(C_\Sigma\) is the total capacitance of the circuit, including the junction capacitance, any added shunt capacitance, and parasitic capacitances; \(\Phi_0 = h/2e\) is the flux quantum; and \(I_c\) is the critical current.
 
-The corresponding Josephson energy is
-\begin{equation}
-    E_J = \frac{\Phi_0 I_c}{2\pi},
-\end{equation}
-with $\Phi_0 = h/2e$ the flux quantum. Unlike a linear inductor, whose energy is quadratic in current, the Josephson junction contributes an energy that is periodic in $\varphi$. This cosine dependence is the source of the circuit nonlinearity and, ultimately, of the anharmonicity needed for qubit operation.
+The charge degree of freedom is described by the operator \(n\), whose integer eigenvalues represent the net number of Cooper pairs on the island. The parameter \(n_g\) is an offset charge, in units of the Cooper-pair charge, arising from capacitive coupling to external voltages as well as from background charges in the device environment. The charging term \(4E_C (n-n_g)^2\) therefore gives the electrostatic energy of the island and determines the energy cost of changing its charge state.
 
-Because the junction connects two superconducting islands, Cooper pairs tunnel across it in discrete units. The charge operator $n$, which counts the number of transferred Cooper pairs, therefore has integer eigenvalues. Its conjugate variable is the gauge-invariant phase difference $\varphi$. In the charge basis, the most natural phase operators are the exponentials $e^{\pm i\varphi}$, which shift the charge by one Cooper pair and satisfy
+The phase degree of freedom is described by the operators \(e^{\pm i\varphi}\), which transfer a single Cooper pair across the junction and thus shift the charge by one:
 \begin{equation}
-    [e^{\pm i\varphi},\, n] = \pm e^{\pm i\varphi}.
+    [n, e^{\pm i\varphi}] = \pm e^{\pm i\varphi},
 \end{equation}
-The Josephson term can then be written as
+or equivalently,
 \begin{equation}
-    \cos \varphi = \frac{e^{i\varphi} + e^{-i\varphi}}{2},
+    e^{\pm i\varphi}\ket{n} = \ket{n \pm 1}.
 \end{equation}
-which is a well-defined operator in the charge basis.
-
-The charging energy associated with the total shunt capacitance $C_\Sigma$ is
+Accordingly, the Josephson term
 \begin{equation}
-    E_C = \frac{e^2}{2C_\Sigma}.
+    -E_J \cos\varphi
+    = -\frac{E_J}{2}\left(e^{i\varphi}+e^{-i\varphi}\right) = -E_J\big(|n\rangle\langle n+1| + \text{h.c.}\big)
 \end{equation}
-Including a possible offset charge $n_g$, the circuit Hamiltonian is [Fig.~\ref{fig:transmon}(a)]
-\begin{equation}
-    H = 4E_C (n - n_g)^2 - E_J \cos \varphi.
-\end{equation}
+represents coherent Cooper-pair tunneling across the barrier. In contrast to the quadratic potential of a linear inductor, this contribution is periodic in \(\varphi\). The resulting cosine potential is nonlinear and gives rise to the anharmonicity required for qubit operation.
 
 \subsubsection{Transmon limit and weak anharmonicity}
 
 The transmon regime is defined by
 \begin{equation}
-    E_J \gg E_C ,
+    E_J \gg E_C .
 \end{equation}
-or equivalently \(E_C/E_J \ll 1\). In this limit, the low-lying states are localized near a minimum of the Josephson potential, at \(\varphi \approx 0\). The spectrum is therefore determined mainly by the local shape of the cosine potential, which is be expanded about this minimum as
+In this limit, the low-lying states are localized near a minimum of the Josephson potential, near \(\varphi \approx 0\). The spectrum is therefore determined mainly by the local shape of the cosine potential, which can be expanded about this minimum as
 \begin{equation}
     -E_J\cos\varphi
     \approx
@@ -71,7 +70,7 @@ or equivalently \(E_C/E_J \ll 1\). In this limit, the low-lying states are local
     - \frac{E_J}{24}\varphi^4
     + \mathcal{O}(\varphi^6).
 \end{equation}
-The low-energy states and eigenvalues are then approximated by the Hamiltonian
+The low-energy states and eigenvalues are then described by the approximate Hamiltonian
 \begin{equation}
     H_{\mathrm{app}}
     =
@@ -81,17 +80,17 @@ The low-energy states and eigenvalues are then approximated by the Hamiltonian
     - \frac{E_J}{24}\varphi^4
     + \mathcal{O}(\varphi^6),
 \end{equation}
-with boundary condition
+with the boundary condition
 \begin{equation}
     \psi(\varphi)\to 0
     \qquad \text{as } |\varphi|\to\infty .
 \end{equation}
 
-Once the periodic boundary condition is no longer imposed, \(\varphi\) can be treated as an ordinary unbounded operator satisfying \([\varphi,n]=i\). In this approximate description, the offset charge can be removed by the unitary transformation
+With this boundary condition, the offset charge can be eliminated by the unitary transformation
 \begin{equation}
     U(n_g)=e^{-in_g\varphi},
 \end{equation}
-under which
+which transforms the operators as
 \begin{equation}
     U n U^\dagger = n+n_g,
     \qquad
@@ -109,7 +108,7 @@ so that
 \end{equation}
 The low-energy spectrum is therefore approximately independent of \(n_g\).
 
-The validity of this approximation is controlled by the ratio \(E_C/E_J\). For small \(E_C/E_J\), equivalently large \(E_J/E_C\), the charge dispersion is exponentially suppressed \cite{Koch2007}. As shown in Fig.~\ref{fig:transmon}(c), increasing \(E_J/E_C\) from 5 to 50 makes the energy levels nearly flat as functions of \(n_g\). One may therefore set \(n_g=0\) to leading order and write
+The validity of this approximation is controlled by the ratio \(E_C/E_J\). When \(E_C/E_J\) is small, the charge dispersion is exponentially suppressed \cite{Koch2007}. As shown in Fig.~\ref{fig:transmon}(c), increasing \(E_J/E_C\) from 5 to 50 makes the energy levels nearly independent of \(n_g\). In the transmon limit \(E_J/E_C \gg 1\), one may therefore set \(n_g=0\) at leading order and obtain
 \begin{equation}
     H_{\mathrm{app}}
     \approx
@@ -119,11 +118,11 @@ The validity of this approximation is controlled by the ratio \(E_C/E_J\). For s
     - E_J .
 \end{equation}
 
-The quadratic terms define a harmonic oscillator with plasma frequency
+The quadratic terms define a harmonic oscillator with frequency
 \begin{equation}
     \omega_p = \sqrt{8E_JE_C}.
 \end{equation}
-To reexpress Hamiltonian under oscillator basis states, we introducing ladder operators,
+To express the Hamiltonian in the oscillator basis, we introduce the ladder operators
 \begin{equation}
     \varphi = \varphi_{\mathrm{zpf}}(b+b^\dagger),
     \qquad
@@ -133,19 +132,19 @@ with
 \begin{equation}
     \varphi_{\mathrm{zpf}}=\left(\frac{2E_C}{E_J}\right)^{1/4},
     \qquad
-    n_{\mathrm{zpf}}=\left(\frac{E_J}{32E_C}\right)^{1/4},
+    n_{\mathrm{zpf}}=\left(\frac{E_J}{32E_C}\right)^{1/4}.
 \end{equation}
-the harmonic part becomes
+The harmonic part becomes
 \begin{equation}
     H_{\mathrm{harm}}
     =
     \omega_p\left(b^\dagger b+\frac12\right)-E_J.
 \end{equation}
-The quartic term gives the leading deviation from equal level spacing, with anharmonicity
+The quartic term gives the leading deviation from equal level spacing and yields the anharmonicity
 \begin{equation}
     \alpha \approx -E_C,
 \end{equation}
-and lowest transition frequency
+and the lowest transition frequency
 \begin{equation}
     \omega_{01}\approx \sqrt{8E_JE_C}-E_C.
 \end{equation}
@@ -155,20 +154,43 @@ Since
     \sim
     \left(\frac{E_C}{E_J}\right)^{1/2}\ll 1,
 \end{equation}
-the transmon is only weakly anharmonic.
+the transmon is weakly anharmonic.
 
 \subsubsection{Flux-tunable transmon}
-
-Replacing the single Josephson junction by a SQUID loop makes the Josephson energy tunable with an external magnetic flux, as shown in Fig.\ \ref{fig:flux_tunable_transmon}. A SQUID consists of two Josephson junctions connected in parallel around a superconducting loop. The applied flux \(\Phi_{\mathrm{ex}}\) imposes a phase difference between the two branches, so the total tunneling amplitude is the coherent sum of two Josephson paths. The SQUID therefore behaves as a single effective junction with flux-dependent Josephson energy.
-
+\label{FTT}
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{chapter2/FTT.pdf}
-    \caption[Flux dependence of the transmon transition frequency \(\omega_b/2\pi\) for a SQUID-based transmon.]{Flux dependence of the transmon transition frequency \(\omega_b/2\pi\) for a SQUID-based transmon. Parameters: \(E_{J1}/h = 12.0~\mathrm{GHz}\), \(E_{J2}/h = 8.0~\mathrm{GHz}\), and \(E_C/h = 0.25~\mathrm{GHz}\). The frequency is maximal at integer flux bias and remains finite at half-integer flux bias because of the junction asymmetry.}
+    \caption[Flux-tunable transmon.]{Flux-tunable transmon. (a)~Lumped-element circuit: a SQUID-based transmon in which two Josephson junctions with energies \(E_{J1}\) and \(E_{J2}\) are shunted by a capacitance with charging energy \(E_C\), with the loop threaded by an external flux \(\Phi_{\mathrm{ex}}\). (b)~Flux dependence of the transmon transition frequency \(\omega_b/2\pi\). The parameters are \(E_{J1}/h = 12.0~\mathrm{GHz}\), \(E_{J2}/h = 8.0~\mathrm{GHz}\), and \(E_C/h = 0.25~\mathrm{GHz}\). The frequency is maximal at integer values of \(\Phi_{\mathrm{ex}}/\Phi_0\) and remains finite at half-integer values due to the junction asymmetry.}
     \label{fig:flux_tunable_transmon}
 \end{figure}
 
-For junction energies \(E_{J1}\) and \(E_{J2}\), and neglecting the loop inductance, the SQUID is equivalent to a single junction with effective Josephson energy
+Replacing the single Josephson junction with a superconducting quantum interference device (SQUID) makes the effective Josephson energy tunable by an external magnetic flux. A SQUID consists of two Josephson junctions connected in parallel to form a superconducting loop, as shown in Fig.~\ref{fig:flux_tunable_transmon}. The applied flux \(\Phi_{\mathrm{ex}}\) sets the phase difference between the two junctions, allowing the SQUID to be described as an effective single junction with a flux-dependent Josephson energy.
+
+For a SQUID consisting of two Josephson junctions with Josephson energies \(E_{J1}\) and \(E_{J2}\), the Josephson potential is
+\begin{equation}
+    U_J = -E_{J1}\cos\varphi_1 - E_{J2}\cos\varphi_2,
+\end{equation}
+where \(\varphi_1\) and \(\varphi_2\) are the phase differences across the two junctions. In the limit of negligible loop inductance, the phases satisfy
+\begin{equation}
+    \varphi_1 - \varphi_2 = 2\pi \frac{\Phi_{\mathrm{ex}}}{\Phi_0}.
+\end{equation}
+Introducing the average phase
+\begin{equation}
+    \varphi = \frac{\varphi_1+\varphi_2}{2},
+\end{equation}
+the Josephson potential becomes
+\begin{equation}
+    U_J
+    =
+    -E_{J1}\cos\!\left(\varphi+\pi\frac{\Phi_{\mathrm{ex}}}{\Phi_0}\right)
+    -E_{J2}\cos\!\left(\varphi-\pi\frac{\Phi_{\mathrm{ex}}}{\Phi_0}\right).
+\end{equation}
+This can be rewritten as
+\begin{equation}
+    U_J = -E_J(\Phi_{\mathrm{ex}})\cos(\varphi-\varphi_0),
+\end{equation}
+where
 \begin{equation}
     E_J(\Phi_{\mathrm{ex}})
     =
@@ -179,114 +201,112 @@ For junction energies \(E_{J1}\) and \(E_{J2}\), and neglecting the loop inducta
         d^2 \sin^2\!\left(\pi\frac{\Phi_{\mathrm{ex}}}{\Phi_0}\right)
     },
 \end{equation}
-where
+with
 \begin{equation}
-    E_{J\Sigma} = E_{J1}+E_{J2},
+    E_{J\Sigma}=E_{J1}+E_{J2},
     \qquad
-    d = \frac{E_{J1}-E_{J2}}{E_{J1}+E_{J2}}.
+    d=\frac{E_{J1}-E_{J2}}{E_{J1}+E_{J2}},
 \end{equation}
-The parameter \(d\) quantifies the junction asymmetry. For a symmetric SQUID, \(d=0\), the tunability is maximal. For \(d\neq 0\), the effective Josephson energy does not vanish at \(\Phi_{\mathrm{ex}}=\Phi_0/2\), so the tuning range is reduced and the qubit retains a nonzero minimum frequency.
-
-The transmon transition frequency therefore becomes flux dependent:
+and
+\begin{equation}
+    \varphi_0 = \arctan\!\left( -d\tan\!\left(\pi\frac{\Phi_{\mathrm{ex}}}{\Phi_0}\right) \right).
+\end{equation}
+The parameter \(d\) quantifies the junction asymmetry. For a symmetric SQUID (\(d=0\)), the tunability is maximal, and \(E_J(\Phi_{\mathrm{ex}})\) vanishes at \(\Phi_{\mathrm{ex}}=\Phi_0/2\). For \(d\neq 0\), the effective Josephson energy remains finite at \(\Phi_{\mathrm{ex}}=\Phi_0/2\), which reduces the tuning range and leaves the qubit with a nonzero minimum frequency. The transmon transition frequency therefore becomes flux dependent:
 \begin{equation}
     \omega_b(\Phi_{\mathrm{ex}})
     \approx
     \sqrt{8E_C\,E_J(\Phi_{\mathrm{ex}})} - E_C.
 \end{equation}
-As shown in Fig.~\ref{fig:flux_tunable_transmon}(b), \(\omega_b\) is periodic in \(\Phi_{\mathrm{ex}}\) with period \(\Phi_0\). It reaches its maximum at integer flux bias and decreases toward half-integer flux bias, where the reduction in \(E_J\) lowers the qubit frequency. 
+As shown in Fig.~\ref{fig:flux_tunable_transmon}(b), \(\omega_b\) is periodic in \(\Phi_{\mathrm{ex}}\) with period \(\Phi_0\). It reaches its maximum at integer flux bias and decreases toward half-integer values of the flux bias, where the reduction in \(E_J\) lowers the qubit frequency.
 
-Flux tuning provides direct control over the transmon spectrum. It can be used to adjust qubit detunings, bring the qubit into or out of resonance with other circuit elements, and access interactions that are otherwise off resonant. Since \(E_C\) is set primarily by the shunt capacitance, the anharmonicity remains approximately \(\alpha \approx -E_C\) throughout the tuning range, while the transition frequency can vary by several GHz.
-
-Time-dependent flux control extends this tunability to parametric driving. Modulating \(\Phi_{\mathrm{ex}}\) generates sidebands and enables controllable interactions between cavity modes, as discussed later in Secs.~\ref{subsec:analytical-control}.
 \endgroup
 
 \subsection{The Fluxonium}
 \label{sec:fluxonium}
-
-The transmon suppresses charge sensitivity by operating in the regime $E_J/E_C \gg 1$, but this same limit also makes the spectrum only weakly anharmonic. As systems scale up, the resulting small spacing between neighboring transitions increases the risk of leakage and makes selective control more difficult \cite{Koch2007,Sank2016}. Fluxonium addresses this trade-off by modifying the circuit topology itself: instead of shunting the Josephson junction only with a large capacitance, it also includes a large linear inductance. The resulting circuit accesses a qualitatively different regime of superconducting-qubit physics and was first proposed by Manucharyan \emph{et al.}~\cite{Manucharyan2009}.
-
 \begin{figure}[t]
     \centering
     \includegraphics[width=1\linewidth]{chapter2/fluxonium.pdf}
-    \caption[Fluxonium qubit with $E_J/2\pi = 5.0\;\text{GHz}$, $E_C/2\pi = 1.0\;\text{GHz}$, and $E_L/2\pi = 1.0\;\text{GHz}$.]{Fluxonium qubit with $E_J/2\pi = 5.0\;\text{GHz}$, $E_C/2\pi = 1.0\;\text{GHz}$, and $E_L/2\pi = 1.0\;\text{GHz}$. (a)~Lumped-element circuit: a Josephson junction with energy $E_J$ shunted by a capacitance with charging energy $E_C$ and a superinductance with inductive energy $E_L$, threaded by an external flux $\Phi_{\mathrm{ex}}$. (b)~Energy spectrum of the three lowest levels as a function of $\Phi_{\mathrm{ex}}/\Phi_0$. (c,\,d)~Potential landscape (gray) and probability densities of the ground (green) and first excited (orange) states at $\Phi_{\mathrm{ex}} = 0.4\,\Phi_0$ (c) and at the half-flux sweet spot $\Phi_{\mathrm{ex}} = 0.5\,\Phi_0$.}
+    \caption[Fluxonium qubit.]{Fluxonium qubit.  (a)~Lumped-element circuit of a fluxonium qubit: a Josephson junction with Josephson energy $E_J$, shunted by a capacitance characterized by charging energy $E_C$ and a superinductance characterized by inductive energy $E_L$, with the loop threaded by an external flux $\Phi_{\mathrm{ex}}$. (b)~Energy spectrum of the three lowest energy levels as a function of $\Phi_{\mathrm{ex}}/\Phi_0$. (c,d)~Potential energy landscape (gray) and probability densities of the ground state (green) and first excited state (orange) at $\Phi_{\mathrm{ex}} = 0.4\,\Phi_0$ (c) and at the half-flux sweet spot, $\Phi_{\mathrm{ex}} = 0.5\,\Phi_0$ (d). Parameters: $E_J/2\pi = 5.0\;\text{GHz}$, $E_C/2\pi = 1.0\;\text{GHz}$, and $E_L/2\pi = 1.0\;\text{GHz}$}
     \label{fig:fluxonium}
 \end{figure}
 
-The fluxonium Hamiltonian is [Fig.~\ref{fig:fluxonium}(a)]
+The transmon suppresses charge sensitivity by operating in the regime \(E_C/E_J \ll 1\), but this same limit leaves the spectrum only weakly anharmonic. The Fluxonium~\cite{Manucharyan2009} addresses this trade-off by modifying the circuit topology itself: it incorporates a large linear inductance. This circuit accesses a qualitatively different regime of superconducting qubits.
+
+The Hamiltonian of the fluxonium circuit, shown in Fig.~\ref{fig:fluxonium}(a), is
 \begin{equation}
     H = 4E_C (n - n_g)^2 - E_J \cos\varphi + \frac{1}{2} E_L (\varphi + \phi_e)^2,
     \label{eq:fluxonium_hamiltonian}
 \end{equation}
-where $E_C$ is the charging energy, $E_J$ the Josephson energy, and
+where \(E_C\) is the charging energy, \(E_J\) is the Josephson energy, and
 \begin{equation}
     E_L = \left(\frac{\Phi_0}{2\pi}\right)^2 \frac{1}{L}
 \end{equation}
-is the inductive energy associated with the linear inductance $L$. The reduced external flux
+is the inductive energy associated with the linear inductance \(L\). The reduced external flux
 \begin{equation}
     \phi_e = \frac{2\pi \Phi_e}{\Phi_0}
 \end{equation}
-biases the loop formed by the junction and the inductor. Relative to the transmon, the new ingredient is the quadratic inductive term, which competes with the Josephson cosine and qualitatively reshapes the potential landscape.
+biases the loop formed by the junction and the inductor. 
 
-The inductive shunt also changes the circuit boundary conditions. In a Cooper-pair box or transmon, the two superconducting islands are connected only through the junction, so charge is transferred in discrete units and the phase is a compact variable. In fluxonium, the superinductor galvanically connects the two sides of the junction and removes this isolated-island structure. As a result, $\varphi$ may be treated as an ordinary unbounded operator and $n$ as its continuous conjugate variable, satisfying
+The inductive shunt changes the circuit boundary conditions. In a Cooper-pair box or transmon, the two superconducting islands are connected only through the junction, so charge is transferred in discrete units and the phase is a periodic variable. In fluxonium, the superinductor galvanically connects the two sides of the junction and removes this isolated-island structure. As a result, \(\varphi\) can be treated as an ordinary unbounded operator, and \(n\) as its continuous conjugate variable, satisfying
 \begin{equation}
     [\varphi,n] = i.
 \end{equation}
-This underlies one of the defining advantages of fluxonium compared to transmon: fluxonium is intrinsically insensitive to offset charge without requiring the large-$E_J/E_C$ limit.
-
-Equation~\eqref{eq:fluxonium_hamiltonian} contains three energy scales---$E_C$, $E_J$, and $E_L$---together with the external flux $\phi_e$. Different ratios of these parameters produce qualitatively distinct regimes, all described by the same Hamiltonian but with different spectra and operating characteristics. Examples include heavy fluxonium \cite{Earnest2018,Zhang2021,Ficheux2021}, standard fluxonium \cite{Nguyen2019,Somoroff2023,Bao2022,Ding2023}, the inductively shunted transmon \cite{Hassani2023,Zobrist2026}, and integer fluxonium \cite{Mencia2024}. Rather than viewing these as unrelated devices, it is useful to regard them as different parameter regimes of a common circuit model.
+This is one of the defining advantages of fluxonium compared to the transmon: fluxonium is intrinsically insensitive to offset charge without requiring the large-\(E_J/E_C\) limit.
 
 \begin{table}[t]
-    \centering
-    \small
-    \setlength{\tabcolsep}{4pt}
-    \renewcommand{\arraystretch}{1.3}
-    \caption[Representative parameter regimes of fluxonium variants]{Representative parameter regimes of fluxonium-family circuits. All entries are described by Eq.~\eqref{eq:fluxonium_hamiltonian}, with different ratios of the three energy scales.}
-    \label{tab:fluxonium_variants}
-    \begin{tabular}{@{}>{\raggedright\arraybackslash}p{3.4cm} c c c c c@{}}
-        \hline\hline
-        Variant & $E_J/E_C$ & $E_L/E_C$ & $f_{01}$ & $\alpha$ & Flux pt. \\
-        \hline
-        Heavy fluxonium & $\gg 1$ & $< 1$ & $10$--$100$\,MHz & $\sim$\,GHz & $\Phi_0/2$ \\[6pt]
-        Standard fluxonium & $> 1$ & $\lesssim 1$ & $0.1$--$1$\,GHz & $\sim$\,GHz & $\Phi_0/2$ \\[6pt]
-        Inductively shunted transmon & $\gg 1$ & $\gg 1$ & $\sim 6$\,GHz & $\sim 200$\,MHz & $0$ \\[6pt]
-        Integer fluxonium & $> 1$ & $\ll 1$ & $\sim 4$\,GHz & $10$--$100$\,MHz & $0$ \\
-        \hline\hline
-    \end{tabular}
-    \\[6pt]
-    {\raggedright\footnotesize References: heavy fluxonium \cite{Earnest2018,Zhang2021,Ficheux2021}; standard fluxonium \cite{Nguyen2019,Somoroff2023,Bao2022,Dogan2023,Ding2023,Moskalenko2022}; inductively shunted transmon \cite{Hassani2023,Zobrist2026}; integer fluxonium \cite{Mencia2024}.\par}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.3}
+\caption[Representative parameter regimes of fluxonium-family circuits.]{Representative parameter regimes of fluxonium-family circuits. All entries are described by Eq.~\eqref{eq:fluxonium_hamiltonian}, with different ratios of the three energy scales \(E_J\), \(E_C\), and \(E_L\).}
+\label{tab:fluxonium_variants}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{3.4cm} c c c c c@{}}
+    \hline\hline
+    Variant & $E_J/E_C$ & $E_L/E_C$ & $f_{01}$ & $\alpha$ & Flux bias \\
+    \hline
+    Heavy fluxonium & $\gg 1$ & $< 1$ & $10$--$100$\,MHz & $\sim$\,GHz & $\Phi_0/2$ \\[6pt]
+    Standard fluxonium & $> 1$ & $\lesssim 1$ & $0.1$--$1$\,GHz & $\sim$\,GHz & $\Phi_0/2$ \\[6pt]
+    Inductively shunted transmon & $\gg 1$ & $\gg 1$ & $\sim 6$\,GHz & $\sim 200$\,MHz & $0$ \\[6pt]
+    Integer fluxonium & $> 1$ & $\ll 1$ & $\sim 4$\,GHz & $10$--$100$\,MHz & $0$ \\
+    \hline\hline
+\end{tabular}
+\\[6pt]
+{\raggedright\footnotesize References: heavy fluxonium \cite{Earnest2018,Zhang2021,Ficheux2021}; standard fluxonium \cite{Nguyen2019,Somoroff2023,Bao2022,Dogan2023,Ding2023,Moskalenko2022}; inductively shunted transmon \cite{Hassani2023,Zobrist2026}; integer fluxonium \cite{Mencia2024}.\par}
 \end{table}
 
-For pedagogical concreteness, it is useful to focus on a standard fluxonium.
-Away from the half-flux sweet spot, \(\phi_e \neq \pi\), the double-well potential is tilted, and the two lowest states are localized predominantly in one well or the other [Fig.~\ref{fig:fluxonium}(c)]. In this regime, the transition frequency is strongly flux dependent because the relative depth of the two wells changes directly with \(\phi_e\) [Fig.~\ref{fig:fluxonium}(b)]. The matrix elements \(\langle g|\varphi|e\rangle\) and \(\langle g|n|e\rangle\) are strongly suppressed, since the two states have little spatial overlap.
+Equation~\eqref{eq:fluxonium_hamiltonian} contains three energy scales---\(E_C\), \(E_J\), and \(E_L\)---and the external flux \(\phi_e\). Different ratios of these parameters give rise to qualitatively distinct regimes, all described by the same Hamiltonian but exhibiting different spectra and operating characteristics. These include heavy fluxonium \cite{Earnest2018,Zhang2021,Ficheux2021}, standard fluxonium \cite{Nguyen2019,Somoroff2023,Bao2022,Ding2023}, the inductively shunted transmon \cite{Hassani2023,Zobrist2026}, and integer fluxonium \cite{Mencia2024}. These qubits have different parameter regimes of a common circuit model.
 
-At the sweet spot, \(\phi_e=\pi\), the potential
+For concreteness, we focus on standard fluxonium. Away from the half flux, the double-well potential is tilted, and the two lowest states are localized predominantly in one of the two wells [Fig.~\ref{fig:fluxonium}(c)]. The matrix elements \(\langle g|\varphi|e\rangle\) and \(\langle g|n|e\rangle\) are strongly suppressed because the two states have little spatial overlap.
+
+At half flux, the potential
 \begin{equation}
     V(\varphi)= -E_J \cos\varphi + \frac{1}{2} E_L (\varphi + \pi)^2
 \end{equation}
-becomes a symmetric double well [Fig.~\ref{fig:fluxonium}(d)]. The two lowest eigenstates are then approximately symmetric and antisymmetric superpositions of states in the two wells, so the low-energy spectrum is governed by tunneling rather than by weak anharmonic corrections to a single harmonic well, as in the transmon. At this bias point, the transition frequency is first-order insensitive to flux,
+becomes a symmetric double-well potential [Fig.~\ref{fig:fluxonium}(d)]. The two lowest eigenstates then form a tunnel-split doublet, so the \(\ket{g}\leftrightarrow\ket{e}\) transition is governed by interwell tunneling. At this bias point, the transition frequency is first-order insensitive to flux,
 \begin{equation}
     \frac{\partial \omega_{ge}}{\partial \phi_e}=0,
 \end{equation}
-while the anharmonicity remains large, as shown in Fig.~\ref{fig:fluxonium}(b). This combination of flux-noise protection and strong spectral nonuniformity is a defining feature of fluxonium.
+while the anharmonicity remains large, as shown in Fig.~\ref{fig:fluxonium}(b). This bias point is called sweet spot which helps improve dephasing against flux noise, as discussed in Sec.\ \ref{subsec:sweet-spots}. 
+
+The combination of protection against charge noise and strong spectral anharmonicity is a defining feature of fluxonium.
+
 \subsection{Bosonic Qubits}
 \label{sec:bosonic_qubits}
 
 \begin{figure}[t]
     \centering
     \includegraphics[width=1\linewidth]{chapter2/qec.pdf}
-    \caption[Bosonic quantum error correction.]{Bosonic quantum error correction. (a)~Dual-rail encoding: the logical subspace is spanned by $|01\rangle$ and $|10\rangle$ across two bosonic modes. Single-photon loss maps both logical states to the vacuum $|00\rangle$, a leakage state outside the code space, making the error detectable. Orange arrows indicate leakage transitions to higher-excitation states due to thermal excitation. (b)~Binomial code. The code space (left, blue) is spanned by logical states built from even-photon-number Fock states; their Wigner functions are shown at the vertices of a Bloch-sphere representation. A single photon loss maps the code space into a distinguishable error space (right, purple) that retains the logical amplitudes. Parity monitoring detects the error, and feedback applies a corrective operation. These two figures are modified from Refs.\ \cite{teoh2023dual},\cite{Ni2023} respectively.}
+    \caption[Bosonic quantum error correction.]{Bosonic quantum error correction. (a)~Dual-rail encoding: the logical subspace is spanned by $|1,0\rangle$ and $|0,1\rangle$ across two bosonic modes. A single-photon loss maps both logical states to the vacuum state $|0,0\rangle$, a leakage state outside the code space, making the error detectable. (b)~Binomial code: the code space (left, blue) is spanned by logical states built from even-photon-number Fock states; their Wigner functions are shown at the vertices of a Bloch-sphere representation. A single-photon loss maps the code space into a distinguishable error space (right, purple) that retains the logical amplitudes. Parity monitoring detects the error, followed by a recovery operation. Panels (a) and (b) are adapted from Refs.~\cite{teoh2023dual} and \cite{Ni2023}, respectively.}
     \label{fig:bosonic_qec}
 \end{figure}
 
-Transmon and fluxonium qubits encode quantum information in the lowest two levels of an anharmonic circuit. Bosonic qubits follow a different strategy: they encode a logical qubit in the large Hilbert space of a harmonic oscillator, typically a superconducting microwave cavity. Because the cavity mode contains no Josephson junction, it can be much longer lived than junction-based qubits, particularly in three-dimensional architectures \cite{Paik2011,Reagor2016,Milul2023}. Its dominant error channel is often single-photon loss rather than pure dephasing. This pronounced noise bias makes bosonic modes a natural platform for hardware-efficient quantum error correction, in which the encoding is tailored to the dominant physical error \cite{Cai2021,Copetudo2024}.
-
-The central idea of Bosonic encoding is to use the oscillator Hilbert space to encode a logical qubit redundantly, so that the dominant error produces a detectable and, in favorable cases, correctable signature. The need for such redundancy is clear from comparison with an ordinary two-level qubit. If a qubit is measured in $|0\rangle$, the final result alone does not reveal whether the computation genuinely produced $|0\rangle$ or whether an intended $|1\rangle$ relaxed before readout. The error acts within the computational subspace and leaves no direct flag.
+Transmon and fluxonium qubits encode quantum information in the lowest two levels of an anharmonic circuit. Bosonic qubits follow a different strategy: they use the oscillator Hilbert space to encode a logical qubit with redundancy, so that the error is detectable and even correctable. The need for such redundancy is clear from a comparison with an two-level qubit. If a qubit is measured in $|0\rangle$, the measurement outcome alone does not determine whether the computation actually produced $|0\rangle$ or whether the qubit was in $|1\rangle$ and relaxed before readout. The error acts within the computational subspace and leaves no direct flag.
 
 The simplest bosonic example is the dual-rail code [Fig.~\ref{fig:bosonic_qec}(a)],
 \begin{equation}
     |0_L\rangle = |1,0\rangle, \qquad |1_L\rangle = |0,1\rangle,
 \end{equation}
-where the logical qubit is stored across two bosonic modes. A single-photon loss maps both logical basis states to the vacuum state $|0,0\rangle$, which lies outside the code space. Photon loss therefore appears as a detectable leakage event: monitoring the total excitation number reveals that an error has occurred. Although the dual-rail code does not recover the original superposition coefficients, it illustrates the essential principle of bosonic error detection: redundancy is used so that the dominant error becomes visible rather than remaining hidden within the logical subspace.
+where the logical qubit is stored across two bosonic modes. A single-photon loss maps both logical basis states to the vacuum state $|0,0\rangle$, which lies outside the code space. Photon loss therefore appears as a detectable leakage event: monitoring the total excitation number reveals that an error has occurred. The dual-rail code illustrates the essential principle of bosonic error detection: redundancy is used so that the photon loss becomes visible rather than remaining hidden within the logical subspace.
 
 To achieve correction rather than mere detection, the encoding must preserve the logical amplitudes after the error. A simple example is the binomial code [Fig.~\ref{fig:bosonic_qec}(b)],
 \begin{equation}
@@ -296,29 +316,28 @@ These logical states occupy only even-photon-number Fock states. A single-photon
 \begin{equation}
     a|0_L\rangle = \sqrt{2}\,|3\rangle, \qquad a|1_L\rangle = \sqrt{2}\,|1\rangle,
 \end{equation}
-so the loss event is identified by a change in photon-number parity. Unlike the dual-rail code, the error states remain distinct and retain the encoded amplitudes. For an encoded state $|\psi_L\rangle = \alpha|0_L\rangle + \beta|1_L\rangle$, photon loss induces
+so the loss event is identified by a change in photon-number parity. Unlike in the dual-rail code, the error states remain distinct and retain the encoded amplitudes. For an encoded state $|\psi_L\rangle = \alpha|0_L\rangle + \beta|1_L\rangle$, photon loss induces
 \begin{equation}
     a|\psi_L\rangle = \sqrt{2}\left(\alpha|3\rangle + \beta|1\rangle\right).
 \end{equation}
-So the coefficients $\alpha$ and $\beta$ are preserved. The binomial code therefore illustrates how the oscillator Hilbert space can be engineered so that the dominant physical error is, in principle, correctable.
+Thus, the coefficients $\alpha$ and $\beta$ are preserved. Once the error is detected, we can perform a recovery operation to obtain the state $|\psi_L\rangle$. The binomial code therefore illustrates how the bosonic encoding helps extend qubit lifetime.
 
-Other bosonic encodings implement the same idea with different state structures and noise models. Cat codes \cite{Mirrahimi2014,Grimm2020} use superpositions of coherent states and typically extract the error syndrome through photon-number parity, while Gottesman--Kitaev--Preskill (GKP) states \cite{Gottesman2001,CampagneIbarcq2020} encode information in a grid-like structure in phase space. Despite these differences, the common principle is the same: the encoding is matched to the dominant noise channel of the bosonic mode.
+Other common bosonic encodings are cat codes \cite{Mirrahimi2014,Grimm2020} thatuse superpositions of coherent states and Gottesman--Kitaev--Preskill (GKP) states \cite{Gottesman2001,CampagneIbarcq2020} that encode information in a grid-like structure in phase space. 
 
-Due to absence of non-linearity, linear driving cavity can only produces coherent states. Preparation of the non-Gaussian states required for bosonic encoding, such as cat states and GKP states requires coupling the cavity to a nonlinear ancilla or coupler, as discussed in Sec.~\ref{subsec:analytical-control}.
+In the absence of nonlinearity, a linearly driven cavity can only produce coherent states. Preparing the non-Gaussian states required for bosonic encoding, such as cat states and GKP states, requires coupling the cavity to a nonlinear ancilla or coupler, as discussed in Sec.~\ref{sec:analyticalcontrol}.
 
 \section{Decoherence in Superconducting Qubits}
 \label{sec:decoherence}
 
-Superconducting qubits undergo decoherence because of unavoidable coupling to the environment. This coupling has two main effects. First, it induces transitions between qubit states, including relaxation \(\ket{1}\rightarrow\ket{0}\) and thermal excitation \(\ket{0}\rightarrow\ket{1}\). Second, it causes fluctuations in the qubit frequency, which lead to random phase accumulation and hence pure dephasing. This section introduces the basic description of decoherence, defines the corresponding coherence metrics, discusses representative noise channels, and explains how sweet spots suppress dephasing by reducing first-order sensitivity to noise.
+Superconducting qubits undergo decoherence due to unavoidable coupling to the environment. This coupling has two main effects: first, it induces transitions between qubit states, including relaxation \(\ket{1}\rightarrow\ket{0}\) and thermal excitation \(\ket{0}\rightarrow\ket{1}\); second, it causes fluctuations in the qubit frequency, leading to random phase accumulation and hence pure dephasing. This section introduces a basic description of decoherence, defines the relevant coherence metrics, discusses representative noise channels, and explains how sweet spots suppress dephasing by reducing first-order sensitivity to noise.
 
 \subsection{Relaxation and Pure Dephasing: \texorpdfstring{$T_1$ and $T_{\phi}$}{T1 and Tphi}}
 \label{subsec:t1-tphi}
-
-Decoherence in superconducting qubits originates from unavoidable coupling to the environment. A simple description is to let a control parameter in the Hamiltonian fluctuate in time,
+Decoherence in superconducting qubits originates from unavoidable coupling to the environment. To model the effect of this coupling, we allow a control parameter in the Hamiltonian to fluctuate in time,
 \begin{equation}
     \lambda(t) = \lambda_0 + \delta\lambda(t),
 \end{equation}
-where \(\lambda_0\) is the operating point and \(\delta\lambda(t)\) is the noise. Expanding the Hamiltonian around \(\lambda_0\) gives
+where \(\lambda_0\) is the operating point and \(\delta\lambda(t)\) denotes the fluctuation induced by noise. Expanding the Hamiltonian around \(\lambda_0\) gives
 \begin{equation}
     H(t) \approx H_0 + B_\lambda\,\delta\lambda(t) + \mathcal{O}\big((\delta\lambda)^2\big),
 \end{equation}
@@ -335,10 +354,10 @@ The noise is characterized by the spectral density
     \int_{-\infty}^{\infty} dt\, e^{i\omega t}
     \langle \delta\lambda(t)\delta\lambda(0)\rangle,
 \end{equation}
-which is the Fourier transform of the noise correlation function. This fluctuating coupling affects both populations and phases, and therefore causes both depolarization and pure dephasing.
+which is the Fourier transform of the noise correlation function. This fluctuating coupling affects both populations and phases and therefore causes both depolarization and pure dephasing.
 
 \noindent\textbf{Depolarization and \(T_1\).}
-Depolarization corresponds to transitions between the qubit states and includes both relaxation and thermal excitation. To first order in the noisy coupling, the corresponding rates are \cite{RevModPhys.82.1155}
+Depolarization corresponds to transitions between the qubit states and includes both relaxation and thermal excitation. To leading order in the noisy coupling, the corresponding rates are \cite{RevModPhys.82.1155}
 \begin{equation}
     \Gamma_{\downarrow}
     =
@@ -350,7 +369,7 @@ Depolarization corresponds to transitions between the qubit states and includes 
     \left|\langle 0|B_\lambda|1\rangle\right|^2
     S_\lambda(-\omega_q),
 \end{equation}
-where \(\omega_q\) is the qubit frequency. For classical noise, \(S_\lambda(\omega)=S_\lambda(-\omega)\), so the two rates are equal. For a quantized environment, however, the positive- and negative-frequency components generally differ and satisfy the detailed-balance relation in thermal equilibrium \cite{breuer2002quantummaster}
+where \(\omega_q\) is the qubit frequency. For classical noise, \(S_\lambda(\omega)=S_\lambda(-\omega)\), so the two rates are equal. For a quantized environment, however, the positive- and negative-frequency components generally differ, and in thermal equilibrium the rates satisfy the detailed-balance relation \cite{breuer2002quantummaster}
 \begin{equation}
     \frac{\Gamma_{\uparrow}}{\Gamma_{\downarrow}}
     =
@@ -385,37 +404,45 @@ where the second equality follows from \(B_\lambda = \partial H/\partial \lambda
 \begin{equation}
     T_\phi = \frac{1}{\Gamma_\phi}.
 \end{equation}
+In superconducting qubits, however, the \(1/f\) flux-noise spectrum diverges near zero frequency. The resulting pure dephasing must therefore be treated more carefully than in the simple Markovian limit of Eq.~\eqref{eq:pure-dephasing} \cite{groszkowski2018coherence}, as discussed in Sec.\ \ref{subsec:noise-channels}.
 
-In superconducting qubits, however, important dephasing channels such as \(1/f\) flux noise are dominated by very low frequencies. Pure dephasing therefore requires more care than the simple Markovian limit of Eq.~\eqref{eq:pure-dephasing} \cite{groszkowski2018coherence}. The \(1/f\) case is discussed below.
+Although \(T_\phi\) describes pure dephasing, experiments usually measure the decay of the total transverse coherence. Preparing the qubit in
+\[
+|+\rangle=\frac{|0\rangle+|1\rangle}{\sqrt{2}},
+\]
+and monitoring \(\langle \sigma_x\rangle\) defines the coherence time \(T_2\), which contains contributions from both energy relaxation and pure dephasing:
+\begin{equation}
+    \frac{1}{T_2}=\frac{1}{2T_1}+\frac{1}{T_\phi}.
+\end{equation}
 
 \subsection{Examples of Important Noise Channels}
 \label{subsec:noise-channels}
 
-Decoherence is determined by two ingredients: the system operator through which the environment couples to the circuit, and the spectrum of the corresponding fluctuation. We now discuss several important noise channels in superconducting circuits.
+Decoherence is determined by two ingredients: the system operator through which the environment couples to the circuit and the spectral density of the corresponding fluctuations. We now discuss several important noise channels in superconducting circuits.
 
 \paragraph{Dielectric loss.}
-Dielectric loss arises from dielectric materials that participate in the circuit capacitance, such as the substrate, native oxides, and material interfaces \cite{martinis2005decoherence}. It couples to the charge degree of freedom, so the system operator is
+Dielectric loss arises from dielectric materials that contribute to the circuit capacitance, such as the substrate, native oxides, and material interfaces \cite{martinis2005decoherence}. It couples to the charge degree of freedom, so the system operator is
 \[
 B_\lambda = 2e\,n.
 \]
-A common model for the corresponding spectral density is \cite{Smith2020,Nguyen2019}
+A common model for the corresponding noise spectral density is given by \cite{Smith2020,Nguyen2019}
 \[
 S(\omega)=\frac{\omega}{|\omega|\,C_J\,Q_{\rm cap}(\omega)}
 \left(1+\coth\frac{|\omega|}{2k_B T}\right),
 \]
-where \(C_J\) is the relevant capacitance and \(Q_{\rm cap}(\omega)\) is the dielectric quality factor. Because this channel has spectral weight at the qubit frequency, it drives transitions between eigenstates. It therefore causes relaxation and, at finite temperature, thermal excitation. Dielectric loss is often a major contributor to \(T_1\) in superconducting qubits \cite{Murray2021dielec}.
+where \(C_J\) is the relevant capacitance and \(Q_{\rm cap}(\omega)\) is the dielectric quality factor. This noise causes relaxation and, at finite temperature, thermal excitation. Dielectric loss is often a major contributor to \(T_1\) in superconducting qubits \cite{Murray2021dielec}.
 
 \paragraph{Inductive loss.}
-Inductive loss arises from dissipation in an inductance or superinductance. It couples to the flux degree of freedom, so the system operator is
+Inductive loss arises from dissipation associated with an inductance or superinductance. It couples to the flux degree of freedom, so the system operator is
 \[
 B_\lambda=\frac{\Phi_0}{2\pi}\,\phi.
 \]
-The spectral density may be written as \cite{Smith2020,Nguyen2019}
+A common model for the corresponding spectral density is given by \cite{Smith2020,Nguyen2019}
 \[
 S(\omega)=\frac{\omega}{|\omega|\,L_J\,Q_{\rm ind}(\omega)}
 \left(1+\coth\frac{|\omega|}{2k_B T}\right),
 \]
-where \(L_J\) is the relevant inductance and \(Q_{\rm ind}(\omega)\) is the inductive quality factor. Like dielectric loss, this channel exchanges energy with the system and therefore causes depolarization. In fluxonium, for example, superinductor loss can limit \(T_1\) \cite{Hazard2019inductor}.
+where \(L_J\) is the relevant inductance and \(Q_{\rm ind}(\omega)\) is the inductive quality factor. Like dielectric loss, this noise causes depolarization. In fluxonium, for example, superinductor loss can limit \(T_1\) \cite{Hazard2019inductor}.
 
 \paragraph{\texorpdfstring{$1/f$}{1/f} flux noise.}
 A major dephasing channel in superconducting circuits is low-frequency \(1/f\) noise. If a circuit parameter \(\lambda\) fluctuates slowly, the qubit frequency \(\omega_q\) also fluctuates. A superposition state then accumulates a random relative phase. For \(1/f\) noise, the spectral density is commonly written as
@@ -424,15 +451,15 @@ S_{\lambda}(\omega)=\frac{2\pi A_{\lambda}^2}{|\omega|},
 \]
 where \(A_{\lambda}\) sets the noise amplitude. Because this spectrum is concentrated at low frequencies, its main effect is usually pure dephasing rather than energy relaxation.
 
-An important example is \(1/f\) flux noise, where the fluctuating parameter is the external flux \(\Phi_{\mathrm{ex}}\). This noise is especially relevant in flux-tunable circuits because fluctuations of \(\Phi_{\mathrm{ex}}\) directly modulate the qubit frequency. The corresponding system operator is
+Flux noise has \(1/f\) noise spectrum, in which the fluctuating parameter is the external flux \(\Phi_{\mathrm{ex}}\). This noise is especially relevant in flux-tunable circuits because fluctuations in \(\Phi_{\mathrm{ex}}\) directly modulate the qubit frequency, discussed in Sec\ \ref{sec:sc-qubits}. The corresponding system operator is
 \[
-B_\lambda=\frac{\partial H}{\partial \Phi_{\mathrm{ex}}},
+B_\lambda=\frac{\partial H}{\partial \Phi_{\mathrm{ex}}}.
 \]
-and the spectral density is
+The spectral density is
 \[
 S_{\Phi}(\omega)=\frac{2\pi A_{\Phi}^2}{|\omega|}.
 \]
-Away from bias points where the qubit is first-order insensitive to flux, the dephasing time is approximately \cite{groszkowski2018coherence}
+Away from bias points at which the qubit is first-order insensitive to flux, the dephasing time is approximately given by \cite{groszkowski2018coherence}
 \[
 \frac{1}{T_{\phi}}
 =
@@ -441,21 +468,20 @@ Away from bias points where the qubit is first-order insensitive to flux, the de
 \sqrt{\bigl|\ln(\omega_{\rm low} t_{\rm exp})\bigr|},
 \]
 where \(\omega_{\rm low}\) is a low-frequency cutoff and \(t_{\rm exp}\) is the experimental timescale. The key factor is the flux sensitivity \(\partial \omega_q/\partial \Phi_{\mathrm{ex}}\): stronger flux dependence gives faster dephasing.
-
-\subsection{Improve Dephasing Time by Sweet Spots: First-Order Noise Insensitivity}
+\subsection{Improving Dephasing Time via Sweet Spots: First-Order Noise Insensitivity}
 \label{subsec:sweet-spots}
 
-The result above shows that dephasing from \(1/f\) flux noise is set by the flux sensitivity \(\partial \omega_q/\partial \Phi_{\mathrm{ex}}\). This suggests a simple strategy: bias the circuit at a point where the qubit frequency is first-order insensitive to flux,
+The above result shows that dephasing from \(1/f\) flux noise is set by the flux sensitivity \(\partial \omega_q/\partial \Phi_{\mathrm{ex}}\). This suggests a simple strategy: bias the circuit at an operating point where the qubit frequency is first-order insensitive to the external flux,
 \[
 \frac{\partial \omega_q}{\partial \Phi_{\mathrm{ex}}}=0.
 \]
-Such points are called sweet spots. At a sweet spot, the linear response to flux noise vanishes. The leading dephasing is then pushed to higher order.
+Such points are called sweet spots. At a sweet spot, the linear response to flux noise vanishes. The leading contribution to dephasing is then shifted to higher order.
 
 The same idea applies to a periodically driven qubit \cite{Huang2021DynamicalSweetSpots,Valery2022DynamicalSweetSpot}. When
 \[
 H(t+T)=H(t),
 \]
-the natural basis is given by Floquet states,
+the natural basis states are Floquet states,
 \[
 |\psi_\alpha(t)\rangle
 =
@@ -464,185 +490,290 @@ e^{-i\epsilon_\alpha t}
 \qquad
 |\phi_\alpha(t+T)\rangle = |\phi_\alpha(t)\rangle,
 \]
-where \(\epsilon_\alpha\) is the quasienergy and \(|\phi_\alpha(t)\rangle\) is a time-periodic Floquet mode. In the driven problem, these dressed states play the role of the computational states. The relevant dressed qubit frequency is therefore
+where \(\epsilon_\alpha\) is the quasienergy and \(|\phi_\alpha(t)\rangle\) is a time-periodic Floquet mode. In the driven system, these dressed states play the role of the computational states. The relevant dressed qubit frequency is therefore
 \[
-\omega_q^{(\mathrm{F})}=\epsilon_1-\epsilon_0,
+\omega_q^{(\mathrm{F})}=\epsilon_1-\epsilon_0.
 \]
-up to the usual modulo-\(\omega_d\) ambiguity of Floquet theory.
 
-If the external flux fluctuates slowly, it modulates this dressed qubit frequency and causes dephasing between the two Floquet states. A dynamical sweet spot is reached when
+If the external flux fluctuates slowly, it modulates this dressed qubit frequency and thereby causes dephasing between the two Floquet states. A dynamical sweet spot is reached when
 \[
 \frac{\partial \omega_q^{(\mathrm{F})}}{\partial \Phi_{\mathrm{ex}}}=0.
 \]
-At this point, the drive makes the dressed qubit frequency first-order insensitive to flux noise and suppresses the leading contribution of \(1/f\) flux noise to pure dephasing.
+At this point, the drive renders the Floquet qubit frequency first-order insensitive to flux noise and suppresses the leading-order contribution of \(1/f\) flux noise to pure dephasing.
 
 \section{Control of Superconducting Qubits}
-Having introduced superconducting-qubit platforms and the decoherence mechanisms that constrain their performance, we now turn to their control. The goal is to engineer drive pulses that realize target gates with high fidelity. We begin with two examples of analytical optimization of control, and then move to numerical optimization when analytical approaches are no longer sufficient.
-\label{sec:control}
+\label{sec:analyticalcontrol}
 
-\subsection{Analytical Optimization of Control Parameters}
-\label{subsec:analytical-control}
-Analytical optimization plays a central role in superconducting-qubit control because it provides pulse-design principles are physically transparent. Two particularly important examples are DRAG for single-qubit control and parametric-drive schemes for two-qubit gates. Derivative Removal by Adiabatic Gate (DRAG) is designed to suppress leakage to non-computational states in weakly anharmonic systems, whereas parametric modulation enables selective activation of qubit-qubit interactions for entangling operations. These protocols illustrate how control parameters can be chosen from the underlying Hamiltonian structure to obtain high-fidelity gate before resorting to fully numerical methods.
-
+Fault-tolerant quantum computers require high-fidelity operations. To achieve this go, we need engineer drive parameters that implement target gates with minimal errors. We begin with two examples for which the control parameters can be optimized analytically, and then turn to numerical optimization when analytical approaches are no longer sufficient.
 \paragraph{DRAG}
+In the rotating frame of the drive and within the rotating-wave approximation, the transmon Hamiltonian truncated to the lowest three levels is
+\begin{equation}
+\label{eq:H_drag_start}
+H(t)=
+\frac{\Omega_x(t)}{2}\bigl(\sigma_x^{01}+\sqrt{2}\,\sigma_x^{12}\bigr)
++
+\frac{\Omega_y(t)}{2}\bigl(\sigma_y^{01}+\sqrt{2}\,\sigma_y^{12}\bigr)
++
+\delta_1(t)\Pi_1
++
+\bigl(\alpha+2\delta_1(t)\bigr)\Pi_2,
+\end{equation}
+where \(\Omega_x(t)\) and \(\Omega_y(t)\) are the two quadrature envelopes of the microwave drive, \(\delta_1(t)\) is the detuning of the \(\ket{0}\leftrightarrow\ket{1}\) transition from the drive frequency, \(\alpha=\omega_{12}-\omega_{01}\) is the anharmonicity, and \(\Pi_j=\ket{j}\bra{j}\). We assume the drive is sufficiently weak that levels above \(\ket{2}\) remain negligibly populated.
 
-A simple way to understand DRAG is through the counter-diabatic construction~\cite{Berry2009,GueryOdelin2019}. In a three-level truncation and in the rotating frame of the $\ket{0}\leftrightarrow\ket{1}$ transition, the driven Hamiltonian can be written as
-\[
-H(t)=\frac{\Omega_x(t)}{2}\left(\sigma_x^{01}+\lambda \sigma_x^{12}\right)
-+\frac{\Omega_y(t)}{2}\left(\sigma_y^{01}+\lambda \sigma_y^{12}\right)
-+\alpha \ket{2}\bra{2},
-\]
-where $\alpha=\omega_{12}-\omega_{01}$ is the anharmonicity and $\lambda\simeq\sqrt{2}$ for a transmon. The leading leakage process is governed by the off-resonant $\{\ket{1},\ket{2}\}$ block,
-\[
-H_{12}(t)=\frac{1}{2}\left(\lambda \Omega_x(t)\sigma_x^{12}+\alpha \sigma_z^{12}\right).
-\]
-Defining the instantaneous mixing angle by
-\[
-\tan\theta(t)=\frac{\lambda \Omega_x(t)}{\alpha},
-\]
-the corresponding counter-diabatic correction \cite{Berry2009,GueryOdelin2019} is
-\[
-H_{\mathrm{cd}}(t)=-\frac{\dot{\theta}(t)}{2}\sigma_y^{12}
-=-\frac{\lambda \alpha\,\dot{\Omega}_x(t)}
-{2\left[\alpha^2+\lambda^2\Omega_x^2(t)\right]}\sigma_y^{12}.
-\]
-In the weak-drive limit $\abs{\Omega_x}\ll \abs{\alpha}$, this reduces to
-\[
-H_{\mathrm{cd}}(t)\approx -\frac{\lambda}{2\alpha}\dot{\Omega}_x(t)\sigma_y^{12}.
-\]
-Since the available $y$-quadrature contributes
-\[
-\frac{\Omega_y(t)}{2}\left(\sigma_y^{01}+\lambda \sigma_y^{12}\right),
-\]
-matching its $\ket{1}\leftrightarrow\ket{2}$ component to the counter-diabatic term gives the leading-order DRAG condition
-\[
-\Omega_y(t)\approx -\frac{1}{\alpha}\dot{\Omega}_x(t).
-\]
-This analysis shows that an additional derivative-shaped $y$ quadrature can suppress leakage through the off-resonant $\ket{1}\leftrightarrow\ket{2}$ transition. However, it does not by itself guarantee an unchanged $\ket{0}\leftrightarrow\ket{1}$ rotation, because the same quadrature also contributes to the dynamics within the computational subspace. A complete DRAG analysis must therefore include the induced qubit subspace phase and rotation-axis corrections, typically compensated by detuning~\cite{Motzoi2009DRAG}.
+To isolate the dominant leakage channel, we first set \(\Omega_y=\delta_1=0\) and focus on the off-resonant \(\{\ket{1},\ket{2}\}\) subspace. Up to an irrelevant identity term, its Hamiltonian is
+\begin{equation}
+\label{eq:H12_drag}
+H_{12}(t)=\frac{1}{2}\left(\sqrt{2}\,\Omega_x(t)\sigma_x^{12}-\alpha \sigma_z^{12}\right),
+\end{equation}
+where \(\sigma_z^{12}=\ket{1}\bra{1}-\ket{2}\bra{2}\). Defining the instantaneous mixing angle by
+\begin{equation}
+\label{eq:theta_drag}
+\tan\theta(t)=\frac{\sqrt{2}\,\Omega_x(t)}{\alpha},
+\end{equation}
+the corresponding counter-diabatic correction~\cite{Berry2009,GueryOdelin2019} is
+\begin{equation}
+\label{eq:Hcd_drag}
+H_{\mathrm{cd}}(t)
+=
+-\frac{\dot{\theta}(t)}{2}\sigma_y^{12}
+=
+-\frac{\sqrt{2}\,\alpha\,\dot{\Omega}_x(t)}
+{2\left[\alpha^2+2\Omega_x^2(t)\right]}\sigma_y^{12}.
+\end{equation}
+In the weak-drive limit \(\abs{\Omega_x}\ll \abs{\alpha}\), this reduces to
+\begin{equation}
+\label{eq:Hcd_drag_weak}
+H_{\mathrm{cd}}(t)\approx -\frac{1}{\sqrt{2}\,\alpha}\dot{\Omega}_x(t)\sigma_y^{12}.
+\end{equation}
+To realize this Hamiltonian, we can use \(y\)-quadrature control
+\begin{equation}
+\label{eq:drag_y_only}
+\Omega_y(t)=-\frac{\dot{\Omega}_x(t)}{\alpha},
+\end{equation}
+which is the leading-order DRAG condition.
+Thus, a derivative-shaped \(y\)-quadrature suppresses leakage through the off-resonant \(\ket{1}\leftrightarrow\ket{2}\) transition.
 
-The DRAG-based pulse has been demonstrated in obtaining high-fidelity transmon gate, and the pulse outperforms naive single-quadrature Gaussian pulse~\cite{Hyyppa2024}.
+This condition alone does not guarantee resonant Rabi oscillation between \(\ket{0}\) and \(\ket{1}\), because the same \(y\)-quadrature also acts within the computational subspace. To analyze dynamics in the qubit subspace, we decouple the subspace from \(\ket{2}\) perturbatively using a second-order Schrieffer--Wolff transformation. We define the subspace projector and complex drive
+\[
+P=\Pi_0+\Pi_1,
+\qquad
+\Omega=\Omega_x+i\Omega_y.
+\]
+Then we rewrite the Hamiltonian as
+\[
+H=H_{\mathrm{bd}}+V_{\mathrm{od}},
+\]
+with
+\[
+H_{\mathrm{bd}}
+=
+\frac{\Omega_x}{2}\sigma_x^{01}
++
+\frac{\Omega_y}{2}\sigma_y^{01}
++
+\delta_1\Pi_1
++
+(\alpha+2\delta_1)\Pi_2,
+\]
+and
+\[
+V_{\mathrm{od}}
+=
+\frac{1}{\sqrt{2}}
+\left(
+\Omega^* \ket{1}\bra{2}
++
+\Omega \ket{2}\bra{1}
+\right),
+\]
+the first-order generator \(S^{(1)}\) is chosen to satisfy
+\[
+[S^{(1)},H_0]=-V_{\mathrm{od}},
+\qquad
+H_0=\delta_1\Pi_1+(\alpha+2\delta_1)\Pi_2.
+\]
+This gives
+\[
+S^{(1)}
+=
+\frac{1}{\sqrt{2}(\alpha+\delta_1)}
+\left(
+\Omega \ket{2}\bra{1}
+-
+\Omega^* \ket{1}\bra{2}
+\right)
+\approx
+\frac{1}{\sqrt{2}\,\alpha}
+\left(
+\Omega \ket{2}\bra{1}
+-
+\Omega^* \ket{1}\bra{2}
+\right),
+\]
+where the last step keeps only the leading term in \(\delta_1/\alpha\). Projecting the block-diagonalized Hamiltonian onto the computational subspace yields
+\[
+H_{\mathrm{eff}}^{(01)}
+=
+P\left(H_{\mathrm{bd}}+\frac12[S^{(1)},V_{\mathrm{od}}]\right)P
+\approx
+\frac{\Omega_x}{2}\sigma_x^{01}
++
+\frac{\Omega_y}{2}\sigma_y^{01}
++
+\left(
+\delta_1-\frac{|\Omega|^2}{2\alpha}
+\right)\Pi_1.
+\]
 
-\paragraph{Parametric Drive}
+Rewrite the effective Hamiltonian in terms of Pauli operators, we obtain
+\begin{equation}
+\label{eq:Hq_drag}
+H_q
+=
+\frac{\Omega_x}{2}\sigma_x^{01}
++
+\frac{\Omega_y}{2}\sigma_y^{01}
+-
+\frac{1}{2}
+\left(
+\delta_1-\frac{\Omega_x^2}{2\alpha}
+\right)\sigma_z^{01}.
+\end{equation}
+The \(y\)-quadrature control is effective detuning. To see this, we perform a second near-identity transformation within the qubit subspace,
+\begin{equation}
+\label{eq:Uq_drag}
+U(t)=e^{-iS(t)},
+\qquad
+S(t)=\frac{\Omega_x(t)}{2\alpha}\sigma_y^{01}.
+\end{equation}
+To leading order in \(\Omega_x/\alpha\), the transformed Hamiltonian is
+\begin{equation}
+\label{eq:Hqprime_expand_drag}
+H_q'
+=
+U H_q U^\dagger + i \dot U U^\dagger
+\approx
+H_q-i[S,H_q]+\dot S.
+\end{equation}
+Keeping terms to the same order gives
+\begin{equation}
+\label{eq:Hqprime_drag}
+H_q'
+\approx
+\frac{\Omega_x}{2}\sigma_x^{01}
++
+\frac{1}{2}\left(\Omega_y+\frac{\dot\Omega_x}{\alpha}\right)\sigma_y^{01}
+-
+\frac{1}{2}
+\left(
+\delta_1+\frac{\Omega_x^2}{2\alpha}
+\right)\sigma_z^{01},
+\end{equation}
+up to an irrelevant overall phase and higher-order corrections.
+
+The residual \(y\)-quadrature control disappears with the leakage suppression condition. Equation~\eqref{eq:Hqprime_drag} shows that, in this frame, a pure \(x\)-rotation requires the effective detuning to vanish. This gives the standard leading-order detuning conditions,
+\begin{equation}
+\label{eq:drag_final}
+\delta_1(t)=-\frac{\Omega_x^2(t)}{2\alpha}.
+\end{equation}
+Under these conditions, the transformed qubit Hamiltonian reduces to
+\[
+H_q'\approx \frac{\Omega_x(t)}{2}\sigma_x^{01}.
+\]
+The conditions in Eq.\ \eqref{eq:drag_y_only} and \eqref{eq:drag_final} ensure intended \(\ket{0}\leftrightarrow\ket{1}\) rotation while suppressing leakage to \(\ket{2}\).
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.6\linewidth]{chapter2/twomode.pdf}
-\caption[Parametric-drive model and circuit implementation.]{Parametric-drive model and circuit implementation. (a) Graph representation of the three-mode system, where the bare modes are coupled capacitively (light-gray edges) and mode \(b\) is a flux-tunable transmon whose frequency is modulated by a parametric flux drive. (b) Superconducting-circuit implementation of the model, in which modes \(a\) and \(c\) are cavity modes and mode \(b\) is realized as a flux-tunable transmon coupler.}
+\caption[Three-mode parametric-drive model and circuit implementation.]{Three-mode parametric-drive model and circuit implementation. (a)~Graph representation of the bare three-mode model used for parametrically activated exchange: two cavity modes, \(a\) and \(c\), are capacitively coupled to a central flux-tunable transmon mode, \(b\). The light-gray edges denote the static couplings \(g_{ab}\) and \(g_{bc}\), while the frequency of mode \(b\) is modulated by a parametric flux drive. (b)~Superconducting-circuit implementation of the model, where modes \(a\) and \(c\) are cavities and mode \(b\) is realized as a flux-tunable transmon coupler.}
 \label{fig:twomode}
 \end{figure}
 
-Parametric driving is used to activate desired interactions between different qubits. For illustration, we consider an FTT capacitively coupled to two cavities, as shown in Fig.~\ref{fig:twomode}. The system Hamiltonian is~\cite{Petrescu2023}
+\paragraph{Parametric drive }Parametric driving can selectively activate interactions between modes and thereby enable two-qubit gates. As an illustration, we consider an FTT capacitively coupled to two cavities, as shown in Fig.~\ref{fig:twomode}. The Hamiltonian can be written as~\cite{Petrescu2023}
 \begin{equation}
-    H = H^{(0)} + H^{(1)}(t),
+    H = H^{(0)} + H_{\rm nl} + H^{(1)}(t),
 \end{equation}
 with
-\begin{equation}
+\begin{align}
     H^{(0)}
-    =
+    &=
     \omega_a a^\dagger a
-    +
-    \omega_c c^\dagger c
-    +
-    \omega_b b^\dagger b
-    +
-    g_{ab}(a^\dagger b + a b^\dagger)
-    +
-    g_{bc}(c^\dagger b + c b^\dagger),
-\end{equation}
-and
-\begin{equation}
+    + \omega_b b^\dagger b
+    + \omega_c c^\dagger c
+    + g_{ab}(a^\dagger b + a b^\dagger)
+    + g_{bc}(c^\dagger b + c b^\dagger), \\
+    H_{\rm nl}
+    &=
+    -\frac{K_b}{2} b^{\dagger 2} b^2, \\
     H^{(1)}(t)
-    =
-    -\frac{K_b}{2} b^{\dagger 2} b^2
-    +
+    &=
     \delta\omega_b \cos(\omega_d t+\phi_d)\, b^\dagger b.
-\end{equation}
-Here \(\delta\omega_b\) is the flux-induced modulation amplitude of the transmon frequency, while \(\omega_d\) and \(\phi_d\) are the drive frequency and phase. Diagonalizing the linear part \(H^{(0)}\) yields the normal modes of the coupled system,
+\end{align}
+Here \(a\), \(b\), and \(c\) are the annihilation operators of the three bare modes, with bare frequencies \(\omega_a\), \(\omega_b\), and \(\omega_c\), respectively, and \(g_{ab}\) and \(g_{bc}\) are the static capacitive coupling strengths. The nonlinear term \(H_{\rm nl}\) describes the anharmonicity \(K_b\) of the transmon mode \(b\). As discussed in Sec.~\ref{FTT}, the transmon frequency depends on the external flux, so \(H^{(1)}(t)\) represents the parametric flux drive, where \(\delta\omega_b\) is the amplitude of the induced frequency modulation and \(\omega_d\) and \(\phi_d\) are the drive frequency and phase, respectively.
+
+Diagonalizing the linear part \(H^{(0)}\) gives
 \begin{equation}
     H^{(0)}
     =
-    \tilde{\omega}_a a^\dagger a
-    +
-    \tilde{\omega}_b b^\dagger b
-    +
-    \tilde{\omega}_c c^\dagger c.
+    \sum_{\nu=a,b,c} \tilde{\omega}_\nu d_\nu^\dagger d_\nu,
     \label{eq:H0_diag_compact}
 \end{equation}
-The dressed frequencies \(\tilde{\omega}_{a,b,c}\) and the mode compositions depend on the bare frequencies \(\omega_{a,b,c}\) and the static couplings \(g_{ab}\) and \(g_{bc}\). In the dispersive regime, two modes remain predominantly cavity-like, while one remains predominantly transmon-like.
+where \(d_\nu\) are the dressed normal-mode operators. The dressed frequencies \(\tilde{\omega}_\nu\) and the mode compositions depend on the bare frequencies \(\omega_{a,b,c}\) and the static couplings \(g_{ab}\) and \(g_{bc}\). In the dispersive regime, two dressed modes remain predominantly cavity-like, and one remains predominantly transmon-like.
 
-Expressing the bare transmon-like operator in the dressed basis as
+Since we are interested in the beam-splitting interactions, we skip rewriting the Kerr terms generated by \(H_{\rm nl}\) explicitly. Expressing the bare transmon operator as
 \begin{equation}
     b = \sum_{\nu=a,b,c} u_{b\nu} d_\nu,
 \end{equation}
 the modulation term becomes
 \begin{equation}
     H^{(1)}(t)
-    \approx
-    -\frac{\tilde K_b}{2} b^{\dagger 2} b^2
-    +
+    =
     \delta\omega_b \cos(\omega_d t+\phi_d)
     \sum_{\mu,\nu=a,b,c}
     \eta_{\mu\nu} d_\mu^\dagger d_\nu,
+    \qquad
+    \eta_{\mu\nu}=u_{b\mu}^*u_{b\nu},
     \label{eq:H1_normalmode_compact}
 \end{equation}
-where
-\begin{equation}
-    \eta_{\mu\nu}=u_{b\mu}^*u_{b\nu}.
-\end{equation}
-Thus, the flux modulation generates not only diagonal frequency shifts but also off-diagonal mode-conversion terms between the dressed modes. In particular, the interaction between the two cavity-like modes is governed by the coefficient
-\begin{equation}
-    \eta_{ac}=u_{ba}^*u_{bc},
-\end{equation}
-which gives
+which contains both diagonal frequency shifts and off-diagonal mode-conversion terms. For the two cavity-like dressed modes, the beam-splitting term is
 \begin{equation}
     H_{ac}(t)
     =
     \delta\omega_b \cos(\omega_d t+\phi_d)
     \left(
-        \eta_{ac} a^\dagger c
+        \eta_{ac} d_a^\dagger d_c
         +
-        \eta_{ac}^* a c^\dagger
-    \right).
+        \eta_{ac}^* d_a d_c^\dagger
+    \right),
+    \qquad
+    \eta_{ac}=u_{ba}^*u_{bc}.
 \end{equation}
 
-Writing \(\eta_{ac}=|\eta_{ac}|e^{i\theta_{ac}}\), we define
-\begin{equation}
-    \delta g_{ac}=\delta\omega_b |\eta_{ac}|,
-    \qquad
-    \phi_{\mathrm{eff}}=\phi_d+\theta_{ac}.
-\end{equation}
-The interaction then becomes
-\begin{equation}
-    H_{ac}(t)
-    =
-    \delta g_{ac}\cos(\omega_d t+\phi_{\mathrm{eff}})
-    \left(
-        a^\dagger c + a c^\dagger
-    \right).
-\end{equation}
-Moving to the interaction picture with respect to the dressed-mode energies and choosing
-\begin{equation}
-    \omega_d=\tilde{\omega}_c-\tilde{\omega}_a,
-\end{equation}
-makes the exchange term resonant. Under the rotating-wave approximation, the rapidly oscillating terms are neglected. The effective interaction then reduces to
+Moving to the interaction picture with respect to \eqref{eq:H0_diag_compact} and choosing \(\omega_d=\tilde{\omega}_c-\tilde{\omega}_a\) makes the beam-splitting term resonant. Under the rotating-wave approximation, the rapidly oscillating terms are dropped, yielding
 \begin{equation}
     H_{\mathrm{BS}}
     =
     G_{ac}
     \left(
-        e^{i\phi_{\mathrm{eff}}} a^\dagger c
+        e^{i\phi_{\mathrm{eff}}} d_a^\dagger d_c
         +
-        e^{-i\phi_{\mathrm{eff}}} a c^\dagger
+        e^{-i\phi_{\mathrm{eff}}} d_a d_c^\dagger
     \right),
     \qquad
-    G_{ac}=\frac{\delta g_{ac}}{2}.
+    G_{ac}=\frac{\delta\omega_b |\eta_{ac}|}{2},
+    \quad
+    \phi_{\mathrm{eff}}=\phi_d+\arg(\eta_{ac}).
 \end{equation}
-This is the parametrically activated beam-splitter interaction between the two cavity-like modes. It originates from the static hybridization with the transmon-like mode, while the drive frequency selects which dressed-mode transition is activated resonantly. More generally, the same mechanism underlies parametrically driven two-qubit gates, where modulation selectively turns on entangling interactions~\cite{Strand2013,Noguchi2020,Fasciati2024}.
+This is the parametrically activated beam-splitter interaction between the two cavity-like dressed modes. 
 
+More generally, the same mechanism underlies parametrically driven two-qubit gates, where modulation selectively activates entangling interactions~\cite{Strand2013,Noguchi2020,Fasciati2024}.
 
 \subsection{Numerical Optimization of Control Parameters}
 
-Analytical optimization is often insufficient once multiple sources of gate infidelity and hardware constraints must be treated simultaneously. Pulse design is therefore frequently recast as a numerical optimization problem~\cite{Koch2022,Song2022,Werninghaus2021}. In the strong-driving regime, approximations such as the rotating-wave approximation begin to fail. Counter-rotating terms can then renormalize gate parameters and generate Bloch--Siegert frequency shifts and spurious transitions, all of which contribute to gate errors~\cite{Petrescu2023,Pietikainen2017,Rower2024}. Moreover, the waveform generated by the electronics is generally not identical to the pulse seen by the qubit, because the control line introduces filtering and distortion that must often be characterized on-chip and corrected by predistortion~\cite{Rol2020,Guo2024,Hyyppa2024}. Since it is difficult to incorporate all of these effects analytically within a single framework, high-fidelity control is often achieved through numerical optimization based on a realistic device model~\cite{Koch2022,Song2022,Werninghaus2021}.
+Analytical optimization is often insufficient once multiple sources of gate infidelity and hardware constraints must be treated simultaneously. Pulse design is therefore frequently recast as a numerical optimization problem~\cite{Koch2022,Song2022,Werninghaus2021}. 
+
+In the strong-driving regime, approximations such as the rotating-wave approximation begin to fail. Counter-rotating terms can then renormalize gate parameters and generate Bloch--Siegert frequency shifts and spurious transitions, all of which contribute to gate errors~\cite{Petrescu2023,Pietikainen2017,Rower2024}. Moreover, the waveform generated by the electronics is generally not identical to the pulse seen by the qubit, Because the control line introduces filtering and distortion~\cite{Rol2020,Guo2024,Hyyppa2024}. Since it is difficult to incorporate all of these effects analytically within a single framework, high-fidelity control is often achieved through numerical optimization~\cite{Koch2022,Song2022,Werninghaus2021}.
 
 To incorporate these effects systematically, pulse design is formulated as an optimization problem for the time-dependent control fields $\{u_k(t)\}$. These fields are chosen so that the realized evolution $U(T)$ approximates a target operation while minimizing a cost functional. In practice, the cost functional may include not only gate infidelity, but also penalties for leakage, pulse amplitude, finite bandwidth, smoothness, robustness, and control-line distortion~\cite{Khaneja2005,Reich2012,Song2022}. Several numerical methods are widely used in this setting. Gradient-based methods such as GRAPE optimize discretized control amplitudes using derivatives of the cost functional with respect to the pulse parameters~\cite{Khaneja2005}. Krotov-type methods construct iterative updates with monotonic improvement under suitable conditions~\cite{Palao2003,Reich2012}. Basis-expansion approaches such as CRAB optimize a reduced set of pulse coefficients in a truncated function basis~\cite{Caneva2011}. 
 
-In superconducting-qubit platforms, these methods are particularly useful for suppressing leakage in fast gates, compensating for control-line distortion, and designing high-fidelity single- and two-qubit operations in realistic multilevel architectures~\cite{Werninghaus2021,Huang2014,Rol2020,Song2022}. In practice, numerical optimization is often most effective when combined with analytically motivated pulse ans\"atze or prior physical insight~\cite{Song2022}. In this thesis, we focus on GRAPE which is one of the most commonly used quantum optimal control technique.
+In superconducting qubits, these methods are particularly useful for designing high-fidelity single- and two-qubit operations in realistic multilevel architectures~\cite{Werninghaus2021,Huang2014,Rol2020,Song2022}. In this thesis, we focus on GRAPE which is one of the most commonly used quantum optimal control technique.
