@@ -106,17 +106,17 @@ The gradients of the contributions to the cost function (for the case of state t
 
 The gradients of the contributions to the gate-operation cost function are evaluated in an analogous manner, resulting in the same runtime and memory scaling.
 
-\chapter{Floquet Formalism}
+\chapter{Floquet Analysis of the Driven Dispersive Hamiltonian}
 \label{app:floquet}
 In this Appendix, we justify the use of the static rotating-frame Hamiltonian $H_R$ [Eq. \eqref{eq:H_R_floquet}] to approximate the quasi-energies and Floquet states of the driven dispersive Hamiltonian.
 
-\section{Floquet Theorem}
+\section{Floquet Theorem for Periodically Driven Systems}
 Consider a Hilbert space $\mathcal{H}$ of dimension $N$ and a time-dependent Hamiltonian $H(t)$ with period $\tau$, satisfying $H(t+\tau) = H(t)$. According to Floquet's theorem, there exists a $\tau$-periodic orthonormal basis $\{\ket{\psi_n(t)}\}$ and a set of quasienergies $\{\varepsilon_n\}$ such that the solutions to the Schrödinger equation, $\ket{\phi_n(t)}$, can be written as:
 \begin{equation}
     \ket{\phi_n(t)} = e^{-i\varepsilon_n t} \ket{\psi_n(t)}.
 \end{equation}
 
-\section{Construction of the Solution}
+\section{Quasienergy Eigenvalue Problem in Sambe Space}
 
 To acquire a differential equation that relates the periodic modes $\ket{\psi_n(t)}$ and quasienergies $\varepsilon_n$ to the Hamiltonian $H(t)$, we substitute the ansatz solution into the time-dependent Schrödinger equation:
 \begin{equation}
@@ -205,8 +205,8 @@ where $\bar{I}$ is the identity operator in the extended Hilbert space.
 
 
 
-\section{Quasienergy and Floquet States under $H_{\text{disp}}$}
-In this subsection we relate an approximation of quasienergy and Floquet states to a rotating-wave approximation.
+\section{Application to the Driven Dispersive Hamiltonian and Connection to the Rotating-Wave Approximation}
+In this section we relate an approximation of quasienergy and Floquet states to a rotating-wave approximation.
 \subsection{Quasienergy Operator for the Driven Dispersive Hamiltonian}
 
 The driven dispersive Hamiltonian is:
