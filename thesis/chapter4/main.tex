@@ -221,13 +221,14 @@ H'_{\text{sys}} \approx H_{\text{disp}} + 2\Omega_0 \cos(\omega_d t)\,(b + b^\da
 \approx \frac{g^2}{\Delta_{bc}^2}\,\delta\omega_b(t),
 \end{align}
 as shown in Fig.~\ref{fig:stark_device}(b). Such fluctuations produce cavity dephasing.
+
 \section{Creating Stark-Induced Sweet Spots}
 \label{sec:creating-stark-sweet-spots}
 
+FTT-frequency fluctuations \(\delta\omega_b(t)\) lead to cavity-frequency fluctuations \(\delta\bar{\omega}_c(t)\) through the Lamb shift, thereby causing cavity dephasing. This dephasing channel can be suppressed by driving the FTT [Fig.~\ref{fig:stark_device}(a)]. The drive induces an AC Stark shift that can be tuned to create a \emph{dynamical sweet spot}. At such a sweet spot, the transition frequencies between the relevant Floquet states become first-order insensitive to flux fluctuations at a fixed flux-bias point~\cite{PhysRevApplied.15.034065floquetqubit,PhysRevApplied.12.054015dss2}.
 
-FTT frequency fluctuations \(\delta\omega_b(t)\) lead to cavity-frequency fluctuations \(\delta\bar{\omega}_c(t)\) via the Lamb shift, thereby causing cavity dephasing. This dephasing channel can be suppressed by driving the FTT [Fig.~\ref{fig:stark_device}(a)]. The drive induces an AC-Stark shift that can be tuned to generate a  \emph{dynamical sweet spot}. At such a sweet spot, the transition frequencies between the relevant Floquet states become first-order insensitive to flux fluctuations at a fixed flux-bias point~\cite{PhysRevApplied.15.034065floquetqubit,PhysRevApplied.12.054015dss2}.
 
-In the weak, off-resonant regime considered here, the quasienergies of the Floquet states are well approximated by the eigenenergies of an effective time-independent Hamiltonian, as justified in App.~\ref{app:floquet}. In the frame rotating at the drive frequency $\omega_d$, the driven dispersive Hamiltonian after the rotating-wave approximation reads
+In the weak, off-resonant regime considered here, the quasienergies of the Floquet states are well approximated by the eigenenergies of an effective time-independent Hamiltonian, as justified in App.~\ref{app:floquet}. In the frame rotating at the drive frequency \(\omega_d\), the driven dispersive Hamiltonian after the rotating-wave approximation is
 \begin{equation}
 \label{eq:H_R_floquet}
 H_R =
@@ -237,81 +238,98 @@ H_R =
 + \chi\, b^\dagger b\, c^\dagger c
 + \Omega_0\, ( b + b^\dagger ),
 \end{equation}
-where $\Delta_{bd}=\bar{\omega}_b-\omega_d$ is the FTT--drive detuning. For a fixed cavity photon number $m$, the drive hybridizes the states $|g,m\rangle$ and $|e,m\rangle$, generating level repulsion that lowers the energy of $|g,m\rangle$. The magnitude of the level repulsion depends on the relevant FTT--drive detuning, $\Delta_m \equiv \Delta_{bd}+m\chi$, which is dispersively shifted by the cavity photon number. As a result, the drive-induced AC Stark shift of the states $|g,m\rangle$ depends on $m$, as shown in Fig.~\ref{fig:stark_device}(c). By tuning this shift, the cavity transition frequency between neighboring Fock states can be made first-order insensitive to flux noise, as illustrated in Fig.~\ref{fig:stark_device}(d).
+where \(\Delta_{bd}=\bar{\omega}_b-\omega_d\) is the FTT--drive detuning. For a fixed cavity photon number \(m\), the drive hybridizes the states \(|g,m\rangle\) and \(|e,m\rangle\), producing level repulsion and shifting the energy of \(|g,m\rangle\). The sign and magnitude of this shift are controlled by the photon-number-dependent FTT--drive detuning,
+\[
+\Delta_m \equiv \Delta_{bd}+m\chi ,
+\]
+which is shifted by the dispersive interaction with the cavity. Consequently, the drive-induced AC Stark shift of \(|g,m\rangle\) depends on \(m\), as shown in Fig.~\ref{fig:stark_device}(c). This photon-number-dependent Stark shift modifies the transition frequency between neighboring cavity Fock states. By tuning the drive amplitude and detuning, this transition frequency can be made first-order insensitive to flux noise, as illustrated in Fig.~\ref{fig:stark_device}(d).
 
-An analytic expression for the AC Stark shifts can be derived in the weak-drive regime. The assumptions underlying the perturbative analysis are as follows: (i) $\Omega_0 \ll \min_m |\Delta_m|$ for the relevant photon numbers, so that the drive does not significantly hybridize $|g,m\rangle$ and $|e,m\rangle$; and (ii) $|\Omega_0| \ll |K|$, so that hybridization with high-lying transmon states is negligible.
+An analytic expression for the AC Stark shifts can be derived in the weak-drive regime. The perturbative analysis relies on two assumptions: (i) \(\Omega_0 \ll \min_m |\Delta_m|\) for the relevant photon numbers, so that the drive does not strongly hybridize \(|g,m\rangle\) and \(|e,m\rangle\); and (ii) \(|\Omega_0| \ll |K|\), so that virtual transitions involving higher transmon levels remain perturbative.
 
-Starting from the rotating-frame Hamiltonian (three-level truncation of the FTT),
+Starting from the rotating-frame Hamiltonian with a three-level truncation of the FTT,
 \begin{equation}
 \label{eq:HR_start}
 \begin{aligned}
 H_R \approx\;&
 \Delta_{bd}\,|e\rangle\langle e|
-+\bigl(2\bar\omega_b + K\bigr)\,|f\rangle\langle f|
-+\bar\omega_c\,c^\dagger c +\chi\bigl(|e\rangle\langle e|+2|f\rangle\langle f|\bigr)c^\dagger c \\
++\bigl(2\Delta_{bd} + K\bigr)\,|f\rangle\langle f|
++\bar\omega_c\,c^\dagger c
++\chi\bigl(|e\rangle\langle e|+2|f\rangle\langle f|\bigr)c^\dagger c \\
 &+\Omega_0\Bigl(|g\rangle\langle e|+
 \sqrt{2}\,|e\rangle\langle f|+
 \mathrm{h.c.}\Bigr),
 \end{aligned}
 \end{equation}
-the weak-drive regime $\Omega_0\ll K$ allows the decomposition
+we decompose
 \begin{equation}
 \label{eq:H0_plus_V}
 H_R = H_0 + V,
 \end{equation}
-where $H_0$ is the $\Omega_0$-independent part of Eq.~\eqref{eq:HR_start} (diagonal in the bare basis) and $V$ is the drive term.
+where \(H_0\) is the \(\Omega_0\)-independent part of Eq.~\eqref{eq:HR_start}, and \(V\) is the drive term.
 
-A Schrieffer--Wolff transformation uses an anti-Hermitian generator $D_d=-D_d^\dagger$ to obtain
+A Schrieffer--Wolff transformation with an anti-Hermitian generator \(D_d=-D_d^\dagger\) gives
 \begin{equation}
 \label{eq:SWT_def}
 H_d' = e^{-D_d}H_R e^{D_d},
 \end{equation}
-which is diagonal in the bare basis. To first order,
+which is diagonal in the bare basis. To first order in \(\Omega_0\), the generator is
 \begin{equation}
 \label{eq:Dd_first_order}
 \begin{aligned}
-&D_d=
+D_d=
 \sum_{m}\Biggl[
 -\frac{\Omega_0}{\Delta_m}\,|e,m\rangle\langle g,m|
-+\frac{\sqrt{2}\,\Omega_0}{\Delta_m+K}\,|f,m\rangle\langle e,m|
+-\frac{\sqrt{2}\,\Omega_0}{\Delta_m+K}\,|f,m\rangle\langle e,m|
 -\mathrm{h.c.}
-\Biggr] \\
-&\approx
-\sum_{m}\Biggl[
--\frac{\Omega_0}{\Delta_m}\,|e,m\rangle\langle g,m|
-+\frac{\sqrt{2}\,\Omega_0}{K}\,|f,m\rangle\langle e,m|
--\mathrm{h.c.}
-\Biggr],
+\Biggr] .
 \end{aligned}
 \end{equation}
-where the approximation keeps the leading order in $\mathcal{O}(\Delta_m/K)$.
+For \(|\Delta_m|\ll |K|\), this becomes
+\begin{equation}
+\label{eq:Dd_first_order_approx}
+D_d\approx
+\sum_{m}\Biggl[
+-\frac{\Omega_0}{\Delta_m}\,|e,m\rangle\langle g,m|
+-\frac{\sqrt{2}\,\Omega_0}{K}\,|f,m\rangle\langle e,m|
+-\mathrm{h.c.}
+\Biggr],
+\end{equation}
+where we have kept the zeroth-order term in an expansion in \(\Delta_m/K\).
 
-Keeping terms up to second order in the SWT gives
+Keeping terms up to second order in the Schrieffer--Wolff transformation gives
 \begin{align}
-H_d' \approx\;& H_R + \sum_m \Omega_0^2\Biggl[
+H_d' \approx\;& H_0
++ \sum_m \Omega_0^2\Biggl[
 -\frac{1}{\Delta_m}\,|g,m\rangle\langle g,m|
-+(\frac{1}{\Delta_m}-\frac{1}{K}) |e,m\rangle\langle e,m|
-+\frac{1}{K}\,|f,m\rangle\langle f,m|
++\left(\frac{1}{\Delta_m}-\frac{2}{K}\right) |e,m\rangle\langle e,m|
++\frac{2}{K}\,|f,m\rangle\langle f,m|
 \Biggr].
 \label{eq:Hd_second_order_explicit}
 \end{align}
+Here the terms proportional to \(1/\Delta_m\) arise from the \(|g,m\rangle\leftrightarrow |e,m\rangle\) coupling, while the terms proportional to \(1/K\) arise from virtual coupling to \(|f,m\rangle\).
 
-Because the FTT is initialized in ground state and $\Omega_0\ll K$, population of $|f\rangle$ remains negligible during dynamics; projecting onto the $\{|g\rangle,|e\rangle\}$ subspace yields
+Because the FTT is initialized in \(|g\rangle\) and the transmon obeys the nearest-neighbor selection rule, the population of \(|f\rangle\) remains negligible throughout the dynamics, including in the presence of noise. Projecting onto the \(\{|g,m\rangle,|e,m\rangle\}\) subspace gives
 \begin{equation}
 \label{eq:Hd_two_level}
 \begin{aligned}
-H_d=\;&\widetilde{\Delta}_{bd}\sigma^+\sigma^-
+H_d=
+\widetilde{\Delta}_{bd}\sigma^+\sigma^-
 +\bar\omega_c\,c^\dagger c
--\sum_m \frac{\Omega_0^2}{\Delta_m}\,|m\rangle\langle m| +\sigma^+\sigma^-\!\Biggl[
+-\sum_m \frac{\Omega_0^2}{\Delta_m}\,|m\rangle\langle m|  +\sigma^+\sigma^-\!\Biggl[
 \chi\,c^\dagger c
 +\sum_m \frac{2\Omega_0^2}{\Delta_m}\,|m\rangle\langle m|
-\Biggr].
+\Biggr],
 \end{aligned}
 \end{equation}
-The drive renormalizes the FTT detuning, \(\widetilde{\Delta}_{bd}\equiv \Delta_{bd}-\Omega_0^2/K\), and generates an \(m\)-dependent shift of the cavity transition frequency as well as an additional dispersive shift. The essential point is that this drive-induced shift can be tuned to create a driven sweet spot.
-To quantify the resulting fluctuation in the cavity transition frequency, we define the net cavity transition frequency between adjacent cavity Fock states as
+where the drive-renormalized FTT detuning is
+\[
+\widetilde{\Delta}_{bd}\equiv \Delta_{bd}-\frac{2\Omega_0^2}{K}.
+\]
+The drive therefore produces both an \(m\)-dependent shift of the cavity transition frequency and an additional drive-induced correction to the dispersive shift. 
+
+To quantify the resulting fluctuations in the cavity transition frequency, we define the drive-renormalized transition frequency between adjacent cavity Fock states as
 \begin{equation}
-\label{perturbation energy}
+\label{eq:omega_c_tilde_m}
 \widetilde{\omega}_{c,m\rightarrow m+1}
 =
 \omega_c
@@ -319,7 +337,7 @@ To quantify the resulting fluctuation in the cavity transition frequency, we def
 - \frac{\Omega_0^2}{\Delta_{m+1}}
 + \frac{\Omega_0^2}{\Delta_m}.
 \end{equation}
-We use a tilde for drive-renormalized transition frequencies. The FTT-frequency fluctuation \(\delta\omega_b(t)\) then induces
+The tilde denotes a drive-renormalized transition frequency. An FTT-frequency fluctuation \(\delta\omega_b(t)\) then induces
 \begin{equation}
 \delta\widetilde{\omega}_{c,m\rightarrow m+1}(t)
 =
@@ -331,25 +349,24 @@ D_{m\rightarrow m+1}
 \equiv
 \frac{\partial \widetilde{\omega}_{c,m\rightarrow m+1}}{\partial \omega_b}
 \]
-is the susceptibility of the net cavity transition frequency to FTT-frequency fluctuations. A sweet spot occurs at \(D_{m\rightarrow m+1}=0\). Depending on the drive parameters, this sweet spot can be realized either only for a specific \(m\) (selective regime) or for multiple \(m\) values (unselective regime), as discussed below.
+is the susceptibility of the net cavity transition frequency to FTT-frequency fluctuations. A sweet spot occurs when \(D_{m\rightarrow m+1}=0\). Depending on the drive parameters, this cancellation can occur either for a specific cavity transition, giving a selective sweet spot, or over several neighboring transitions, giving an unselective sweet spot.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{chapter4/figures/compare.pdf}
-    \caption{Dynamical sweet spots that cavity frequency is leading-order insensitive to FTT frequency fluctuations.
-(a) Unselective regime at \(\Omega_0/2\pi=10~\mathrm{MHz}\), showing a single sweet spot that cavity frequency sensitivity $D_0->1=0$.
+    \caption{Dynamical sweet spots for suppressing cavity dephasing induced by FTT-frequency fluctuations. The plotted quantity is the susceptibility \(D_{0\rightarrow 1}=\partial\widetilde{\omega}_{c,0\rightarrow 1}/\partial\omega_b\); sweet spots occur where \(D_{0\rightarrow 1}=0\). 
+    (a) Unselective regime at \(\Omega_0/2\pi=10~\mathrm{MHz}\), showing a single sweet spot.
 (b) Selective regime at \(\Omega_0/2\pi=0.05~\mathrm{MHz}\), showing two symmetric sweet spots about the effective resonance.
-(c) Two-dimensional map of \(D_{0\rightarrow 1}\) versus drive amplitude \(\Omega_0\) and detuning \(\Delta_{bd}\); dashed curves denote analytical sweet-spot conditions. The system parameters in Eq.~\eqref{system hamiltonian} are \(E_{J1}=E_{J2}=30.19\,\mathrm{GHz}\), \(E_C=0.10\,\mathrm{GHz}\), \(\omega_c/2\pi=5.226\,\mathrm{GHz}\), \(g'/2\pi=0.050\,\mathrm{GHz}\), and \(\Phi=0.20\,\Phi_0\).
-For these values, the parameters appearing in Eq.~\eqref{H} are \(\omega_b/2\pi=6.16\,\mathrm{GHz}\), \(K/2\pi=-0.10\,\mathrm{GHz}\), and \(g/2\pi=0.10\,\mathrm{GHz}\).
-}
+(c) Two-dimensional map of \(D_{0\rightarrow 1}\) versus drive amplitude \(\Omega_0\) and detuning \(\Delta_{bd}\); Dashed curves denote analytical sweet-spot conditions based on Eqs.~\eqref{eq:omega_c_tilde_m} and \eqref{eq:Dm_selective} for the main panel and the inset, respectively. The numerical results are obtained based on full Hamiltonian in Eq.~\eqref{system hamiltonian} and the system parameters are \(E_{J1}=E_{J2}=30.19\,\mathrm{GHz}\), \(E_C=0.10\,\mathrm{GHz}\), \(\omega_c/2\pi=5.226\,\mathrm{GHz}\), \(g'/2\pi=0.050\,\mathrm{GHz}\), and \(\Phi=0.20\,\Phi_0\). For these values, the corresponding effective parameters in Eq.~\eqref{fullhamiltonian} are \(\omega_b/2\pi=6.16\,\mathrm{GHz}\), \(K/2\pi=-0.10\,\mathrm{GHz}\), and \(g/2\pi=0.10\,\mathrm{GHz}\).}
 \label{fig:drive_sweet_spots_compare}
 \end{figure}
 
 \paragraph{Unselective Regime.}
-In this regime, the chosen drive detuning \(\Delta_{bd}\) satisfies \( |\Delta_{bd}|\gg|\chi| \), so the drive couples
-\(\ket{g,0}\leftrightarrow\ket{e,0}\) and to neighboring photon-number pairs with comparable strength.
-Expanding the denominators
-\(\Delta_m^{-1}=(\Delta_{bd}+m\chi)^{-1}\) to leading order in \(|\chi/\Delta_{bd}|\) yields the approximate effective Hamiltonian
+In the unselective regime, the drive detuning satisfies \(|\Delta_{bd}|\gg|\chi|\). The drive therefore couples the transitions \(\ket{g,m}\leftrightarrow\ket{e,m}\) across different photon numbers. Expanding
+\[
+\Delta_m^{-1}=(\Delta_{bd}+m\chi)^{-1}
+\]
+to leading order in \(|\chi/\Delta_{bd}|\) yields the approximate effective Hamiltonian
 \begin{equation}
 \label{eq:Hd_far_detuned}
 H_d \approx
@@ -357,65 +374,66 @@ H_d \approx
 +\widetilde{\omega}_{c}\,c^\dagger c
 +\chi\left(1-\frac{2\Omega_0^2}{\Delta_{bd}^2}\right)\sigma^+\sigma^-\,c^\dagger c ,
 \end{equation}
-up to constant energy offsets, where the renormalized cavity frequency is
+up to constant energy offsets, where
 \begin{equation}
-\widetilde{\omega}_{c}=\bar{\omega}_c+\frac{\Omega_0^2\chi}{\Delta_{bd}^2}.
+\widetilde{\omega}_{c,0\to1}
+=
+\bar{\omega}_c+\frac{\Omega_0^2\chi}{\Delta_{bd}^2}.
 \end{equation}
 The corresponding susceptibility is
 \begin{equation}
 \label{eq:D01_unselective}
-D_{0 \rightarrow 1}
-\approx \frac{g^2}{\Delta_{bc}^2}\left(1-\frac{4\Omega_0^2K}{\Delta_{bd}^3}\right).
+D_{0\to1} = \frac{\partial \widetilde{\omega}_{c,0\to1}}{\partial \omega_b}
+\approx \frac{g^2}{\Delta_{bc}^2}
+\left(1-\frac{4\Omega_0^2K}{\Delta_{bd}^3}\right).
 \end{equation}
-The sweet spot is obtained by setting \(D_{0 \rightarrow 1}=0\), which yields
+where we have used the leading dispersive relation \(\chi\simeq 2g^2K/\Delta_{bc}^2\). Setting \(D=0\) gives the unselective sweet-spot condition
 \begin{equation}
 \label{eq:ss_unselective}
 \Delta_{bd}=(4\Omega_0^2K)^{1/3},
 \end{equation}
-where the real cube root is understood.
+where the real cube root is understood. For the transmon-like case \(K<0\), this sweet spot occurs at negative detuning, \(\Delta_{bd}<0\), or equivalently at \(\omega_d>\bar{\omega}_b\).
 
-This prediction is confirmed by Fig.~\ref{fig:drive_sweet_spots_compare}(a).
-To verify the analytical expression, we compare the analytical susceptibility with a Floquet calculation using the full-model Hamiltonian (App.~\ref{app:numerics}).
-For \(\Omega_0/2\pi=10~\mathrm{MHz}\), \(D_{0 \rightarrow 1}\) approaches the bare Lamb-shift value \(g^2/\Delta_{bc}^2\approx0.01\) when the drive is far detuned from the FTT frequency \(\bar{\omega}_b\).
-As \(\omega_d\) is tuned toward \(\bar{\omega}_b\), a single sweet spot appears for \(\omega_d>\bar{\omega}_b\). This is evident from Eq.~\eqref{eq:ss_unselective}, where negative anharmonicity leads to negative detuning.
-The characteristic detuning is consistent with Eq.~\eqref{eq:ss_unselective}, which predicts \(\Delta_{bd}/2\pi\sim -34~\mathrm{MHz}\) for \(K/2\pi\approx-0.1~\mathrm{GHz}\) used here.
-The residual offset between the analytical and numerical dip positions at this drive strength arises because higher-order corrections to the Hamiltonian Eq.~\eqref{eq:mainHd_two_level} become non-negligible.
-Closer to resonance, \(D_{0 \rightarrow 1}\) rises again as the drive-induced energy shift dominates the susceptibility.
+To verify the analytical expression, we compare the perturbative susceptibility with a Floquet calculation using the full system Hamiltonian in Eq.\ \eqref{system hamiltonian}. The result is shown in Fig.~\ref{fig:drive_sweet_spots_compare}(a). For \(\Omega_0/2\pi=10~\mathrm{MHz}\), \(D_{0 \rightarrow 1}\) approaches the bare Lamb-shift value \(g^2/\Delta_{bc}^2\approx0.01\) when the drive is far detuned from the FTT transition. As \(\omega_d\) is tuned toward \(\bar{\omega}_b\), a single sweet spot appears for \(\omega_d>\bar{\omega}_b\), consistent with the negative-detuning solution of Eq.~\eqref{eq:ss_unselective}. The characteristic detuning is also consistent with Eq.~\eqref{eq:ss_unselective}, which predicts \(\Delta_{bd}/2\pi\sim -34~\mathrm{MHz}\) for \(K/2\pi\approx-0.1~\mathrm{GHz}\). The residual offset between the analytical and numerical sweet-spot positions arises because higher-order corrections to Eq.~\eqref{eq:Hd_two_level} become non-negligible at this drive strength. Closer to resonance, \(D_{0 \rightarrow 1}\) increases again because the drive-induced Stark shift dominates the susceptibility.
 
 \paragraph{Selective Regime.}
-In this regime, the drive is closest to resonance for a particular photon number \(m^\ast\), so that \(|\Delta_{m^\ast}|\ll \chi\).
-Consequently, only the hybridization between \(\ket{g,m^\ast}\) and \(\ket{e,m^\ast}\) contributes appreciably to the cavity frequency, giving
+In the selective regime, the drive is closest to resonance with a particular photon number \(m^\ast\), so that \(|\Delta_{m^\ast}|\ll|\chi|\). In this case, the dominant Stark shift comes from hybridization between \(\ket{g,m^\ast}\) and \(\ket{e,m^\ast}\). The transition frequency between \(\ket{g,m^\ast}\) and \(\ket{g,m^\ast+1}\) is then approximately
 \begin{equation}
 \widetilde{\omega}_{c,m^\ast\rightarrow m^\ast+1}
 \approx
 \bar{\omega}_c+\frac{\Omega_0^2}{\Delta_{m^\ast}}.
 \end{equation}
-Differentiating with respect to \(\omega_b\) yields
+Differentiating with respect to \(\omega_b\) gives
 \begin{equation}
 \label{eq:Dm_selective}
-D_{m^\ast}
+D_{m^\ast\rightarrow m^\ast+1}
 \approx
 \frac{g^2}{\Delta_{bc}^2}
 -\frac{\Omega_0^2}{\Delta_{m^\ast}^2}.
 \end{equation}
-Setting \(D_{m^\ast}=0\) gives the sweet-spot condition
+The selective sweet spot therefore satisfies
 \begin{equation}
 \label{eq:weak_drive_sweetspot}
-\Delta_{m^\ast}=\pm \left|\frac{\Delta_{bc}}{g}\Omega_0\right|
-\Longleftrightarrow
-\Delta_{bd}=\pm \left|\frac{\Delta_{bc}}{g}\Omega_0\right|-m^\ast\chi .
+\Delta_{m^\ast}
+=
+\pm \left|\frac{\Delta_{bc}}{g}\Omega_0\right|
+\quad\Longleftrightarrow\quad
+\Delta_{bd}
+=
+\pm \left|\frac{\Delta_{bc}}{g}\Omega_0\right|-m^\ast\chi .
 \end{equation}
 
-This prediction is confirmed by Fig.~\ref{fig:drive_sweet_spots_compare}(b), where two sweet spots appear as symmetric dips on either side of the resonance.
-Their characteristic detuning is consistent with Eq.~\eqref{eq:weak_drive_sweetspot}, which predicts
-\(|\Delta_{bd}|\sim (|\Delta_{bc}|/g)\Omega_0\approx 0.5~\mathrm{MHz}\) for the parameters used here (\(g/|\Delta_{bc}|\simeq 0.1\)).
-Overall, the agreement between the analytics and exact numerics shows that in the selective regime a low-power drive cancels the bare Lamb-shift susceptibility.
+This prediction is confirmed by Fig.~\ref{fig:drive_sweet_spots_compare}(b), where two sweet spots appear on either side of the effective resonance \(\Delta_{m^\ast}=0\). Their characteristic detuning agrees with Eq.~\eqref{eq:weak_drive_sweetspot}, which predicts
+\[
+|\Delta_{bd}|
+\sim
+\left|\frac{\Delta_{bc}}{g}\right|\Omega_0
+\approx 0.5~\mathrm{MHz}
+\]
+for the parameters used here, where \(g/|\Delta_{bc}|\simeq 0.1\) and \(\Omega_0/2\pi=0.05~\mathrm{MHz}\). Thus, in the selective regime, a low-power drive can cancel the bare Lamb-shift susceptibility for a chosen cavity transition.
 
-% \footnote{For $m^*>0$, at the sweet spot where $D_{m^*}=0$, the neighboring susceptibility remains
-% $D_{m^*-1}\approx 2g^2/\Delta_{bc}^2$, implying that the dephasing between the $|m^*-1\rangle, |m^*\rangle$ states is approximately doubled relative to the undriven rate.}.
-
-\paragraph{Sweet-Spot Map and Regime Crossover.}
-Fig.~\ref{fig:drive_sweet_spots_compare}(c) shows \(D_{0\rightarrow 1}\) as a function of drive amplitude \(\Omega_0\) and detuning \(\Delta_{bd}\). The key point is that the selective and unselective sweet spots are not distinct phenomena, but rather different parts of a continuous contour defined by \(D_{0\rightarrow 1}=0\). At small \(\Omega_0\), the selective-regime condition in Eq.~\eqref{eq:weak_drive_sweetspot} predicts the linear scaling \(|\Delta_{bd}| \propto \Omega_0\), visible as two symmetric sweet spots on either side of the effective resonance. As \(\Omega_0\) increases, the left branch, closer to resonance and at smaller \(|\Delta_{bd}|\), enters a nonperturbative regime in which the weak-drive approximation underlying Eq.~\eqref{eq:mainHd_two_level} no longer applies. The remaining perturbative branch then crosses over toward the unselective regime and approaches the cubic scaling predicted by Eq.~\eqref{eq:ss_unselective}. At still larger \(\Omega_0\), the Stark-shift contribution broadens the detuning range over which \(D_{0\rightarrow 1}\approx 0\), improving robustness against flux noise by maintaining susceptibility cancellation over a wider range of fluctuations, albeit closer to the limits of perturbation theory. 
+\paragraph{Sweet-Spot Map.}
+Figure~\ref{fig:drive_sweet_spots_compare}(c) shows \(D_{0\rightarrow 1}\) as a function of drive amplitude \(\Omega_0\) and detuning \(\Delta_{bd}\).  At small \(\Omega_0\), the selective-regime condition in Eq.~\eqref{eq:weak_drive_sweetspot} gives the linear scaling \(|\Delta_{bd}|\propto\Omega_0\), visible as two sweet spots on either side of the effective resonance. As \(\Omega_0\) increases, the near-resonant region eventually violates the perturbative condition \(\Omega_0\ll|\Delta_m|\), and the weak-drive selective approximation ceases to apply to the left line. The right line evolves continuously into the unselective regime. For \(K<0\), the sweet spots lies at negative detuning and approaches the cubic scaling predicted by Eq.~\eqref{eq:ss_unselective}. At still larger \(\Omega_0\), the region of reduced susceptibility broadens, making the sweet spots more robust to choice of the drive frequency, although quantitative agreement then requires higher-order corrections beyond the second-order perturbative treatment.
 
 
 
@@ -423,438 +441,487 @@ Fig.~\ref{fig:drive_sweet_spots_compare}(c) shows \(D_{0\rightarrow 1}\) as a fu
 \section{Residual Cavity Dephasing at the Stark-Induced Sweet Spot}
 \label{sec:residual-dephasing}
 
-The driven sweet spot developed in the preceding chapter suppresses low-frequency flux-induced dephasing by canceling the first-order sensitivity of the dressed cavity frequency to fluctuations of $\omega_b$. However, the drive also opens new dephasing channels when FTT relaxation is present. This chapter quantifies these residual channels and evaluates the total cavity dephasing rate.
+The stark-induced sweet spot developed in the preceding chapter suppresses dephasing due to flux noise. However, the drive also opens new dephasing channels when FTT relaxation is present. This chapter quantifies these residual channels and evaluates the total cavity dephasing rate.
 
-To this end, the system is modeled with a stochastic master equation. For a given flux-noise realization $\delta\Phi(t)$, the density matrix $\rho(t)$ obeys
+The open quantum system is modeled with a stochastic master equation. For a given flux-noise realization $\delta\Phi(t)$, the density matrix $\rho(t)$ obeys
 \begin{align}
 \dot{\rho}
-&= -i\left[\,H_{\mathrm{sys}} + \delta\omega_b(t)\, b^\dagger b,\ \rho\,\right]
+&= -i\left[\,H_{\mathrm{sys}} + H_{\mathrm{noise}},\ \rho\,\right]
 + \gamma_{b\downarrow}\,\mathcal{D}[b]\rho,
-\nonumber \\
-H_{\mathrm{sys}}
-&= H_{\mathrm{static}} + 2\Omega_0 \cos(\omega_d t)\,(b + b^\dagger).
 \label{eq:Linblad_ch8}\end{align}
-Here $\mathcal{D}[b]\rho = b\rho b^\dagger - \tfrac{1}{2}\{b^\dagger b, \rho\}$ describes FTT relaxation at rate $\gamma_{b\downarrow}$ (the FTT energy-relaxation rate).
+Here $\mathcal{D}[b]\rho = b\rho b^\dagger - \tfrac{1}{2}\{b^\dagger b, \rho\}$ describes FTT relaxation at rate $\gamma_{b\downarrow}$.
 
 \subsection{Effective Master Equation in the Driven Frame}
 \label{subsec:effective-master}
+To analyze the decoherence between the eigenstates of $H_d$, we transform the operators in the Lindblad master equation from the lab frame to the frame of $H_d$. This procedure involves three transformations, as detailed below.
 
-\subsection{Analytical Estimate of the Dephasing Rate}
-\label{subsec:analytical-dephasing-rate}
-
-\paragraph{Transformation of $H_{\text{noise}}$.}
+\section*{Transformation of $H_{\text{noise}}$.}
 \label{subsec:Hnoise_transfer}
 We consider the flux-noise Hamiltonian
 $H_{\text{noise}} = \frac{\partial \omega_b}{\partial \Phi} \delta \Phi(t) b^\dagger b$.
-After applying the dispersive transformation $U_{\text{disp}} = e^{D_{\text{disp}}}$, the number operator becomes
+After applying the dispersive transformation $U_{\text{disp}} = e^{D_{\text{disp}}}$, the number operator transforms as
 \begin{align}
-    e^{-D_{\text{disp}}} b^\dagger b e^{D_{\text{disp}}} &= e^{-D_{\text{disp}}} b^\dagger e^{D_{\text{disp}}} e^{-D_{\text{disp}}} b e^{D_{\text{disp}}} \nonumber \\
-    &\approx \left( b^\dagger + [D_{\text{disp}}, b^\dagger] \right) \left( b + [D_{\text{disp}}, b] \right) \nonumber \\
+    e^{-D_{\text{disp}}} b^\dagger b e^{D_{\text{disp}}}
+    &= e^{-D_{\text{disp}}} b^\dagger e^{D_{\text{disp}}} e^{-D_{\text{disp}}} b e^{D_{\text{disp}}} \nonumber \approx \left( b^\dagger + [D_{\text{disp}}, b^\dagger] \right) \left( b + [D_{\text{disp}}, b] \right) \nonumber \\
     &\approx b^\dagger b + [D_{\text{disp}}, b^\dagger b] + [D_{\text{disp}}, b^\dagger][D_{\text{disp}}, b] \nonumber \\
-    &\approx b^\dagger b + \frac{g^2}{\Delta_{bc}^2} c^\dagger c - \frac{4Kg^2}{\Delta_{bc}^3} b^\dagger b c^\dagger c \nonumber \\
-    &\quad + \left( -\frac{g}{\Delta_{bc}} b c^\dagger + \frac{Kg}{\Delta_{bc}^2} b^\dagger b c^\dagger + \text{h.c.} \right).
+    &\approx b^\dagger b + \frac{g^2}{\Delta_{bc}^2} c^\dagger c - \frac{4Kg^2}{\Delta_{bc}^3} b^\dagger b c^\dagger c \nonumber+ \left( -\frac{g}{\Delta_{bc}} b c^\dagger + \frac{Kg}{\Delta_{bc}^2} b^\dagger b c^\dagger + \text{h.c.} \right).
 \end{align}
 
-The non-number-conserving contributions (e.g., terms proportional to $b c^\dagger$ and $b^\dagger b\,c^\dagger$, together with their Hermitian conjugates) drive transitions at frequencies near $\Delta_{bc}/2\pi\sim\mathrm{GHz}$. For $1/f$ flux noise, $S_{1/f}(\omega)$ is negligible at such frequencies, so these rapidly oscillating terms are discarded. The resulting dispersively transformed noise Hamiltonian is
+The non-number-conserving terms (e.g., those proportional to $b c^\dagger$ and $b^\dagger b\, c^\dagger$, together with their Hermitian conjugates) drive transitions at frequencies near $\Delta_{bc}/2\pi \sim \mathrm{GHz}$. For $1/f$ flux noise, $S_{1/f}(\omega)$ is negligible at such frequencies, so these rapidly oscillating terms are discarded. The resulting noise Hamiltonian after the dispersive transformation is
 \begin{equation}
     H_{\text{noise}}^{\text{disp}} \approx \frac{\partial \omega_b}{\partial \Phi} \delta \Phi \left( b^\dagger b + \frac{g^2}{\Delta_{bc}^2} c^\dagger c - \frac{4Kg^2}{\Delta_{bc}^3} b^\dagger b c^\dagger c \right).
 \end{equation}
 
-In the rotating frame defined by $U_R$, the remaining terms are diagonal in the relevant number operators, so the form is unchanged: $H_{\text{noise}}^R = H_{\text{noise}}^{\text{disp}}$.
-Under the drive transformation $U_d = e^{D_d}$, the noise Hamiltonian is expanded to second order,
+In the rotating frame defined by $U_R$, the remaining terms are diagonal in the relevant number operators, so its form is unchanged:
+\begin{equation}
+    H_{\text{noise}}^R = H_{\text{noise}}^{\text{disp}}.
+\end{equation}
+Under the drive transformation $U_d = e^{D_d}$, we expand the noise Hamiltonian to second order:
 \begin{align}
-    {H_{\text{noise}}^d}' &= U_d^\dagger H_{\text{noise}}^R U_d \nonumber \\
-    &\approx H_{\text{noise}}^R + [D_d, H_{\text{noise}}^R] + \frac{1}{2} [D_d, [D_d, H_{\text{noise}}^R]] \nonumber
+    {H_{\text{noise}}^d}' &= U_d^\dagger H_{\text{noise}}^R U_d \nonumber \approx H_{\text{noise}}^R + [D_d, H_{\text{noise}}^R] + \frac{1}{2} [D_d, [D_d, H_{\text{noise}}^R]].
 \end{align}
-where we truncate the FTT Hilbert space to three levels in the regime of interest $|\Omega_0/K|\ll1$,
+Here we truncate the FTT Hilbert space to three levels in the regime of interest, $|\Omega_0/K| \ll 1$, so that
 \begin{equation}
 \begin{split}
-    H_{\text{noise}}^R \approx \frac{\partial \omega_b}{\partial \Phi} \delta \Phi \bigg( & |e\rangle\langle e| + 2|f\rangle\langle f| + \frac{g^2}{\Delta^2_{bc}} c^\dagger c \\
-    & - \frac{4Kg^2}{\Delta_{bc}^3} \left( |e\rangle\langle e| + 2|f\rangle\langle f| \right) c^\dagger c \bigg).
+    H_{\text{noise}}^R \approx \frac{\partial \omega_b}{\partial \Phi} \delta \Phi \bigg( & |e\rangle\langle e| + 2|f\rangle\langle f| + \frac{g^2}{\Delta_{bc}^2} c^\dagger c- \frac{4Kg^2}{\Delta_{bc}^3} \left( |e\rangle\langle e| + 2|f\rangle\langle f| \right) c^\dagger c \bigg).
 \end{split}
 \end{equation}
-Evaluating the required commutators:
+Evaluating the required commutators, we obtain
 \begin{align}
-    &\left[ D_d, \, b^\dagger b\right] = -\sum_m \big[ \frac{\Omega_0}{\Delta_m} |g,m\rangle \langle e,m| \nonumber \\
-    &+ \frac{\sqrt{2}\Omega_0}{K} |e,m\rangle \langle f,m| + \text{h.c.} \big] \nonumber\\
-    &\frac{1}{2} \left[ D_d, \left[ D_d, b^\dagger b \right] \right]= \sum_m \Bigg[ 2 \left( \frac{\Omega_0}{\Delta_m} \right)^2 |g,m\rangle\langle g,m| \nonumber \\
-    &- 2 \left( \frac{\Omega_0}{\Delta_m} \right)^2 |e,m\rangle\langle e,m|   - \frac{4\Omega_0^2}{K^2} |f,m\rangle\langle f,m| \Bigg]\nonumber \\
-    &[D_d,c^\dagger c] = 0
+    \left[ D_d, \, b^\dagger b \right] &= -\sum_m \bigg[ \frac{\Omega_0}{\Delta_m} |g,m\rangle \langle e,m| + \frac{\sqrt{2}\Omega_0}{K} |e,m\rangle \langle f,m| + \text{h.c.} \bigg], \nonumber \\
+    \left[ D_d, \left[ D_d, b^\dagger b \right] \right] &= \sum_m \Bigg[ 2 \left( \frac{\Omega_0}{\Delta_m} \right)^2 |g,m\rangle\langle g,m| - 2 \left( \frac{\Omega_0}{\Delta_m} \right)^2 |e,m\rangle\langle e,m| \nonumber - \frac{4\Omega_0^2}{K^2} |f,m\rangle\langle f,m| \Bigg], \nonumber \\
+    [D_d, c^\dagger c] &= 0,
 \end{align}
-gives
+which gives
 \begin{multline}
 \label{eq:noise_Hamiltoniand}
-    {H_{\text{noise}}^d}' \approx \frac{\partial \omega_b}{\partial \Phi} \delta \Phi \Bigg(  \frac{g^2}{\Delta_{bc}^2} c^\dagger c + \left(\frac{\Omega_0}{\Delta_m}\right)^2 |m\rangle\langle m| \\
-    +\sigma^+ \sigma^-- \sigma^+ \sigma^- \left( \frac{4Kg^2}{\Delta_{bc}^3} c^\dagger c + 2\left(\frac{\Omega_0}{\Delta_m}\right)^2 |m\rangle\langle m| \right) \\
-    - \sum_m \left[ \frac{\Omega_0}{\Delta_m} \sigma^- |m\rangle\langle m| + \text{h.c.} \right]\Bigg),
+    {H_{\text{noise}}^d}' \approx \frac{\partial \omega_b}{\partial \Phi} \delta \Phi \sum_m\Bigg( \frac{g^2}{\Delta_{bc}^2} c^\dagger c + \left(\frac{\Omega_0}{\Delta_m}\right)^2 |m\rangle\langle m|  - \\\sigma^+ \sigma^- \left( \frac{4Kg^2}{\Delta_{bc}^3} c^\dagger c + 2\left(\frac{\Omega_0}{\Delta_m}\right)^2 |m\rangle\langle m| \right)
+    -  \left[ \frac{\Omega_0}{\Delta_m} \sigma^- |m\rangle\langle m| + \text{h.c.} \right]\Bigg).
 \end{multline}
-with a two-level truncation in the FTT.
-
-\paragraph{Transformation of the Lindbladian.}
+Here we truncate the FTT to two levels, as in Eq.~\eqref{eq:Hd_two_level}.
+\section*{Transformation of the Lindbladian.}
 \label{subsec:Lindblad_transfer}
-\label{subsec:Lindbladian_regime}
 
-Following Ref.~\cite{cqedreview2021}, in the dispersive regime the reduced dynamics are described by the Lindblad master equation
-\begin{align}
+Following Ref.~\cite{cqedreview2021}, the reduced dynamics in the dispersive regime are governed by the Lindblad master equation
+\begin{equation}
 \label{eq:Linblad_disp}
-    \dot{ \rho}_\textit{disp} &= -i[H_{\text{disp}},  \rho_\textit{disp}] + \gamma_{b\downarrow} \mathcal{D}[b] \rho_\textit{disp} + \gamma_{c\downarrow} \mathcal{D}[c]  \rho_\textit{disp}.
-\end{align}
-Here $\gamma_{b\downarrow}$ is the FTT relaxation rate, and $\gamma_{c\downarrow}=\frac{g^2}{\Delta_{bc}^2}\gamma_{b\downarrow}$ is the Purcell-induced cavity decay rate. The cavity relaxation is assumed to be Purcell-limited in state-of-the-art hardware designs \cite{longcoherence5}.
+    \dot{\rho}_{\text{disp}} = -i[H_{\text{disp}}, \rho_{\text{disp}}] + \gamma_{b\downarrow} \mathcal{D}[b]\rho_{\text{disp}} + \gamma_{c\downarrow} \mathcal{D}[c]\rho_{\text{disp}}.
+\end{equation}
+Here, $\gamma_{b\downarrow}$ is the FTT relaxation rate, and $\gamma_{c\downarrow} = \frac{g^2}{\Delta_{bc}^2}\gamma_{b\downarrow}$ is the Purcell-induced cavity decay rate. We assume that the cavity relaxation is Purcell limited in state-of-the-art hardware designs \cite{longcoherence5}.
 
-In the rotating frame defined by $U_R$, the equation retains the same Lindblad structure:
+In the rotating frame defined by $U_R$, the master equation retains the same Lindblad form:
 \begin{equation}
 \label{eq:LinbladR}
     \dot{\rho}_R = -i[H_R, \rho_R] + \gamma_{b\downarrow} \mathcal{D}[b]\rho_R + \gamma_{c\downarrow} \mathcal{D}[c]\rho_R,
 \end{equation}
-where ${\rho}_R = U_R^\dagger \rho_\textit{disp}U_R$.
+where $\rho_R = U_R^\dagger \rho_{\text{disp}} U_R$.
 
-Effective dissipation in the driven frame is obtained by transforming the jump operators with $U_d$. The FTT operator is first truncated to the three lowest levels ($|g\rangle, |e\rangle, |f\rangle$), so that $b \approx |g\rangle\langle e| + \sqrt{2}|e\rangle\langle f|$, and the drive transformation $U_d=e^{D_d}$ is applied. Projecting the result to the two-level FTT subspace then yields
+The effective dissipation in the driven frame is obtained by transforming the jump operators with $U_d$. We first truncate the FTT Hilbert space to the three lowest levels so that $b \approx |g\rangle\langle e| + \sqrt{2}|e\rangle\langle f|$, and then apply the drive transformation $U_d = e^{D_d}$. Projecting the transformed operator onto the two-level FTT subspace yields
 \begin{align}
 \label{eq:transformb}
-    e^{-D_d} b e^{D_d} &\approx b + [D_d,b] +\frac{1}{2}[D_d,[D_d,b]] \nonumber \\
-    &\approx \sigma^- + \sum_m \Omega_0 \bigg( -\frac{1}{\Delta_m} |m\rangle\langle m| \nonumber \\
-    &\quad + \left[ \frac{2}{\Delta_m} - \frac{2}{K} \right] \sigma^\dagger \sigma |m\rangle\langle m| \bigg) \nonumber \\
-    &\quad + \sum_m \Omega_0^2 \bigg[ \left( \frac{1}{K \Delta_m} - \frac{1}{\Delta_m^2} \right) \sigma^+ |m\rangle\langle m| \nonumber \\
-    &\quad + \left( \frac{2}{K \Delta_m} - \frac{1}{\Delta_m^2} \right) \sigma^- |m\rangle\langle m| \bigg],
+    e^{-D_d} b e^{D_d}
+    &\approx b + [D_d, b] + \frac{1}{2}[D_d, [D_d, b]] \nonumber \\
+    &\approx \sigma^- - \sum_m \frac{\Omega_0}{\Delta_m} |m\rangle\langle m| + \sum_m \Omega_0 \left( \frac{2}{\Delta_m} - \frac{2}{K} \right) \sigma^+ \sigma^- |m\rangle\langle m| \nonumber \\
+    &\quad + \sum_m \Omega_0^2 \left[ \left( \frac{1}{K \Delta_m} - \frac{1}{\Delta_m^2} \right) \sigma^+ + \left( \frac{2}{K \Delta_m} - \frac{1}{\Delta_m^2} \right) \sigma^- \right] |m\rangle\langle m|.
 \end{align}
-where we truncate FTT to two levels.
-Similarly, the cavity operator $c$ transforms under the influence of the drive:
+
+Similarly, the cavity operator $c$ transforms under the drive as
 \begin{align}
 \label{eq:transformc}
-    &e^{-D_d} c e^{D_d}\nonumber \\
-    &\approx c + \sum_m \frac{\sqrt{m+1} \Omega_0 \chi}{\Delta_{ m} \Delta_{ m+1}} \big( (\sigma^+ - \sigma^-)|m\rangle\langle m+1|    \nonumber \\
-    &\quad + \sum_m \sqrt{m+1} \Omega_0^2 \left( \frac{1}{\Delta_{ m+1}^2} - \frac{1}{\Delta_{ m}^2} \right) |m\rangle\langle m+1| \nonumber \\
-    &\quad - \sum_m \sqrt{m+1} \frac{\Omega_0^2 (\chi^2 + \Delta_{m} \chi)}{(\Delta_{m} \Delta_{ m+1})^2} \sigma^+ \sigma^- |m\rangle\langle m+1| \big)
+    e^{-D_d} c e^{D_d}
+    &\approx c + \sum_m \frac{\sqrt{m+1}\,\Omega_0 \chi}{\Delta_m \Delta_{m+1}} (\sigma^+ - \sigma^-) |m\rangle\langle m+1| \nonumber \\
+    &\quad + \sum_m \sqrt{m+1}\,\Omega_0^2 \left( \frac{1}{\Delta_{m+1}^2} - \frac{1}{\Delta_m^2} \right) |m\rangle\langle m+1| \nonumber \\
+    &\quad - \sum_m \sqrt{m+1}\,\frac{\Omega_0^2 (\chi^2 + \Delta_m \chi)}{(\Delta_m \Delta_{m+1})^2} \sigma^+ \sigma^- |m\rangle\langle m+1|.
 \end{align}
 
 In this driven frame, the Lindblad master equation becomes
 \begin{align}
 \label{eq:Linblad_driven}
-    \dot{\rho}_d &= -i[H_d, \rho_d] + \gamma_{b\downarrow} \mathcal{D}\left[ e^{-D_d} b e^{D_d} \right] \rho_d \nonumber \\
-    &+ \gamma_{c\downarrow} \mathcal{D}\left[ e^{-D_d} c e^{D_d} \right] \rho_d \nonumber \\
-    &\approx-i[H_d, \rho_d] +\nonumber \\
-    &\gamma_{b\downarrow} \mathcal{D}\left[ \sigma^- + \sum_m \Omega_0^2 \left(\frac{2}{K\Delta_m} - \frac{1}{\Delta_m^2}\right) \sigma^- |m\rangle\langle m| \right] \rho_d \nonumber \\
-    &\quad + \gamma_{b\downarrow} \mathcal{D}\left[ -\sum_m \frac{\Omega_0}{\Delta_m} |m\rangle\langle m| \right] \rho_d \nonumber \\
-    &\quad + \gamma_{b\downarrow} \mathcal{D}\left[ \sum_m \Omega_0^2 \left(\frac{1}{K\Delta_m} - \frac{1}{\Delta_m^2}\right) \sigma^+ |m\rangle\langle m| \right] \rho_d \nonumber \\
-    &\quad + \sum_m \gamma_{c\downarrow, m} \mathcal{D}\big[ |m\rangle\langle m+1| \big] \rho_d \nonumber  \\
-    &+\mathcal{O}\left( \frac{g^2}{\Delta_{bc}^2} \frac{(m+1)\Omega_0^2 \chi^2}{(\Delta_m \Delta_{m+1})^2} \right),
+    \dot{\rho}_d
+    &= -i[H_d, \rho_d] + \gamma_{b\downarrow} \mathcal{D}\!\left[e^{-D_d} b e^{D_d}\right] \rho_d + \gamma_{c\downarrow} \mathcal{D}\!\left[e^{-D_d} c e^{D_d}\right] \rho_d \nonumber \\
+    &\approx -i[H_d, \rho_d] + \gamma_{b\downarrow} \mathcal{D}\!\left[ \sigma^- + \sum_m \Omega_0^2 \left( \frac{2}{K \Delta_m} - \frac{1}{\Delta_m^2} \right) \sigma^- |m\rangle\langle m| \right] \rho_d \nonumber \\
+    &\quad + \gamma_{b\downarrow} \mathcal{D}\!\left[ -\sum_m \frac{\Omega_0}{\Delta_m} |m\rangle\langle m| \right] \rho_d + \gamma_{b\downarrow} \mathcal{D}\!\left[ \sum_m \Omega_0^2 \left( \frac{1}{K \Delta_m} - \frac{1}{\Delta_m^2} \right) \sigma^+ |m\rangle\langle m| \right] \rho_d \nonumber \\
+    &\quad + \sum_m \gamma_{c\downarrow, m} \mathcal{D}[|m\rangle\langle m+1|] \rho_d + \mathcal{O}\!\left( \frac{g^2}{\Delta_{bc}^2} \frac{(m+1)\Omega_0^2 \chi^2}{(\Delta_m \Delta_{m+1})^2} \right),
 \end{align}
-where $\rho_d = U_d^\dagger \rho_R U_d$. The effective cavity decay rate $\gamma_{c\downarrow, m}$ is perturbatively modified by the drive:
+where $\rho_d = U_d^\dagger \rho_R U_d$. The effective cavity decay rate $\gamma_{c\downarrow, m}$ is modified perturbatively by the drive:
 \begin{equation}
-    \gamma_{c\downarrow, m} \approx (m+1) \left( 1 - \Omega_0^2 \left[ \frac{1}{\Delta_{m+1}^2} - \frac{1}{\Delta_m^2} \right] \right) \gamma_{c\downarrow}.
+    \gamma_{c\downarrow, m} \approx (m+1) \left[ 1 +2 \Omega_0^2 \left( \frac{1}{\Delta_{m+1}^2} - \frac{1}{\Delta_m^2} \right) \right] \gamma_{c\downarrow}.
 \end{equation}
 
-Equation \eqref{eq:Linblad_driven} uses the secular approximation, valid when the relevant detunings and mode frequencies exceed the decay rates ($\widetilde\Delta_\textit{bd}, \omega_c \gg \gamma_{\textit{b}\downarrow}$). In the interaction picture, the transformed jump operator decomposes into spectral components $\sum_k L_k$ oscillating at distinct frequencies $\omega_k$. When $\gamma \ll |\omega_j-\omega_k|$, rapidly oscillating cross-terms can be neglected, so that dissipation channels decouple:
+Equation~\eqref{eq:Linblad_driven} is obtained using the secular approximation: in the interaction picture, the transformed jump operator decomposes into spectral components $\sum_k L_k$, each oscillating at a distinct frequency $\omega_k$. When $\gamma \ll |\omega_j - \omega_k|$, the rapidly oscillating cross terms can be neglected, so the dissipation channels decouple:
 \begin{equation}
-\gamma \mathcal{D}\left[ \sum_k L_k \right] \rho \approx \sum_k \gamma \mathcal{D}[L_k] \rho.
+    \gamma \mathcal{D}\!\left[ \sum_k L_k \right] \rho \approx \sum_k \gamma \mathcal{D}[L_k] \rho.
 \end{equation}
+For the present system , the relevant frequency splittings are set by $\widetilde{\Delta}_{bd}$ and $\omega_c$. The approximation is valid when $\widetilde{\Delta}_{bd}, \omega_c \gg \gamma_{b\downarrow}$.
 
-We have transformed the Lindbladian in Eq.~\eqref{eq:Linblad_ch8} into the effective drive frame, yielding the dissipators in Eq.~\eqref{eq:Linblad_driven} and the noise Hamiltonian in Eq.~\eqref{eq:noise_Hamiltoniand}. Below, we derive simplified expressions for the Lindbladian and $H_{\mathrm{noise}}^{d}$ in the unselective and selective regimes.
 
-\subsubsection{Analytical calculation of dephasing rates}
-\label{sec:analytical_rates}
+We have thus transformed the Lindbladian in Eq.~\eqref{eq:Linblad_ch8} into the driven frame, yielding the dissipators in Eq.~\eqref{eq:Linblad_driven} and the noise Hamiltonian in Eq.~\eqref{eq:noise_Hamiltoniand}. Below, we derive simplified expressions for the Lindbladian and $H_{\text{noise}}^d$ in both the unselective and selective regimes.
+
+\paragraph{Unselective regime}
+As discussed in Sec.~\ref{subsec:sweet-spots}, the unselective regime requires $\Delta_{bd}\ll\chi$. Retaining terms through $\mathcal{O}[(\Delta_{bd}/\chi)^2]$, the  master equation in Eq.~\eqref{eq:Linblad_driven} is approximated by
+\begin{align}
+\label{unselectivemasterequation1}
+\dot{\rho}_d
+&= -i [H_d + H_{\text{noise}}^d(t), \rho_d]
++ \widetilde{\gamma}_{b\downarrow} \mathcal{D}\!\left[ \sigma^- (1 - \lambda_\downarrow c^\dagger c) \right] \rho_d
++ 2\gamma_{c\phi} \mathcal{D}\!\left[ c^\dagger c \right] \rho_d \nonumber \\
+&\quad
++ \gamma_{b\uparrow} \mathcal{D}\!\left[ \sigma^+ (1 - \lambda_\uparrow c^\dagger c) \right] \rho_d
++ \widetilde{\gamma}_{c\downarrow} \mathcal{D}[c] \rho_d .
+\end{align} 
+The noise Hamiltonian in Eq.~\eqref{eq:noise_Hamiltoniand} is approximated by
+\begin{align}
+\label{unselectivenoisehamiltonian}
+H_{\text{noise}}^d(t)
+&= \delta\omega_b(t) \Bigg[
+\left( \frac{g^2}{\Delta_{bc}^2} - \frac{2 \Omega_0^2 \chi}{\Delta_{bd}^3} \right)c^\dagger c
++ \left( 1 - 2 \frac{\Omega_0^2}{\Delta_{bd}^2} \right)\sigma^+ \sigma^- \nonumber \\
+&\quad
++ \left( \frac{4 \Omega_0^2 \chi}{\Delta_{bd}^3}
+- \frac{4 K g^2}{\Delta_{bc}^3} \right)
+\sigma^+ \sigma^- c^\dagger c
+- \frac{\Omega_0}{\Delta_{bd}} \sigma_x
++ \frac{\Omega_0 \chi}{\Delta_{bd}^2} \sigma_x c^\dagger c
+\Bigg],
+\end{align}
+where $\delta\omega_b(t)$ denotes the fluctuation of the FTT frequency induced by flux noise. The renormalized FTT relaxation rate, pure cavity-dephasing rate, FTT excitation rate, and renormalized cavity-decay rate are, respectively,
+\begin{align}
+\widetilde{\gamma}_{b\downarrow}
+&\approx \gamma_{b\downarrow}
+\left[
+1 + 2\left(
+\frac{2\Omega_0^2}{K\Delta_{bd}}
+- \frac{\Omega_0^2}{\Delta_{bd}^2}
+\right)
+\right]
++ \mathcal{O}\!\left(\frac{\Omega_0^4}{\Delta_{bd}^4}\right), \nonumber \\
+\gamma_{c\phi}
+&= \frac{\gamma_{b\downarrow}}{2}
+\left( \frac{\Omega_0 \chi}{\Delta_{bd}^2} \right)^2, \nonumber \\
+\gamma_{b\uparrow}
+&= \gamma_{b\downarrow}
+\left[
+\Omega_0^2
+\left(
+\frac{1}{K\Delta_{bd}}
+- \frac{1}{\Delta_{bd}^2}
+\right)
+\right]^2, \nonumber \\
+\widetilde{\gamma}_{c\downarrow}
+&\approx \gamma_{c\downarrow}
+\left[
+1 - \frac{4\chi \Omega_0^2}{\Delta_{bd}^3}
++ \mathcal{O}\!\left(\frac{\chi^2}{\Delta_{bd}^2}\right)
+\right].
+\end{align}
+The photon-number-dependent corrections in Eq.\ \eqref{unselectivemasterequation1} are 
+\begin{align}
+\lambda_\downarrow
+\approx
+\frac{2\chi}{\Delta_{bd}}\Omega_0^2
+\left(
+\frac{1}{K\Delta_{bd}}
+- \frac{1}{\Delta_{bd}^2}
+\right)
++ \mathcal{O}\!\left(\frac{\Omega_0^4}{\Delta_{bd}^4}\right),\quad
+\lambda_\uparrow=
+\frac{\chi}{\Delta_{bd}}
+\left(
+\frac{2K-\Delta_{bd}}{K-\Delta_{bd}}
+\right).
+\end{align}
+More photons in cavity suppress the FTT heating rate and make the relaxation rate toward $\widetilde{\gamma}_{b\downarrow}$. Because for higher cavity photons, the detuning $|\Delta_m|$ increases due to dispersive shift, and thus the corresponding states $|g,m\rangle,|e,m\rangle$ has less hybridization.
+
+Neglecting this photon-number dependence due to smallness of $|\Delta_{bd}|/\chi$, and using sweet spot condition in Eq.\ \eqref{eq:ss_unselective} gives the simplified master equation
+\begin{align}
+\label{eq:Ldiss_unselective}
+\dot{\rho}_d
+&= -i \bigl[ H_d + H_{\text{noise}}^d, \rho_d \bigr]
++ \widetilde{\gamma}_{b\downarrow}^{\mathrm{un}} \mathcal{D}[\sigma^-]\rho_d
++ \gamma_{b\uparrow}^{\mathrm{un}} \mathcal{D}[\sigma^+]\rho_d 
++ 2\gamma_{c\phi}^{\mathrm{un}} \mathcal{D}[c^\dagger c]\rho_d
++ \widetilde{\gamma}_{c\downarrow}^{\mathrm{un}} \mathcal{D}[c]\rho_d .
+\end{align}
+The effective rates $\widetilde{\gamma}_{b\downarrow}^{\mathrm{un}}$, $\gamma_{b\uparrow}^{\mathrm{un}}$, $\gamma_{c\phi}^{\mathrm{un}}$, and $\widetilde{\gamma}_{c\downarrow}^{\mathrm{un}}$ are
+\begin{align}
+\widetilde{\gamma}_{b\downarrow}^{\mathrm{un}}
+&= \gamma_{b\downarrow}
+\left(1-\frac{\Delta_{bd}}{K}\right), \quad\gamma_{b\uparrow}^{\mathrm{un}}
+= \frac{\gamma_{b\downarrow}}{16}
+\left(\frac{\Delta_{bd}}{K}\right)^2
+\left(1-\frac{2\Delta_{bd}}{K}\right), \nonumber \\
+\gamma_{c\phi}^{\mathrm{un}}
+&= \frac{1}{2}\gamma_{b\downarrow}
+\left(\frac{g}{\Delta_{bc}}\right)^4
+\frac{K}{\Delta_{bd}}, \quad
+\widetilde{\gamma}_{c\downarrow}^{\mathrm{un}}
+= \gamma_{c\downarrow}
+\left(1+\frac{g^2}{\Delta_{bc}^2}\right).
+\end{align}
+Here, $H_d$ is the effective driven Hamiltonian given in Eq.~\eqref{eq:Hd_far_detuned}, and $H_{\text{noise}}^d$ is the noise Hamiltonian in the effective driven frame. In the unselective limit, the latter takes the approximate form
+\begin{align}
+\label{eq:Hnoise_unselective}
+H_{\text{noise}}^d
+&\approx \delta\omega_b \Bigg[
+\left(1 - \frac{\Delta_{bd}}{2K}\right)\sigma^+\sigma^-
++ \frac{2g^2}{\Delta_{bc}^2}
+\left(1 - \frac{2K}{\Delta_{bc}}\right)
+\sigma^+\sigma^- c^\dagger c
+- \frac{1}{2}\sqrt{\frac{\Delta_{bd}}{K}}\,\sigma_x
+\Bigg].
+\end{align}
+Although the sweet-spot condition cancels the leading direct cavity-dephasing contribution in Eq.\ \eqref{unselectivenoisehamiltonian} it does not eliminate all noise channels in the effective driven frame. These remaining channels are discussed in next section.
+
+\paragraph{Selective regime.}
+In the selective regime, the condition $|\Delta_{m^\star}/\chi|\ll 1$ holds. The hierarchy of energy scales is
+\begin{equation}
+|\Omega_0| \ll |\Delta_{m^\star}| \ll |\chi| \ll |K|.
+\end{equation}
+To leading order of $\Omega_0/\Delta_{m^\star}$, and zeroth order of $\Omega_0/|K|$, $\Omega_0/|\chi|$, the master equation in Eq.\ \eqref{eq:Linblad_driven} reduces to
+\begin{align}
+\label{selectivelinbladmasterequation}
+&\dot{\rho} \approx -i\,[H_d + H_{\mathrm{noise}}^{d},\,\rho] + \gamma_{b\downarrow}\,\mathcal{D}\!\left[\sigma^- - \frac{\Omega_0^2}{\Delta_{m^\star}^2}\,\sigma^- |m^\star\rangle\langle m^\star|\right]\rho
++ 2\gamma_{c\phi}^{\mathrm{sel}}\,\mathcal{D}\!\left[|m^\star\rangle\langle m^\star|\right]\rho \nonumber\\
+&+ \gamma_{b\uparrow}^{\mathrm{sel}}\,\mathcal{D}\!\left[\sigma^+ |m^\star\rangle\langle m^\star|\right]\rho
++ \sum_m \widetilde{\gamma}_{c\downarrow,m}^{\mathrm{sel}}\,\mathcal{D}\!\left[|m\rangle\langle m+1|\right]\rho ,
+\end{align}
+and the noise Hamiltonian in Eq.\ \eqref{eq:noise_Hamiltoniand} is
+\begin{align}
+\label{selectivenoisehamiltonian}
+H_{\mathrm{noise}}^{d}
+\approx \delta\omega_b(t)\Bigg[
+&\frac{g^2}{\Delta_{bc}^2}\,c^\dagger c
++ \frac{g^2}{\Delta_{bc}^2}\,|m^\star\rangle\langle m^\star| + \sigma^+\sigma^-\!\left(\frac{4Kg^2}{\Delta_{bc}^3}\,c^\dagger c
++ 2\frac{g^2}{\Delta_{bc}^2}\,|m^\star\rangle\langle m^\star|\right) \nonumber\\
+&- \frac{g}{\Delta_{bc}}\,\sigma^+ |m^\star\rangle\langle m^\star|
++ \mathrm{h.c.}
+\Bigg].
+\end{align}
+The FTT excitation, renormalized cavity relaxation and cavity pure dephasing rates are 
+\begin{equation}
+\gamma_{b\uparrow}^{\mathrm{sel}} = \left(\frac{g^4}{\Delta_{bc}^4}\right)\gamma_{b\downarrow}, \qquad
+\gamma_{c\downarrow,m}^{\mathrm{sel}} = \gamma_{c\downarrow}^{\mathrm{sel}}\left(1 - 2\delta_{m^*,m}\frac{g^2}{\Delta_{bc}^2}\right), \qquad
+\gamma_{c\phi}^{\mathrm{sel}} = \left(\frac{g^2}{\Delta_{bc}^2}\right)\frac{\gamma_{b\downarrow}^{\mathrm{sel}}}{2}.
+\end{equation}
+To obtain these expressions, the sweet spot condition in Eq.\ \eqref{eq:weak_drive_sweetspot} is used here.
+
+\subsection{Analytical Estimate of the Dephasing Rate}
+\label{subsec:analytical-dephasing-rate}
 
 With the effective master equation established in the preceding section, we now extract analytical expressions for the cavity dephasing rate in the two operating regimes.
 
-\paragraph{Unselective regime.}
+\section*{Unselective regime.}
 \label{subsec:unselective_analytical}
 
-In the unselective regime $|\Delta_{bd}|\gg|\chi|$, the master equation can be expanded to first order in $|\chi/\Delta_{bd}|$ about the sweet-spot condition (Eq.\ \eqref{eq:ss_unselective}). This yields the Lindblad master equation for the density matrix in the effective drive frame $\rho_d$,
-\begin{align}
-\label{eq:Ldiss_unselective}
-&\dot{\rho}_d = -i \bigl[ H_d + H_{\text{noise}}^d , \rho_d \bigr] \nonumber \\
-&\quad + \widetilde{\gamma}_{b\downarrow}^{\mathrm{un}} \mathcal{D}[\sigma^-]\rho_d
-+ \gamma_{b\uparrow}^{\mathrm{un}} \mathcal{D}[\sigma^+]\rho_d \nonumber \\
-&\quad + 2\gamma_{c\phi}^{\mathrm{un}} \mathcal{D}[c^\dagger c]\rho_d
-+ \widetilde{\gamma}_{c\downarrow}^{\mathrm{un}} \mathcal{D}[c]\rho_d,
-\end{align}
-See Sec.~\ref{subsec:Lindbladian_regime} for the derivation.
-The effective rates $\widetilde{\gamma}_{b\downarrow}^{\mathrm{un}}$, $\gamma_{b\uparrow}^{\mathrm{un}}$, $\gamma_{c\phi}^{\mathrm{un}}$, and $\widetilde{\gamma}_{c\downarrow}^{\mathrm{un}}$ are given below.
-Here, $H_d$ is the effective driven Hamiltonian Eq.\ \eqref{eq:Hd_far_detuned}, and $H_{\text{noise}}^d$ is the noise Hamiltonian in the effective-drive frame. In the unselective limit it takes the approximate form
-\begin{align}
-\label{eq:Hnoise_unselective}
-H_{\text{noise}}^d &\approx \delta \omega_b \Bigg[ \big(1- \frac{\Delta_{bd}}{2K}\big) \sigma^+ \sigma^- \nonumber \\
-&\quad + \frac{2 g^2}{\Delta_{bc}^2} \left( 1 - \frac{2 K}{\Delta_{bc}} \right) \sigma^+ \sigma^- c^\dagger c  
--\frac{1}{2} \sqrt{\frac{\Delta_{bd}}{K}} \sigma_x \Bigg].
-\end{align}
-Although the sweet-spot condition cancels the leading direct cavity-dephasing contribution (\(D_{0\to1}=0\)), it does not eliminate all noise channels in the effective-drive frame, which are discussed below.
-\paragraph{Interpretation of the dissipators.}
-The dissipators in Eq.~\eqref{eq:Ldiss_unselective} represent (i) drive-renormalized FTT relaxation,
-$\widetilde{\gamma}_{b\downarrow}^{\mathrm{un}}\mathcal{D}[\sigma^-]$; (ii) drive-induced FTT excitation,
-$\gamma_{b\uparrow}^{\mathrm{un}}\mathcal{D}[\sigma^+]$, which produces photon-shot-noise dephasing of the cavity via the dispersive coupling \cite{shotnoise,PhysRevA.75.042302Ashphotonshot}; (iii) cavity pure dephasing,
-$2\gamma_{c\phi}^{\mathrm{un}}\mathcal{D}[c^\dagger c]$ (the prefactor $2$ is conventional); and (iv) renormalized cavity decay,
-$\widetilde{\gamma}_{c\downarrow}^{\mathrm{un}}\mathcal{D}[c]$.
-At the sweet-spot condition of Eq.~\eqref{eq:ss_unselective}, the corresponding rates are
-\begin{align}
-\widetilde{\gamma}_{b\downarrow}^{\mathrm{un}}
-&= \gamma_{b\downarrow}\left(1-\frac{\Delta_{bd}}{K}\right), \nonumber\\
-\gamma_{b\uparrow}^{\mathrm{un}}
-&= \frac{\gamma_{b\downarrow}}{16}\left(\frac{\Delta_{bd}}{K}\right)^2
-\left(1-\frac{2\Delta_{bd}}{K}\right), \nonumber\\
-\gamma_{c\phi}^{\mathrm{un}}
-&= \frac{1}{2}\gamma_{b\downarrow}\left(\frac{g}{\Delta_{bc}}\right)^4\frac{K}{\Delta_{bd}}, \qquad
-\widetilde{\gamma}_{c\downarrow}^{\mathrm{un}}
-= \gamma_{c\downarrow}\left(1+\frac{g^2}{\Delta_{bc}^2}\right).
-\end{align}
-The cavity-decay renormalization scales as $g^2/\Delta_{bc}^2$ and remains small (e.g., $\sim 0.01$) even in the relatively strong dispersive-coupling regime.
+The dissipators in Eq.~\eqref{eq:Ldiss_unselective} describe (i) drive-renormalized FTT relaxation, $\widetilde{\gamma}_{b\downarrow}^{\mathrm{un}}\mathcal{D}[\sigma^-]$; (ii) drive-induced FTT excitation, $\gamma_{b\uparrow}^{\mathrm{un}}\mathcal{D}[\sigma^+]$, which gives rise to cavity photon-shot-noise dephasing through the dispersive coupling \cite{shotnoise,PhysRevA.75.042302Ashphotonshot}; (iii) cavity pure dephasing, $2\gamma_{c\phi}^{\mathrm{un}}\mathcal{D}[c^\dagger c]$ (the prefactor $2$ is conventional); and (iv) renormalized cavity decay, $\widetilde{\gamma}_{c\downarrow}^{\mathrm{un}}\mathcal{D}[c]$.
 
-\paragraph{Interpretation of the noise Hamiltonian.}
-At the sweet spot, cavity dephasing $c^\dagger c$ in Eq.~\eqref{eq:Hnoise_unselective} vanishes by construction, suppressing direct cavity-frequency noise. Also, AC-Stark-shift-induced cavity-frequency fluctuations are neglected because the FTT is barely excited if it is initialized in the ground state. Residual dephasing is dominated by a transverse component $\propto\sigma_x$, which induces FTT depolarization under $1/f$ flux noise. The transverse-noise-induced excitation rate is
+The noise Hamiltonian in Eq.~\eqref{eq:Hnoise_unselective} also contains several contributions. First, it includes dispersive-shift-induced cavity-frequency fluctuations. We neglect this contribution because the FTT remains close to its ground state when it is initialized there. Second, the residual dephasing is dominated by a transverse component proportional to $\sigma_x$, which induces FTT depolarization under $1/f$ flux noise. The corresponding transverse-noise-induced excitation rate at the sweet spot is
 \begin{equation}
+\label{unselective1/f}
 \gamma_{b\uparrow}^{1/f,\mathrm{un}}=\left(\frac{\Omega_0}{\Delta_{bd}}\frac{\partial\omega_b}{\partial\Phi}\right)^2\frac{S_0^2}{|\Delta_{bd}/2\pi|}
-\overset{\eqref{eq:ss_unselective}}{=}\frac{1}{4}\left(\frac{\partial\omega_b}{\partial\Phi}\right)^2\frac{S_0^2}{|K/2\pi|}
+\overset{\eqref{eq:ss_unselective}}{=}\frac{1}{4}\left(\frac{\partial\omega_b}{\partial\Phi}\right)^2\frac{S_0^2}{|K/2\pi|}.
 \end{equation}
-at the sweet-spot condition.
 
-\paragraph{Total cavity dephasing rate.}
-In the unselective regime, evaluated at the sweet spot, the total cavity dephasing rate is the sum of the three contributions in
+In the unselective regime, the total cavity-dephasing rate is the sum of the photon-shot-noise contribution and the pure-dephasing contribution. We approximate the photon-shot-noise contribution by the FTT heating rate in the limit $\chi \gg \widetilde{\gamma}_{b\downarrow}$ \cite{serge}, because a single photon event is sufficient to completely destroy the cavity phase coherence before the photon decays. The total rate is therefore
 \begin{align}
 \label{eq:Gamma_phi_total_unselective}
-&\Gamma_{\phi,\mathrm{total}}
-=\gamma_{b\uparrow}^{1/f,\mathrm{un}}+\gamma_{b\uparrow}^{\mathrm{un}}+\gamma_{c\phi}^{\mathrm{un}} \nonumber\\
-&=\left(\frac{\partial\omega_b}{\partial\Phi}\right)^2\frac{S_0^2}{4K}
-+\frac{\gamma_{b\downarrow}}{16}\left(\frac{\Delta_{bd}}{K}\right)^2\bigg(1-\frac{2\Delta_{bd}}{K}\bigg)\nonumber
-\\&+\frac{\gamma_{b\downarrow}}{2}\left(\frac{g}{\Delta_{bc}}\right)^4\frac{K}{\Delta_{bd}}.
+\Gamma_{\phi,\mathrm{total}}
+=\left(\frac{\partial\omega_b}{\partial\Phi}\right)^2\frac{S_0^2}{|4K/2\pi|}
++\frac{\gamma_{b\downarrow}}{16}\left(\frac{\Delta_{bd}}{K}\right)^2\bigg(1-\frac{2\Delta_{bd}}{K}\bigg)
++\frac{\gamma_{b\downarrow}}{2}\left(\frac{g}{\Delta_{bc}}\right)^4\frac{K}{\Delta_{bd}}.
 \end{align}
-We approximate the photon-shot-noise contribution to cavity dephasing by the FTT heating rate $\gamma_{b\uparrow}^{\mathrm{un}}$ in the limit $\chi \gg \widetilde{\gamma}_{b\downarrow}$ \cite{serge}, because a single photon event is sufficient to entirely destroy phase coherence before the photon decays.
 
-\paragraph{Selective regime.}
+
+
+\section*{Selective regime.}
 \label{subsec:selective_analytical}
 
-Operating at the selective-regime sweet spot protects the cavity states
-$\lvert g,m^\star\rangle$--$\lvert g,m^\star\!+\!1\rangle$ from flux-noise dephasing.
-Under drive, however, the residual dephasing budget in the selective regime is set by two
-contributions: (i) cavity pure dephasing at a rate
-$\gamma_{c\phi}^{\mathrm{sel}}=\bigl(g^2/\Delta_{bc}^2\bigr)\gamma_{b\downarrow}$,
-arising from the Purcell-like mixing of cavity and FTT decay channels, and
-(ii) FTT heating at a rate $\gamma_{b\uparrow}^{\mathrm{sel}}\propto 1/\lvert\Delta_{bd}\rvert$
-induced by photon shot noise (see Sec.~\ref{subsec:Lindbladian_regime} for derivations). Because the shot-noise contribution scales unfavorably as $1/\lvert\Delta_{bd}\rvert$, operating at larger detuning---i.e., in the unselective regime---yields a lower total dephasing rate.
+The dissipators in Eq.~\eqref{selectivelinbladmasterequation} can be interpreted as follows: (i) FTT relaxation with a cavity-state-dependent correction, together with cavity decay at the renormalized rate $\gamma_{c\downarrow,m}^{\mathrm{sel}}$; (ii) FTT heating at rate $\gamma_{b\uparrow}^{\mathrm{sel}}$ when the cavity occupies $|m^\star\rangle$; and (iii) pure dephasing between $|m^\star\rangle$ and $|m^\star+1\rangle$ at rate $\gamma_{c\phi}^{\mathrm{sel}}$.
+
+At the sweet spot, $H_{\mathrm{noise}}^{d}$ does not induce dephasing between $|g,m^\star\rangle$ and $|g,m^\star+1\rangle$. Residual cavity dephasing from dispersive-shift fluctuations is negligible for the dynamics of interest, because the FTT remains close to its ground state when initialized there. Instead, the transverse component induces depolarization. Within a Markovian approximation, the corresponding excitation rate due to $1/f$ noise is
+\begin{equation}
+\label{selective1/f}
+\gamma_{b\uparrow}^{1/f,\mathrm{sel}}
+= \left( \frac{\partial \omega_b}{\partial \Phi} \right)^2
+\left( \frac{g}{\Delta_{bc}} \right)^2
+S_{1/f}(\Delta_{bd}) .
+\end{equation}
+
+Dephasing between $|g,m^\star\rangle$ and $|g,m^\star+1\rangle$ is therefore limited by cavity pure dephasing at rate $\gamma_{c\phi}^{\mathrm{sel}} \propto g^2/\Delta_{bc}^2$ and by $1/f$-noise-induced FTT excitation at rate $\gamma_{b\uparrow}^{1/f,\mathrm{sel}}$. The total dephasing rate is thus
+\begin{align}
+\label{eq:Gamma_phi_total_selective}
+\Gamma^{\mathrm{sel}}_{\phi,\mathrm{total}}
+= \left( \frac{\partial \omega_b}{\partial \Phi} \right)^2
+\left( \frac{g}{\Delta_{bc}} \right)^2
+\frac{S_0^2}{|\Delta_{bd}/2\pi|}
++ \left( \frac{g^2}{\Delta_{bc}^2} \right)\frac{\gamma_{b\downarrow}^{\mathrm{sel}}}{2}.
+\end{align}
 
 \subsection{Numerical Validation}
 \label{subsec:mc-validation}
 
-This section validates the analytical predictions of the preceding section through full-system numerical simulations.
-
-\subsubsection{Monte Carlo master equation simulation}
-\label{subsec:monte_carlo}
-
-The dynamics are simulated with the full Hamiltonian $H_{\mathrm{full}}(\delta\Phi)$ represented in a truncated oscillator (Fock) basis and evolved under the Lindblad master equation
-\begin{align}
-\dot{\rho}
-&= -i\!\left[\,H_{\mathrm{full}}\big(\delta\Phi(t)\big),\ \rho\,\right]
-+ \gamma_{b\downarrow}\,\mathcal{D}[b]\rho,
-\label{eq:lindblad_full_ch8}
-\end{align}
-where $\mathcal{D}[b]\rho=b\rho b^\dagger-\tfrac{1}{2}\{b^\dagger b,\rho\}$.
-\paragraph{Generation of $1/f$ noise.} Flux noise is incorporated through stochastic trajectories $\delta\Phi(t)$ whose spectrum
-follows a $1/f$ power spectral density. For each trajectory, Eq.~\eqref{eq:lindblad_full_ch8}
-is integrated to obtain $\rho(t)$, and all reported curves are computed from ensemble
-averages of the corresponding observables. The noise realizations $\delta\Phi(t)$ are
-generated using the frequency-domain synthesis method of Ref.~\cite{timmer1995generatingcolornoise}:
-Fourier components are assigned random phases and Gaussian-distributed amplitudes with
-variances proportional to the target $1/f$ spectrum, followed by an inverse Fourier
-transform to obtain $\delta\Phi(t)$ in the time domain. Fig.~\ref{fig:psd_ch8} shows the
-resulting power spectral densities for 100 representative trajectories. This ensemble size
-is sufficient for the quantities of interest to converge, as indicated by the small error
-bars in Fig.~\ref{fig:total_rate}(a) and Fig.~\ref{fig:relaxation_excitation_mc}(b).
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{chapter4/figures/noise_spectrum_plot.pdf}
-    \caption{Power spectral density of $\delta\Phi(t)$ for 100 representative $1/f$ noise
-    trajectories generated with the cutoffs specified below.}
-    \label{fig:psd_ch8}
-\end{figure}
-
-The total simulated evolution time is $T\sim 10~\mu\mathrm{s}$, and the infrared cutoff
-is set to $\omega_{\mathrm{IR}}/2\pi=10~\mathrm{kHz}$ (equivalently
-$f_{\min}=10^{-5}\,\mathrm{GHz}$). This choice satisfies $f_{\min}\ll 1/T \approx 100~\mathrm{kHz}$,
-capturing the relevant slow-noise dynamics within the simulated window while avoiding the
-infrared divergence of an ideal $1/f$ spectrum. The ultraviolet cutoff is set to
-$f_{\max}=1~\mathrm{GHz}$; the extracted dephasing rates are insensitive to further
-increases of $f_{\max}$.
-
-\paragraph{Extraction of dephasing time.} The states with enhanced dephasing discussed in the preceding chapters are proxies for the corresponding Floquet states, as shown in Sec.~\ref{sec:floquet}.
-In the numerics, Floquet modes are labeled by their correspondence to bare states as
-described in Appendix~\ref{app:numerics}. The two Floquet states used for the cavity
-dephasing analysis
-are denoted $\ket{\phi_{g,0}(t)}$ and $\ket{\phi_{g,1}(t)}$.
-
-Relaxation and dephasing are extracted from dynamics evolving from two initial states. Relaxation is
-characterized by preparing
-\[
-\rho(0)=\ket{\phi_{g,1}(0)}\!\bra{\phi_{g,1}(0)}
-\]
-and monitoring the return toward \(\ket{\phi_{g,0}(t)}\). Dephasing is characterized by preparing the equal superposition
-\[
-\rho(0)=\ket{+}\!\bra{+},
-\qquad
-\ket{+}=\frac{1}{\sqrt{2}}\Big(\ket{\phi_{g,0}(0)}+\ket{\phi_{g,1}(0)}\Big),
-\]
-and tracking the decay of the corresponding coherence. The relevant quantities are
-\[
-\mathrm{Tr}\!\left[\rho(t)\,P_{g,0}(t)\right]
-\quad \text{and} \quad
-\mathrm{Tr}\!\left[\rho(t)\,X(t)\right],
-\]
-where
-\[
-P_{g,0}(t)=\ket{\phi_{g,0}(t)}\!\bra{\phi_{g,0}(t)},
-X(t)=\ket{\phi_{g,1}(t)}\!\bra{\phi_{g,0}(t)}+\mathrm{H.c.}
-\]
-
-
-Relaxation and dephasing times are obtained by fitting ensemble-averaged signals.
-Specifically, $T_1$ is extracted from the rise of the ground-state population by fitting
-$\mathrm{Tr}\!\left[P_{g,0}(t)\,\overline{\rho}(t)\right]$ to $1-e^{-t/T_1}$, where
-$\overline{\rho}(t)$ denotes the ensemble-averaged density matrix over different flux noise trajectories. The coherence time $T_2$
-is extracted from the decay of the superposition signal by fitting
-$\mathrm{Tr}\!\left[P_{+}(t)\,\overline{\rho}(t)\right]$ to $e^{-t/T_2}$ (with the appropriate
-normalization convention for the plotted data). The pure dephasing time then follows from
-\begin{align}
-\frac{1}{T_\phi}=\frac{1}{T_2}-\frac{1}{2T_1},
-\end{align}
-and we report the total dephasing rate as $\Gamma_{\phi,\mathrm{total}}=1/T_\phi$.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.7\linewidth]{chapter4/figures/relaxation_excitation_plot.pdf}
-    \caption{Numerical validation of rates in the unselective regime.
-(a) Reference dephasing rate \(\gamma_{b\uparrow}^{\mathrm{un}}+\gamma_{c\phi}^{\mathrm{un}}\) extracted from Monte Carlo simulations with \(\delta\Phi(t)=0\), compared with the analytical large-detuning approximation.
-(b) Flux-noise-induced depolarization rate \(\gamma_{b\uparrow}^{1/f,\mathrm{un}}\) versus noise amplitude \(S_0\). The quadratic scaling in \(S_0\) and agreement with the analytical prediction (black dashed line) are observed.
-(c) Cavity decay rate with sweet-spot drive.}
-    \label{fig:relaxation_excitation_mc}
-\end{figure}
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\linewidth]{chapter4/figures/preparation_fidelity_plot.pdf}
-    \caption{State-preparation infidelity $\mathcal{I}(\tau)$ versus ramp time $\tau$ for several detunings $\Delta_{bd}$, comparing Gaussian and DRAG ramps. The non-monotonic dependence reflects the trade-off between coherent leakage from unwanted transitions (suppressed for longer $\tau$) and decoherence (which accumulates for longer $\tau$).}
-    \label{fig:prep_fidelity_ramp}
-\end{figure}
-
-\subsubsection{Total dephasing rate}
-\label{subsec:total_dephasing_numerical}
-
 Full-system simulations are used to extract the cavity dephasing rate under drive; the
-numerical procedure and fitting protocol are summarized in Sec.~\ref{subsec:monte_carlo}.
-The noise amplitude $S_0$ and the detuning $\Delta_{bd}$ are sampled over the parameter
-range of interest. For each $\Delta_{bd}$, the drive amplitude is chosen to satisfy the
-sweet-spot condition, and the corresponding total dephasing rate
-$\Gamma_{\phi,\mathrm{total}}$ is extracted.
+numerical procedure and fitting protocol are summarized in
+App.~\ref{Numerical details of obtaining the cavity dephasing rates}. The noise amplitude $S_0$ and the
+detuning $\Delta_{bd}$ are sampled over the parameter range of interest. For each
+$\Delta_{bd}$, the drive amplitude is chosen to satisfy the sweet-spot condition, and
+the corresponding total dephasing rate $\Gamma_{\phi,\mathrm{total}}$ is extracted.
 
-Fig.~\ref{fig:total_rate}(a) summarizes the results. For $S_0=10^{-5}/\Phi_0$, the
-drive-induced contribution $\gamma_{b\uparrow}^{1/f,\mathrm{un}}$ dominates
-$\Gamma_{\phi,\mathrm{total}}$ over the scanned detuning range. At large detuning,
-$\lvert\Delta_{bd}\rvert> \lvert\chi\rvert\simeq 2~\mathrm{MHz}$, the total rate is well described by $\gamma_{b\uparrow}^{1/f,\mathrm{un}}$, which is independent of the detuning. At smaller detuning, i.e.\
-$-\Delta_{bd}/2\pi=1~\mathrm{MHz}<\lvert\chi/2\pi\rvert$, the rate
-increases as the dynamics enters the selective regime, consistent with the
-$1/\lvert\Delta_{bd}\rvert$ scaling.
+Figure~\ref{fig:total_rate}(a) compares the numerical (solid lines) and analytical results (dashed lines). For $S_0/\Phi_0=10^{-5}$, the
+photon-shot noise due to FTT excitation at rate $\gamma_{b\uparrow}^{1/f}$ dominates the dephasing rate over the scanned detuning range. At large detuning,
+$\lvert\Delta_{bd}\rvert/2\pi>\lvert\chi\rvert/2\pi\simeq 2~\mathrm{MHz}$, the total
+rate is well described by $\gamma_{b\uparrow}^{1/f,\mathrm{un}}$ in Eq.\ \eqref{unselective1/f}, which is independent
+of detuning. At smaller detuning, for example
+$-\Delta_{bd}/2\pi=1~\mathrm{MHz}<\lvert\chi\rvert/2\pi$, the rate increases as the
+dynamics enters the selective regime, consistent with the expected
+$1/\lvert\Delta_{bd}\rvert$ scaling in Eq.\ \eqref{selective1/f}.
 
-For smaller noise amplitude, e.g.\ $S_0=10^{-6}/\Phi_0$, the $S_0$-independent drive-induced contributions
-$\gamma_{b\uparrow}^{\mathrm{un}}$ and $\gamma_{c\phi}^{\mathrm{un}}$ dominate
-$\Gamma_{\phi,\mathrm{total}}$. At large detuning ($-\Delta_{bd}/2\pi=19~\mathrm{MHz}$),
-$\gamma_{b\uparrow}^{\mathrm{un}}\propto(\Delta_{bd}/K)^2$ dominates while
-$\gamma_{c\phi}^{\mathrm{un}}\sim K/\Delta_{bd}$ is suppressed; the opposite hierarchy
-holds at small detuning ($-\Delta_{bd}/2\pi=1~\mathrm{MHz}$). Consequently,
-$-\Delta_{bd}/2\pi=6~\mathrm{MHz}$ yields the minimal $\Gamma_{\phi,\mathrm{total}}$
-within the scanned range. In the undriven case, the dephasing time is
-$\sim 0.1$--$1~\mathrm{ms}$ as $S_0$ varies from $10^{-5}/\Phi_0$ to $10^{-6}/\Phi_0$. With $\Delta_{bd}/2\pi\simeq -6~\mathrm{MHz}$ and
-sweet-spot driving, the dephasing time improves by up to $\sim 20\times$ across the
-considered $S_0$ range, confirming the overall dephasing enhancement.
+For a smaller noise amplitude, such as $S_0/\Phi_0=10^{-6}$, the $S_0$-independent contributions $\gamma_{b\uparrow}$ and
+$\gamma_{c\phi}$ dominate $\Gamma_{\phi,\mathrm{total}}$. At large
+detuning, for example at $-\Delta_{bd}/2\pi=19~\mathrm{MHz}$,
+$\gamma_{b\uparrow}^{\mathrm{un}}\propto(\Delta_{bd}/K)^2$ dominates, while
+$\gamma_{c\phi}^{\mathrm{un}}\propto \lvert K/\Delta_{bd}\rvert$ is suppressed. The
+opposite hierarchy holds at small detuning, for example at
+$-\Delta_{bd}/2\pi=1~\mathrm{MHz}$. Consequently,
+$-\Delta_{bd}/2\pi=6~\mathrm{MHz}$ yields the minimum
+$\Gamma_{\phi,\mathrm{total}}$ within the scanned range. In the undriven case, the
+dephasing time increases from $\sim 0.1~\mathrm{ms}$ to $\sim 1~\mathrm{ms}$ as
+$S_0/\Phi_0$ decreases from $10^{-5}$ to $10^{-6}$. Under sweet-spot driving at
+$-\Delta_{bd}/2\pi\simeq 6~\mathrm{MHz}$, the dephasing time is enhanced by up to
+$\sim 20\times$ across the considered $S_0$ range, confirming the overall suppression
+of cavity dephasing.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{chapter4/figures/total_rate.pdf}
-    \caption{Numerical evaluation and time-domain validation of the total cavity dephasing
-    rate under sweet-spot driving. (a) Total dephasing rate $\Gamma_{\phi,\mathrm{total}}$
-    extracted from full-system simulations as a function of detuning $\Delta_{bd}$, with
-    the drive amplitude chosen at each detuning to satisfy the sweet-spot condition.
-    $S_0$ denotes the amplitude of $1/f$ flux noise. (b) DRAG-style adiabatic ramp pulse.
-    (c) Time-domain decay of
-$P_X(t)=\mathrm{Tr}\!\left[\rho(t)\,X(t)\right]$, with
-$X(t)=\ket{\phi_{g,1}(t)}\!\bra{\phi_{g,0}(t)}+\mathrm{H.c.}$.
-The time-dependent Floquet states are labeled by their bare-state correspondence.
-The driven system exhibits a cavity dephasing time of $\sim 2~\mathrm{ms}$,
-compared to $\sim 100~\mu\mathrm{s}$ in the undriven case.}
+    \includegraphics[width=0.7\linewidth]{chapter4/figures/total_rate.pdf}
+    \caption{Numerical evaluation of the total cavity
+    dephasing rate under the sweet-spot drive. (a) Total dephasing rate
+    $\Gamma_{\phi,\mathrm{total}}$ extracted from full-system simulations as a function
+    of detuning $\Delta_{bd}$, with the drive amplitude chosen at each detuning to
+    satisfy the sweet-spot condition. The parameter $S_0$ denotes the amplitude of
+    $1/f$ flux noise. (b) DRAG-assisted adiabatic ramp pulse. (c) Time-domain decay of
+    $P_X(t)=\mathrm{Tr}\!\left[\rho(t)X(t)\right]$, with
+    $X(t)=\ket{\phi_{g,1}(t)}\!\bra{\phi_{g,0}(t)}+\mathrm{H.c.}$.
+    The time-dependent Floquet states are labeled by their corresponding bare states.
+    The driven system exhibits a cavity dephasing time of $\sim 2~\mathrm{ms}$,
+    compared with $\sim 100~\mu\mathrm{s}$ in the undriven case.}
     \label{fig:total_rate}
     \label{fig:total_dephasing_rate_mc}
 \end{figure}
 
-To visualize the dephasing enhancement directly, we perform time-domain simulations that
-include relaxation and stochastic flux noise with $S_0=10^{-5}/\Phi_0$. The initial state is
-$\ket{\psi_0}=\tfrac{1}{\sqrt{2}}\big(\ket{g,0}+\ket{g,1}\big)$. With drive, the state is
-adiabatically mapped onto the target Floquet states using a shaped pulse
-$2\Omega_0(t)\cos\!\big(\omega t+\phi(t)\big)$. In the rotating frame this yields the
-$I$ and $Q$ quadratures
+We perform time-domain simulations
+that include relaxation and stochastic flux noise with $S_0/\Phi_0=10^{-5}$. The
+initial state is
+$\ket{\psi_0}=\tfrac{1}{\sqrt{2}}\big(\ket{g,0}+\ket{g,1}\big)$. In the driven case,
+the state is adiabatically mapped onto the target Floquet states using a shaped drive
+pulse,
+\begin{equation}
+2\Omega(t)\cos\!\big(\omega t+\phi(t)\big).
+\end{equation}
+In the rotating frame, this gives the $I$ and $Q$ quadratures
 \begin{align}
-\Omega_I(t) = \Omega(t)\cos\phi(t), \qquad
-\Omega_Q(t) = \Omega(t)\sin\phi(t).
+\Omega_I(t) &= \Omega(t)\cos\phi(t), \\
+\Omega_Q(t) &= \Omega(t)\sin\phi(t).
 \end{align}
-We implement a DRAG correction,
-$\Omega_Q(t) = -\dot{\Omega}_I(t)/\Delta_{bd}$, which accelerates the adiabatic transfer
-relative to $\Omega_I(t)$-only ramps (see App.~\ref{sec:adiabatic_transition}). A pulse ramp
-with $\tau=75~\mathrm{ns}$ is shown in Fig.~\ref{fig:total_rate}(b).
+We implement a DRAG-like correction,
+\begin{equation}
+\Omega_Q(t) = -\frac{\dot{\Omega}_I(t)}{\Delta_{bd}},
+\end{equation}
+which accelerates the adiabatic transfer relative to ramps that use only
+$\Omega_I(t)$; see App.~\ref{app:adiabatic-prep}. A ramp with
+$\tau=75~\mathrm{ns}$ is shown in Fig.~\ref{fig:total_rate}(b).
 
 The dephasing is quantified by the coherence operator
 \begin{align}
 X(t) &= \ket{\phi_{g,1}(t)}\!\bra{\phi_{g,0}(t)} + \mathrm{H.c.}, \\
-P_X(t) &= \mathrm{Tr}\!\left[\rho(t)\,X(t)\right],
+P_X(t) &= \mathrm{Tr}\!\left[\rho(t)X(t)\right],
 \end{align}
-where $\ket{\phi_{g,1}(t)}$ and $\ket{\phi_{g,0}(t)}$ are adiabatically mapped from the bare states.
-Without drive, \(1/f\) noise produces sub-Gaussian free-induction decay. At the driven sweet spot, the dominant residual channel is Markovian, arising from FTT depolarization, and yields the exponential decay observed in Fig.~\ref{fig:total_rate}(c). The dephasing time \(T_2\) is extracted from an exponential fit to \(P_X(t)\). Under sweet-spot driving, the dephasing time reaches \(\sim 2~\mathrm{ms}\), compared with \(\sim 100~\mu\mathrm{s}\) in the undriven case.
+where $\ket{\phi_{g,1}(t)}$ and $\ket{\phi_{g,0}(t)}$ are the Floquet
+states that are adiabatically transferred from the bare states $\ket{g,1}$ and $\ket{g,0}$,
+respectively. As shown in Fig.~\ref{fig:total_rate}(c), pure dephasing from $1/f$ flux noise dominates the decay of $P_X(t)$, leading to sub-Gaussian decay. With the sweet-spot drive, the decay of $P_X(t)$ receives comparable contributions from relaxation and pure dephasing. The decay is exponential because the residual channel is Markovian and arises from FTT depolarization. The extracted pure-dephasing time at the sweet spot reaches $\sim 2~\mathrm{ms}$, compared with $\sim 100~\mu\mathrm{s}$ in the undriven case.
+
 
 \section{Application to Bosonic Quantum Error Correction}
 \label{sec:bosonic-qec}
+In the previous sections, we focused on the \(\ket{g,0}\) and \(\ket{g,1}\) states and showed that operating at a sweet spot can enhance the cavity dephasing time by more than an order of magnitude. More generally, this mechanism is not restricted to a single pair of Fock states. In the unselective regime, the drive can simultaneously suppress dephasing for multiple pairs of Fock states. This makes the scheme particularly well suited to the binomial code. It can likewise be extended to multi-cavity architectures, which we illustrate using the dual-rail code.
 
 \begin{figure}[t]
     \centering
     \includegraphics[width=\textwidth]{chapter4/figures/qec_plot.pdf}
-    \caption{\textbf{Driven sweet-spot protection for bosonic encodings} (\(\Omega_0/2\pi=10\,\mathrm{MHz}\) throughout).
-    \emph{Binomial code}---\textbf{(a)}~Dephasing rate \(\gamma_{\phi,n\rightarrow m}\) of cavity transitions due to FTT-frequency fluctuations as a function of \(\Delta_{bd}\); the star marks \(\Delta_{bd}/2\pi=-30\,\mathrm{MHz}\), where all relevant \(\gamma_{\phi,n\rightarrow m}\) are suppressed by at least \(\sim\!13\times\).
-    \textbf{(b)}~Wigner function of \(|+_L\rangle\) at \(t=300\,\mu\mathrm{s}\): the driven case retains the interference fringes that are lost without the drive.
-    \emph{Dual-rail encoding}---\textbf{(c)}~Dephasing rate \(\gamma_{\phi,0\rightarrow 1}^{(i)}\) for each cavity as a function of \(\Delta_{bd}\); both cavities exhibit \(\sim 10\times\) lower dephasing near \(-\Delta_{bd}/2\pi\sim 29\,\mathrm{MHz}\).
-    \textbf{(d)}~Logical-subspace tomography for one dual-rail qubit: the drive suppresses dephasing, while leakage from single-photon loss remains unchanged.}
+    \caption{Driven sweet spots for bosonic encodings (\(\Omega_0/2\pi=10\,\mathrm{MHz}\)).
+    \emph{Binomial code}: \textbf{(a)} FTT-noise-induced dephasing rates \(\gamma_{\phi,n\rightarrow m}\) versus \(\Delta_{bd}\); the star marks \(\Delta_{bd}/2\pi=-30\,\mathrm{MHz}\), where all targeted rates are suppressed by \(\gtrsim 13\times\).
+    \textbf{(b)} Wigner function of \(\ket{+_L}\) at \(300\,\mu\mathrm{s}\): the drive preserves the interference fringes and reduces the decoherence-induced infidelity from \(0.30\) to \(0.043\).
+    \emph{Dual rail}: \textbf{(c)} Single-photon transition dephasing \(\gamma_{\phi,0\rightarrow 1}^{(i)}\) for each coupled cavity; both are suppressed by \(\sim 10\times\) near \(-\Delta_{bd}/2\pi\simeq 29\,\mathrm{MHz}\).
+    \textbf{(d)} Logical-subspace tomography for a dual-rail Bell state: the drive preserves logical coherence while leaving photon-loss leakage nearly unchanged, reducing the decoherence-induced infidelity from \(0.18\) to \(0.011\).}
 \label{fig:qec_bosonic_driven}
 \end{figure}
 
 \subsection{Binomial encoding}
 \label{subsec:binomial-codes}
-As a concrete example, consider the minimal binomial code \cite{PhysRevX.6.031006Binonmial}
+
+As a concrete example, consider the minimal binomial code~\cite{PhysRevX.6.031006Binonmial}
 \begin{equation}
 |0_L\rangle=\frac{|0\rangle+|4\rangle}{\sqrt{2}},\qquad |1_L\rangle=|2\rangle,
 \end{equation}
-which corrects a single photon-loss event. Here, we consider FTT-cavity system, where FTT is ancilla. With a drive on FTT, it suppresses the specific transition-frequency fluctuations that dominate the logical-phase diffusion and recovery-sensitive coherences for this encoding. We now identify these transitions explicitly.
+which corrects a single photon-loss event. In this encoding, dephasing is not associated with a single pair of Fock states. Rather, the logical information, the error space after photon loss, and the intermediate states populated during recovery are supported by several bare-state coherences. We consider an FTT--cavity system in which the FTT serves as the ancilla. A drive applied to the FTT can suppress the transition-frequency fluctuations that dominate dephasing of several pair of Fock states. We now identify these pairs explicitly.
 
-For the logical basis state \( |0_L\rangle \propto |0\rangle + |4\rangle \), fluctuations of the \(0\!\rightarrow\!4\) splitting, \( \delta\widetilde{\omega}_{c,0\rightarrow 4}(t) \), induce phase diffusion between \( |0\rangle \) and \( |4\rangle \) and therefore deform \( |0_L\rangle \).
-Because this code does not protect against pure dephasing, the coherence of an arbitrary superposition \( \alpha|0_L\rangle + \beta|1_L\rangle \) is carried by the bare-state coherences \( |0\rangle\!\leftrightarrow\!|2\rangle \) and \( |2\rangle\!\leftrightarrow\!|4\rangle \). Suppressing the corresponding dephasing rates \(\gamma_{\phi,0\rightarrow 2}\) and \(\gamma_{\phi,2\rightarrow 4}\) therefore directly improves logical coherence.
+Within the code space, the logical basis state \( |0_L\rangle \propto |0\rangle + |4\rangle \) is sensitive to the fluctuation \( \delta\widetilde{\omega}_{c,0\rightarrow 4}(t) \), which induces dephasing between \( |0\rangle \) and \( |4\rangle \) and therefore distorts \( |0_L\rangle \). More generally, because this code does not protect against pure dephasing, the coherence of an arbitrary logical superposition \( \alpha|0_L\rangle + \beta|1_L\rangle \) is carried by the bare-state coherences \( |0\rangle\!\leftrightarrow\!|2\rangle \) and \( |2\rangle\!\leftrightarrow\!|4\rangle \). Suppressing the corresponding dephasing rates \( \gamma_{\phi,0\rightarrow 2} \) and \( \gamma_{\phi,2\rightarrow 4} \) therefore directly improves the logical coherence time.
 
-After a single photon loss, the code space maps as \( |0_L\rangle \rightarrow |3\rangle \) and \( |1_L\rangle \rightarrow |1\rangle \), so the logical information temporarily resides in the \( |1\rangle\!\leftrightarrow\!|3\rangle \) coherence prior to correction. Suppressing \(\gamma_{\phi,1\rightarrow 3}\) is thus essential for high-fidelity recovery. During the recovery itself, intermediate superpositions populate the \(\{|0\rangle,|3\rangle,|4\rangle\}\) subspace and the \(\{|1\rangle,|2\rangle\}\) subspace, making the corresponding transition dephasing rates---e.g., \(\gamma_{\phi,0\rightarrow 3}\), \(\gamma_{\phi,3\rightarrow 4}\), and \(\gamma_{\phi,1\rightarrow 2}\)---additional targets for suppression.
+After a single photon loss, the code space maps as \( |0_L\rangle \rightarrow |3\rangle \) and \( |1_L\rangle \rightarrow |1\rangle \), so the logical information temporarily resides in the coherence \( |1\rangle\!\leftrightarrow\!|3\rangle \) before recovery is applied. Suppressing \( \gamma_{\phi,1\rightarrow 3} \) is therefore important for high-fidelity error correction. During the recovery itself, intermediate superpositions populate the \( \{|0\rangle,|3\rangle,|4\rangle\} \) and \( \{|1\rangle,|2\rangle\} \) subspaces, making the associated dephasing channels---for example, \( \gamma_{\phi,0\rightarrow 3} \), \( \gamma_{\phi,3\rightarrow 4} \), and \( \gamma_{\phi,1\rightarrow 2} \)---additional targets for suppression
 
-To quantify the improvement, we sweep the detuning \(\Delta_{bd}\) at fixed \(\Omega_0/2\pi = 10\,\mathrm{MHz}\) and evaluate the dephasing rate due to flux noise,
+To quantify the improvement, we sweep the detuning \(\Delta_{bd}\) at fixed \(\Omega_0/2\pi = 10\,\mathrm{MHz}\) and evaluate the dephasing rate due to \(1/f\) flux noise,
 \begin{equation}
-\gamma_{\phi,{n\rightarrow m}}= S_0\bigg|\frac{\partial \widetilde{\omega}_{c,n\rightarrow m}}{\partial \Phi}\bigg|\sqrt{2\ln(|\omega_\text{ir}t|)}.
+\gamma_{\phi,n\rightarrow m}
+=
+S_0
+\bigg|
+\frac{\partial \widetilde{\omega}_{c,n\rightarrow m}}{\partial \Phi}
+\bigg|
+\sqrt{
+2\ln\!\left(\frac{1}{\omega_{\mathrm{ir}}t}\right)
+},
+\label{eq:qec_dephasing_rate}
 \end{equation}
-Here, \(\omega_\text{ir}\) is the infrared cutoff of the \(1/f\) noise spectrum (set by the inverse of the total measurement time) and \(t\) is the experimental timescale. An earlier experiment reported \(\ln(|\omega_\text{ir} t|)\approx 4\) \cite{PhysRevX.7.031037factor4}, and we use this value in the following numerics. The results are shown in Fig.~\ref{fig:qec_bosonic_driven}(a). The minima of several dephasing rates overlap near \(-\Delta_{bd}/2\pi \simeq 30\,\mathrm{MHz}\), consistent with the unselective regime \(\Delta_{bd}\gg |\chi|\) (here \(|\chi|/2\pi \sim 0.5\,\mathrm{MHz}\)).
+where \(S_0\) is the flux-noise amplitude, \(\omega_{\mathrm{ir}}\) is the infrared cutoff of the \(1/f\) noise spectrum, and \(t\) is the experimental timescale. Equivalently, for \(\omega_{\mathrm{ir}}t<1\), the logarithmic factor is \( |\ln(\omega_{\mathrm{ir}}t)| \). An earlier experiment used \( |\ln(\omega_{\mathrm{ir}}t)|\approx 4 \) \cite{PhysRevX.7.031037factor4}, and we adopt this value in the following numerics.
 
-Choosing \(\Delta_{bd}/2\pi = -30\,\mathrm{MHz}\) yields a worst-case reduction of the dephasing rate by a factor of \(\sim 13\) across the relevant transitions. This improvement is first evident in the Wigner tomography [Fig.~\ref{fig:qec_bosonic_driven}(b)], which provides a direct proxy for coherence preservation within the logical subspace. For the initial logical superposition \(\ket{+_L} = (\ket{0_L}+\ket{1_L})/\sqrt{2}\), the undriven Wigner function evolves into a mixture of Fock states after \(300\,\mu\mathrm{s}\), indicating complete loss of logical coherence. In contrast, in the driven case, the characteristic interference fringes are largely retained, showing that the drive preserves the intra-code-word coherence required by the binomial encoding. This behavior is also quantitatively reflected in the decoherence-induced infidelity. We use the metric
-\[
-I=\sqrt{\bra{\psi}\rho\ket{\psi}},
-\]
-with \(\ket{\psi}=\ket{+_L}\) the initial state and \(\rho\) the realized density matrix at time \(t\). After \(300\,\mu\mathrm{s}\), this infidelity decreases from \(0.3\) in the undriven case to \(0.043\) in the driven case, with the loss arising solely from decoherence.
+The results are shown in Fig.~\ref{fig:qec_bosonic_driven}(a). The minima of several dephasing rates overlap near \(-\Delta_{bd}/2\pi \simeq 30\,\mathrm{MHz}\), consistent with the unselective regime \(|\Delta_{bd}|\gg |\chi|\) considered here, where \(|\chi|/2\pi \sim 0.5\,\mathrm{MHz}\). Choosing \(\Delta_{bd}/2\pi = -30\,\mathrm{MHz}\) yields a worst-case dephasing-rate reduction of \(\sim 13\times\) across the relevant transitions.
 
+This improvement is  evident in the Wigner tomography in Fig.~\ref{fig:qec_bosonic_driven}(b). For the initial logical superposition \(\ket{+_L} = (\ket{0_L}+\ket{1_L})/\sqrt{2}\), the undriven Wigner function becomes nearly diagonal in the Fock basis after \(300\,\mu\mathrm{s}\), indicating substantial loss of logical coherence. In contrast, the driven case largely retains the characteristic interference fringes, showing that the drive preserves the photon-number coherences that define the logical state.
+
+This behavior is also reflected quantitatively in the decoherence-induced infidelity. We use
+\begin{equation}
+I=1-\sqrt{\bra{\psi}\rho\ket{\psi}},
+\label{eq:qec_infidelity}
+\end{equation}
+with \(\ket{\psi}=\ket{+_L}\) the initial state and \(\rho\) the realized density matrix at time \(t\). After \(300\,\mu\mathrm{s}\), the infidelity decreases from \(0.3\) in the undriven case to \(0.043\) in the driven case, with the loss arising solely from the modeled decoherence channels.
 \subsection{Dual-rail encoding}
 \label{subsec:dual-rail}
-Dual-rail encoding is widely used because the dominant single-photon-loss error maps to a detectable erasure \cite{dualrailcavity1,teoh2023dual}. A single dual-rail qubit is encoded in two cavities with logical states \(\ket{0_L}=\ket{01}\) and \(\ket{1_L}=\ket{10}\). The fault-tolerance advantage of this encoding relies on the error hierarchy in which single-photon loss dominates over dephasing; inherited cavity dephasing from a flux-tunable coupler can degrade this bias. To implement two-qubit gates, one approach is to couple two dual-rail qubits via an FTT and exploit its three-wave-mixing interaction.
 
-In this architecture, the FTT couples to two cavities labeled by \(i\). Flux fluctuations \(\delta\Phi(t)\) modulate the FTT frequency, and this modulation enters the cavity spectrum through the Lamb shift, producing cavity-frequency fluctuations
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.8\linewidth]{thesis/chapter4/figures/dualrailillustration.pdf}
+    \caption{Schematic of two dual-rail qubits coupled through a central FTT. Flux noise \(\delta\Phi(t)\) shifts the FTT frequency and, through the dispersive Lamb shift, induces inherited frequency fluctuations in the coupled cavities.}
+    \label{fig:dualrail_illustration}
+\end{figure}
+
+Dual-rail encoding is widely used because the dominant single-photon-loss error maps out of the logical subspace into a detectable erasure \cite{dualrailcavity1,teoh2023dual}. A dual-rail qubit is encoded in two cavities with logical states \(\ket{0_L}=\ket{01}\) and \(\ket{1_L}=\ket{10}\). The fault-tolerance advantage of this encoding relies on an error hierarchy in which single-photon loss dominates over dephasing. However, inherited cavity dephasing from a flux-tunable coupler can degrade this bias. To implement two-qubit gates, one approach is to couple the relevant rails to an FTT and exploit its three-wave-mixing interaction. A representative architecture is shown in Fig.~\ref{fig:dualrail_illustration}, where a central FTT mediates interactions between two dual-rail qubits while remaining sensitive to flux noise \(\delta\Phi(t)\).
+
+In this architecture, the FTT couples to cavities labeled by \(i=1,2\). Flux fluctuations \(\delta\Phi(t)\) modulate the FTT frequency and, in the dispersive limit, this modulation is inherited by each cavity through its Lamb shift, producing cavity-frequency fluctuations
 \begin{equation}
-\delta \widetilde{\omega}^{(i)}_{c}(t)=\biggl(\frac{g^{(i)}}{\Delta^{(i)}_{bc}}\biggr)^2\,\delta\omega_b(t),
+\delta \widetilde{\omega}^{(i)}_{c}(t)
+=
+\biggl(\frac{g^{(i)}}{\Delta^{(i)}_{bc}}\biggr)^2
+\delta\omega_b(t),
 \end{equation}
-where \(g^{(i)}\) and \(\Delta^{(i)}_{bc}\) are the coupling strength and detuning between the FTT and cavity \(i\), respectively. Because each cavity forms one rail of a dual-rail qubit, these fluctuations contribute directly to logical dephasing. By appropriately driving the coupler, the dephasing rates of both cavities due to inherited FTT-frequency noise can be reduced simultaneously.
+where \(g^{(i)}\) and \(\Delta^{(i)}_{bc}\) are the coupling strength and detuning between the FTT and cavity \(i\), respectively. Only the differential component of the rail-frequency noise produces logical dephasing in a dual-rail qubit. Reducing the inherited dephasing rates of the individual cavities therefore suppresses this differential-noise contribution.
 
-Fig.~\ref{fig:qec_bosonic_driven}(c) shows the numerically computed dephasing rate \(\gamma_{\phi,0\rightarrow 1}^{(i)}\) for each cavity as \(\Delta_{bd}\) is swept. Choosing \(-\Delta_{bd}/2\pi\sim 29\,\mathrm{MHz}\) yields \(\sim 10\times\) lower dephasing rates for both cavities than in the undriven case. We next consider a pair of dual-rail qubits initialized in the Bell state
-\[
-\ket{\psi_{\mathrm{Bell}}}=\frac{1}{\sqrt{2}}\left(\ket{00_L}+\ket{11_L}\right),
-\]
-and plot the state tomography within the logical subspace in Fig.~\ref{fig:qec_bosonic_driven}(d). The dominant effect of the driven sweet spot is a clear preservation of the off-diagonal coherence between \(\ket{00_L}\) and \(\ket{11_L}\), consistent with the enhanced dephasing time. By contrast, the reduced height of the diagonal elements mainly reflects photon-loss-induced leakage out of the logical subspace. This behavior remains nearly unchanged between the driven and undriven cases, indicating that the sweet-spot drive has negligible effect on the erasure error, since it only weakly affects the decay rate. Quantitatively, the decoherence-induced infidelity is reduced from \(0.18\) in the undriven case to \(0.011\) in the driven case.
+Figure~\ref{fig:qec_bosonic_driven}(c) shows the numerically computed dephasing rate \(\gamma_{\phi,0\rightarrow 1}^{(i)}\) for each coupled cavity as \(\Delta_{bd}\) is swept. Choosing \(-\Delta_{bd}/2\pi\simeq 29\,\mathrm{MHz}\) yields \(\sim 10\times\) lower dephasing rates for both cavities than in the undriven case.
+
+We next consider two dual-rail qubits initialized in the Bell state
+\begin{equation}
+\ket{\psi_{\mathrm{Bell}}}
+=
+\frac{1}{\sqrt{2}}
+\left(\ket{00_L}+\ket{11_L}\right),
+\end{equation}
+and plot the state tomography within the logical subspace in Fig.~\ref{fig:qec_bosonic_driven}(d). The dominant effect of the driven sweet spot is the preservation of the off-diagonal coherence between \(\ket{00_L}\) and \(\ket{11_L}\), consistent with the enhanced dephasing time. By contrast, the reduced heights of the diagonal elements mainly reflect photon-loss-induced leakage out of the logical subspace. This leakage remains nearly unchanged between the driven and undriven cases, indicating that the sweet-spot drive has negligible effect on the erasure error because it only weakly changes the cavity photon-loss rates. Quantitatively, using the same infidelity definition in Eq.~\eqref{eq:qec_infidelity}, the decoherence-induced infidelity is reduced from \(0.18\) in the undriven case to \(0.011\) in the driven case.

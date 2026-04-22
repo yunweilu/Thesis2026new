@@ -109,82 +109,82 @@ The gradients of the contributions to the gate-operation cost function are evalu
 
 \chapter{Floquet Analysis of the Driven Dispersive Hamiltonian}
 \label{app:floquet}
-In this Appendix, we justify the use of the static rotating-frame Hamiltonian $H_R$ [Eq. \eqref{eq:H_R_floquet}] to approximate the quasi-energies and Floquet states of the driven dispersive Hamiltonian.
+
+In this appendix, we justify using the static rotating-frame Hamiltonian $H_R$ [Eq.~\eqref{eq:H_R_floquet}] to approximate the quasienergies and Floquet states of the driven dispersive Hamiltonian.
 
 \section{Floquet Theorem}
-Consider a Hilbert space $\mathcal{H}$ of dimension $N$ and a time-dependent Hamiltonian $H(t)$ with period $\tau$, satisfying $H(t+\tau) = H(t)$. According to Floquet's theorem, there exists a $\tau$-periodic orthonormal basis $\{\ket{\psi_n(t)}\}$ and a set of quasienergies $\{\varepsilon_n\}$ such that the solutions to the Schrödinger equation, $\ket{\phi_n(t)}$, can be written as:
+
+Consider a Hilbert space $\mathcal{H}$ of dimension $N$ and a time-periodic Hamiltonian $H(t)$ with period $\tau$, such that $H(t+\tau) = H(t)$. According to Floquet's theorem, there exist a $\tau$-periodic orthonormal basis $\{\ket{\psi_n(t)}\}$ and a set of quasienergies $\{\varepsilon_n\}$ such that the solutions of the Schrödinger equation, $\ket{\phi_n(t)}$, can be written as
 \begin{equation}
     \ket{\phi_n(t)} = e^{-i\varepsilon_n t} \ket{\psi_n(t)}.
 \end{equation}
 
-\section{Quasienergy Problem in Extended Hilbert space}
+\section{Quasienergy Problem in the Extended Hilbert Space}
 
-To acquire a differential equation that relates the periodic modes $\ket{\psi_n(t)}$ and quasienergies $\varepsilon_n$ to the Hamiltonian $H(t)$, we substitute the ansatz solution into the time-dependent Schrödinger equation:
+To obtain a differential equation relating the periodic modes $\ket{\psi_n(t)}$ and the quasienergies $\varepsilon_n$ to the Hamiltonian $H(t)$, we substitute the ansatz into the time-dependent Schrödinger equation:
 \begin{equation}
     i\frac{\partial}{\partial t}\ket{\Psi(t)} = H(t)\,\ket{\Psi(t)}.
 \end{equation}
-Substituting $\ket{\Psi(t)} = e^{-i\varepsilon_n t} \ket{\psi_n(t)}$ yields the Floquet eigenvalue equation:
+Substituting $\ket{\Psi(t)} = e^{-i\varepsilon_n t} \ket{\psi_n(t)}$ yields the Floquet eigenvalue equation
 \begin{equation}
     \label{quasienergy equation}
     \bigl(H(t)-i\partial_{t}\bigr)\,\ket{\psi_n(t)} = \varepsilon_n\,\ket{\psi_n(t)}.
 \end{equation}
-Since the quantities on both sides of Eq.~\eqref{quasienergy equation} are periodic, we can treat the time dependence using Fourier analysis. A concise way to formalize this is to introduce the \emph{Extended Hilbert space} $\mathcal{F}$, also known as Sambe space:
+Since both sides of Eq.~\eqref{quasienergy equation} are periodic, we can treat the time dependence using Fourier analysis. A concise way to formalize this treatment is to introduce the \emph{extended Hilbert space} $\mathcal{F}$:
 \begin{equation}
     \mathcal{F} = \mathrm{span}\bigl\{\kett{\mu,n} \;\big|\; \mu\in\mathbb{Z},\; n=1,\dots,N\bigr\}.
 \end{equation}
-We use the double ket notation $\kett{\cdot}$ to denote a basis vector in this extended space. Each basis vector corresponds to a function mapping time $t \in \mathbb{R}$ to a state in the physical space $\mathcal{H}$:
+We use the double-ket notation $\kett{\cdot}$ to denote a basis vector in this extended space. Each basis vector represents a function that maps time $t \in \mathbb{R}$ to a state in the physical Hilbert space $\mathcal{H}$:
 \begin{equation}
     \kett{\mu,n} : \mathbb{R} \rightarrow \mathcal{H}.
 \end{equation}
-Specifically, these basis states are defined as:
+Specifically, these basis states are defined by
 \begin{equation}
     \kett{\mu,n}(t) = \ket{n}\,e^{i\mu\omega_d t}, \qquad \omega_d \equiv \frac{2\pi}{\tau},
 \end{equation}
-where $\{\ket{n}\}$ is an orthonormal basis in $\mathcal{H}$. The inner product on $\mathcal{F}$ is defined by averaging over one period:
+where $\{\ket{n}\}$ is an orthonormal basis of $\mathcal{H}$. The inner product on $\mathcal{F}$ is defined by averaging over one period:
 \begin{align}
     \bbrakett{\mu',n'}{\mu,n}
     &\equiv \frac{1}{\tau}\int_{0}^{\tau}
-    \bigl[\kett{\mu',n'}(t)\bigr]^\dagger \!\kett{\mu,n}(t)\,dt \nonumber\\
-    &= \frac{1}{\tau}\int_{0}^{\tau} e^{-i\mu'\omega_d t}\bra{n'}\ket{n}e^{i\mu\omega_d t}\,dt \nonumber\\
-    &= \delta_{n,n'} \frac{1}{\tau}\int_{0}^{\tau} e^{i(\mu-\mu')\omega_d t}\,dt \nonumber\\
-    &= \delta_{\mu,\mu'}\,\delta_{n,n'}.
+    \bigl[\kett{\mu',n'}(t)\bigr]^\dagger \!\kett{\mu,n}(t)\,dt \nonumber= \frac{1}{\tau}\int_{0}^{\tau} e^{-i\mu'\omega_d t}\bra{n'}\ket{n}e^{i\mu\omega_d t}\,dt \nonumber\\
+    &= \delta_{n,n'} \frac{1}{\tau}\int_{0}^{\tau} e^{i(\mu-\mu')\omega_d t}\,dt \nonumber= \delta_{\mu,\mu'}\,\delta_{n,n'}.
 \end{align}
-To rewrite Eq.~\eqref{quasienergy equation} in the basis $\kett{\mu,n}$, we define the quasienergy operator $\overline{Q}:\mathcal{F}\to\mathcal{F}$ such that its action in the time domain is:
+To rewrite Eq.~\eqref{quasienergy equation} in the basis $\{\kett{\mu,n}\}$, we define the quasienergy operator $\overline{Q}:\mathcal{F}\to\mathcal{F}$ such that its action in the time domain is
 \begin{equation}
     \bigl(\overline{Q}\,\kett{f}\bigr)(t) = \bigl(H(t)-i\partial_{t}\bigr)\,\ket{f(t)}.
 \end{equation}
-We define the vector $\kett{\psi_n} \in \mathcal{F}$ corresponding to the periodic function $\ket{\psi_n(t)}$ as:
+We define the vector $\kett{\psi_n} \in \mathcal{F}$ associated with the periodic function $\ket{\psi_n(t)}$ by
 \begin{equation}
     \label{eigenvector definition}
     \kett{\psi_n}(t) = \ket{\psi_n(t)}.
 \end{equation}
-Consequently, Eq.~\eqref{quasienergy equation} is represented as an eigenvalue problem in the extended Hilbert space:
+Consequently, Eq.~\eqref{quasienergy equation} becomes an eigenvalue problem in the extended Hilbert space:
 \begin{equation}
     \label{evals equation}
     \overline{Q}\,\kett{\psi_n} = \varepsilon_n\,\kett{\psi_n}.
 \end{equation}
-To compute the eigenvalues and eigenvectors, we find the matrix representation of $\overline{Q}$ in the basis $\kett{\mu,n}$:
+To compute the eigenvalues and eigenvectors, we use the matrix representation of $\overline{Q}$ in the basis $\{\kett{\mu,n}\}$:
 \begin{equation}
     \overline{Q} = \sum_{\mu',n'}\sum_{\mu,n} \bar{q}_{\mu' n',\mu n}\;\kett{\mu',n'}\bbra{\mu,n},
 \end{equation}
-with the corresponding matrix elements:
+with matrix elements
 \begin{align}
     \bar{q}_{\mu' n',\mu n}
-    &= \bbrakett{\mu',n'}{\overline{Q}|\mu,n} \nonumber\\
-    &= \frac{1}{\tau}\int_{0}^{\tau} \bigl[\kett{\mu',n'}(t)\bigr]^\dagger\, \bigl(\overline{Q}\,\kett{\mu,n}(t)\bigr)\,dt.
+    = \bbrakett{\mu',n'}{\overline{Q}|\mu,n} \nonumber= \frac{1}{\tau}\int_{0}^{\tau} \bigl[\kett{\mu',n'}(t)\bigr]^\dagger\, \bigl(\overline{Q}\,\kett{\mu,n}(t)\bigr)\,dt.
 \end{align}
-Substituting the explicit form $\kett{\mu,n}(t)=\ket{n}e^{i\mu\omega_d t}$:
+Substituting the explicit form $\kett{\mu,n}(t)=\ket{n}e^{i\mu\omega_d t}$ gives
 \begin{align}
-    &\bar{q}_{\mu' n',\mu n}
-    = \frac{1}{\tau}\int_{0}^{\tau} e^{-i\mu'\omega_d t} \bra{n'} \bigl(H(t)-i\partial_t\bigr) \bigl(\ket{n}e^{i\mu\omega_d t}\bigr) \,dt \nonumber \\
-    &= \frac{1}{\tau}\int_{0}^{\tau} \langle n'|H(t)|n\rangle\,e^{i(\mu-\mu')\omega_d t}\,dt \;+\; \mu\,\omega_d\,\delta_{\mu'\mu}\,\delta_{n'n} \nonumber \\
-    &= h_{n' n}^{(\mu-\mu')} \;+\; \mu\,\omega_d\,\delta_{\mu'\mu}\,\delta_{n'n},
+    \bar{q}_{\mu' n',\mu n}
+    &= \frac{1}{\tau}\int_{0}^{\tau} e^{-i\mu'\omega_d t} \bra{n'} \bigl(H(t)-i\partial_t\bigr) \bigl(\ket{n}e^{i\mu\omega_d t}\bigr) \,dt \nonumber \\
+    &= \frac{1}{\tau}\int_{0}^{\tau} \langle n'|H(t)|n\rangle\,e^{i(\mu-\mu')\omega_d t}\,dt
+    + \mu\,\omega_d\,\delta_{\mu'\mu}\,\delta_{n'n} \nonumber \\
+    &= h_{n' n}^{(\mu-\mu')} + \mu\,\omega_d\,\delta_{\mu'\mu}\,\delta_{n'n},
 \end{align}
 where $h_{n'n}^{(k)}$ are the Fourier components of the Hamiltonian:
 \begin{equation}
     H^{(k)} = \frac{1}{\tau}\int_{0}^{\tau} H(t)\,e^{ik\omega_d t}\,dt, \qquad h^{(k)}_{n' n}=\langle n'|H^{(k)}|n\rangle.
 \end{equation}
-Thus, the operator $\overline{Q}$ can be written as a block matrix with indices $\mu$ running (for example) from $-2$ to $2$:
+Thus, $\overline{Q}$ can be written as a block matrix. For example, if the displayed $k$ indices run from $-2$ to $2$, its matrix representation is
 \begin{widetext}
 \begin{equation}
     \bar{q} = \begin{pmatrix}
@@ -198,73 +198,70 @@ Thus, the operator $\overline{Q}$ can be written as a block matrix with indices 
     \end{pmatrix},
 \end{equation}
 \end{widetext}
-where $I$ is the identity matrix. Note that the off-diagonal blocks depend on the difference in indices, $H^{(\mu-\mu')}$. Finally, the quasienergies are found by solving the characteristic equation:
+where $I$ is the identity matrix with Hilbert space dimension. Finally, the quasienergies are found by solving the characteristic equation
 \begin{equation}
     \det\bigl(\bar{q}-\varepsilon \bar{I}\bigr)=0,
 \end{equation}
 where $\bar{I}$ is the identity operator in the extended Hilbert space.
 
-
-
 \section{Rotating-Frame Approximation for Floquet Quasienergies and States}
-In this section we relate an approximation of quasienergy and Floquet states to a rotating-wave approximation.
+
+In this section, we relate the approximation of quasienergies and Floquet states to a rotating-wave approximation.
 
 \paragraph{Quasienergy operator for the driven dispersive Hamiltonian.}
-The driven dispersive Hamiltonian is:
+The driven dispersive Hamiltonian is
 \begin{equation}
 \begin{split}
 \label{Driven dispersive}
-    H(t) &= \bar{\omega}_b b^\dagger b + \frac{K}{2} b^{\dagger 2} b^2 + \bar{\omega}_c c^\dagger c \\
-    &\quad + \chi b^\dagger b c^\dagger c + 2\Omega_0 \cos(\omega_d t) (b + b^\dagger).
+    H(t) &= \bar{\omega}_b b^\dagger b + \frac{K}{2} b^{\dagger 2} b^2 + \bar{\omega}_c c^\dagger c + \chi b^\dagger b c^\dagger c + 2\Omega_0 \cos(\omega_d t) (b + b^\dagger).
 \end{split}
 \end{equation}
-Following the recipe in the previous section, the quasienergy operator in the extended Hilbert space $\mathcal{F}$ is written as
+Following the construction in the previous section, the quasienergy operator in the extended Hilbert space $\mathcal{F}$ can be written as
 \begin{equation}
     \overline{Q} = \overline{Q}_0 + \overline{V}.
 \end{equation}
-A convenient basis is $\kett{\mu,(n,m)}$, where $\kett{\mu,(n,m)}(t) = e^{i\mu\omega_dt}|n,m\rangle$ maps time to basis of the static dispersive Hamiltonian. The unperturbed component $\overline{Q}_0$ is diagonal in the basis $\kett{\mu,(n,m)}$:
+A convenient basis is $\kett{\mu,(n,m)}$, where $\kett{\mu,(n,m)}(t) = e^{i\mu\omega_dt}|n,m\rangle$ maps time to a basis state of the static dispersive Hamiltonian. The unperturbed component $\overline{Q}_0$ is diagonal in the basis $\{\kett{\mu,(n,m)}\}$:
 \begin{widetext}
 \begin{align}
-\overline{Q}_0 &= \sum_{\mu,n,m} \left( \bar{\omega}_b n + \frac{K}{2} n(n-1) + \bar{\omega}_c m + \chi nm + \mu \omega_d \right)
+&\overline{Q}_0 = \sum_{\mu,n,m} \left( \bar{\omega}_b n + \frac{K}{2} n(n-1) + \bar{\omega}_c m + \chi nm + \mu \omega_d \right)
 \kett{\mu,(n,m)}\bbra{\mu,(n,m)}, \\
-\overline{V} &= \Omega_0 \sum_{\mu,n,m} \sqrt{n+1}
+&\overline{V} = \Omega_0 \sum_{\mu,n,m} \sqrt{n+1}
 \left( \kett{\mu+1,(n+1,m)}\bbra{\mu,(n,m)}
 + \kett{\mu-1,(n+1,m)}\bbra{\mu,(n,m)} \right)
 + \text{h.c.}
 \end{align}
 \end{widetext}
 
-The perturbation $\overline{V}$ arises from the periodic drive,
+The perturbation $\overline{V}$ arises from the periodic drive
 \begin{equation}
-    2\Omega_0 \cos(\omega_d t)=\Omega_0\!\left(e^{i\omega_d t}+e^{-i\omega_d t}\right),
+    2\Omega_0 \cos(\omega_d t)=\Omega_0\!\left(e^{i\omega_d t}+e^{-i\omega_d t}\right).
 \end{equation}
-which mixes adjacent photon sectors. In the extended (Floquet) Hilbert space, the Fourier components $e^{\pm i\omega_d t}$ connect adjacent sectors $\mu\to\mu\mp 1$, while the drive excites FTT from $n\to n+1$. These processes have detunings
+In the extended Hilbert space, the Fourier components $e^{\pm i\omega_d t}$ connect adjacent sectors $\mu\to\mu\mp 1$, while the drive raises the $b$-mode excitation number from $n$ to $n+1$. The corresponding detunings are
 \begin{align}
     \Delta E_1 &= (\bar{\omega}_b - \omega_d)n + (n-1)K + \chi m,\\
-    \Delta E_2 &=(\bar{\omega}_b + \omega_d)n + (n-1)K + \chi m,
+    \Delta E_2 &= (\bar{\omega}_b + \omega_d)n + (n-1)K + \chi m,
 \end{align}
-respectively.
-For our parameter regime of interest $|\bar{\omega}_b - \omega_d|\ll\omega_d$, we have parameters hierarchy
+respectively. For the parameter regime of interest, $|\bar{\omega}_b - \omega_d|\ll\omega_d$, the relevant hierarchy is
 \begin{equation}
 \label{hierarchy}
-    \Omega_0 < \Delta E_1 \ll \Delta E_2.
+    \Omega_0 < \Delta E_1 \ll \Delta E_2,
 \end{equation}
 so that $\overline{V}$ can be treated perturbatively.
 
-\paragraph{Approximation of quasienergy and Floquet states.}
-To show eigenvalue of $H_R$ can approximate quasienergies, we block-diagonalize the operator $\bar Q$  via a Schrieffer--Wolff transformation within the near-resonant subspace selected by the hierarchy in Eq.~\eqref{hierarchy}. Specifically, we define the projectors
+\paragraph{Approximation of quasienergies and Floquet states.}
+To show that the eigenvalues of $H_R$ approximate the quasienergies, we block-diagonalize the operator $\overline{Q}$ using a Schrieffer--Wolff transformation within the near-resonant subspace selected by the hierarchy in Eq.~\eqref{hierarchy}. Specifically, we define the projectors
 \begin{equation}
-    \bar P_\mu=\sum_{n,m}\ket{\mu-n,n,m}\bra{\mu-n,n,m},
+    \bar P_\mu=\sum_{n,m}\kett{\mu-n,(n,m)}\bbra{\mu-n,(n,m)},
 \end{equation}
-which collect the states coupled most strongly by the drive. Since $\bar P_\mu$ mixes different $\mu$ indices, it is convenient to relabel the basis with the unitary
+which collect the states that are most strongly coupled by the drive. Because $\bar P_\mu$ contains states with different $\mu$ indices, it is convenient to relabel the basis using the unitary
 \begin{equation}
-    \bar R=\sum_{\mu,n,m}\ket{\mu,n,m}\bra{\mu-n,n,m}.
+    \bar R=\sum_{\mu,n,m}\kett{\mu,(n,m)}\bbra{\mu-n,(n,m)}.
 \end{equation}
 In this relabeled frame,
 \begin{align}
-    \bar P_\mu^{R} &= \bar R^\dagger \bar P_\mu \bar R
-    =\sum_{n,m}\ket{\mu,n,m}\bra{\mu,n,m},\\
-    \bar Q_{R} &= \bar R^\dagger \bar Q\,\bar R,
+    \bar P_\mu^{R} &= \bar R \bar P_\mu \bar R^\dagger
+    =\sum_{n,m}\kett{\mu,(n,m)}\bbra{\mu,(n,m)},\\
+    \bar Q_{R} &= \bar R \bar Q\,\bar R^\dagger,
 \end{align}
 so that $\bar Q_R$ acquires a block structure in the fixed-$\mu$ sectors:
 \begin{widetext}
@@ -281,151 +278,268 @@ so that $\bar Q_R$ acquires a block structure in the fixed-$\mu$ sectors:
     \end{pmatrix},
 \end{equation}
 \end{widetext}
-where $[O]$ denotes the matrix of $O$ in the $\{\ket{n,m}\}$ basis. To first order, the effective quasienergy operator is given by the block-diagonal part,
+where $[O]$ denotes the matrix of $O$ in the $\{\ket{n,m}\}$ basis, with the factor $\Omega_0$ understood in the drive-induced off-diagonal blocks. To leading order in the off-resonant couplings, the effective quasienergy operator is given by the block-diagonal part,
 \begin{equation}
     \sum_\mu \bar P_\mu^{R}\,\bar Q_R\,\bar P_\mu^{R}.
 \end{equation}
-It therefore suffices to diagonalize a single sector (e.g., $\mu=0$), denoted by $H_R$:
+It therefore suffices to diagonalize a single sector, for example $\mu=0$, denoted by $H_R$:
 \begin{equation}
     H_R\ket{\psi_j}=E_j\ket{\psi_j},
     \qquad
     \ket{\psi_j}=\sum_{n,m}c_{nm}^j\ket{n,m}.
 \end{equation}
-The quasienergy  is then
+The quasienergies are then
 \begin{equation}
     \varepsilon_{j,\mu}=E_j+\mu\omega_d,
 \end{equation}
-with corresponding Floquet states (in the relabeled frame)
+and the corresponding Floquet states in the relabeled frame are
 \begin{equation}
-    \ket{\psi_{j,\mu}}_{R}=\sum_{n,m}c_{nm}^j\ket{\mu,n,m}.
+    \kett{\psi_{j,\mu}}_{R}=\sum_{n,m}c_{nm}^j\kett{\mu,(n,m)}.
 \end{equation}
 
 \paragraph{Connection with the rotating-wave approximation.}
-The relabeling $\bar R$ in extended Hilbert space implements the same rotation as a standard rotating-frame transformation in the physical Hilbert space. Acting on a Floquet basis state and evaluating its time dependence gives
+The relabeling $\bar R$ in the extended Hilbert space implements the same rotation as a standard rotating-frame transformation in the physical Hilbert space. Acting on a Floquet basis state and evaluating its time dependence gives
 \begin{align}
-    \bigl(\bar R\ket{\mu,n,m}\bigr)(t)
-    &= \ket{\mu+n,n,m}(t)
+    \bigl(\bar R\kett{\mu,(n,m)}\bigr)(t)
+    &= \kett{\mu+n,(n,m)}(t)
      = \ket{n,m}\,e^{i(\mu+n)\omega_d t} \nonumber\\
     &= \bigl(e^{in\omega_d t}\ket{n,m}\bigr)\,e^{i\mu\omega_d t},
 \end{align}
 so $\bar R$ amounts to multiplying $\ket{n,m}$ by the phase $e^{in\omega_d t}$. This is precisely the action of the rotating-frame unitary
 \begin{equation}
-    U_R(t)=e^{i\omega_d t\, b^\dagger b},
+    U_R(t)=e^{i\omega_d t\, b^\dagger b}.
 \end{equation}
-which yields the effective Hamiltonian
+With the same convention, the effective Hamiltonian is
 \begin{equation}
-    H_{\mathrm{eff}}(t)=U_R^\dagger(t)H(t)U_R(t)-i\,U_R^\dagger(t)\dot U_R(t).
+    H_{\mathrm{eff}}(t)=U_R(t)H(t)U_R^\dagger(t)+i\,\dot U_R(t)U_R^\dagger(t).
 \end{equation}
-In this frame, terms oscillating at $\pm 2\omega_d$ are rapidly varying; neglecting them under the rotating-wave approximation produces a time-independent Hamiltonian $H_R$.
+In this frame, the terms oscillating at $\pm 2\omega_d$ vary rapidly. Neglecting these terms under the rotating-wave approximation produces the time-independent Hamiltonian $H_R$.
+
+\chapter{Numerical setup for obtaining the cavity dephasing rates}
+\label{Numerical details of obtaining the cavity dephasing rates}
+
+The dynamics are simulated using the full Hamiltonian $H_{\mathrm{full}}(\delta\Phi)$ represented in a truncated oscillator (Fock) basis, with the density matrix evolved according to the Lindblad master equation
+\begin{align}
+\dot{\rho} &= -i\!\left[\,H_{\mathrm{full}}\big(\delta\Phi(t)\big),\ \rho\,\right] + \gamma_{b\downarrow}\,\mathcal{D}[b]\rho, \label{eq:lindblad_full_ch8}
+\end{align}
+where $\mathcal{D}[b]\rho=b\rho b^\dagger-\tfrac{1}{2}\{b^\dagger b,\rho\}$. The full Hamiltonian is given in Eq.\ \eqref{fullhamiltonian}. Flux noise is incorporated through stochastic trajectories $\delta\Phi(t)$ whose spectrum follows a $1/f$ power spectral density. For each trajectory, Eq.~\eqref{eq:lindblad_full_ch8} is integrated to obtain $\rho(t)$, and all reported curves are computed as ensemble averages of the corresponding observables. The noise realizations $\delta\Phi(t)$ are generated using the frequency-domain synthesis method of Ref.~\cite{timmer1995generatingcolornoise}: Fourier components are assigned random phases and Gaussian-distributed amplitudes with variances proportional to the target $1/f$ spectrum, followed by an inverse Fourier transform to obtain $\delta\Phi(t)$ in the time domain. Figure~\ref{fig:psd_ch8} shows the resulting power spectral densities for 100 representative trajectories.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{chapter4/figures/noise_spectrum_plot.pdf}
+\caption{Power spectral density of $\delta\Phi(t)$ for 100 representative $1/f$ noise trajectories.}
+\label{fig:psd_ch8}
+\end{figure}
+
+The total time of simulations is $T\sim 10~\mu\mathrm{s}$, and the infrared cutoff is set to $\omega_{\mathrm{IR}}/2\pi=10~\mathrm{kHz}$ (equivalently $f_{\min}=10^{-5}\,\mathrm{GHz}$). This choice satisfies $f_{\min}\ll 1/T \approx 100~\mathrm{kHz}$, capturing the relevant slow-noise dynamics within the simulated window while avoiding the infrared divergence of an ideal $1/f$ spectrum. The ultraviolet cutoff is set to $f_{\max}=1~\mathrm{GHz}$; the extracted dephasing rates are insensitive to further increases in $f_{\max}$.
+
+\paragraph{Extraction of dephasing time.}
+
+The states with enhanced dephasing discussed in the preceding chapters serve as proxies for the corresponding Floquet states, as shown in Sec.~\ref{app:floquet}. In the numerical simulations, Floquet modes are labeled by their correspondence to bare state with the maximum overlap. The two Floquet states used for the cavity dephasing analysis are denoted $\ket{\phi_{g,0}(t)}$ and $\ket{\phi_{g,1}(t)}$. Relaxation and dephasing are extracted from time evolutions initialized in two different states. Relaxation is characterized by preparing
+\[
+\rho(0)=\ket{\phi_{g,1}(0)}\!\bra{\phi_{g,1}(0)}
+\]
+and monitoring relaxation toward \(\ket{\phi_{g,0}(t)}\). Dephasing is characterized by preparing the equal superposition
+\[
+\rho(0)=\ket{+}\!\bra{+}, \qquad \ket{+}=\frac{1}{\sqrt{2}}\Big(\ket{\phi_{g,0}(0)}+\ket{\phi_{g,1}(0)}\Big),
+\]
+and tracking the corresponding coherence decay. The relevant quantities are
+\[
+\mathrm{Tr}\!\left[\rho(t)\,P_{g,0}(t)\right] \quad \text{and} \quad \mathrm{Tr}\!\left[\rho(t)\,X(t)\right],
+\]
+where
+\[
+P_{g,0}(t)=\ket{\phi_{g,0}(t)}\!\bra{\phi_{g,0}(t)}, X(t)=\ket{\phi_{g,1}(t)}\!\bra{\phi_{g,0}(t)}+\mathrm{H.c.}
+\]
+Relaxation and dephasing times are obtained by fitting ensemble-averaged signals. Specifically, $T_1$ is extracted from the rise in the ground-state population by fitting $\mathrm{Tr}\!\left[P_{g,0}(t)\,\overline{\rho}(t)\right]$ to $1-e^{-t/T_1}$, where $\overline{\rho}(t)$ denotes the ensemble-averaged density matrix over different flux-noise trajectories. The coherence time $T_2$ is extracted from the decay of the superposition signal by fitting $\mathrm{Tr}\!\left[P_{+}(t)\,\overline{\rho}(t)\right]$ to $e^{-t/T_2}$ (with the appropriate normalization convention for the plotted data). The pure dephasing time then follows from
+\begin{align}
+\frac{1}{T_\phi}=\frac{1}{T_2}-\frac{1}{2T_1},
+\end{align}
+and we report the total dephasing rate as $\Gamma_{\phi,\mathrm{total}}=1/T_\phi$.
 
 \chapter{Adiabatic preparation of states with dephasing improvement}
 \label{app:adiabatic-prep}
 
-\section{Adiabatic transition}
-\label{sec:adiabatic_transition}
-
-In the adiabatic frame, we introduce a time-dependent unitary transformation \(U(\Omega_t)\) that diagonalizes the instantaneous Hamiltonian \(H(\Omega_t)\). The corresponding effective Hamiltonian is
+In the adiabatic frame, we introduce a time-dependent unitary transformation $U(\Omega_t)$ that diagonalizes the instantaneous Hamiltonian $H(\Omega_t)$,
+\begin{equation}
+U^\dagger(\Omega_t) H(\Omega_t) U(\Omega_t)
+=
+H_d(\Omega_t).
+\end{equation}
+Equivalently, $U(\Omega_t)|j\rangle$ is the instantaneous eigenstate of $H(\Omega_t)$ associated with the reference-basis state $|j\rangle$. The effective Hamiltonian in this frame is
 \begin{equation}
 \begin{aligned}
-H_{\mathrm{eff}}(\Omega_t)
-&= U^\dagger(\Omega_t)\!\left( H(\Omega_t) - i\hbar \frac{\partial}{\partial t} \right)\!U(\Omega_t) \\
-&= H_d(\Omega_t) + V(\Omega_t).
+H_{\mathrm{eff}}(\Omega_t,\dot{\Omega}_t)
+&=
+U^\dagger(\Omega_t) H(\Omega_t) U(\Omega_t)
+-i U^\dagger(\Omega_t) \dot U(\Omega_t) =
+H_d(\Omega_t)+V(\Omega_t,\dot{\Omega}_t).
 \end{aligned}
 \end{equation}
 
-The diagonal part \(H_d\) contains the instantaneous energy eigenvalues \(E_j(\Omega_t)\):
+The diagonal part $H_d$ contains the instantaneous energy eigenvalues $E_j(\Omega_t)$:
 \begin{equation}
-H_d(\Omega_t)=\sum_j E_j(\Omega_t)\,|j\rangle\langle j|.
+H_d(\Omega_t)
+=
+\sum_j E_j(\Omega_t)\,|j\rangle\langle j|.
 \end{equation}
-The coupling term \(V\) originates from the induced gauge contribution \(i\hbar\,U^\dagger \dot U\) and captures the effect of the time-dependent driving. Splitting \(V\) into off-diagonal and diagonal components gives
+The coupling term $V$ originates from the induced gauge contribution $-iU^\dagger\dot U$ and captures the effect of the time-dependent driving. Splitting $V$ into off-diagonal and diagonal components gives
 \begin{equation}
 \begin{aligned}
+\label{Vexpression}
 V
 &=
-\underbrace{-i\hbar \sum_{j\neq j'} 
-\frac{\langle j'|\,U^\dagger \dot H\,U\,|j\rangle}{E_j-E_{j'}}\,|j'\rangle\langle j|}_{V_{od}}
-\\
-&\quad+\;
-\underbrace{-i\hbar \sum_j \langle j|\,U^\dagger \dot U\,|j\rangle\,|j\rangle\langle j|}_{V_d}.
+\underbrace{
+-i \sum_{j\neq j'}
+\frac{
+\langle j'|\,U^\dagger \dot H\,U\,|j\rangle
+}{
+E_j-E_{j'}
+}
+\,|j'\rangle\langle j|
+}_{V_{od}}
++
+\underbrace{
+-i \sum_j
+\langle j|\,U^\dagger \dot U\,|j\rangle
+\,|j\rangle\langle j|
+}_{V_d}.
 \end{aligned}
 \end{equation}
-where the diagonal terms contribute to the Berry phase, while the off-diagonal terms drive transitions.
+Here the diagonal terms contribute geometric phases, while the off-diagonal terms drive nonadiabatic transitions. This expression assumes that the relevant instantaneous levels are nondegenerate; near degeneracies require a block-adiabatic treatment.
 
-In our case of interest, the goal is to adiabatically evolve into the desired Floquet states. When counter-rotating terms are negligible, this evolution is equivalent to adiabatic dynamics governed by the rotating-frame Hamiltonian
+In our case of interest, the goal is to adiabatically evolve into the desired Floquet states. When counter-rotating terms are negligible, this state preparation can be approximated by adiabatic dynamics governed by the rotating-frame Hamiltonian
 \begin{equation}
 \begin{aligned}
 H_R(t) =\;&
 \Delta_{bd}\, b^\dagger b
 + \frac{K}{2}\, b^{\dagger 2} b^{2}
-+ \overline{\omega}_c\, c^\dagger c \\
-&+ \chi\, b^\dagger b\, c^\dagger c
++ \overline{\omega}_c\, c^\dagger c + \chi\, b^\dagger b\, c^\dagger c
 + \Omega_I(t)\, ( b + b^\dagger ) .
 \end{aligned}
 \end{equation}
 
 Under the drive $\Omega_I(t)$, the Hamiltonian in the instantaneous eigenbasis can be written as
-$H_{\mathrm{eff}} = H_d(\Omega_I) + V(\Omega_I)$.
-For the driven operating regime of interest, the diagonal contribution is well approximated by Eq.\ \eqref{eq:Hd_far_detuned}
+\begin{equation}
+H_{\mathrm{eff}} = H_d(\Omega_I)+V(\Omega_I,\dot{\Omega}_I).
+\end{equation}
+For the driven operating regime of interest, the diagonal contribution is well approximated by Eq.\ \eqref{eq:Hd_far_detuned}:
 \begin{equation}
 \begin{aligned}
 H_d(\Omega_I) \approx\;&
-\left( \Delta_{bd} - \frac{\Omega_I^2}{\kappa} \right) \sigma^+ \sigma^-
-+ \left( \tilde{\omega}_c + \frac{\Omega_I^2 \chi}{\Delta_{bd}^2} \right) c^\dagger c \\
-&+ \chi \left( 1 - 2 \frac{\Omega_I^2}{\Delta_{bd}^2} \right) \sigma^+ \sigma^-\, c^\dagger c .
+\left( \Delta_{bd} - \frac{\Omega_I^2}{K} \right) \sigma^+ \sigma^-
++ \left( \tilde{\omega}_c + \frac{\Omega_I^2 \chi}{\Delta_{bd}^2} \right) c^\dagger c + \chi \left( 1 - 2 \frac{\Omega_I^2}{\Delta_{bd}^2} \right) \sigma^+ \sigma^-\, c^\dagger c .
 \end{aligned}
 \end{equation}
+% Check whether the denominator K in the Stark shift above should instead be the Kerr scale K.
+% If Eq.~\eqref{eq:Hd_far_detuned} uses K rather than K, replace K by K here.
 
-Nonadiabatic leakage is generated by the time dependence of the drive through the off-diagonal term $V_{od}$.
-In particular,
+With the photon number $m$, the corresponding instantaneous transition gap between the dressed $|g,m\rangle$ and $|e,m\rangle$ states is approximately
 \begin{equation}
-U^\dagger \dot{H}_R U
-= \dot{\Omega}_I\, U^\dagger (b^\dagger + b) U
-\overset{\eqref{eq:transformb}}{\approx} \dot{\Omega}_I\, \sigma_x
-+ \mathcal{O}\!\left(\frac{\dot{\Omega}_I}{\Delta_{bd}}\right).
+\Delta_{\mathrm{eff}}^{(m)}(\Omega_I)
+=
+\Delta_{bd}
+-
+\frac{\Omega_I^2}{K}
++
+\chi
+\left(
+1-2\frac{\Omega_I^2}{\Delta_{bd}^2}
+\right)m .
 \end{equation}
-which yields the effective coupling between $|g\rangle$ and $|e\rangle$,
+In the far-detuned regime, this gap is well approximated by
 \begin{equation}
-V_{od}(\Omega_I) \approx \frac{\dot{\Omega}_I}{\Delta_{bd}}\, \sigma_y .
+\Delta_{\mathrm{eff}}^{(m)}(\Omega_I)
+\approx
+\Delta_{bd}.
 \end{equation}
 
-Suppressing leakage requires the nonadiabatic coupling to remain small compared to the instantaneous gap,
+Nonadiabatic leakage is generated by the time dependence of the drive through the off-diagonal term of $V$. In our case, it is 
+\begin{equation}
+V_{od}(\Omega_I)
+\approx
+\frac{\dot{\Omega}_I}{\Delta_{bd}}\,\sigma_y .
+\end{equation}
+by following Eq.\ \eqref{Vexpression}.
 
+Suppressing leakage requires the nonadiabatic coupling to remain small compared with the instantaneous gap:
 \begin{equation}
-\frac{\dot{\Omega}_I}{\Delta_{bd}} \ll \Delta_{bd}.
+\frac{|\dot{\Omega}_I|}
+{
+\left|\Delta_{\mathrm{eff}}^{(m)}(\Omega_I)\right|^2
+}
+\ll 1 .
 \end{equation}
-For a ramp of characteristic amplitude $\Omega_0$ executed over a ramp time $\tau$ (so that $\dot{\Omega}_I \sim \Omega_0/\tau$), this implies the lower bound
+For a ramp of characteristic amplitude $\Omega_0$ executed over a ramp time $\tau$, so that $|\dot{\Omega}_I|\sim \Omega_0/\tau$, this gives the lower bound
 \begin{equation}
-\tau \gg \frac{\Omega_0}{\Delta_{bd}^2}\overset{\eqref{eq:ss_unselective}}{=}\sqrt{\frac{1}{4K\Delta_{bd}}}.
+\tau
+\gg
+\frac{\Omega_0}
+{
+\min_{t,m}
+\left|\Delta_{\mathrm{eff}}^{(m)}(\Omega_I(t))\right|^2
+}
+\approx
+\frac{\Omega_0}{|\Delta_{bd}|^2}.
 \end{equation}
-Increasing $\Delta_{bd}$ can reduce $\tau$ to obtain the desired state.
+Using Eq.\ \eqref{eq:ss_unselective}, this estimate becomes
+\begin{equation}
+\tau
+\gg
+\frac{\Omega_0}{|\Delta_{bd}|^2}
+\overset{\eqref{eq:ss_unselective}}{=}
+\sqrt{\frac{1}{4|K\Delta_{bd}|}} .
+\end{equation}
+Thus, within this far-detuned scaling and for fixed $K$, increasing $|\Delta_{bd}|$ reduces the leading adiabatic lower bound on $\tau$, provided that the required drive amplitude remains experimentally accessible and the perturbative approximation remains valid.
+
 \begin{figure}[t]
     \centering
     \includegraphics[width=\linewidth]{chapter4/figures/preparation_fidelity_plot.pdf}
-    \caption{State-preparation infidelity $\mathcal{I}(\tau)$ versus ramp time $\tau$ for several detunings $\Delta_{bd}$, comparing Gaussian and DRAG ramps. The non-monotonic dependence reflects the trade-off between coherent leakage from unwanted transitions (suppressed for longer $\tau$) and decoherence (which accumulates for longer $\tau$).}
+    \caption{State-preparation infidelity $\mathcal{I}(\tau)$ versus ramp time $\tau$ for several detunings $\Delta_{bd}$, comparing a Gaussian $I$-quadrature ramp with its DRAG-corrected counterpart. The non-monotonic dependence reflects the trade-off between coherent leakage from unwanted transitions, which is suppressed for longer $\tau$, and decoherence, which accumulates for longer $\tau$.}
     \label{fig:ramp}
 \end{figure}
 
-To bypass this speed limit, we implement a shortcut to adiabaticity using an active quadrature control field $\Omega_Q$ which is DRAG-style.
-Specifically, we augment the drive Hamiltonian by
+To relax this leading adiabatic constraint, we implement a shortcut to adiabaticity using an active DRAG-style quadrature control field $\Omega_Q$. Specifically, we augment the drive Hamiltonian by
 \begin{equation}
-H_{\text{total}} = H_R - i \Omega_Q (b - b^\dagger),
+H_{\text{total}}
+=
+H_R
+-
+i\Omega_Q (b-b^\dagger),
 \end{equation}
-and choose the quadrature amplitude to cancel the nonadiabatic coupling,
+where $\Omega_Q$ is real. In the relevant two-level subspace,
 \begin{equation}
-\Omega_Q = -\frac{\dot{\Omega}_I}{\Delta_{bd}}.
+-i\Omega_Q (b-b^\dagger)
+\approx
+\Omega_Q \sigma_y .
 \end{equation}
+The quadrature amplitude is chosen to cancel the leading nonadiabatic coupling:
+\begin{equation}
+\Omega_Q
+=
+-\frac{\dot{\Omega}_I}{\Delta_{bd}} .
+\end{equation}
+
 The effective Hamiltonian in the adiabatic frame then becomes
 \begin{equation}
 \begin{aligned}
-&U^\dagger \left( H_R - i \Omega_Q (b - b^\dagger) - i \frac{\partial}{\partial t} \right) U\\
-&\approx H_d + V_d + \frac{\dot{\Omega}_I}{\Delta_{bd}} \sigma_y - \frac{\dot{\Omega}_I}{\Delta_{bd}} \sigma_y \\
-&= H_d + V_d,
+&U^\dagger
+\left(
+H_R
+-
+i\Omega_Q (b-b^\dagger)
+-
+i\frac{\partial}{\partial t}
+\right)
+U\approx
+H_d
++
+V_d.
 \end{aligned}
 \end{equation}
-so the evolution remains diagonal in the instantaneous eigenbasis even for fast ramps.
+The y quadrature cancels the dominant off-diagonal nonadiabatic coupling, leaving only diagonal geometric terms $V_d$ and higher-order residual couplings.
 
-Numerical simulations confirm the qualitative analysis above. We compute the state-preparation infidelity at the end of the ramp as a function of the ramp time $\tau$ for several detunings $\Delta_{bd}$.
-The infidelity is defined as the average loss of overlap with the target Floquet states,
+Numerical simulations confirm the qualitative analysis above. We compute the state-preparation infidelity at the end of the ramp as a function of the ramp time $\tau$ for several detunings $\Delta_{bd}$. The infidelity is defined as the average loss of overlap with the target Floquet states:
 \begin{equation}
 \label{eq:infidelity_def}
 \mathcal{I}(\tau)
@@ -436,14 +550,35 @@ The infidelity is defined as the average loss of overlap with the target Floquet
 \mathrm{Tr}\!\left(P_{g1}(\tau)\,\bar{\mathcal{E}}_{\tau}\!\left(\rho_{0,g1}\right)\right)
 \right].
 \end{equation}
-where $P_{g0}(\tau)=|\phi_{g0}(\tau)\rangle\langle\phi_{g0}(\tau)|$ and
-$P_{g1}(\tau)=|\phi_{g1}(\tau)\rangle\langle\phi_{g1}(\tau)|$ project onto the desired Floquet states at the end of the pulse. The map
-$\bar{\mathcal{E}}_{\tau}(\cdot)=\langle \mathcal{E}_{\tau}^{\delta\Phi}(\cdot)\rangle_{\delta\Phi}$
-denotes the evolution averaged over flux trajectories $\delta\Phi(t)$, with each trajectory generated by the master equation Eq.\ \eqref{eq:lindblad_full_ch8}.
-The initial states are
-$\rho_{0,g0}=|\bar g0\rangle\langle\bar g0|$ and
-$\rho_{0,g1}=|\bar g1\rangle\langle\bar g1|$, where the overbar denotes eigenstates of the static system Hamiltonian in the dispersive regime.
+Here
+\begin{equation}
+P_{g0}(\tau)
+=
+|\phi_{g0}(\tau)\rangle\langle\phi_{g0}(\tau)|,
+\qquad
+P_{g1}(\tau)
+=
+|\phi_{g1}(\tau)\rangle\langle\phi_{g1}(\tau)|
+\end{equation}
+project onto the desired Floquet states at the end of the pulse. The map
+\begin{equation}
+\bar{\mathcal{E}}_{\tau}(\cdot)
+=
+\left\langle
+\mathcal{E}_{\tau}^{\delta\Phi}(\cdot)
+\right\rangle_{\delta\Phi}
+\end{equation}
+denotes the evolution averaged over sampled flux-noise trajectories $\delta\Phi(t)$, where for each trajectory the density matrix is evolved according to the master equation Eq.\ \eqref{eq:lindblad_full_ch8}. The initial states are
+\begin{equation}
+\rho_{0,g0}
+=
+|\overline{g0}\rangle\langle\overline{g0}|,
+\qquad
+\rho_{0,g1}
+=
+|\overline{g1}\rangle\langle\overline{g1}|.
+\end{equation}
+where the overbar denotes eigenstates of the static system Hamiltonian in the dispersive regime.
 
-Results are shown in Fig.~\ref{fig:ramp}. For a fixed detuning, the infidelity initially decreases with increasing $\tau$ because a slower ramp improves adiabaticity and suppresses coherent leakage, but it eventually increases as the longer evolution accumulates more decoherence error. For a fixed ramp time (e.g., $\tau=50\,\mathrm{ns}$), larger detuning yields lower infidelity, due to larger instantaneous gap. Finally, for the same detuning and ramp time, DRAG outperforms a Gaussian ramp because the added $Q$-quadrature control enhances adiabaticity by suppressing unwanted transitions.
-
+Results are shown in Fig.~\ref{fig:ramp}. For a fixed detuning, the infidelity initially decreases with increasing $\tau$ because a slower ramp improves adiabaticity and suppresses coherent leakage, but it eventually increases as the longer evolution accumulates more decoherence error. For a fixed ramp time, for example $\tau=50\,\mathrm{ns}$, larger detuning yields lower infidelity in the leakage-dominated regime because the larger instantaneous gap suppresses the leading nonadiabatic coupling. Finally, for the same detuning and ramp time, the DRAG-corrected pulse outperforms the purely Gaussian $I$-quadrature ramp because the added $Q$-quadrature cancels the leading nonadiabatic transition matrix element.
 \end{appendices}
