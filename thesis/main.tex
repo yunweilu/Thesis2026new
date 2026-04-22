@@ -10,7 +10,8 @@
 \usepackage{setspace}  %use this package to set linespacing as desired
 \usepackage{float}
 \usepackage{times}  %set Times New Roman as the font
-\usepackage[protrusion=true,expansion=true]{microtype}
+% expansion=false avoids \showhyphens patch (kernel vs. microtype mismatch on newer LaTeX)
+\usepackage[protrusion=true,expansion=false]{microtype}
 \usepackage[explicit]{titlesec}  %title control and formatting
 \usepackage[titles]{tocloft}  %table of contents control and formatting
 % Allow TOC/LOF/LOT entries to break before the page number (reduces overfull \hbox)
