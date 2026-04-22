@@ -10,8 +10,13 @@
 \usepackage{setspace}  %use this package to set linespacing as desired
 \usepackage{float}
 \usepackage{times}  %set Times New Roman as the font
+\usepackage[protrusion=true,expansion=true]{microtype}
 \usepackage[explicit]{titlesec}  %title control and formatting
 \usepackage[titles]{tocloft}  %table of contents control and formatting
+% Allow TOC/LOF/LOT entries to break before the page number (reduces overfull \hbox)
+\makeatletter
+\renewcommand{\@tocrmarg}{2.55em plus 1fil}
+\makeatother
 % \usepackage[backend=bibtex, sorting=none, bibstyle=ieee]{biblatex}  %reference manager
 \usepackage[bookmarks=true, hidelinks]{hyperref}
 \usepackage{url}
@@ -76,12 +81,10 @@
 \usepackage{amsmath}
 \usepackage{mathtools}
 \usepackage{physics}
-\AtBeginDocument{\RenewCommandCopy\qty\SI}
 \usepackage{stmaryrd}
 \SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
 \usepackage{mathbbol}
 \usepackage{cleveref}
-\usepackage{float}
 \usepackage{colortbl}
 \usepackage{listings}
 
@@ -111,6 +114,7 @@
 %%%%%%%%%%%%%%%%%%%%%%
 % Start of Document
 %%%%%%%%%%%%%%%%%%%%%%
+% physics defines \qty as matrix shorthand; restore siunitx's \qty for units.
 \AtBeginDocument{\RenewCommandCopy\qty\SI}
 
 \begin{document}

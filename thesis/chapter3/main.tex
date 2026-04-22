@@ -611,7 +611,10 @@ The comparisons are based on two example of Hamiltonians. (1) A driven cavity--t
 where $c$ and $b$ are the cavity and transmon annihilation operators, $K_b>0$ is the transmon Kerr coefficient, $g$ is the coupling strength, and $\Delta$ is the detuning between transmon and cavity. (2) Three coupled transmons with nearest-neighbor hopping are modeled by
 \begin{equation}
 \label{eq:gateH}
-    H_2(t)=\sum_{\nu=1}^{3}\bigg[-\frac{K_b}{2}b_\nu^{\dagger 2}b_\nu^2+a^{(\nu)}(t)(b_\nu+b_\nu^\dagger)\bigg]+g(b_1b_{2}^\dagger+b_2b_{3}^\dagger+\text{h.c.}).
+\begin{split}
+    H_2(t)={}&\sum_{\nu=1}^{3}\bigg[-\frac{K_b}{2}b_\nu^{\dagger 2}b_\nu^2+a^{(\nu)}(t)(b_\nu+b_\nu^\dagger)\bigg]\\
+    &+g(b_1b_{2}^\dagger+b_2b_{3}^\dagger+\text{h.c.}).
+\end{split}
 \end{equation}
 Unless noted otherwise, the numerical tests use $\Delta/2\pi=3$\,GHz, $g/2\pi=0.1$\,GHz, $K_b/2\pi=0.225$\,GHz, constant controls $a_z/2\pi=a_x/2\pi=0.1$\,GHz when propagating with $H_1$, and $a^{(\nu)}/2\pi=0.1$\,GHz when propagating with $H_2$.
 
@@ -701,7 +704,7 @@ For gradients of cost contributions that are tedious to derive analytically, sem
 \begin{table}[t]
 \renewcommand{\arraystretch}{1.5}
 \centering
-\caption[Memory usage and runtime scaling with respect to Hilbert space dimension $d$, number of time steps $N$, the number of stored Hamiltonian matrix elements $\kappa=\kappa(d)$, and the number of matrix-vector multiplications required for evaluating propagator-state products $\mu=\mu(d)$.]{Memory usage and runtime scaling with respect to Hilbert space dimension $d$, number of time steps $N$, the number of stored Hamiltonian matrix elements $\kappa=\kappa(d)$, and the number of matrix-vector multiplications required for evaluating propagator-state products $\mu=\mu(d)$. (The scaling of $\mu$ and $\kappa$ depends on the specific optimization task.) The table contrasts scaling for state transfer and gate operation for hard-coded gradients (HG), full automatic differentiation (full-AD), and semi-automatic differentiation (semi-AD).}
+\caption[Runtime and memory scaling for HG, full-AD, and semi-AD.]{Memory usage and runtime scaling with respect to Hilbert space dimension $d$, number of time steps $N$, the number of stored Hamiltonian matrix elements $\kappa=\kappa(d)$, and the number of matrix-vector multiplications required for evaluating propagator-state products $\mu=\mu(d)$. (The scaling of $\mu$ and $\kappa$ depends on the specific optimization task.) The table contrasts scaling for state transfer and gate operation for hard-coded gradients (HG), full automatic differentiation (full-AD), and semi-automatic differentiation (semi-AD).}
 \label{tab:scalingtable}
 \begin{tabular}
 {p{0.27\textwidth}p{0.13\textwidth}p{0.17\textwidth}p{0.13\textwidth}p{0.17\textwidth}}

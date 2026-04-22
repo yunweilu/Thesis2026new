@@ -11,7 +11,7 @@ This work introduces an alternative approach to suppress inherited cavity dephas
 
 This chapter is organized as follows. In Section~\ref{sec:flux-noise-dephasing}, we describe cavity dephasing inherited from a nonlinear device. In Section~\ref{sec:creating-stark-sweet-spots}, we introduce the mechanism for suppressing cavity dephasing using a drive and show how to select the corresponding drive parameters. In Section~\ref{sec:residual-dephasing}, we derive the drive-induced dephasing rates and compare them with numerical simulations. In Section~\ref{sec:bosonic-qec}, we apply the SISS scheme to binomial and dual-rail encodings, highlighting its ability to suppress dephasing simultaneously across multiple pairs of Fock states and multiple modes. 
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{chapter4/figures/device.pdf}
     \caption[Illustration of a stark-induced sweet spot for the cavity frequency.]{
@@ -351,10 +351,10 @@ D_{m\rightarrow m+1}
 \]
 is the susceptibility of the net cavity transition frequency to FTT-frequency fluctuations. A sweet spot occurs when \(D_{m\rightarrow m+1}=0\). Depending on the drive parameters, this cancellation can occur either for a specific cavity transition, giving a selective sweet spot, or over several neighboring transitions, giving an unselective sweet spot.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{chapter4/figures/compare.pdf}
-    \caption[Dynamical sweet spots for suppressing cavity dephasing induced by FTT-frequency fluctuations.]{Dynamical sweet spots for suppressing cavity dephasing induced by FTT-frequency fluctuations. The plotted quantity is the susceptibility \(D_{0\rightarrow 1}=\partial\widetilde{\omega}_{c,0\rightarrow 1}/\partial\omega_b\); sweet spots occur where \(D_{0\rightarrow 1}=0\). 
+    \caption[Dynamical sweet spots for cavity dephasing from FTT noise.]{Dynamical sweet spots for suppressing cavity dephasing induced by FTT-frequency fluctuations. The plotted quantity is the susceptibility \(D_{0\rightarrow 1}=\partial\widetilde{\omega}_{c,0\rightarrow 1}/\partial\omega_b\); sweet spots occur where \(D_{0\rightarrow 1}=0\). 
     (a) Unselective regime at \(\Omega_0/2\pi=10~\mathrm{MHz}\), showing a single sweet spot.
 (b) Selective regime at \(\Omega_0/2\pi=0.05~\mathrm{MHz}\), showing two symmetric sweet spots about the effective resonance.
 (c) Two-dimensional map of \(D_{0\rightarrow 1}\) versus drive amplitude \(\Omega_0\) and detuning \(\Delta_{bd}\); Dashed curves denote analytical sweet-spot conditions based on Eqs.~\eqref{eq:omega_c_tilde_m} and \eqref{eq:Dm_selective} for the main panel and the inset, respectively. The numerical results are obtained based on full Hamiltonian in Eq.~\eqref{system hamiltonian} and the system parameters are \(E_{J1}=E_{J2}=30.19\,\mathrm{GHz}\), \(E_C=0.10\,\mathrm{GHz}\), \(\omega_c/2\pi=5.226\,\mathrm{GHz}\), \(g'/2\pi=0.050\,\mathrm{GHz}\), and \(\Phi=0.20\,\Phi_0\). For these values, the corresponding effective parameters in Eq.~\eqref{fullhamiltonian} are \(\omega_b/2\pi=6.16\,\mathrm{GHz}\), \(K/2\pi=-0.10\,\mathrm{GHz}\), and \(g/2\pi=0.10\,\mathrm{GHz}\).}
@@ -792,7 +792,7 @@ $-\Delta_{bd}/2\pi\simeq 6~\mathrm{MHz}$, the dephasing time is enhanced by up t
 $\sim 20\times$ across the considered $S_0$ range, confirming the overall suppression
 of cavity dephasing.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\linewidth]{chapter4/figures/total_rate.pdf}
     \caption[Numerical evaluation of the total cavity dephasing rate under the sweet-spot drive.]{Numerical evaluation of the total cavity
@@ -849,7 +849,7 @@ In the previous sections, we focused on the \(\ket{g,0}\) and \(\ket{g,1}\) stat
 \begin{figure}[t]
     \centering
     \includegraphics[width=\textwidth]{chapter4/figures/qec_plot.pdf}
-    \caption[Driven sweet spots for bosonic encodings (\(\Omega_0/2\pi=10\,\mathrm{MHz}\)).]{Driven sweet spots for bosonic encodings (\(\Omega_0/2\pi=10\,\mathrm{MHz}\)).
+    \caption[Driven sweet spots for bosonic encodings.]{Driven sweet spots for bosonic encodings (\(\Omega_0/2\pi=10\,\mathrm{MHz}\)).
     \emph{Binomial code}: \textbf{(a)} FTT-noise-induced dephasing rates \(\gamma_{\phi,n\rightarrow m}\) versus \(\Delta_{bd}\); the star marks \(\Delta_{bd}/2\pi=-30\,\mathrm{MHz}\), where all targeted rates are suppressed by \(\gtrsim 13\times\).
     \textbf{(b)} Wigner function of \(\ket{+_L}\) at \(300\,\mu\mathrm{s}\): the drive preserves the interference fringes and reduces the decoherence-induced infidelity from \(0.30\) to \(0.043\).
     \emph{Dual rail}: \textbf{(c)} Single-photon transition dephasing \(\gamma_{\phi,0\rightarrow 1}^{(i)}\) for each coupled cavity; both are suppressed by \(\sim 10\times\) near \(-\Delta_{bd}/2\pi\simeq 29\,\mathrm{MHz}\).
