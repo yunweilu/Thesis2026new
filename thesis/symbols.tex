@@ -1,62 +1,60 @@
 \renewcommand{\nomname}{List of Symbols}
-
+% --- Abbreviations ---
+\nomenclature[A01]{FTT}{Flux-tunable transmon.}
 % --- Energy scales ---
 \nomenclature[E01]{$E_J$}{Josephson energy.}
 \nomenclature[E02]{$E_C$}{Charging energy.}
 
 % --- Charge and phase ---
 \nomenclature[N01]{$n_g$}{Offset charge.}
-\nomenclature[P01]{$\varphi$}{Gauge-invariant phase difference across a junction.}
-\nomenclature[P02]{$\Phi_0$}{Superconducting flux quantum.}
-\nomenclature[P03]{$\Phi_{\mathrm{ex}}$}{Applied external magnetic flux.}
+\nomenclature[P01]{$\varphi$}{Superconducting phase difference.}
+\nomenclature[P02]{$\Phi_0$}{Flux quantum.}
+\nomenclature[P03]{$\Phi_{\mathrm{ex}}$}{External magnetic flux.}
 
 % --- Frequencies and anharmonicity ---
-\nomenclature[G01]{$K$}{Anharmonicity or Kerr nonlinearity of the transmon or FTT.}
-\nomenclature[G02]{$\omega_q$}{Qubit $\ket{0}$--$\ket{1}$ transition frequency.}
+\nomenclature[G01]{$K$}{Anharmonicity or Kerr coefficient.}
+\nomenclature[G02]{$\omega_q$}{Qubit transition frequency.}
 \nomenclature[G03]{$\omega_b$}{FTT transition frequency.}
 \nomenclature[G04]{$\omega_d$}{Drive frequency.}
-\nomenclature[G05]{$\omega_c$}{Cavity mode frequency.}
+\nomenclature[G05]{$\omega_c$}{Cavity frequency.}
 
 % --- Cavity / FTT dispersive model ---
-\nomenclature[H01]{$b$}{Annihilation operator for the FTT mode.}
-\nomenclature[H02]{$c$}{Annihilation operator for the cavity mode.}
+\nomenclature[H01]{$b$}{FTT annihilation operator.}
+\nomenclature[H02]{$c$}{Cavity annihilation operator.}
 \nomenclature[H03]{$g$}{FTT--cavity coupling strength.}
 \nomenclature[H04]{$\chi$}{Dispersive shift.}
 \nomenclature[H05]{$\Delta_{\mathrm{bc}}$}{FTT--cavity detuning.}
-\nomenclature[H06]{$\Delta_{\mathrm{bd}}$}{FTT--drive detuning in the rotating frame.}
+\nomenclature[H06]{$\Delta_{\mathrm{bd}}$}{FTT--drive detuning.}
 \nomenclature[H07]{$\Delta_m$}{Photon-number-dependent detuning.}
 \nomenclature[H08]{$\Omega_0$}{Drive amplitude.}
-\nomenclature[H09]{$\delta\Phi(t)$}{Flux-noise fluctuation about the bias point.}
-\nomenclature[H10]{$\delta\omega_b(t)$}{FTT transition-frequency fluctuation induced by flux noise.}
-\nomenclature[H11]{$\bar{\omega}_b$}{Dispersively shifted FTT transition frequency.}
-\nomenclature[H12]{$\bar{\omega}_c$}{Dispersively shifted cavity frequency.}
-\nomenclature[H13]{$\widetilde{\omega}_{c,n\rightarrow m}$}{Drive-renormalized cavity transition frequency between Fock states $n$ and $m$.}
-\nomenclature[H14]{$\gamma_{b\downarrow}$}{FTT energy relaxation rate.}
+\nomenclature[H09]{$\delta\Phi(t)$}{Flux-noise fluctuation.}
+\nomenclature[H10]{$\delta\omega_b(t)$}{FTT transition-frequency fluctuation.}
+\nomenclature[H11]{$\bar{\omega}_b$}{Shifted FTT transition frequency.}
+\nomenclature[H12]{$\bar{\omega}_c$}{Shifted cavity frequency.}
+\nomenclature[H13]{$\widetilde{\omega}_{c,n\rightarrow m}$}{Drive-renormalized cavity transition frequency.}
+\nomenclature[H14]{$\gamma_{b\downarrow}$}{FTT relaxation rate.}
 \nomenclature[H15]{$\gamma_{c\downarrow}$}{Cavity relaxation rate.}
 \nomenclature[H16]{$\Gamma_{\phi,\mathrm{total}}$}{Total cavity dephasing rate.}
-\nomenclature[H17]{$S_0$}{Amplitude of $1/f$ flux noise.}
-\nomenclature[H18]{$\sigma^-$}{Lowering operator for the effective FTT two-level subspace.}
-
+\nomenclature[H17]{$S_0$}{Flux-noise amplitude.}
 % --- Decoherence ---
 \nomenclature[D01]{$T_1$}{Energy relaxation time.}
 
 % --- Noise model ---
-\nomenclature[S01]{$B_\lambda$}{System operator coupled to the fluctuation $\delta\lambda$.}
+\nomenclature[S01]{$B_\lambda$}{Noise coupling operator.}
 \nomenclature[S02]{$k_B$}{Boltzmann constant.}
 
-% --- Optimal control and time discretization (Ch.~3) ---
-\nomenclature[O01]{$N$}{Number of piecewise-constant control intervals (time steps).}
+% --- Optimal control and time discretization ---
+\nomenclature[O01]{$N$}{Number of control intervals.}
 \nomenclature[O02]{$d$}{Hilbert space dimension.}
-\nomenclature[O03]{$\Delta t$}{Duration of each control interval in the time discretization.}
-\nomenclature[O04]{$a_n$}{Control amplitude at discrete time $t_n$.}
-\nomenclature[O05]{$U_n$}{Short-time unitary propagator for the $n$th interval.}
-\nomenclature[O06]{$H_n$}{Piecewise-constant Hamiltonian during the $n$th interval ($H_n=H_s+a_n h_c$).}
-\nomenclature[O07]{$h_c$}{Operator coupling the control field into the Hamiltonian.}
-\nomenclature[O08]{$U_T$}{Target unitary gate (gate optimization).}
-\nomenclature[O09]{$\Omega$}{Hermitian operator in the trajectory cost $C_2^{\mathrm{st}}$.}
-\nomenclature[O10]{$\phi_T$}{Target state (state-transfer optimization).}
-\nomenclature[O11]{$\psi_0$}{Initial quantum state before forward propagation.}
-\nomenclature[O12]{$\mu$}{Number of matrix-vector multiplications required for propagator--state product evaluation.}
+\nomenclature[O03]{$\Delta t$}{Control interval duration.}
+\nomenclature[O04]{$a_n$}{Control amplitude at time $t_n$.}
+\nomenclature[O05]{$U_n$}{Short-time propagator for the $n$th interval.}
+\nomenclature[O06]{$H_n$}{Hamiltonian for the $n$th interval.}
+\nomenclature[O07]{$h_c$}{Control operator.}
+\nomenclature[O08]{$U_T$}{Target unitary.}
+\nomenclature[O10]{$\phi_T$}{Target state.}
+\nomenclature[O11]{$\psi_0$}{Initial state.}
+\nomenclature[O12]{$\mu$}{Number of matrix-vector multiplications.}
 \nomenclature[O13]{$\kappa$}{Number of stored Hamiltonian matrix elements.}
 
 \printnomenclature
