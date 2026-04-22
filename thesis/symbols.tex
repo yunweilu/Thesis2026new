@@ -1,6 +1,10 @@
 \renewcommand{\nomname}{List of Symbols}
 % Symbols listed here appear in at least two distinct \texttt{\textbackslash subsection}
 % scopes among Introduction, chapters~2--4, conclusion, and appendix (current body text).
+% Chapter~4 additions: symbols reused across several of that chapter's \texttt{\textbackslash section}
+% blocks (\texttt{sec:flux-noise-dephasing}, \texttt{sec:creating-stark-sweet-spots},
+% \texttt{sec:residual-dephasing}, \texttt{sec:bosonic-qec}).
+% Redundant lines removed: $\omega_q$ merged with $\omega_{01}$; $K$ merged with $\alpha$ (same transmon scale).
 
 % --- Energy scales ---
 \nomenclature[E01]{$E_J$}{Josephson coupling energy of a junction (or effective junction).}
@@ -13,11 +17,31 @@
 \nomenclature[P03]{$\Phi_{\mathrm{ex}}$}{External magnetic flux threading the circuit (bias and noise coordinate in flux-tunable devices).}
 
 % --- Frequencies and anharmonicity ---
-\nomenclature[G01]{$\alpha$}{Leading transmon anharmonicity ($\approx -E_C$); in DRAG, also $\omega_{12}-\omega_{01}$.}
-\nomenclature[G02]{$\omega_{01}$}{Transition angular frequency between qubit levels $\ket{0}$ and $\ket{1}$.}
-\nomenclature[G03]{$\omega_b$}{Transmon or transmon-like transition angular frequency.}
+\nomenclature[G01]{$\alpha$, $K$}{Transmon / FTT anharmonicity: $\alpha\approx -E_C$ (Chapter~\ref{chap:sc-qubits}); Chapter~\ref{chap:stark-sweet-spots} uses the Kerr coefficient $K=-E_C$. In DRAG, $\alpha=\omega_{12}-\omega_{01}$.}
+\nomenclature[G02]{$\omega_{01}$, $\omega_q$}{$\ket{0}$--$\ket{1}$ transition angular frequency; denoted $\omega_q$ in the noise model (Chapter~\ref{chap:sc-qubits}).}
+\nomenclature[G03]{$\omega_b$}{Transmon or transmon-like mode frequency (Chapter~\ref{chap:stark-sweet-spots}); coincides with $\omega_{01}$ for the logical subspace.}
 \nomenclature[G04]{$\omega_d$}{Angular frequency of a parametric flux drive.}
-\nomenclature[G05]{$\omega_q$}{Qubit transition angular frequency in the noise model.}
+\nomenclature[G05]{$\omega_c$}{Cavity mode transition angular frequency (Chapter~\ref{chap:stark-sweet-spots}).}
+
+% --- Cavity / FTT dispersive model (Chapter~\ref{chap:stark-sweet-spots}) ---
+\nomenclature[H01]{$b$}{Annihilation operator for the flux-tunable transmon (FTT) mode.}
+\nomenclature[H02]{$c$}{Annihilation operator for the cavity mode.}
+\nomenclature[H03]{$g$}{FTT--cavity coupling strength after zero-point rescaling (Chapter~\ref{chap:stark-sweet-spots}).}
+\nomenclature[H04]{$\chi$}{Dispersive shift, $\propto g^2 K/\Delta_{\mathrm{bc}}^2$ in the far-dispersive limit.}
+\nomenclature[H05]{$\Delta_{\mathrm{bc}}$}{FTT--cavity detuning, $\omega_b-\omega_c$.}
+\nomenclature[H06]{$\Delta_{\mathrm{bd}}$}{FTT--drive detuning in the frame rotating at $\omega_d$, $\bar{\omega}_b-\omega_d$.}
+\nomenclature[H07]{$\Delta_m$}{Photon-number-dependent detuning, $\Delta_{\mathrm{bd}}+m\chi$.}
+\nomenclature[H08]{$\Omega_0$}{Drive Rabi amplitude for the FTT (convention of Chapter~\ref{chap:stark-sweet-spots}).}
+\nomenclature[H09]{$\delta\Phi(t)$}{Stochastic flux-noise fluctuation about the bias $\Phi$.}
+\nomenclature[H10]{$\delta\omega_b(t)$}{FTT transition-frequency noise, $(\partial\omega_b/\partial\Phi)\,\delta\Phi(t)$.}
+\nomenclature[H11]{$\bar{\omega}_b$}{Lamb-shifted FTT frequency after dispersive hybridization with the cavity.}
+\nomenclature[H12]{$\bar{\omega}_c$}{Lamb-shifted cavity frequency after dispersive hybridization with the FTT.}
+\nomenclature[H13]{$\widetilde{\omega}_{c,n\rightarrow m}$}{Drive-renormalized cavity transition angular frequency between Fock levels $n$ and $m$.}
+\nomenclature[H14]{$\gamma_{b\downarrow}$}{Energy relaxation rate of the FTT (qubit) mode ($\sim 1/T_1$ in the Markovian limit).}
+\nomenclature[H15]{$\gamma_{c\downarrow}$}{Cavity relaxation rate (Purcell-limited contribution $\propto (g/\Delta_{\mathrm{bc}})^2\gamma_{b\downarrow}$ in Chapter~\ref{chap:stark-sweet-spots}).}
+\nomenclature[H16]{$\Gamma_{\phi,\mathrm{total}}$}{Total cavity dephasing rate including residual channels at the Stark-induced sweet spot.}
+\nomenclature[H17]{$S_0$}{Flux-noise amplitude parameter in $1/f$ dephasing estimates (Chapter~\ref{chap:stark-sweet-spots}).}
+\nomenclature[H18]{$\sigma^-$}{Pauli lowering operator on the effective FTT two-level subspace $\{\ket{g},\ket{e}\}$.}
 
 % --- Decoherence ---
 \nomenclature[D01]{$T_1$}{Energy relaxation (depolarization) time.}

@@ -1,20 +1,20 @@
 \chapter{Stark-Induced Sweet Spots for Suppressing Cavity Dephasing}
 \label{chap:stark-sweet-spots}
 
-Superconducting microwave cavities are a promising platform for quantum information processing because they exhibit long coherence times \cite{longcoherence1, longcoherence2, longcoherence3, longcoherence4, longcoherence5}.  Hardware-efficient bosonic quantum error-correction schemes further strengthen this platform by protecting encoded information against dominant errors~\cite{breakeven1,breakeven2,breakeven3,breakeven4,breakeven5,breakeven7,aqec1,aqec2,Cai2021BosonicQEC}. In particular, cat and dual-rail encodings exploit the strong photon-loss bias in cavities, which underlies their error-correction advantage~\cite{teoh2023dual,putterman2025hardware}.
+Superconducting microwave cavities are a promising platform for quantum information processing because they exhibit long coherence times~\cite{Milul2023,longcoherence2,Romanenko2020,Reagor2016,longcoherence5}.  Hardware-efficient bosonic quantum error-correction schemes further strengthen this platform by protecting encoded information against dominant errors~\cite{breakeven1,breakeven2,Ni2023,breakeven4,CampagneIbarcq2020,breakeven7,aqec1,aqec2,Cai2021}. In particular, cat and dual-rail encodings exploit the strong photon-loss bias in cavities, which underlies their error-correction advantage~\cite{teoh2023dual,putterman2025hardware}.
 
-Universal control of bosonic qubits generally requires coupling to a nonlinear element \cite{Ma2021QuantumControl,cavitycontrol1,cavitycontrol2,cavitycontrol3}. A family of flux-tunable devices, such as the Superconducting Nonlinear Asymmetric Inductive eLement (SNAIL)~\cite{SNAIL}, the Flux-Tunable Transmon (FTT)~\cite{squid}, and the Linear INductive Coupler (LINC)~\cite{linc}, enables single-mode control and entangling operations between modes. Certain control protocols~\cite{SNAIL,linc,Copetudo2026DirectPhase} require biasing these devices at flux-sensitive operating points away from the sweet spot. One example is the use of FTT to realize a beam-splitting interaction between two cavity modes, as discussed in Sec.~\ref{sec:analyticalcontrol}. At these operating points, flux noise induces fluctuations in the nonlinear-element frequency. Through coupling to the nonlinear element, the cavity modes inherit these frequency fluctuations and consequently undergo dephasing. This inherited dephasing is especially harmful because it directly competes with the favorable photon-loss bias.
+Universal control of bosonic qubits generally requires coupling to a nonlinear element~\cite{Ma2021QuantumControl,cavitycontrol1,cavitycontrol2,cavitycontrol3}. A family of flux-tunable devices, such as the Superconducting Nonlinear Asymmetric Inductive eLement (SNAIL)~\cite{SNAIL}, the Flux-Tunable Transmon (FTT)~\cite{squid}, and the Linear INductive Coupler (LINC)~\cite{linc}, enables single-mode control and entangling operations between modes. Certain control protocols~\cite{SNAIL,linc,Copetudo2026DirectPhase} require biasing these devices at flux-sensitive operating points away from the sweet spot. One example is the use of FTT to realize a beam-splitting interaction between two cavity modes, as discussed in Sec.~\ref{sec:analyticalcontrol}. At these operating points, flux noise induces fluctuations in the nonlinear-element frequency. Through coupling to the nonlinear element, the cavity modes inherit these frequency fluctuations and consequently undergo dephasing. This inherited dephasing is especially harmful because it directly competes with the favorable photon-loss bias.
 
 A commonly used strategy to mitigate this dephasing is to idle the nonlinear element at a DC flux sweet spot that is insensitive to flux noise, and tune it away from the sweet spot only when an operation requires it. However, this scheme is challenging in two respects: (1) in three-dimensional cavities, ensuring both fast flux tuning and a high-coherence cavity requires extra hardware complexity~\cite{magnetichose1,magnetichose2,li2025,valadares2026}; (2) tuning flux carries the risk of inducing unwanted transitions~\cite{Sung2021CZiSWAPleakage,Yan2018TunableCouplingleakage,Stehlik2021TunableCouplingleakage}.
 
-This work introduces an alternative approach to suppress inherited cavity dephasing without changing the DC flux bias: the Stark-induced sweet spot (SISS). In this scheme, a weak off-resonant drive applied to the nonlinear mode induces an AC Stark shift of the cavity transition frequency. With suitable drive parameters, the shifted cavity frequency is first-order insensitive with respect to flux noise, thereby creating a dynamical sweet spot~\cite{PhysRevApplied.15.034065floquetqubit,PhysRevApplied.12.054015dss2}. For a cavity coupled to a flux-tunable transmon with a representative set of parameters, Monte Carlo simulations show a \(\sim 20\times\) improvement in the cavity dephasing time.
+This work introduces an alternative approach to suppress inherited cavity dephasing without changing the DC flux bias: the Stark-induced sweet spot (SISS). In this scheme, a weak off-resonant drive applied to the nonlinear mode induces an AC Stark shift of the cavity transition frequency. With suitable drive parameters, the shifted cavity frequency is first-order insensitive with respect to flux noise, thereby creating a dynamical sweet spot~\cite{Huang2021DynamicalSweetSpots,PhysRevApplied.12.054015dss2}. For a cavity coupled to a flux-tunable transmon with a representative set of parameters, Monte Carlo simulations show a \(\sim 20\times\) improvement in the cavity dephasing time.
 
 This chapter is organized as follows. In Section~\ref{sec:flux-noise-dephasing}, we describe cavity dephasing inherited from a nonlinear device. In Section~\ref{sec:creating-stark-sweet-spots}, we introduce the mechanism for suppressing cavity dephasing using a drive and show how to select the corresponding drive parameters. In Section~\ref{sec:residual-dephasing}, we derive the drive-induced dephasing rates and compare them with numerical simulations. In Section~\ref{sec:bosonic-qec}, we apply the SISS scheme to binomial and dual-rail encodings, highlighting its ability to suppress dephasing simultaneously across multiple pairs of Fock states and multiple modes. 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{chapter4/figures/device.pdf}
-    \caption{
+    \caption[Illustration of a stark-induced sweet spot for the cavity frequency.]{
 Illustration of a stark-induced sweet spot for the cavity frequency.
 \textbf{(a)} Circuit schematic of a flux-tunable transmon (FTT) dispersively coupled to a superconducting cavity. The FTT is driven by a coherent voltage source \(V_g\). Flux noise \(\delta\Phi(t)\) modulates the FTT frequency and is the dominant noise source.
 \textbf{(b)} Cavity-frequency fluctuations induced by the Lamb shift. The bare modes have frequencies \(\omega_c\) and \(\omega_b(\delta\Phi)\), with detuning \(\Delta_{bc}(\delta\Phi)=\omega_b(\delta\Phi)-\omega_c\). The coupling \(g\) hybridizes the modes and yields dressed frequencies \(\bar{\omega}_{b/c}(\delta\Phi)\). As a result, FTT-frequency fluctuations \(\delta\omega_b(t)\) caused by flux noise \(\delta\Phi(t)\) lead to cavity-frequency fluctuations \(\delta\bar{\omega}_c(t)\) via the Lamb shift \(-g^2/\Delta_{bc}\).
@@ -225,7 +225,7 @@ as shown in Fig.~\ref{fig:stark_device}(b). Such fluctuations produce cavity dep
 \section{Creating Stark-Induced Sweet Spots}
 \label{sec:creating-stark-sweet-spots}
 
-FTT-frequency fluctuations \(\delta\omega_b(t)\) lead to cavity-frequency fluctuations \(\delta\bar{\omega}_c(t)\) through the Lamb shift, thereby causing cavity dephasing. This dephasing channel can be suppressed by driving the FTT [Fig.~\ref{fig:stark_device}(a)]. The drive induces an AC Stark shift that can be tuned to create a \emph{dynamical sweet spot}. At such a sweet spot, the transition frequencies between the relevant Floquet states become first-order insensitive to flux fluctuations at a fixed flux-bias point~\cite{PhysRevApplied.15.034065floquetqubit,PhysRevApplied.12.054015dss2}.
+FTT-frequency fluctuations \(\delta\omega_b(t)\) lead to cavity-frequency fluctuations \(\delta\bar{\omega}_c(t)\) through the Lamb shift, thereby causing cavity dephasing. This dephasing channel can be suppressed by driving the FTT [Fig.~\ref{fig:stark_device}(a)]. The drive induces an AC Stark shift that can be tuned to create a \emph{dynamical sweet spot}. At such a sweet spot, the transition frequencies between the relevant Floquet states become first-order insensitive to flux fluctuations at a fixed flux-bias point~\cite{Huang2021DynamicalSweetSpots,PhysRevApplied.12.054015dss2}.
 
 
 In the weak, off-resonant regime considered here, the quasienergies of the Floquet states are well approximated by the eigenenergies of an effective time-independent Hamiltonian, as justified in App.~\ref{app:floquet}. In the frame rotating at the drive frequency \(\omega_d\), the driven dispersive Hamiltonian after the rotating-wave approximation is
@@ -354,13 +354,14 @@ is the susceptibility of the net cavity transition frequency to FTT-frequency fl
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{chapter4/figures/compare.pdf}
-    \caption{Dynamical sweet spots for suppressing cavity dephasing induced by FTT-frequency fluctuations. The plotted quantity is the susceptibility \(D_{0\rightarrow 1}=\partial\widetilde{\omega}_{c,0\rightarrow 1}/\partial\omega_b\); sweet spots occur where \(D_{0\rightarrow 1}=0\). 
+    \caption[Dynamical sweet spots for suppressing cavity dephasing induced by FTT-frequency fluctuations.]{Dynamical sweet spots for suppressing cavity dephasing induced by FTT-frequency fluctuations. The plotted quantity is the susceptibility \(D_{0\rightarrow 1}=\partial\widetilde{\omega}_{c,0\rightarrow 1}/\partial\omega_b\); sweet spots occur where \(D_{0\rightarrow 1}=0\). 
     (a) Unselective regime at \(\Omega_0/2\pi=10~\mathrm{MHz}\), showing a single sweet spot.
 (b) Selective regime at \(\Omega_0/2\pi=0.05~\mathrm{MHz}\), showing two symmetric sweet spots about the effective resonance.
 (c) Two-dimensional map of \(D_{0\rightarrow 1}\) versus drive amplitude \(\Omega_0\) and detuning \(\Delta_{bd}\); Dashed curves denote analytical sweet-spot conditions based on Eqs.~\eqref{eq:omega_c_tilde_m} and \eqref{eq:Dm_selective} for the main panel and the inset, respectively. The numerical results are obtained based on full Hamiltonian in Eq.~\eqref{system hamiltonian} and the system parameters are \(E_{J1}=E_{J2}=30.19\,\mathrm{GHz}\), \(E_C=0.10\,\mathrm{GHz}\), \(\omega_c/2\pi=5.226\,\mathrm{GHz}\), \(g'/2\pi=0.050\,\mathrm{GHz}\), and \(\Phi=0.20\,\Phi_0\). For these values, the corresponding effective parameters in Eq.~\eqref{fullhamiltonian} are \(\omega_b/2\pi=6.16\,\mathrm{GHz}\), \(K/2\pi=-0.10\,\mathrm{GHz}\), and \(g/2\pi=0.10\,\mathrm{GHz}\).}
 \label{fig:drive_sweet_spots_compare}
 \end{figure}
 
+\label{subsec:sweet-spots}
 \paragraph{Unselective Regime.}
 In the unselective regime, the drive detuning satisfies \(|\Delta_{bd}|\gg|\chi|\). The drive therefore couples the transitions \(\ket{g,m}\leftrightarrow\ket{e,m}\) across different photon numbers. Expanding
 \[
@@ -507,7 +508,7 @@ Following Ref.~\cite{cqedreview2021}, the reduced dynamics in the dispersive reg
 \label{eq:Linblad_disp}
     \dot{\rho}_{\text{disp}} = -i[H_{\text{disp}}, \rho_{\text{disp}}] + \gamma_{b\downarrow} \mathcal{D}[b]\rho_{\text{disp}} + \gamma_{c\downarrow} \mathcal{D}[c]\rho_{\text{disp}}.
 \end{equation}
-Here, $\gamma_{b\downarrow}$ is the FTT relaxation rate, and $\gamma_{c\downarrow} = \frac{g^2}{\Delta_{bc}^2}\gamma_{b\downarrow}$ is the Purcell-induced cavity decay rate. We assume that the cavity relaxation is Purcell limited in state-of-the-art hardware designs \cite{longcoherence5}.
+Here, $\gamma_{b\downarrow}$ is the FTT relaxation rate, and $\gamma_{c\downarrow} = \frac{g^2}{\Delta_{bc}^2}\gamma_{b\downarrow}$ is the Purcell-induced cavity decay rate. We assume that the cavity relaxation is Purcell limited in state-of-the-art hardware designs~\cite{longcoherence5}.
 
 In the rotating frame defined by $U_R$, the master equation retains the same Lindblad form:
 \begin{equation}
@@ -558,7 +559,7 @@ For the present system , the relevant frequency splittings are set by $\widetild
 We have thus transformed the Lindbladian in Eq.~\eqref{eq:Linblad_ch8} into the driven frame, yielding the dissipators in Eq.~\eqref{eq:Linblad_driven} and the noise Hamiltonian in Eq.~\eqref{eq:noise_Hamiltoniand}. Below, we derive simplified expressions for the Lindbladian and $H_{\text{noise}}^d$ in both the unselective and selective regimes.
 
 \paragraph{Unselective regime}
-As discussed in Sec.~\ref{subsec:sweet-spots}, the unselective regime requires $\Delta_{bd}\ll\chi$. Retaining terms through $\mathcal{O}[(\Delta_{bd}/\chi)^2]$, the  master equation in Eq.~\eqref{eq:Linblad_driven} is approximated by
+As discussed in Sec.~\ref{subsec:sweet-spots}, the unselective regime requires $|\Delta_{bd}|\gg|\chi|$. Retaining terms through $\mathcal{O}[(\chi/\Delta_{bd})^2]$, the master equation in Eq.~\eqref{eq:Linblad_driven} is approximated by
 \begin{align}
 \label{unselectivemasterequation1}
 \dot{\rho}_d
@@ -794,7 +795,7 @@ of cavity dephasing.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{chapter4/figures/total_rate.pdf}
-    \caption{Numerical evaluation of the total cavity
+    \caption[Numerical evaluation of the total cavity dephasing rate under the sweet-spot drive.]{Numerical evaluation of the total cavity
     dephasing rate under the sweet-spot drive. (a) Total dephasing rate
     $\Gamma_{\phi,\mathrm{total}}$ extracted from full-system simulations as a function
     of detuning $\Delta_{bd}$, with the drive amplitude chosen at each detuning to
@@ -848,7 +849,7 @@ In the previous sections, we focused on the \(\ket{g,0}\) and \(\ket{g,1}\) stat
 \begin{figure}[t]
     \centering
     \includegraphics[width=\textwidth]{chapter4/figures/qec_plot.pdf}
-    \caption{Driven sweet spots for bosonic encodings (\(\Omega_0/2\pi=10\,\mathrm{MHz}\)).
+    \caption[Driven sweet spots for bosonic encodings (\(\Omega_0/2\pi=10\,\mathrm{MHz}\)).]{Driven sweet spots for bosonic encodings (\(\Omega_0/2\pi=10\,\mathrm{MHz}\)).
     \emph{Binomial code}: \textbf{(a)} FTT-noise-induced dephasing rates \(\gamma_{\phi,n\rightarrow m}\) versus \(\Delta_{bd}\); the star marks \(\Delta_{bd}/2\pi=-30\,\mathrm{MHz}\), where all targeted rates are suppressed by \(\gtrsim 13\times\).
     \textbf{(b)} Wigner function of \(\ket{+_L}\) at \(300\,\mu\mathrm{s}\): the drive preserves the interference fringes and reduces the decoherence-induced infidelity from \(0.30\) to \(0.043\).
     \emph{Dual rail}: \textbf{(c)} Single-photon transition dephasing \(\gamma_{\phi,0\rightarrow 1}^{(i)}\) for each coupled cavity; both are suppressed by \(\sim 10\times\) near \(-\Delta_{bd}/2\pi\simeq 29\,\mathrm{MHz}\).
@@ -899,8 +900,8 @@ with \(\ket{\psi}=\ket{+_L}\) the initial state and \(\rho\) the realized densit
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.8\linewidth]{thesis/chapter4/figures/dualrailillustration.pdf}
-    \caption{Schematic of two dual-rail qubits coupled through a central FTT. Flux noise \(\delta\Phi(t)\) shifts the FTT frequency and, through the dispersive Lamb shift, induces inherited frequency fluctuations in the coupled cavities.}
+    \includegraphics[width=0.8\linewidth]{chapter4/figures/dualrailillustration.pdf}
+    \caption[Schematic of two dual-rail qubits coupled through a central FTT.]{Schematic of two dual-rail qubits coupled through a central FTT. Flux noise \(\delta\Phi(t)\) shifts the FTT frequency and, through the dispersive Lamb shift, induces inherited frequency fluctuations in the coupled cavities.}
     \label{fig:dualrail_illustration}
 \end{figure}
 
