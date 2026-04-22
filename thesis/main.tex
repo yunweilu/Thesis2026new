@@ -23,6 +23,10 @@
 \usepackage{xcolor}
 \usepackage{chemformula} % Formula subscripts using \ch{}
 \usepackage{siunitx}
+% physics also defines \qty; we restore siunitx's \qty below. Silence the stock warning.
+\ExplSyntaxOn
+\msg_redirect_name:nnn { siunitx } { physics-pkg } { none }
+\ExplSyntaxOff
 \usepackage{amssymb}
 \usepackage{amsfonts}
 % List of Symbols (tag symbols with \nomenclature{<symbol>}{<description>})
@@ -74,6 +78,7 @@
 \usepackage{physics}
 \AtBeginDocument{\RenewCommandCopy\qty\SI}
 \usepackage{stmaryrd}
+\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
 \usepackage{mathbbol}
 \usepackage{cleveref}
 \usepackage{float}
