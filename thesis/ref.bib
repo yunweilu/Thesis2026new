@@ -1,7 +1,20 @@
-% ref.bib — entries ordered: (1) first citation order in document (from main.aux);
-% (2) uncited entries alphabetically at end.
-% Duplicate-DOI scan: no two distinct keys share the same DOI in this file.
-
+% ref.bib — entry order: (1) first citation in thesis source (Introduction → ch.2–4 →
+% conclusion → appendix); (2) remaining keys alphabetically (not cited in those files).
+%
+% Duplicate references (same DOI or same journal/volume/pages/year): merge keys in .tex if desired.
+%   Cai2021 ↔ Cai2021BosonicQEC
+%   Grimm2020 ↔ aqec6
+%   CampagneIbarcq2020 ↔ breakeven5
+%   breakeven7 ↔ aqec3 ↔ gertler2021protecting (same Nature 590 article)
+%   groszkowski2018coherence ↔ 1f2
+%   Romanenko2020 ↔ longcoherence3
+%   Huang2021DynamicalSweetSpots ↔ PhysRevApplied.15.034065floquetqubit
+%   Reagor2016 ↔ longcoherence4
+%   Motzoi2009DRAG ↔ DRAG
+%   Milul2023 ↔ longcoherence1
+%   breakeven3 ↔ Ni2023 (same Nature 616 article; breakeven3 URL matches Ni2023 DOI)
+%   quantumchemistry4 ↔ CMP (arXiv:2407.10381)
+%
 @article{Feynman1982,
   author        = {Richard P. Feynman},
   journal       = {Int. J. Theor. Phys.},
@@ -28,6 +41,26 @@
   publisher     = {Cambridge University Press},
   title         = {Quantum Algorithms: A Survey of Applications and End-to-end Complexities},
   year          = {2025}
+}
+
+@article{shor1997polynomial,
+  author  = {Peter W. Shor},
+  journal = {SIAM J. Comput.},
+  volume  = {26},
+  pages   = {1484--1509},
+  year    = {1997},
+  url     = {https://doi.org/10.1137/S0097539795293172}
+}
+
+@inproceedings{shor1996faulttolerant,
+  author    = {Peter W. Shor},
+  title     = {Fault-tolerant quantum computation},
+  booktitle = {Proceedings of the 37th Annual Symposium on Foundations of Computer Science},
+  pages     = {56--65},
+  year      = {1996},
+  publisher = {IEEE},
+  doi       = {10.1109/SFCS.1996.548464},
+  url       = {https://doi.org/10.1109/SFCS.1996.548464}
 }
 
 @article{Fowler2012SurfaceCodes,
@@ -364,51 +397,6 @@
   year          = {2011}
 }
 
-@article{Gu2017junction,
-  author        = {Xiu Gu and Anton Frisk Kockum and Adam Miranowicz and others},
-  journal       = {Phys. Rep.},
-  pages         = {1--102},
-  url           = {https://doi.org/10.1016/j.physrep.2017.10.002},
-  volume        = {718-719},
-  year          = {2017}
-}
-
-@article{Oliver2013junction,
-  author        = {W. D. Oliver and P. B. Welander},
-  journal       = {MRS Bull.},
-  pages         = {816--825},
-  url           = {https://doi.org/10.1557/mrs.2013.229},
-  volume        = {38},
-  year          = {2013}
-}
-
-@article{Josephson1962,
-  author        = {Brian D. Josephson},
-  journal       = {Phys. Lett.},
-  pages         = {251--253},
-  url           = {https://doi.org/10.1016/0031-9163(62)91369-0},
-  volume        = {1},
-  year          = {1962}
-}
-
-@article{Golubov2004,
-  author        = {A. A. Golubov and M. Yu. Kupriyanov and E. Il'ichev},
-  journal       = {Rev. Mod. Phys.},
-  pages         = {411--469},
-  url           = {https://doi.org/10.1103/RevModPhys.76.411},
-  volume        = {76},
-  year          = {2004}
-}
-
-@article{Sank2016,
-  author        = {D. Sank and Zijun Chen and M. Khezri and others},
-  journal       = {Phys. Rev. Lett.},
-  pages         = {020501},
-  url           = {https://doi.org/10.1103/PhysRevLett.116.020501},
-  volume        = {116},
-  year          = {2016}
-}
-
 @article{Earnest2018,
   author        = {Nathan Earnest and Srivatsan Chakram and Yao Lu and others},
   journal       = {Phys. Rev. Lett.},
@@ -454,6 +442,15 @@
   year          = {2022}
 }
 
+@article{Dogan2023,
+  author        = {Ebru Dogan and Dario Rosenstock and Lo{\"i}ck Le Guevel and others},
+  journal       = {Phys. Rev. Applied},
+  pages         = {024011},
+  url           = {https://doi.org/10.1103/PhysRevApplied.20.024011},
+  volume        = {20},
+  year          = {2023}
+}
+
 @article{Ding2023,
   author        = {Leon Ding and Max Hays and Youngkyu Sung and others},
   journal       = {Phys. Rev. X},
@@ -461,6 +458,15 @@
   url           = {https://doi.org/10.1103/PhysRevX.13.031035},
   volume        = {13},
   year          = {2023}
+}
+
+@article{Moskalenko2022,
+  author        = {Ilya N. Moskalenko and Ilya A. Simakov and Nikolay N. Abramov and others},
+  journal       = {npj Quantum Inf.},
+  pages         = {130},
+  url           = {https://doi.org/10.1038/s41534-022-00644-x},
+  volume        = {8},
+  year          = {2022}
 }
 
 @article{Hassani2023,
@@ -488,25 +494,14 @@
   year          = {2024}
 }
 
-@article{Dogan2023,
-  author        = {Ebru Dogan and Dario Rosenstock and Lo{\"i}ck Le Guevel and others},
-  journal       = {Phys. Rev. Applied},
-  pages         = {024011},
-  url           = {https://doi.org/10.1103/PhysRevApplied.20.024011},
-  volume        = {20},
-  year          = {2023}
+@article{teoh2023dual,
+  author  = {James D. Teoh and others},
+  journal = {Proc. Natl. Acad. Sci. U.S.A.},
+  volume  = {120},
+  pages   = {e2221736120},
+  year    = {2023},
+  url     = {https://www.pnas.org/doi/10.1073/pnas.2221736120}
 }
-
-@article{Moskalenko2022,
-  author        = {Ilya N. Moskalenko and Ilya A. Simakov and Nikolay N. Abramov and others},
-  journal       = {npj Quantum Inf.},
-  pages         = {130},
-  url           = {https://doi.org/10.1038/s41534-022-00644-x},
-  volume        = {8},
-  year          = {2022}
-}
-
-
 
 @article{Ni2023,
   author        = {Zhongchu Ni and Sai Li and Dapeng Yu and others},
@@ -647,15 +642,6 @@
   year          = {2019}
 }
 
-@article{Hyyppa2024,
-  author        = {Eric Hyypp{\"a} and Antti Veps{\"a}l{\"a}inen and Miha Papi\v{c} and others},
-  journal       = {PRX Quantum},
-  pages         = {030353},
-  url           = {https://doi.org/10.1103/PRXQuantum.5.030353},
-  volume        = {5},
-  year          = {2024}
-}
-
 @article{Petrescu2023,
   author        = {Alexandru Petrescu and Camille Le Calonnec and Catherine Leroux and others},
   journal       = {Phys. Rev. Appl.},
@@ -753,6 +739,15 @@
   pages         = {064060},
   url           = {https://link.aps.org/doi/10.1103/PhysRevApplied.21.064060},
   volume        = {21},
+  year          = {2024}
+}
+
+@article{Hyyppa2024,
+  author        = {Eric Hyypp{\"a} and Antti Veps{\"a}l{\"a}inen and Miha Papi\v{c} and others},
+  journal       = {PRX Quantum},
+  pages         = {030353},
+  url           = {https://doi.org/10.1103/PRXQuantum.5.030353},
+  volume        = {5},
   year          = {2024}
 }
 
@@ -858,6 +853,14 @@
   year    = {2021}
 }
 
+@article{expmoler2003nineteen,
+  author  = {C. Moler and C. Van Loan},
+  journal = {SIAM Rev.},
+  volume  = {45},
+  pages   = {3--49},
+  year    = {2003}
+}
+
 @article{codenotti1992error,
   author  = {B. Codenotti and C. Fassino},
   journal = {Calcolo},
@@ -944,11 +947,565 @@
   url    = {https://github.com/pythonprofilers/memory_profiler.git}
 }
 
+@article{longcoherence1,
+  author = {Ofir Milul and others},
+  journal = {PRX Quantum},
+  volume = {4},
+  issue = {3},
+  pages = {030336},
+  year = {2023},
+  month = {Sep},
+  url = {https://link.aps.org/doi/10.1103/PRXQuantum.4.030336}
+}
+
+@article{longcoherence2,
+  author  = {Andrew E. Oriani and others},
+  journal = {arXiv preprint arXiv:2403.00286},
+  year    = {2024},
+  url     = {https://arxiv.org/abs/2403.00286}
+}
+
+@article{longcoherence3,
+  author  = {A. Romanenko and others},
+  journal = {Phys. Rev. Appl.},
+  volume  = {13},
+  pages   = {034032},
+  year    = {2020},
+  url     = {https://link.aps.org/doi/10.1103/PhysRevApplied.13.034032}
+}
+
+@article{longcoherence4,
+  author  = {M. Reagor and others},
+  journal = {Phys. Rev. B},
+  volume  = {94},
+  pages   = {014506},
+  year    = {2016},
+  url     = {https://link.aps.org/doi/10.1103/PhysRevB.94.014506}
+}
+
+@article{longcoherence5,
+  author  = {Taeyoon Kim and others},
+  journal = {arXiv preprint arXiv:2506.03286},
+  year    = {2025},
+  url     = {https://arxiv.org/abs/2506.03286}
+}
+
+@article{breakeven1,
+  author  = {N. Ofek and others},
+  journal = {Nature},
+  volume  = {536},
+  pages   = {441},
+  year    = {2016},
+  url     = {https://www.nature.com/articles/nature18949}
+}
+
+@article{breakeven2,
+  author  = {V. V. Sivak and others},
+  journal = {Nature},
+  volume  = {616},
+  pages   = {50},
+  year    = {2023},
+  url     = {https://doi.org/10.1038/s41586-023-05782-6}
+}
+
+@article{breakeven3,
+  author  = {Z. Ni and others},
+  journal = {Nature},
+  volume  = {616},
+  pages   = {56},
+  year    = {2023},
+  url     = {https://www.nature.com/articles/s41586-023-05784-4}
+}
+
+@article{breakeven4,
+  author  = {L. Hu and others},
+  journal = {Nat. Phys.},
+  volume  = {15},
+  pages   = {503},
+  year    = {2019},
+  url     = {https://doi.org/10.1038/s41567-018-0414-3}
+}
+
+@article{breakeven5,
+  author  = {P. Campagne-Ibarcq and others},
+  journal = {Nature},
+  volume  = {584},
+  pages   = {368},
+  year    = {2020},
+  url     = {https://doi.org/10.1038/s41586-020-2603-3}
+}
+
+@article{breakeven7,
+  author  = {J. M. Gertler and others},
+  journal = {Nature},
+  volume  = {590},
+  pages   = {243},
+  year    = {2021},
+  url     = {https://doi.org/10.1038/s41586-021-03257-0}
+}
+
+@article{aqec1,
+  author  = {Zaki Leghtas and others},
+  journal = {Phys. Rev. Lett.},
+  volume  = {111},
+  pages   = {120501},
+  year    = {2013},
+  url     = {https://link.aps.org/doi/10.1103/PhysRevLett.111.120501}
+}
+
+@article{aqec2,
+  author  = {Zaki Leghtas and others},
+  journal = {Science},
+  volume  = {347},
+  pages   = {853--857},
+  year    = {2015},
+  url     = {https://doi.org/10.1126/science.aaa2085}
+}
+
+@article{Cai2021BosonicQEC,
+  author  = {Weizhou Cai and Yuwei Ma and Weiting Wang and others},
+  journal = {Fundam. Res.},
+  volume  = {1},
+  pages   = {50--67},
+  year    = {2021},
+  url     = {https://doi.org/10.1016/j.fmre.2020.12.006}
+}
+
+@article{putterman2025hardware,
+  author  = {H. Putterman and K. Noh and C. T. Hann and others},
+  journal = {Nature},
+  volume  = {638},
+  pages   = {927--934},
+  year    = {2025},
+  url     = {https://doi.org/10.1038/s41586-025-08642-7}
+}
+
+@article{Ma2021QuantumControl,
+  author  = {Wen-Long Ma and Shruti Puri and Robert J. Schoelkopf and others},
+  journal = {Sci. Bull.},
+  volume  = {66},
+  pages   = {1789--1805},
+  year    = {2021},
+  url     = {https://doi.org/10.1016/j.scib.2021.05.024}
+}
+
+@article{cavitycontrol1,
+  author  = {Xinyuan You and others},
+  journal = {Phys. Rev. Appl.},
+  volume  = {22},
+  pages   = {044072},
+  year    = {2024},
+  url     = {https://link.aps.org/doi/10.1103/PhysRevApplied.22.044072}
+}
+
+@article{cavitycontrol2,
+  author  = {Yao Lu and others},
+  journal = {Nat. Commun.},
+  volume  = {14},
+  pages   = {5767},
+  year    = {2023},
+  url     = {https://www.nature.com/articles/s41467-023-41104-0}
+}
+
+@article{cavitycontrol3,
+  author  = {Jordan Huang and others},
+  journal = {arXiv preprint arXiv:2503.10623},
+  year    = {2025},
+  url     = {https://arxiv.org/abs/2503.10623}
+}
+
+@article{SNAIL,
+  author  = {Benjamin J. Chapman and others},
+  journal = {PRX Quantum},
+  volume  = {4},
+  pages   = {020355},
+  year    = {2023},
+  url     = {https://link.aps.org/doi/10.1103/PRXQuantum.4.020355}
+}
+
+@article{squid,
+  author  = {David C. McKay and others},
+  journal = {Phys. Rev. Appl.},
+  volume  = {6},
+  pages   = {064007},
+  year    = {2016},
+  url     = {https://link.aps.org/doi/10.1103/PhysRevApplied.6.064007}
+}
+
+@article{linc,
+  author  = {Aniket Maiti and others},
+  journal = {arXiv preprint arXiv:2501.18025},
+  year    = {2025},
+  url     = {https://arxiv.org/abs/2501.18025}
+}
+
+@article{Copetudo2026DirectPhase,
+  author  = {Adrian Copetudo and Amon M. Kasper and Tanjung Krisnanda and others},
+  journal = {arXiv},
+  volume  = {2603.15587},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2603.15587}
+}
+
+@article{magnetichose1,
+  author  = {Fernando Valadares and others},
+  journal = {Nat. Commun.},
+  volume  = {15},
+  pages   = {5816},
+  year    = {2024},
+  url     = {https://www.nature.com/articles/s41467-024-50201-7}
+}
+
+@article{magnetichose2,
+  author  = {O. Gargiulo and others},
+  journal = {Appl. Phys. Lett.},
+  volume  = {118},
+  pages   = {012601},
+  year    = {2021},
+  url     = {https://pubs.aip.org/aip/apl/article/118/1/012601/39915/Fast-flux-control-of-3D-transmon-qubits-using-a}
+}
+
+@article{li2025,
+  author  = {Ziqian Li and others},
+  year    = {2025},
+  journal = {arXiv preprint arXiv:2503.13953},
+    url     = {https://arxiv.org/abs/2503.13953},
+}
+
+@article{valadares2026,
+  author  = {Fernando Valadares and others},
+  year    = {2026},
+  journal = {arXiv preprint arXiv:2503.18122},
+  url     = {https://arxiv.org/abs/2602.18122}
+}
+
+@article{Sung2021CZiSWAPleakage,
+  author  = {Youngkyu Sung and Leon Ding and Jochen Braumueller and others},
+  journal = {Phys. Rev. X},
+  volume  = {11},
+  pages   = {021058},
+  year    = {2021},
+  url     = {https://doi.org/10.1103/PhysRevX.11.021058}
+}
+
+@article{Yan2018TunableCouplingleakage,
+  author  = {Fei Yan and Philip Krantz and Youngkyu Sung and others},
+  journal = {Phys. Rev. Applied},
+  volume  = {10},
+  pages   = {054062},
+  year    = {2018},
+  url     = {https://doi.org/10.1103/PhysRevApplied.10.054062}
+}
+
+@article{Stehlik2021TunableCouplingleakage,
+  author  = {J. Stehlik and D. M. Zajac and D. L. Underwood and others},
+  journal = {Phys. Rev. Lett.},
+  volume  = {127},
+  pages   = {080505},
+  year    = {2021},
+  url     = {https://doi.org/10.1103/PhysRevLett.127.080505}
+}
+
+@article{PhysRevApplied.15.034065floquetqubit,
+  author  = {Ziwen Huang and others},
+  journal = {Phys. Rev. Appl.},
+  volume  = {15},
+  pages   = {034065},
+  year    = {2021},
+  url     = {https://link.aps.org/doi/10.1103/PhysRevApplied.15.034065}
+}
+
+@article{PhysRevApplied.12.054015dss2,
+  author  = {Nicolas Didier and et al.},
+  journal = {Phys. Rev. Appl.},
+  volume  = {12},
+  pages   = {054015},
+  year    = {2019},
+  url     = {https://link.aps.org/doi/10.1103/PhysRevApplied.12.054015}
+}
+
+@article{cqedreview2021,
+  author  = {Alexandre Blais and others},
+  journal = {Rev. Mod. Phys.},
+  volume  = {93},
+  pages   = {025005},
+  year    = {2021},
+  doi     = {10.1103/RevModPhys.93.025005},
+  url     = {https://link.aps.org/doi/10.1103/RevModPhys.93.025005}
+}
+
+@article{shotnoise,
+  author  = {Z. Wang and others},
+  journal = {Phys. Rev. Appl.},
+  volume  = {11},
+  pages   = {014031},
+  year    = {2019},
+  url     = {https://link.aps.org/doi/10.1103/PhysRevApplied.11.014031}
+}
+
+@article{PhysRevA.75.042302Ashphotonshot,
+  author  = {Clerk, A. A. and Utami, D. Wahyu and et,al.},
+  journal = {Phys. Rev. A},
+  volume  = {75},
+  pages   = {042302},
+  year    = {2007},
+  url     = {https://link.aps.org/doi/10.1103/PhysRevA.75.042302}
+}
+
+@article{serge,
+  author  = {Uri Goldblatt and others},
+  journal = {Phys. Rev. X},
+  volume  = {14},
+  pages   = {041056},
+  year    = {2024},
+  url     = {https://journals.aps.org/prx/abstract/10.1103/PhysRevX.14.041056}
+}
+
+@article{PhysRevX.6.031006Binonmial,
+  author  = {M. H. Michael and others},
+  journal = {Phys. Rev. X},
+  volume  = {6},
+  pages   = {031006},
+  year    = {2016},
+  url     = {https://link.aps.org/doi/10.1103/PhysRevX.6.031006}
+}
+
+@article{PhysRevX.7.031037factor4,
+  author  = {A. Kou and et al.},
+  journal = {Phys. Rev. X},
+  volume  = {7},
+  pages   = {031037},
+  year    = {2017},
+  url     = {https://link.aps.org/doi/10.1103/PhysRevX.7.031037}
+}
+
+@article{dualrailcavity1,
+  author  = {K. S. Chou and others},
+  journal = {Nat. Phys.},
+  volume  = {20},
+  pages   = {1454--1460},
+  year    = {2024},
+  url     = {https://doi.org/10.1038/s41567-024-02539-4}
+}
+
+@article{schollwoeck2011mps,
+  author  = {Ulrich Schollw{\"o}ck},
+  journal = {Ann. Phys.},
+  volume  = {326},
+  pages   = {96--192},
+  year    = {2011},
+  url     = {https://www.sciencedirect.com/science/article/abs/pii/S0003491610001752}
+}
+
+@book{kramer1981geometrytdvp,
+  author    = {Peter Kramer and Marcos Saraceno},
+  title     = {Geometry of the Time-Dependent Variational Principle in Quantum Mechanics},
+  series    = {Lecture Notes in Physics},
+  volume    = {140},
+  publisher = {Springer},
+  address   = {Berlin and Heidelberg},
+  year      = {1981},
+  isbn      = {9783540105794},
+  url       = {https://books.google.com/books/about/Geometry_of_the_Time_Dependent_Variation.html?id=UxYvAAAAIAAJ}
+}
+
 @inproceedings{matridiagcomppan1999complexity,
   author    = {V. Pan and Z. Chen},
   booktitle = {Proceedings of the Thirty-First Annual ACM Symposium on Theory of Computing},
   pages     = {507--516},
   year      = {1999}
+}
+
+@article{timmer1995generatingcolornoise,
+  author  = {Jens Timmer and Michel Koenig},
+  journal = {Astronomy and Astrophysics},
+  volume  = {300},
+  pages   = {707},
+  year    = {1995},
+  url     = {https://blog.ioces.com/matt/posts/colouring-noise/timmer-konig-1995.pdf}
+}
+
+@article{1f1,
+  author  = {G. Ithier and others},
+  journal = {Phys. Rev. B},
+  volume  = {72},
+  pages   = {134519},
+  year    = {2005},
+  url     = {https://link.aps.org/doi/10.1103/PhysRevB.72.134519}
+}
+
+@article{1f2,
+  author  = {Peter Groszkowski and others},
+  journal = {New J. Phys.},
+  volume  = {20},
+  pages   = {043053},
+  year    = {2018},
+  url     = {https://doi.org/10.1088/1367-2630/aab7cd}
+}
+
+@article{CMP,
+  author  = {Y. Liu and others},
+  journal = {arXiv preprint arXiv:2407.10381},
+  year    = {2024},
+  url     = {https://arxiv.org/abs/2407.10381}
+}
+
+@article{DRAG,
+  author  = {F. Motzoi and others},
+  journal = {Phys. Rev. Lett.},
+  volume  = {103},
+  pages   = {110501},
+  year    = {2009},
+  url     = {https://link.aps.org/doi/10.1103/PhysRevLett.103.110501}
+}
+
+@article{Gates1984,
+  author  = {J. V. Gates and M. A. Washington and M. Gurvitch and others},
+  journal = {J. Appl. Phys.},
+  volume  = {55},
+  pages   = {1419--1421},
+  year    = {1984},
+  url     = {https://doi.org/10.1063/1.333235}
+}
+
+@article{Golubov2004,
+  author        = {A. A. Golubov and M. Yu. Kupriyanov and E. Il'ichev},
+  journal       = {Rev. Mod. Phys.},
+  pages         = {411--469},
+  url           = {https://doi.org/10.1103/RevModPhys.76.411},
+  volume        = {76},
+  year          = {2004}
+}
+
+@article{Gu2017junction,
+  author        = {Xiu Gu and Anton Frisk Kockum and Adam Miranowicz and others},
+  journal       = {Phys. Rep.},
+  pages         = {1--102},
+  url           = {https://doi.org/10.1016/j.physrep.2017.10.002},
+  volume        = {718-719},
+  year          = {2017}
+}
+
+@article{HEP,
+  author  = {Christian W. Bauer and others},
+  journal = {PRX Quantum},
+  volume  = {4},
+  pages   = {027001},
+  year    = {2023},
+  url     = {https://link.aps.org/doi/10.1103/PRXQuantum.4.027001}
+}
+
+@article{Josephson1962,
+  author        = {Brian D. Josephson},
+  journal       = {Phys. Lett.},
+  pages         = {251--253},
+  url           = {https://doi.org/10.1016/0031-9163(62)91369-0},
+  volume        = {1},
+  year          = {1962}
+}
+
+@article{Krasnok2024CavitiesQubits,
+  author  = {Alex Krasnok and Pashupati Dhakal and Arkady Fedorov and others},
+  journal = {Appl. Phys. Rev.},
+  volume  = {11},
+  pages   = {011302},
+  year    = {2024},
+  url     = {https://doi.org/10.1063/5.0155213}
+}
+
+@article{Martinis2009,
+  author  = {John M. Martinis and M. Ansmann and J. Aumentado and others},
+  journal = {Phys. Rev. Lett.},
+  volume  = {103},
+  pages   = {097002},
+  year    = {2009},
+  url     = {https://doi.org/10.1103/PhysRevLett.103.097002}
+}
+
+@article{Oliver2013junction,
+  author        = {W. D. Oliver and P. B. Welander},
+  journal       = {MRS Bull.},
+  pages         = {816--825},
+  url           = {https://doi.org/10.1557/mrs.2013.229},
+  volume        = {38},
+  year          = {2013}
+}
+
+@article{PhysRev.175.453DD,
+  author  = {U. Haeberlen and others},
+  journal = {Phys. Rev.},
+  volume  = {175},
+  pages   = {453--467},
+  year    = {1968},
+  url     = {https://link.aps.org/doi/10.1103/PhysRev.175.453}
+}
+
+@article{Sank2016,
+  author        = {D. Sank and Zijun Chen and M. Khezri and others},
+  journal       = {Phys. Rev. Lett.},
+  pages         = {020501},
+  url           = {https://doi.org/10.1103/PhysRevLett.116.020501},
+  volume        = {116},
+  year          = {2016}
+}
+
+@article{Wellstood2004,
+  author  = {F. C. Wellstood and C. Urbina and J. Clarke and others},
+  journal = {Appl. Phys. Lett.},
+  volume  = {85},
+  pages   = {5296--5298},
+  year    = {2004},
+  url     = {https://doi.org/10.1063/1.1826236}
+}
+
+@article{aqec3,
+  author  = {Jeffrey M. Gertler and others},
+  journal = {Nature},
+  volume  = {590},
+  pages   = {243--248},
+  year    = {2021},
+  url     = {https://doi.org/10.1038/s41586-021-03257-0}
+}
+
+@article{aqec4,
+  author  = {Evan Holland and others},
+  journal = {Phys. Rev. Lett.},
+  volume  = {115},
+  pages   = {180501},
+  year    = {2015},
+  url     = {https://link.aps.org/doi/10.1103/PhysRevLett.115.180501}
+}
+
+@article{aqec5,
+  author  = {Shruti Puri and others},
+  journal = {Sci. Adv.},
+  volume  = {6},
+  pages   = {eaay5901},
+  year    = {2020},
+  url     = {https://doi.org/10.1126/sciadv.aay5901}
+}
+
+@article{aqec6,
+  author  = {Alexander Grimm and others},
+  journal = {Nature},
+  volume  = {584},
+  pages   = {205--209},
+  year    = {2020},
+  url     = {https://doi.org/10.1038/s41586-020-2587-z}
+}
+
+@article{aqec7,
+  author  = {Nicholas E. Frattini and others},
+  journal = {arXiv preprint arXiv:2209.03934},
+  year    = {2022},
+  url     = {https://arxiv.org/abs/2209.03934}
+}
+
+@article{aqec8,
+  author  = {Jayameenakshi Venkatraman and others},
+  journal = {arXiv preprint arXiv:2211.04605},
+  year    = {2023},
+  url     = {https://arxiv.org/abs/2211.04605}
 }
 
 @article{atomguo2019high,
@@ -1004,12 +1561,13 @@
   url           = {https://arxiv.org/abs/2209.05790}
 }
 
-@article{expmoler2003nineteen,
-  author  = {C. Moler and C. Van Loan},
-  journal = {SIAM Rev.},
-  volume  = {45},
-  pages   = {3--49},
-  year    = {2003}
+@article{eickbusch2022ecd,
+  author  = {Eickbusch, A. and others},
+  journal = {Nat. Phys.},
+  volume  = {18},
+  pages   = {1464--1469},
+  year    = {2022},
+  url     = {https://doi.org/10.1038/s41567-022-01776-9}
 }
 
 @article{gertler2021protecting,
@@ -1152,250 +1710,6 @@
   year    = {2021}
 }
 
-@article{rojan2014arbitrarystate,
-  author  = {K. Rojan and D. M. Reich and I. Dotsenko and others},
-  journal = {Phys. Rev. A},
-  volume  = {90},
-  pages   = {023824},
-  year    = {2014},
-  url     = {https://journals.aps.org/pra/abstract/10.1103/PhysRevA.90.023824}
-}
-
-@article{scabdelhafez2020universal,
-  author  = {M. Abdelhafez and B. Baker and A. Gyenis and others},
-  journal = {Phys. Rev. A},
-  volume  = {101},
-  pages   = {022321},
-  year    = {2020},
-  url     = {https://journals.aps.org/pra/abstract/10.1103/PhysRevA.101.022321}
-}
-
-@article{scallen2017optimal,
-  author  = {J. L. Allen and R. Kosut and J. Joo and others},
-  journal = {Phys. Rev. A},
-  volume  = {95},
-  pages   = {042325},
-  year    = {2017},
-  url     = {https://journals.aps.org/pra/abstract/10.1103/PhysRevA.95.042325}
-}
-
-@inproceedings{shor1996faulttolerant,
-  author    = {Peter W. Shor},
-  title     = {Fault-tolerant quantum computation},
-  booktitle = {Proceedings of the 37th Annual Symposium on Foundations of Computer Science},
-  pages     = {56--65},
-  year      = {1996},
-  publisher = {IEEE},
-  doi       = {10.1109/SFCS.1996.548464},
-  url       = {https://doi.org/10.1109/SFCS.1996.548464}
-}
-
-@article{shor1997polynomial,
-  author  = {Peter W. Shor},
-  journal = {SIAM J. Comput.},
-  volume  = {26},
-  pages   = {1484--1509},
-  year    = {1997},
-  url     = {https://doi.org/10.1137/S0097539795293172}
-}
-
-@misc{tensorflow2015-whitepaper,
-  author = {M. Abadi and A. Agarwal and P. Barham and others},
-  title  = {TensorFlow: Large-Scale Machine Learning on Heterogeneous Systems},
-  year   = {2015},
-  url    = {https://www.tensorflow.org/}
-}
-
-@article{timuller2015phonon,
-  author  = {M. M. Müller and U. G. Poschinger and T. Calarco and others},
-  journal = {Phys. Rev. A},
-  volume  = {92},
-  pages   = {053423},
-  year    = {2015},
-  url     = {https://journals.aps.org/pra/abstract/10.1103/PhysRevA.92.053423}
-}
-
-@article{tinebendahl2009optimal,
-  author  = {V. Nebendahl and H. Häffner and C. F. Roos and others},
-  journal = {Phys. Rev. A},
-  volume  = {79},
-  pages   = {012312},
-  year    = {2009},
-  url     = {https://journals.aps.org/pra/abstract/10.1103/PhysRevA.79.012312}
-}
-
-@article{waldherr2014quantumerror,
-  author  = {G. Waldherr and Y. Wang and S. Zaiser and others},
-  journal = {Nature},
-  volume  = {506},
-  pages   = {204--207},
-  year    = {2014}
-}
-
-
-@article{longcoherence1,
-  author = {Ofir Milul and others},
-  journal = {PRX Quantum},
-  volume = {4},
-  issue = {3},
-  pages = {030336},
-  year = {2023},
-  month = {Sep},
-  url = {https://link.aps.org/doi/10.1103/PRXQuantum.4.030336}
-}@article{longcoherence2,
-  author  = {Andrew E. Oriani and others},
-  journal = {arXiv preprint arXiv:2403.00286},
-  year    = {2024},
-  url     = {https://arxiv.org/abs/2403.00286}
-}
-
-@article{longcoherence3,
-  author  = {A. Romanenko and others},
-  journal = {Phys. Rev. Appl.},
-  volume  = {13},
-  pages   = {034032},
-  year    = {2020},
-  url     = {https://link.aps.org/doi/10.1103/PhysRevApplied.13.034032}
-}
-
-@article{longcoherence4,
-  author  = {M. Reagor and others},
-  journal = {Phys. Rev. B},
-  volume  = {94},
-  pages   = {014506},
-  year    = {2016},
-  url     = {https://link.aps.org/doi/10.1103/PhysRevB.94.014506}
-}
-
-@article{longcoherence5,
-  author  = {Taeyoon Kim and others},
-  journal = {arXiv preprint arXiv:2506.03286},
-  year    = {2025},
-  url     = {https://arxiv.org/abs/2506.03286}
-}
-
-@article{breakeven1,
-  author  = {N. Ofek and others},
-  journal = {Nature},
-  volume  = {536},
-  pages   = {441},
-  year    = {2016},
-  url     = {https://www.nature.com/articles/nature18949}
-}
-
-@article{breakeven2,
-  author  = {V. V. Sivak and others},
-  journal = {Nature},
-  volume  = {616},
-  pages   = {50},
-  year    = {2023},
-  url     = {https://doi.org/10.1038/s41586-023-05782-6}
-}
-
-@article{breakeven3,
-  author  = {Z. Ni and others},
-  journal = {Nature},
-  volume  = {616},
-  pages   = {56},
-  year    = {2023},
-  url     = {https://www.nature.com/articles/s41586-023-05784-4}
-}
-
-@article{breakeven4,
-  author  = {L. Hu and others},
-  journal = {Nat. Phys.},
-  volume  = {15},
-  pages   = {503},
-  year    = {2019},
-  url     = {https://doi.org/10.1038/s41567-018-0414-3}
-}
-
-@article{breakeven5,
-  author  = {P. Campagne-Ibarcq and others},
-  journal = {Nature},
-  volume  = {584},
-  pages   = {368},
-  year    = {2020},
-  url     = {https://doi.org/10.1038/s41586-020-2603-3}
-}
-
-@article{breakeven7,
-  author  = {J. M. Gertler and others},
-  journal = {Nature},
-  volume  = {590},
-  pages   = {243},
-  year    = {2021},
-  url     = {https://doi.org/10.1038/s41586-021-03257-0}
-}
-
-@article{aqec1,
-  author  = {Zaki Leghtas and others},
-  journal = {Phys. Rev. Lett.},
-  volume  = {111},
-  pages   = {120501},
-  year    = {2013},
-  url     = {https://link.aps.org/doi/10.1103/PhysRevLett.111.120501}
-}
-
-@article{aqec2,
-  author  = {Zaki Leghtas and others},
-  journal = {Science},
-  volume  = {347},
-  pages   = {853--857},
-  year    = {2015},
-  url     = {https://doi.org/10.1126/science.aaa2085}
-}
-
-@article{aqec3,
-  author  = {Jeffrey M. Gertler and others},
-  journal = {Nature},
-  volume  = {590},
-  pages   = {243--248},
-  year    = {2021},
-  url     = {https://doi.org/10.1038/s41586-021-03257-0}
-}
-
-@article{aqec4,
-  author  = {Evan Holland and others},
-  journal = {Phys. Rev. Lett.},
-  volume  = {115},
-  pages   = {180501},
-  year    = {2015},
-  url     = {https://link.aps.org/doi/10.1103/PhysRevLett.115.180501}
-}
-
-@article{aqec5,
-  author  = {Shruti Puri and others},
-  journal = {Sci. Adv.},
-  volume  = {6},
-  pages   = {eaay5901},
-  year    = {2020},
-  url     = {https://doi.org/10.1126/sciadv.aay5901}
-}
-
-@article{aqec6,
-  author  = {Alexander Grimm and others},
-  journal = {Nature},
-  volume  = {584},
-  pages   = {205--209},
-  year    = {2020},
-  url     = {https://doi.org/10.1038/s41586-020-2587-z}
-}
-
-@article{aqec7,
-  author  = {Nicholas E. Frattini and others},
-  journal = {arXiv preprint arXiv:2209.03934},
-  year    = {2022},
-  url     = {https://arxiv.org/abs/2209.03934}
-}
-
-@article{aqec8,
-  author  = {Jayameenakshi Venkatraman and others},
-  journal = {arXiv preprint arXiv:2211.04605},
-  year    = {2023},
-  url     = {https://arxiv.org/abs/2211.04605}
-}
-
 @article{quantumchemistry1,
   author  = {C. S. Wang and others},
   journal = {Phys. Rev. X},
@@ -1448,209 +1762,31 @@
   url     = {https://doi.org/10.1021/acs.jctc.4c00010}
 }
 
-@article{HEP,
-  author  = {Christian W. Bauer and others},
-  journal = {PRX Quantum},
-  volume  = {4},
-  pages   = {027001},
-  year    = {2023},
-  url     = {https://link.aps.org/doi/10.1103/PRXQuantum.4.027001}
+@article{rojan2014arbitrarystate,
+  author  = {K. Rojan and D. M. Reich and I. Dotsenko and others},
+  journal = {Phys. Rev. A},
+  volume  = {90},
+  pages   = {023824},
+  year    = {2014},
+  url     = {https://journals.aps.org/pra/abstract/10.1103/PhysRevA.90.023824}
 }
 
-@article{CMP,
-  author  = {Y. Liu and others},
-  journal = {arXiv preprint arXiv:2407.10381},
-  year    = {2024},
-  url     = {https://arxiv.org/abs/2407.10381}
+@article{scabdelhafez2020universal,
+  author  = {M. Abdelhafez and B. Baker and A. Gyenis and others},
+  journal = {Phys. Rev. A},
+  volume  = {101},
+  pages   = {022321},
+  year    = {2020},
+  url     = {https://journals.aps.org/pra/abstract/10.1103/PhysRevA.101.022321}
 }
 
-@article{SNAIL,
-  author  = {Benjamin J. Chapman and others},
-  journal = {PRX Quantum},
-  volume  = {4},
-  pages   = {020355},
-  year    = {2023},
-  url     = {https://link.aps.org/doi/10.1103/PRXQuantum.4.020355}
-}
-
-@article{linc,
-  author  = {Aniket Maiti and others},
-  journal = {arXiv preprint arXiv:2501.18025},
-  year    = {2025},
-  url     = {https://arxiv.org/abs/2501.18025}
-}
-
-@article{squid,
-  author  = {David C. McKay and others},
-  journal = {Phys. Rev. Appl.},
-  volume  = {6},
-  pages   = {064007},
-  year    = {2016},
-  url     = {https://link.aps.org/doi/10.1103/PhysRevApplied.6.064007}
-}
-
-@article{magnetichose1,
-  author  = {Fernando Valadares and others},
-  journal = {Nat. Commun.},
-  volume  = {15},
-  pages   = {5816},
-  year    = {2024},
-  url     = {https://www.nature.com/articles/s41467-024-50201-7}
-}
-
-@article{magnetichose2,
-  author  = {O. Gargiulo and others},
-  journal = {Appl. Phys. Lett.},
-  volume  = {118},
-  pages   = {012601},
-  year    = {2021},
-  url     = {https://pubs.aip.org/aip/apl/article/118/1/012601/39915/Fast-flux-control-of-3D-transmon-qubits-using-a}
-}
-@article{li2025,
-  author  = {Ziqian Li and others},
-  year    = {2025},
-  journal = {arXiv preprint arXiv:2503.13953},
-    url     = {https://arxiv.org/abs/2503.13953},
-}
-
-@article{valadares2026,
-  author  = {Fernando Valadares and others},
-  year    = {2026},
-  journal = {arXiv preprint arXiv:2503.18122},
-  url     = {https://arxiv.org/abs/2602.18122}
-}
-
-@article{cavitycontrol1,
-  author  = {Xinyuan You and others},
-  journal = {Phys. Rev. Appl.},
-  volume  = {22},
-  pages   = {044072},
-  year    = {2024},
-  url     = {https://link.aps.org/doi/10.1103/PhysRevApplied.22.044072}
-}
-
-@article{cavitycontrol2,
-  author  = {Yao Lu and others},
-  journal = {Nat. Commun.},
-  volume  = {14},
-  pages   = {5767},
-  year    = {2023},
-  url     = {https://www.nature.com/articles/s41467-023-41104-0}
-}
-
-@article{cavitycontrol3,
-  author  = {Jordan Huang and others},
-  journal = {arXiv preprint arXiv:2503.10623},
-  year    = {2025},
-  url     = {https://arxiv.org/abs/2503.10623}
-}
-
-@article{1f1,
-  author  = {G. Ithier and others},
-  journal = {Phys. Rev. B},
-  volume  = {72},
-  pages   = {134519},
-  year    = {2005},
-  url     = {https://link.aps.org/doi/10.1103/PhysRevB.72.134519}
-}
-
-@article{1f2,
-  author  = {Peter Groszkowski and others},
-  journal = {New J. Phys.},
-  volume  = {20},
-  pages   = {043053},
-  year    = {2018},
-  url     = {https://doi.org/10.1088/1367-2630/aab7cd}
-}
-
-@article{shotnoise,
-  author  = {Z. Wang and others},
-  journal = {Phys. Rev. Appl.},
-  volume  = {11},
-  pages   = {014031},
-  year    = {2019},
-  url     = {https://link.aps.org/doi/10.1103/PhysRevApplied.11.014031}
-}
-
-@article{serge,
-  author  = {Uri Goldblatt and others},
-  journal = {Phys. Rev. X},
-  volume  = {14},
-  pages   = {041056},
-  year    = {2024},
-  url     = {https://journals.aps.org/prx/abstract/10.1103/PhysRevX.14.041056}
-}
-
-@article{teoh2023dual,
-  author  = {James D. Teoh and others},
-  journal = {Proc. Natl. Acad. Sci. U.S.A.},
-  volume  = {120},
-  pages   = {e2221736120},
-  year    = {2023},
-  url     = {https://www.pnas.org/doi/10.1073/pnas.2221736120}
-}
-
-@article{cqedreview2021,
-  author  = {Alexandre Blais and others},
-  journal = {Rev. Mod. Phys.},
-  volume  = {93},
-  pages   = {025005},
-  year    = {2021},
-  doi     = {10.1103/RevModPhys.93.025005},
-  url     = {https://link.aps.org/doi/10.1103/RevModPhys.93.025005}
-}
-
-@article{timmer1995generatingcolornoise,
-  author  = {Jens Timmer and Michel Koenig},
-  journal = {Astronomy and Astrophysics},
-  volume  = {300},
-  pages   = {707},
-  year    = {1995},
-  url     = {https://blog.ioces.com/matt/posts/colouring-noise/timmer-konig-1995.pdf}
-}
-
-@article{DRAG,
-  author  = {F. Motzoi and others},
-  journal = {Phys. Rev. Lett.},
-  volume  = {103},
-  pages   = {110501},
-  year    = {2009},
-  url     = {https://link.aps.org/doi/10.1103/PhysRevLett.103.110501}
-}
-
-@article{PhysRevX.6.031006Binonmial,
-  author  = {M. H. Michael and others},
-  journal = {Phys. Rev. X},
-  volume  = {6},
-  pages   = {031006},
-  year    = {2016},
-  url     = {https://link.aps.org/doi/10.1103/PhysRevX.6.031006}
-}
-
-@article{dualrailcavity1,
-  author  = {K. S. Chou and others},
-  journal = {Nat. Phys.},
-  volume  = {20},
-  pages   = {1454--1460},
-  year    = {2024},
-  url     = {https://doi.org/10.1038/s41567-024-02539-4}
-}
-
-@article{PhysRev.175.453DD,
-  author  = {U. Haeberlen and others},
-  journal = {Phys. Rev.},
-  volume  = {175},
-  pages   = {453--467},
-  year    = {1968},
-  url     = {https://link.aps.org/doi/10.1103/PhysRev.175.453}
-}
-@article{PhysRevApplied.15.034065floquetqubit,
-  author  = {Ziwen Huang and others},
-  journal = {Phys. Rev. Appl.},
-  volume  = {15},
-  pages   = {034065},
-  year    = {2021},
-  url     = {https://link.aps.org/doi/10.1103/PhysRevApplied.15.034065}
+@article{scallen2017optimal,
+  author  = {J. L. Allen and R. Kosut and J. Joo and others},
+  journal = {Phys. Rev. A},
+  volume  = {95},
+  pages   = {042325},
+  year    = {2017},
+  url     = {https://journals.aps.org/pra/abstract/10.1103/PhysRevA.95.042325}
 }
 
 @article{smcc-t465snap,
@@ -1662,40 +1798,6 @@
   url     = {https://link.aps.org/doi/10.1103/smcc-t465}
 }
 
-@article{eickbusch2022ecd,
-  author  = {Eickbusch, A. and others},
-  journal = {Nat. Phys.},
-  volume  = {18},
-  pages   = {1464--1469},
-  year    = {2022},
-  url     = {https://doi.org/10.1038/s41567-022-01776-9}
-}
-
-@article{PhysRevA.75.042302Ashphotonshot,
-  author  = {Clerk, A. A. and Utami, D. Wahyu and et,al.},
-  journal = {Phys. Rev. A},
-  volume  = {75},
-  pages   = {042302},
-  year    = {2007},
-  url     = {https://link.aps.org/doi/10.1103/PhysRevA.75.042302}
-}
-@article{PhysRevApplied.12.054015dss2,
-  author  = {Nicolas Didier and et al.},
-  journal = {Phys. Rev. Appl.},
-  volume  = {12},
-  pages   = {054015},
-  year    = {2019},
-  url     = {https://link.aps.org/doi/10.1103/PhysRevApplied.12.054015}
-}
-@article{PhysRevX.7.031037factor4,
-  author  = {A. Kou and et al.},
-  journal = {Phys. Rev. X},
-  volume  = {7},
-  pages   = {031037},
-  year    = {2017},
-  url     = {https://link.aps.org/doi/10.1103/PhysRevX.7.031037}
-}
-
 @article{tan2025characterizingamplitude,
   author  = {Yuanzheng Paul Tan and others},
   journal = {arXiv preprint arXiv:2509.18482},
@@ -1703,120 +1805,36 @@
   url = {https://arxiv.org/abs/2509.18482}
 }
 
-@article{Martinis2009,
-  author  = {John M. Martinis and M. Ansmann and J. Aumentado and others},
-  journal = {Phys. Rev. Lett.},
-  volume  = {103},
-  pages   = {097002},
+@misc{tensorflow2015-whitepaper,
+  author = {M. Abadi and A. Agarwal and P. Barham and others},
+  title  = {TensorFlow: Large-Scale Machine Learning on Heterogeneous Systems},
+  year   = {2015},
+  url    = {https://www.tensorflow.org/}
+}
+
+@article{timuller2015phonon,
+  author  = {M. M. Müller and U. G. Poschinger and T. Calarco and others},
+  journal = {Phys. Rev. A},
+  volume  = {92},
+  pages   = {053423},
+  year    = {2015},
+  url     = {https://journals.aps.org/pra/abstract/10.1103/PhysRevA.92.053423}
+}
+
+@article{tinebendahl2009optimal,
+  author  = {V. Nebendahl and H. Häffner and C. F. Roos and others},
+  journal = {Phys. Rev. A},
+  volume  = {79},
+  pages   = {012312},
   year    = {2009},
-  url     = {https://doi.org/10.1103/PhysRevLett.103.097002}
+  url     = {https://journals.aps.org/pra/abstract/10.1103/PhysRevA.79.012312}
 }
 
-@article{Wellstood2004,
-  author  = {F. C. Wellstood and C. Urbina and J. Clarke and others},
-  journal = {Appl. Phys. Lett.},
-  volume  = {85},
-  pages   = {5296--5298},
-  year    = {2004},
-  url     = {https://doi.org/10.1063/1.1826236}
-}
-
-@article{Gates1984,
-  author  = {J. V. Gates and M. A. Washington and M. Gurvitch and others},
-  journal = {J. Appl. Phys.},
-  volume  = {55},
-  pages   = {1419--1421},
-  year    = {1984},
-  url     = {https://doi.org/10.1063/1.333235}
-}
-
-@article{Cai2021BosonicQEC,
-  author  = {Weizhou Cai and Yuwei Ma and Weiting Wang and others},
-  journal = {Fundam. Res.},
-  volume  = {1},
-  pages   = {50--67},
-  year    = {2021},
-  url     = {https://doi.org/10.1016/j.fmre.2020.12.006}
-}
-
-@article{Krasnok2024CavitiesQubits,
-  author  = {Alex Krasnok and Pashupati Dhakal and Arkady Fedorov and others},
-  journal = {Appl. Phys. Rev.},
-  volume  = {11},
-  pages   = {011302},
-  year    = {2024},
-  url     = {https://doi.org/10.1063/5.0155213}
-}
-
-@article{Copetudo2026DirectPhase,
-  author  = {Adrian Copetudo and Amon M. Kasper and Tanjung Krisnanda and others},
-  journal = {arXiv},
-  volume  = {2603.15587},
-  year    = {2026},
-  url     = {https://arxiv.org/abs/2603.15587}
-}
-
-@article{Ma2021QuantumControl,
-  author  = {Wen-Long Ma and Shruti Puri and Robert J. Schoelkopf and others},
-  journal = {Sci. Bull.},
-  volume  = {66},
-  pages   = {1789--1805},
-  year    = {2021},
-  url     = {https://doi.org/10.1016/j.scib.2021.05.024}
-}
-
-@article{Stehlik2021TunableCouplingleakage,
-  author  = {J. Stehlik and D. M. Zajac and D. L. Underwood and others},
-  journal = {Phys. Rev. Lett.},
-  volume  = {127},
-  pages   = {080505},
-  year    = {2021},
-  url     = {https://doi.org/10.1103/PhysRevLett.127.080505}
-}
-
-@article{Sung2021CZiSWAPleakage,
-  author  = {Youngkyu Sung and Leon Ding and Jochen Braumueller and others},
-  journal = {Phys. Rev. X},
-  volume  = {11},
-  pages   = {021058},
-  year    = {2021},
-  url     = {https://doi.org/10.1103/PhysRevX.11.021058}
-}
-
-@article{Yan2018TunableCouplingleakage,
-  author  = {Fei Yan and Philip Krantz and Youngkyu Sung and others},
-  journal = {Phys. Rev. Applied},
-  volume  = {10},
-  pages   = {054062},
-  year    = {2018},
-  url     = {https://doi.org/10.1103/PhysRevApplied.10.054062}
-}
-@article{putterman2025hardware,
-  author  = {H. Putterman and K. Noh and C. T. Hann and others},
+@article{waldherr2014quantumerror,
+  author  = {G. Waldherr and Y. Wang and S. Zaiser and others},
   journal = {Nature},
-  volume  = {638},
-  pages   = {927--934},
-  year    = {2025},
-  url     = {https://doi.org/10.1038/s41586-025-08642-7}
+  volume  = {506},
+  pages   = {204--207},
+  year    = {2014}
 }
 
-@article{schollwoeck2011mps,
-  author  = {Ulrich Schollw{\"o}ck},
-  journal = {Ann. Phys.},
-  volume  = {326},
-  pages   = {96--192},
-  year    = {2011},
-  url     = {https://www.sciencedirect.com/science/article/abs/pii/S0003491610001752}
-}
-
-@book{kramer1981geometrytdvp,
-  author    = {Peter Kramer and Marcos Saraceno},
-  title     = {Geometry of the Time-Dependent Variational Principle in Quantum Mechanics},
-  series    = {Lecture Notes in Physics},
-  volume    = {140},
-  publisher = {Springer},
-  address   = {Berlin and Heidelberg},
-  year      = {1981},
-  isbn      = {9783540105794},
-  url       = {https://books.google.com/books/about/Geometry_of_the_Time_Dependent_Variation.html?id=UxYvAAAAIAAJ}
-}
