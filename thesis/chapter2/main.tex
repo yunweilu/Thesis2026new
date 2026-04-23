@@ -1,12 +1,12 @@
 \chapter{Superconducting Qubits: Coherence and Control}
 \label{chap:sc-qubits}
 
-This chapter introduces the basic superconducting circuits, decoherence, control techniques. The discussion in Sec.~\ref{sec:sc-qubits} is organized around the three hardware paradigms including transmon, fluxonium, and bosonic qubits. A detailed discussion of decoherence mechanisms and coherence metrics is deferred to Sec.~\ref{sec:decoherence}. In Section~\ref{sec:analyticalcontrol}, this thesis presents the analytical and numerical techniques used to control these systems.
+This chapter introduces basic superconducting circuits, decoherence, and control techniques. The discussion in Sec.~\ref{sec:sc-qubits} is organized around three hardware paradigms: transmons, fluxoniums, and bosonic qubits. A detailed discussion of decoherence mechanisms and coherence metrics is deferred to Sec.~\ref{sec:decoherence}. Section~\ref{sec:analyticalcontrol} then presents the analytical and numerical techniques used to control these systems.
 
 \section{Superconducting Qubits}
 \label{sec:sc-qubits}
 
-All superconducting qubits rely on Josephson junctions, which render the circuit spectrum anharmonic. This anharmonicity allows individual transitions to be spectrally resolved and the two lowest levels to be used as an effective qubit. Qubit design must achieve two main goals: sufficiently strong anharmonicity to suppress leakage into noncomputational states, and reduced sensitivity to parameter fluctuations to improve robustness against noise. Different qubit modalities achieve these goals through their circuit topology, parameter regime, and operating point. The following subsections introduce two widely used non-linear platforms, transmon and fluxonium qubits. We also discuss a complementary platform, bosonic qubits, which encode quantum information in linear cavities.
+All superconducting qubits rely on Josephson junctions, which render the circuit spectrum anharmonic. This anharmonicity allows individual transitions to be spectrally resolved and the two lowest levels to be used as an effective qubit. Qubit design must achieve two main goals: sufficient anharmonicity to suppress leakage into noncomputational states, and reduced sensitivity to parameter fluctuations to improve robustness against noise. Different qubit modalities achieve these goals through their circuit topology, parameter regime, and operating point. The following subsections introduce two widely used nonlinear platforms, the transmon and the fluxonium. We then discuss a complementary platform, bosonic qubits, which encode quantum information in linear cavities.
 
 \begin{figure}[t]
   \centering
@@ -22,7 +22,7 @@ All superconducting qubits rely on Josephson junctions, which render the circuit
 \makeatletter
 \let\ttl@addcontentsline\@gobbletwo
 \makeatother
-The transmon is a superconducting circuit composed of a Josephson junction shunted by a large capacitance, as shown in Fig.~\ref{fig:transmon}(a). The Josephson junction provides the nonlinearity that renders the spectrum anharmonic, while the capacitive shunt reduces sensitivity to offset charge. This is seen by analyzing the circuit Hamiltonian.
+The transmon is a superconducting circuit composed of a Josephson junction shunted by a large capacitance, as shown in Fig.~\ref{fig:transmon}(a). The Josephson junction provides the nonlinearity that renders the spectrum anharmonic, while the capacitive shunt reduces sensitivity to offset charge. These features can be seen by analyzing the circuit Hamiltonian.
 
 \subsubsection{Transmon Hamiltonian}
 
@@ -61,7 +61,7 @@ The transmon regime is defined by
 \begin{equation}
     E_J \gg E_C .
 \end{equation}
-In this limit, the low-lying states are localized near a minimum of the Josephson potential, near \(\varphi \approx 0\). The spectrum is therefore determined mainly by the local shape of the cosine potential, which can be expanded about this minimum as
+In this limit, the low-lying states are localized near \(\varphi \approx 0\), a minimum of the Josephson potential. The spectrum is therefore determined mainly by the local shape of the cosine potential, which can be expanded about this minimum as
 \begin{equation}
     -E_J\cos\varphi
     \approx
@@ -217,7 +217,7 @@ The parameter \(d\) quantifies the junction asymmetry. For a symmetric SQUID (\(
     \approx
     \sqrt{8E_C\,E_J(\Phi_{\mathrm{ex}})} - E_C.
 \end{equation}
-As shown in Fig.~\ref{fig:flux_tunable_transmon}(b), \(\omega_b\) is periodic in \(\Phi_{\mathrm{ex}}\) with period \(\Phi_0\). It reaches its maximum at integer flux bias and decreases toward half-integer values of the flux bias, where the reduction in \(E_J\) lowers the qubit frequency.
+As shown in Fig.~\ref{fig:flux_tunable_transmon}(b), \(\omega_b\) is periodic in \(\Phi_{\mathrm{ex}}\) with period \(\Phi_0\). It reaches its maximum at integer values of \(\Phi_{\mathrm{ex}}/\Phi_0\) and decreases toward half-integer values, where the reduction in \(E_J\) lowers the qubit frequency.
 
 \endgroup
 
@@ -230,7 +230,7 @@ As shown in Fig.~\ref{fig:flux_tunable_transmon}(b), \(\omega_b\) is periodic in
     \label{fig:fluxonium}
 \end{figure}
 
-The transmon suppresses charge sensitivity by operating in the regime \(E_C/E_J \ll 1\), but this same limit leaves the spectrum only weakly anharmonic. The Fluxonium~\cite{Manucharyan2009} addresses this trade-off by modifying the circuit topology itself: it incorporates a large linear inductance. This circuit accesses a qualitatively different regime of superconducting qubits.
+The transmon suppresses charge sensitivity by operating in the regime \(E_C/E_J \ll 1\), but this same limit leaves the spectrum only weakly anharmonic. The fluxonium~\cite{Manucharyan2009} addresses this trade-off by modifying the circuit topology: it incorporates a large linear inductance. This modification opens access to a qualitatively different regime of superconducting qubit design.
 
 The Hamiltonian of the fluxonium circuit, shown in Fig.~\ref{fig:fluxonium}(a), is
 \begin{equation}
@@ -274,9 +274,9 @@ This is one of the defining advantages of fluxonium compared to the transmon: fl
 {\raggedright\footnotesize References: heavy fluxonium \cite{Earnest2018,Zhang2021,Ficheux2021}; standard fluxonium \cite{Nguyen2019,Somoroff2023,Bao2022,Dogan2023,Ding2023,Moskalenko2022}; inductively shunted transmon \cite{Hassani2023,Zobrist2026}; integer fluxonium \cite{Mencia2024}.\par}
 \end{table}
 
-Equation~\eqref{eq:fluxonium_hamiltonian} contains three energy scales---\(E_C\), \(E_J\), and \(E_L\)---and the external flux \(\phi_e\). Different ratios of these parameters give rise to qualitatively distinct regimes, all described by the same Hamiltonian but exhibiting different spectra and operating characteristics. These include heavy fluxonium \cite{Earnest2018,Zhang2021,Ficheux2021}, standard fluxonium \cite{Nguyen2019,Somoroff2023,Bao2022,Ding2023}, the inductively shunted transmon \cite{Hassani2023,Zobrist2026}, and integer fluxonium \cite{Mencia2024}. These qubits have different parameter regimes of a common circuit model.
+Equation~\eqref{eq:fluxonium_hamiltonian} contains three energy scales---\(E_C\), \(E_J\), and \(E_L\)---and the external flux \(\phi_e\). Different ratios of these parameters give rise to qualitatively distinct regimes, all described by the same Hamiltonian but exhibiting different spectra and operating characteristics. These include heavy fluxonium \cite{Earnest2018,Zhang2021,Ficheux2021}, standard fluxonium \cite{Nguyen2019,Somoroff2023,Bao2022,Ding2023}, the inductively shunted transmon \cite{Hassani2023,Zobrist2026}, and integer fluxonium \cite{Mencia2024}. All of these qubits correspond to different parameter regimes of a common circuit model.
 
-For concreteness, we focus on standard fluxonium. Away from the half flux, the double-well potential is tilted, and the two lowest states are localized predominantly in one of the two wells [Fig.~\ref{fig:fluxonium}(c)]. The matrix elements \(\langle g|\varphi|e\rangle\) and \(\langle g|n|e\rangle\) are strongly suppressed because the two states have little spatial overlap.
+For concreteness, we focus on the standard fluxonium. Away from half flux, the double-well potential is tilted, and the two lowest states are localized predominantly in one of the two wells [Fig.~\ref{fig:fluxonium}(c)]. The matrix elements \(\langle g|\varphi|e\rangle\) and \(\langle g|n|e\rangle\) are strongly suppressed because the two states have little spatial overlap.
 
 At half flux, the potential
 \begin{equation}
@@ -286,7 +286,7 @@ becomes a symmetric double-well potential [Fig.~\ref{fig:fluxonium}(d)]. The two
 \begin{equation}
     \frac{\partial \omega_{ge}}{\partial \phi_e}=0,
 \end{equation}
-while the anharmonicity remains large, as shown in Fig.~\ref{fig:fluxonium}(b). This bias point is called sweet spot which helps improve dephasing against flux noise, as discussed in Sec.\ \ref{subsec:sweet-spots}. 
+while the anharmonicity remains large, as shown in Fig.~\ref{fig:fluxonium}(b). This bias point is called a sweet spot and suppresses dephasing due to flux noise, as discussed in Sec.~\ref{subsec:sweet-spots}. 
 
 The combination of protection against charge noise and strong spectral anharmonicity is a defining feature of fluxonium.
 
@@ -300,13 +300,13 @@ The combination of protection against charge noise and strong spectral anharmoni
     \label{fig:bosonic_qec}
 \end{figure}
 
-Transmon and fluxonium qubits encode quantum information in the lowest two levels of an anharmonic circuit. Bosonic qubits follow a different strategy: they use the oscillator Hilbert space to encode a logical qubit with redundancy, so that the error is detectable and even correctable. The need for such redundancy is clear from a comparison with an two-level qubit. If a qubit is measured in $|0\rangle$, the measurement outcome alone does not determine whether the computation actually produced $|0\rangle$ or whether the qubit was in $|1\rangle$ and relaxed before readout. The error acts within the computational subspace and leaves no direct flag.
+Transmon and fluxonium qubits encode quantum information in the lowest two levels of an anharmonic circuit. Bosonic qubits follow a different strategy: they use the oscillator Hilbert space to encode a logical qubit with redundancy, so that errors are detectable and, in some encodings, correctable. The need for such redundancy is clear from a comparison with a two-level qubit. If a qubit is measured in $|0\rangle$, the measurement outcome alone does not reveal whether the computation actually produced $|0\rangle$ or whether the qubit was in $|1\rangle$ and relaxed before readout. The error acts within the computational subspace and leaves no direct flag.
 
 The simplest bosonic example is the dual-rail code [Fig.~\ref{fig:bosonic_qec}(a)],
 \begin{equation}
     |0_L\rangle = |1,0\rangle, \qquad |1_L\rangle = |0,1\rangle,
 \end{equation}
-where the logical qubit is stored across two bosonic modes. A single-photon loss maps both logical basis states to the vacuum state $|0,0\rangle$, which lies outside the code space. Photon loss therefore appears as a detectable leakage event: monitoring the total excitation number reveals that an error has occurred. The dual-rail code illustrates the essential principle of bosonic error detection: redundancy is used so that the photon loss becomes visible rather than remaining hidden within the logical subspace.
+where the logical qubit is stored across two bosonic modes. A single-photon loss maps both logical basis states to the vacuum state $|0,0\rangle$, which lies outside the code space. Photon loss therefore appears as a detectable leakage event: monitoring the total excitation number reveals that an error has occurred. The dual-rail code illustrates the essential principle of bosonic error detection: redundancy makes photon loss visible rather than leaving it hidden within the logical subspace.
 
 To achieve correction rather than mere detection, the encoding must preserve the logical amplitudes after the error. A simple example is the binomial code [Fig.~\ref{fig:bosonic_qec}(b)],
 \begin{equation}
@@ -320,11 +320,11 @@ so the loss event is identified by a change in photon-number parity. Unlike in t
 \begin{equation}
     a|\psi_L\rangle = \sqrt{2}\left(\alpha|3\rangle + \beta|1\rangle\right).
 \end{equation}
-Thus, the coefficients $\alpha$ and $\beta$ are preserved. Once the error is detected, we can perform a recovery operation to obtain the state $|\psi_L\rangle$. The binomial code therefore illustrates how the bosonic encoding helps extend qubit lifetime.
+Thus, the coefficients $\alpha$ and $\beta$ are preserved. Once the error is detected, a recovery operation can restore the state $|\psi_L\rangle$. The binomial code therefore illustrates how a bosonic encoding can extend the qubit lifetime.
 
-Other common bosonic encodings are cat codes \cite{Mirrahimi2014,Grimm2020} thatuse superpositions of coherent states and Gottesman--Kitaev--Preskill (GKP) states \cite{Gottesman2001,CampagneIbarcq2020} that encode information in a grid-like structure in phase space. 
+Other common bosonic encodings include cat codes~\cite{Mirrahimi2014,Grimm2020}, which use superpositions of coherent states, and Gottesman--Kitaev--Preskill (GKP) states~\cite{Gottesman2001,CampagneIbarcq2020}, which encode information in a grid-like structure in phase space. 
 
-In the absence of nonlinearity, a linearly driven cavity can only produce coherent states. Preparing the non-Gaussian states required for bosonic encoding, such as cat states and GKP states, requires coupling the cavity to a nonlinear ancilla or coupler, as discussed in Sec.~\ref{sec:analyticalcontrol}.
+In the absence of nonlinearity, a linearly driven cavity can only produce coherent states. Preparing the non-Gaussian states needed for bosonic encodings, such as cat states and GKP states, therefore requires coupling the cavity to a nonlinear ancilla or coupler, as discussed in Sec.~\ref{sec:analyticalcontrol}.
 
 \section{Decoherence in Superconducting Qubits}
 \label{sec:decoherence}
@@ -333,7 +333,7 @@ Superconducting qubits undergo decoherence due to unavoidable coupling to the en
 
 \subsection{Relaxation and Pure Dephasing: \texorpdfstring{$T_1$ and $T_{\phi}$}{T1 and Tphi}}
 \label{subsec:t1-tphi}
-Decoherence in superconducting qubits originates from unavoidable coupling to the environment. To model the effect of this coupling, we allow a control parameter in the Hamiltonian to fluctuate in time,
+To model the effect of environmental coupling, we allow a control parameter in the Hamiltonian to fluctuate in time,
 \begin{equation}
     \lambda(t) = \lambda_0 + \delta\lambda(t),
 \end{equation}
@@ -451,7 +451,7 @@ S_{\lambda}(\omega)=\frac{2\pi A_{\lambda}^2}{|\omega|},
 \]
 where \(A_{\lambda}\) sets the noise amplitude. Because this spectrum is concentrated at low frequencies, its main effect is usually pure dephasing rather than energy relaxation.
 
-Flux noise has \(1/f\) noise spectrum, in which the fluctuating parameter is the external flux \(\Phi_{\mathrm{ex}}\). This noise is especially relevant in flux-tunable circuits because fluctuations in \(\Phi_{\mathrm{ex}}\) directly modulate the qubit frequency, discussed in Sec\ \ref{sec:sc-qubits}. The corresponding system operator is
+Flux noise has a \(1/f\) spectrum, with the external flux \(\Phi_{\mathrm{ex}}\) as the fluctuating parameter. This noise is especially relevant in flux-tunable circuits because fluctuations in \(\Phi_{\mathrm{ex}}\) directly modulate the qubit frequency, as discussed in Sec.~\ref{sec:sc-qubits}. The corresponding system operator is
 \[
 B_\lambda=\frac{\partial H}{\partial \Phi_{\mathrm{ex}}}.
 \]
@@ -505,7 +505,7 @@ At this point, the drive renders the Floquet qubit frequency first-order insensi
 \section{Control of Superconducting Qubits}
 \label{sec:analyticalcontrol}
 
-Fault-tolerant quantum computers require high-fidelity operations. To achieve this go, we need engineer drive parameters that implement target gates with minimal errors. We begin with two examples for which the control parameters can be optimized analytically, and then turn to numerical optimization when analytical approaches are no longer sufficient.
+Fault-tolerant quantum computers require high-fidelity operations. To achieve this goal, we must engineer drive parameters that implement target gates with minimal errors. We begin with two examples in which the control parameters can be optimized analytically, and then turn to numerical optimization when analytical approaches are no longer sufficient.
 \section*{DRAG}
 In the rotating frame of the drive and within the rotating-wave approximation, the transmon Hamiltonian truncated to the lowest three levels is
 \begin{equation}
@@ -626,7 +626,7 @@ P\left(H_{\mathrm{bd}}+\frac12[S^{(1)},V_{\mathrm{od}}]\right)P
 \right)\Pi_1.
 \]
 
-Rewrite the effective Hamiltonian in terms of Pauli operators, we obtain
+Rewriting the effective Hamiltonian in terms of Pauli operators, we obtain
 \begin{equation}
 \label{eq:Hq_drag}
 H_q
@@ -640,7 +640,7 @@ H_q
 \delta_1-\frac{\Omega_x^2}{2\alpha}
 \right)\sigma_z^{01}.
 \end{equation}
-The \(y\)-quadrature control is effective detuning. To see this, we perform a second near-identity transformation within the qubit subspace,
+The \(y\)-quadrature control also contributes an effective detuning. To see this, we perform a second near-identity transformation within the qubit subspace,
 \begin{equation}
 \label{eq:Uq_drag}
 U(t)=e^{-iS(t)},
@@ -672,7 +672,7 @@ H_q'
 \end{equation}
 up to an irrelevant overall phase and higher-order corrections.
 
-The residual \(y\)-quadrature control disappears with the leakage suppression condition. Equation~\eqref{eq:Hqprime_drag} shows that, in this frame, a pure \(x\)-rotation requires the effective detuning to vanish. This gives the standard leading-order detuning conditions,
+The residual \(y\)-quadrature control vanishes under the leakage-suppression condition. Equation~\eqref{eq:Hqprime_drag} shows that, in this frame, a pure \(x\)-rotation requires the effective detuning to vanish. This gives the standard leading-order detuning condition,
 \begin{equation}
 \label{eq:drag_final}
 \delta_1(t)=-\frac{\Omega_x^2(t)}{2\alpha}.
@@ -681,7 +681,7 @@ Under these conditions, the transformed qubit Hamiltonian reduces to
 \[
 H_q'\approx \frac{\Omega_x(t)}{2}\sigma_x^{01}.
 \]
-The conditions in Eq.\ \eqref{eq:drag_y_only} and \eqref{eq:drag_final} ensure intended \(\ket{0}\leftrightarrow\ket{1}\) rotation while suppressing leakage to \(\ket{2}\).
+The conditions in Eqs.~\eqref{eq:drag_y_only} and~\eqref{eq:drag_final} ensure the intended \(\ket{0}\leftrightarrow\ket{1}\) rotation while suppressing leakage to \(\ket{2}\).
 
 \begin{figure}[H]
 \centering
@@ -773,8 +773,8 @@ More generally, the same mechanism underlies parametrically driven two-qubit gat
 
 Analytical optimization is often insufficient once multiple sources of gate infidelity and hardware constraints must be treated simultaneously. Pulse design is therefore frequently recast as a numerical optimization problem~\cite{Koch2022,Song2022,Werninghaus2021}. 
 
-In the strong-driving regime, approximations such as the rotating-wave approximation begin to fail. Counter-rotating terms can then renormalize gate parameters and generate Bloch--Siegert frequency shifts and spurious transitions, all of which contribute to gate errors~\cite{Petrescu2023,Pietikainen2017,Rower2024}. Moreover, the waveform generated by the electronics is generally not identical to the pulse seen by the qubit, Because the control line introduces filtering and distortion~\cite{Rol2020,Guo2024,Hyyppa2024}. Since it is difficult to incorporate all of these effects analytically within a single framework, high-fidelity control is often achieved through numerical optimization~\cite{Koch2022,Song2022,Werninghaus2021}.
+In the strong-driving regime, approximations such as the rotating-wave approximation begin to fail. Counter-rotating terms can then renormalize gate parameters and generate Bloch--Siegert frequency shifts and spurious transitions, all of which contribute to gate errors~\cite{Petrescu2023,Pietikainen2017,Rower2024}. Moreover, the waveform generated by the electronics is generally not identical to the pulse seen by the qubit, because the control line introduces filtering and distortion~\cite{Rol2020,Guo2024,Hyyppa2024}. Incorporating all of these effects analytically within a single framework is difficult, so high-fidelity control is often achieved through numerical optimization~\cite{Koch2022,Song2022,Werninghaus2021}.
 
 To incorporate these effects systematically, pulse design is formulated as an optimization problem for the time-dependent control fields $\{u_k(t)\}$. These fields are chosen so that the realized evolution $U(T)$ approximates a target operation while minimizing a cost functional. In practice, the cost functional may include not only gate infidelity, but also penalties for leakage, pulse amplitude, finite bandwidth, smoothness, robustness, and control-line distortion~\cite{Khaneja2005,Reich2012,Song2022}. Several numerical methods are widely used in this setting. Gradient-based methods such as GRAPE optimize discretized control amplitudes using derivatives of the cost functional with respect to the pulse parameters~\cite{Khaneja2005}. Krotov-type methods construct iterative updates with monotonic improvement under suitable conditions~\cite{Palao2003,Reich2012}. Basis-expansion approaches such as CRAB optimize a reduced set of pulse coefficients in a truncated function basis~\cite{Caneva2011}. 
 
-In superconducting qubits, these methods are particularly useful for designing high-fidelity single- and two-qubit operations in realistic multilevel architectures~\cite{Werninghaus2021,Huang2014,Rol2020,Song2022}. In this thesis, we focus on GRAPE which is one of the most commonly used quantum optimal control technique.
+In superconducting qubits, these methods are particularly useful for designing high-fidelity single- and two-qubit operations in realistic multilevel architectures~\cite{Werninghaus2021,Huang2014,Rol2020,Song2022}. In this thesis, we focus on GRAPE, one of the most widely used quantum optimal-control techniques.

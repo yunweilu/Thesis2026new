@@ -3,41 +3,46 @@
 
 This thesis addressed two obstacles to fault-tolerant quantum
 computing with superconducting circuits: the computational cost
-of quantum optimal control in large Hilbert spaces, and cavity dephasing caused by flux noise. The
-two parts of the thesis developed complementary solutions to
-these problems.
+of quantum optimal control in large Hilbert spaces, and cavity
+dephasing caused by flux noise. The two parts of the thesis
+developed complementary solutions to these problems.
 
 Quantum optimal control provides a systematic way to design
 microwave pulses that implement target operations while
 respecting constraints such as bandwidth, leakage, and
 crosstalk. Modern approaches often rely on automatic
 differentiation (AD) for gradient evaluation, but in large
-Hilbert spaces AD becomes memory intensive. This thesis revisited gradient computation in the GRAPE
-framework and derived analytical gradients for key cost contributions. Benchmarks against
-full-AD and semi-AD approaches clarified the runtime-memory
-tradeoffs and led to a practical decision tree for choosing the
-best numerical strategy.
+Hilbert spaces AD becomes memory intensive. This thesis
+revisited gradient computation in the GRAPE framework and
+derived analytical gradients for the key cost contributions.
+Benchmarks against full-AD and semi-AD approaches clarified the
+runtime--memory tradeoffs and led to a practical decision tree
+for choosing the most efficient numerical strategy.
 
-
-Bosonic cavity encodings are attractive because of the photon-loss bias. That
-advantage is weakened when the cavity is coupled to a
-flux-tunable nonlinear element, where flux noise causes cavity dephasing. This thesis developed a scheme to improve cavity dephasing: a weak off-resonant drive on the transmon that creates
-a dynamical sweet spot and makes the cavity frequency
-first-order insensitive to flux fluctuations. Numerical simulations show
-an approximately twentyfold enhancement of cavity
-dephasing time in a representative device. We apply the scheme to binomial and dual-rail encodings, highlighting the scheme's ability to suppress dephasing simultaneously across multiple pairs of Fock states and across multiple modes.
+Bosonic cavity encodings are attractive because of their
+photon-loss bias. This advantage is weakened when the cavity is
+coupled to a flux-tunable nonlinear element, for which flux
+noise induces cavity dephasing. This thesis developed a scheme
+to mitigate such dephasing: a weak off-resonant drive applied
+to the transmon creates a dynamical sweet spot that renders the
+cavity frequency first-order insensitive to flux fluctuations.
+Numerical simulations show an approximately twentyfold
+enhancement of the cavity dephasing time in a representative
+device. We apply the scheme to binomial and dual-rail encodings,
+highlighting its ability to suppress dephasing simultaneously
+across multiple pairs of Fock states and across multiple modes.
 
 \section*{Outlook}
 
-We turn next to an outlook on what the author believes are possible interesting directions for
-future research building on the results of this thesis. 
+We conclude with an outlook on several promising directions
+for future research that build on the results of this thesis.
 
 \begin{enumerate}
-    \item \textbf{Quantum optimal control toward larger Hilbert spaces.}
-    Basis-reduction techniques such as matrix product states~\cite{schollwoeck2011mps} and the time-dependent variational principle~\cite{kramer1981geometrytdvp} are receiving increasing attention for large-scale simulations of superconducting-qubit systems. Integrating these methods with GRAPE and hard-coded gradients may improve gate fidelity in large-scale processors.
+    \item \textbf{Quantum optimal control for larger Hilbert spaces.}
+    Basis-reduction techniques such as matrix product states~\cite{schollwoeck2011mps} and the time-dependent variational principle~\cite{kramer1981geometrytdvp} are receiving increasing attention for large-scale simulations of superconducting-qubit systems. Integrating these methods with GRAPE and hard-coded gradients may enable higher gate fidelities in large-scale processors.
 
-    \item \textbf{Noise-biased gate operation with stark-induced sweet spot.}
-    The stark-induced sweet spot was shown here to improve cavity dephasing and preserve its photon-loss bias during idling. An important next step is to determine whether the sweet-spot drive is compatible with gate-operation drives so as to preserve photon-loss bias during gate operations. More broadly, this setting motivates the study of Floquet theory with multiple drives at different frequencies and the development of efficient simulation methods.
+    \item \textbf{Noise-biased gate operation with the Stark-induced sweet spot.}
+    The Stark-induced sweet spot was shown here to enhance the cavity dephasing time and thereby preserve the photon-loss bias during idling. An important next step is to determine whether the sweet-spot drive is compatible with gate-operation drives, so that the photon-loss bias is preserved during gates as well. More broadly, this setting motivates the study of Floquet theory with multiple drives at different frequencies and the development of efficient simulation methods.
 \end{enumerate}
 
 
